@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{hyperref}
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{definition}{Définition}[section]
+\newtheorem{eg}{Exemple}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{propriete}{Propriété(s)}[section]
+\newtheorem*{notation}{Notation}
+\newtheorem*{remarque}{Remarque}
+
+\title{CheatSheet de Probabilité Continue}
+\author{Yehor Korotenko}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Mathématiques Générales} 
+\subsection{Binomial}
+\[
+    \binom{n}{k} = \frac{n!}{k!(n-k)!}
+\] 
+Propriétés utiles:
+\begin{enumerate}
+    \item $\binom{n}{0} = \binom{n}{n} = 1$
+    \item $\binom{n}{1} = n$ 
+    \item $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
+\end{enumerate}
+\end{document}
