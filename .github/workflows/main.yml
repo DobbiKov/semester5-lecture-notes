@@ -2,7 +2,7 @@ name: Github Actions CI
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,10 +33,10 @@ jobs:
         chmod 600 ~/.ssh/id_ed25519
         git config --global core.sshCommand "ssh -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
-        git clone --depth=1 --branch gh-pages git@github.com:dobbikov/semester4-lecture-notes.git "$GITHUB_WORKSPACE/deploy"
+        git clone --depth=1 --branch gh-pages git@github.com:dobbikov/semester5-lecture-notes.git "$GITHUB_WORKSPACE/deploy"
 
         # (*) To add a file, add the following command for that file
-        cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/analyse_cheatsheet.pdf"
+        cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
 
         cd "$GITHUB_WORKSPACE/deploy"
 
