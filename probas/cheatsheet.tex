@@ -5,6 +5,7 @@
 \usepackage{textcomp}
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb, amsthm}
+\usepackage{float}
 
 
 % figure support
@@ -55,5 +56,61 @@ Propriétés utiles:
     \item $\binom{n}{0} = \binom{n}{n} = 1$
     \item $\binom{n}{1} = n$ 
     \item $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
+\end{enumerate}
+
+\section{Les loi à densité}%
+\label{sec:Les loi à densité}
+\subsection{Normale / Gaussienne}
+La sommes du grand nombre des v.a.s tend vers la v.a qui suit la loi normale.
+
+Soit $Z \sim \mathcal{N}(0, 1)$, alors
+ \[
+     f_Z(z) = \phi(z) = \frac{1}{\sqrt{2 \pi} }e^{-\frac{z^2}{2}}
+\] 
+Cette loi s'appelle loi normale standarte.
+
+Soit $X = \mu Z + \sigma$, alors  $X \sim \mathcal{N}(\mu, \sigma^2)$ et 
+ \[
+     f_X(z) = \frac{1}{\sigma \sqrt{2 \pi} }e^{- \frac{(x - \mu)^2}{2\sigma^2}}
+\] 
+
+L'esperance et la variance sont:
+\begin{align*}
+    E[X] = \mu & & Var(X) = \sigma^2
+\end{align*}
+
+\textbf{Propriétés utiles}.
+Les propriétés suivantes s'appliques à la loi normale standarte.
+\begin{enumerate}
+    \item Si $Z \sim \mathcal{N}(0, 1)$, alors  $-Z \sim \mathcal{N}(0, 1)$ 
+    \item Si $Z \sim \mathcal{N}(0, 1)$ et  $\Phi(z)$ est son CDF, alors
+         \[
+        \Phi(z) = 1 - \Phi(-z)
+        \] 
+\end{enumerate}
+
+\subsection{Loi exponentielle}
+Cette loi est un équivalent continue de la loi géomètrique discrète.
+La v.a qui suit cette loi dit combien de temps il reste d'attendre avant que le
+premier succès arrive.
+
+Soit $X \sim Exp(\lambda)$, alors
+ \[
+     f_X(z) = \lambda e^{-\lambda z}
+\] 
+
+L'esperance et la variance sont:
+\begin{align*}
+    E[X] = \frac{1}{\lambda} & & Var(X) = \frac{1}{\lambda^2}
+\end{align*}
+\textbf{Propriétés utiles}.
+\begin{enumerate}
+    \item Si $X \sim Exp(\lambda)$, alors
+         \[
+        P(X \ge s + t | X \ge s) = P(X \ge t)
+        \] 
+        \textbf{Intuition}: Une ampoule de durée de vie exponentielle :
+        même si elle a déjà duré 3 heures, la probabilité qu’elle tienne
+        encore 2 heures est la même que pour une ampoule toute neuve.
 \end{enumerate}
 \end{document}
