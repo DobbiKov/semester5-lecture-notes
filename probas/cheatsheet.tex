@@ -98,7 +98,6 @@ Soit $X \sim Exp(\lambda)$, alors
  \[
      f_X(z) = \lambda e^{-\lambda z}
 \] 
-
 L'esperance et la variance sont:
 \begin{align*}
     E[X] = \frac{1}{\lambda} & & Var(X) = \frac{1}{\lambda^2}
@@ -132,4 +131,25 @@ L'esperance et variance sont:
  \begin{align*}
      E[X] = \frac{\alpha}{\alpha + \beta} & & Var(X) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}
 \end{align*}
+
+\subsection{Loi Gamma}
+Si la loi exponentielle dit combien de temps il faut attendre avant que le
+succès arrive, alors la loi Gamma dit combien de temps il faut attendre avant
+que le $k^{\text{ième}}$ succès arrive.
+
+Alors si $X \sim Gamma(\alpha, \beta)$ (notons aussi $r = \alpha$ et  $\lambda = \beta$), alors:
+\[
+    f(t) = \frac{\lambda^{\alpha}}{\Gamma(\alpha)}t^{\alpha-1}e^{-\beta t}
+\] 
+
+dans le cas où $\alpha = r \in \N$:
+\[
+    f(t) = e^{-\lambda t} \frac{\lambda^r t^{r-1}}{(r-1)!}
+\] 
+
+L'esperance et variance sont:
+\begin{align*}
+    E[X] = \frac{\alpha}{\beta} & & Var(X) = \frac{\alpha}{\beta^2}
+\end{align*}
+
 \end{document}
