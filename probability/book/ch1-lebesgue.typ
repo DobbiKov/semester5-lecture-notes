@@ -110,7 +110,61 @@ could ask, what is the proportion of the whole sample space our outcome takes.
 
 Let's imagine a city that is built along a road (for instance: Kryvyi Rih in
 Ukraine). We introduce a random variable $X$ that returns the location between
-$-infinity$ and  $+infinity$ where a random person lives.
+$-infinity$ and  $+infinity$ where a random person lives. Then $P(X in [a, b])$
+represents the probability that a randomly chosen person lives in an area
+located between $a$ and  $b$ meters (or whatever measure we choose). Thus, this
+is the same as to ask what proportion of the whole population lives in this
+area.
+
+To answer to this question, let's split our city on evenly spaced points,
+equivalently, on intervals of the same size between those points. Lets say our
+city is $L=126$ kms long, we split it into 125 intervals and $N=126$ points of the length $mu = 1$ km.represented by $x_i in [|1, 126|]$.
+
+
+Now, let's introduce _density_ a term mostly used in physics but also in
+context of population. I will leave a simple definition here:
+#defn("density")[
+  Density is a characteristic property of a substance. The density of a substance is the relationship between the mass of the substance and how much space it takes up (volume).
+]
+In the context of population is the number of person per amount of space
+(squared meter, kilometer, etc.). Basically, it just says how many people
+leaves on a given square kilometer. This leads us to the conclusion that the
+bigger density is the bigger number of people leaves there $=>$ the higher
+probability that a random person leaves there.
+
+However, our question was about the proportion of population leaving between
+$a$ and  $b$ kilometers. We define $d(x)$ a function that takes a kilometer and
+returns a density of the population on the given kilometer. If we take a sum of denisities between those kilometers:
+$
+sum_(k=a)^b d(k)
+$ 
+then we obtain the number of people leaving between those kilometers.
+
+In order to finally calculate our probability, we introduce a function:
+$
+  f(x) = d(x)/("number of people living in the city")
+$
+that would be a proportion of population of the city living at the interval  $x$.
+Our custom definition of density. Then our probability is:
+$
+P(X in [a, b]) = sum_(k = a)^b f(k)
+$ 
+For simplicity, we denote the number of people living in the city by the letter
+$rho$. Thus,
+$
+P(X in [a, b]) = sum_(k = a)^b f(k) = 1/rho sum_(k = a)^b d(k) 
+$ 
+If we calculate our all the kilometers of the city, we would calculate all the
+population:
+$
+P(X in [0, 126]) = sum_(k = a)^b f(k) = 1/rho sum_(k = 0)^126 d(k) = rho/rho = 1 
+$ 
+The very important axiom(?) of probability.
+
+
+However, our precision is not accurate, we can find a probability for the
+intervals of the length of 1 km, that is actually a lot. Let's make them
+smaller, that means we increase the number of points.
 
 #defn("Probability Density Function")[
  TODO 
