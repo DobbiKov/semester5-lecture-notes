@@ -1,0 +1,91 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{bm}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{hyperref}
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+
+\title{CheatSheet d'optimisation}
+\author{Yehor Korotenko}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    Ce cheatsheet donne les énoncés des théorèmes et propositions important(e)s du cours d'optiomisation de L2DD Info-Maths à Paris-Saclay.
+\end{abstract}
+
+\textbf{Théorème 3.1.6} (\textsc{Théorème des fonctions implicites}) Soit $U$
+un ouvert de $\mathbb{R}^n$ et $g_1, \cdots, g_m : U \rightarrow \mathbb{R}$
+des fonctions de classe $\mathcal{C}^k$. Soit $\bm{\tilde{x}} \in U$ tel que
+$g_i(\bm{\tilde{x}}) = 0$ pour tout $1 \leq i \leq m$. Si la famille de
+vecteurs
+\[
+\nabla g_1(\bm{\tilde{x}}), \cdots, \nabla g_m(\bm{\tilde{x}}) \in \mathbb{R}^n
+\]
+est libre, alors -- \textbf{quitte à permuter les coordonnées} -- il existe un ouvert $V \subset \mathbb{R}^{n - m}$ contenant $(\tilde{x}_1, \cdots, \tilde{x}_{n - m})$, un ouvert $W \subset \mathbb{R}^m$ contenant $(\tilde{x}_{n - m + 1}, \cdots, \tilde{x}_n)$ et une fonction de classe $\mathcal{C}^k$
+\[
+\varphi : V \rightarrow W
+\]
+tels que pour tout $x \in V \times W$ on ait
+\[
+g_1(x) = \cdots = g_m(x) = 0 \iff (x_{n - m + 1}, \cdots, x_n) = \varphi(x_1, \cdots, x_{n - m}).
+\]
+
+\noindent\textbf{Proposition 3.1.8.} \textit{Sous les hypothèses du Théorème \textcolor{red}{3.1.6}, on a}
+\[
+\frac{\partial \varphi}{\partial x_j}\bigl(\tilde{x}_1,\dots,\tilde{x}_{n-m}\bigr)
+= -\bigl(D_{\tilde{x},2}g\bigr)^{-1}
+\left(\frac{\partial g}{\partial x_j}(\tilde{x})\right),
+\]
+\textit{où } \(g=(g_1,\dots,g_m)\). \\
+
+\textbf{Théorème 3.1.9} (\textsc{Théorème des fonctions implicites}) Soit $f : U \to \mathbb{R}$ une fonction de classe $\mathcal{C}^1$, soient $g_1, \cdots, g_m : U \to \mathbb{R}$ des fonctions également de classe $\mathcal{C}^1$. Supposons que la restriction de $f$ à l’ensemble
+\[
+\mathcal{S} = \{ x \in U \mid g_i(x) = 0 \text{ pour tout } 1 \leq i \leq m \}
+\]
+admet un extremum local en un point $\bar{x}$. Si la famille de vecteurs
+\[
+\nabla g_1(\bar{x}), \cdots, \nabla g_m(\bar{x})
+\]
+est libre, alors il existe $\lambda_1, \cdots, \lambda_m \in \mathbb{R}$ tels que
+\[
+\nabla f(\bar{x}) = \sum_{i=1}^{m} \lambda_i \nabla g_i(\bar{x}).
+\]
+
+    
+\end{document}
