@@ -17,10 +17,18 @@ jobs:
         root_file: cheatsheet.tex
         latexmk_shell_escape: true
         working_directory: probas
+        
+    - name: Optimisation Cheatsheet
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: optimisation/cheatsheet/
 
     - name: Check PDF files
       run: |
         file probas/cheatsheet.pdf | grep -q ' PDF '
+        file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
         
     - name: Upload to GitHub pages
       run: |
@@ -37,6 +45,7 @@ jobs:
 
         # (*) To add a file, add the following command for that file
         cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
+        cp -f optimisation/cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet.pdf"
 
         cd "$GITHUB_WORKSPACE/deploy"
 
