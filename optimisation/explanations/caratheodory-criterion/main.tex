@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{hyperref}
+\usepackage[margin=0.8in]{geometry}
+
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+
+\author{Yehor Korotenko}
+\title{Carathéodory Criterion}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+   In measure theory, after defining the \textbf{outer measure}(denoted as $\lambda^*$) we need to
+   define sets that are measurable as not all the sets are measurable, for
+   instance \textit{Vitali set}. Hence,
+\begin{definition}
+Let $\Omega$ be a space and with $E \subset \Omega$. $E$ is  \textbf{measurable} if and only if for all subset of $\Omega$ denoted as $A$, not necessarily measurable
+\[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+\end{definition}
+\end{document}
