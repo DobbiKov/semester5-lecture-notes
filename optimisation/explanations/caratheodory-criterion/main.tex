@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[english]{babel}
+\usepackage{float}
 \usepackage{amsmath, amssymb, amsthm}
 
 
@@ -43,7 +44,6 @@
 \title{Carathéodory Criterion}
 
 \begin{document}
-\maketitle
 \section{Introduction}
    In measure theory, after defining the \textbf{outer measure}(denoted as $\lambda^*$) we need to
    define sets that are measurable as not all the sets are measurable, for
@@ -54,4 +54,39 @@ Let $\Omega$ be a space and with $E \subset \Omega$. $E$ is  \textbf{measurable}
 \lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
 \] 
 \end{definition}
+An interesting fact about $A$ is that it may be (and usually is)
+non-measurable. But why does it work in the first place even for
+\textit{non-measurable} $A$? Let's start with a reminder what an outer measure and its intuition is.
+
+\section{Outer measure}%
+\label{sec:Outer measure}
+\begin{definition}
+    An outer measure is a map denoted as $\lambda^*: \Omega \to \R^+$ that satisfies the following properties:
+    \begin{enumerate}
+        \item $\lambda^*(\emptyset) = 0$
+        \item $A \subset B \subset \Omega \implies \lambda^*(A) < \lambda^*(B)$ 
+        \item $\lambda^*(\cup A_n) \le \sum_n \lambda^*(A_n)$
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    The Lebesgue outer measure of a set $E \subset R^n$ is 
+    \[
+        \lambda^*(E) = inf \left\{ \cup_{i \in I} V_i \right\}
+    \] 
+    with $(V_i)_{i \in I}$ a family of boxes such that $E \subset \cup_{i_I} V_i$.
+\end{definition}
+
+Intuitively, we look for the smallest set of measurable sets (boxes) that cover
+$E$.  
+
+\begin{figure}[H]
+    \centering
+    \incfig{cover-example1}
+    \caption{Searching for infinum of covers of $E$. \\ The black space is our
+        set $E$, blue rectangles are the boxes of the  $(V_i)_{i \in I}$
+        family.\\ On the right, the
+    rectangles are smaller lead to less amount of white spaces taking into
+account.}
+    \label{fig:cover-example1}
+\end{figure}
 \end{document}
