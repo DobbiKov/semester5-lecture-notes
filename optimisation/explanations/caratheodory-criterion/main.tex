@@ -68,7 +68,7 @@ non-measurable. But why does it work in the first place even for
         \item $\lambda^*(\cup A_n) \le \sum_n \lambda^*(A_n)$
     \end{enumerate}
 \end{definition}
-\begin{definition}
+\begin{definition}\label{defn:lebesgue-outer-measure}
     The Lebesgue outer measure of a set $E \subset R^n$ is 
     \[
         \lambda^*(E) = inf \left\{ \cup_{i \in I} V_i \right\}
@@ -81,12 +81,20 @@ $E$.
 
 \begin{figure}[H]
     \centering
-    \incfig{cover-example1}
-    \caption{Searching for infinum of covers of $E$. \\ The black space is our
+    \incfig{cover-example2}
+    \caption{Searching for infinum of covers of $E$. \
+        The black space is our
         set $E$, blue rectangles are the boxes of the  $(V_i)_{i \in I}$
-        family.\\ On the right, the
-    rectangles are smaller lead to less amount of white spaces taking into
-account.}
-    \label{fig:cover-example1}
+        family. \
+        On the right, the rectangles are smaller lead to less amount of white spaces taking into account.}
+    \label{fig:cover-example2}
 \end{figure}
+
+That is the intuitive way of the \textit{Lebesgue Outer Measure} (see the
+definition ~\ref{defn:lebesgue-outer-measure}). We look for smaller boxes and
+better placements to cover over set $E$ in order to find the smallest size of
+such cover.
+
+Before moving on, let's see an example of non-measurable set (in our simplified sense) and measurable set (in the same sense):
+
 \end{document}
