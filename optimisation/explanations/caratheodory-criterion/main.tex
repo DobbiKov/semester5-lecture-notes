@@ -7,6 +7,16 @@
 \usepackage{float}
 \usepackage{amsmath, amssymb, amsthm}
 
+\usepackage[margin=0.8in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot[R]{Yehor Korotenko}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{Carathéodory criterion intuition}
+
 
 % figure support
 \usepackage{import}
@@ -15,7 +25,6 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{hyperref}
-\usepackage[margin=0.8in]{geometry}
 
 \usepackage{setspace}
 \setlength{\parindent}{0in}
@@ -99,7 +108,8 @@ In the rest of this explanation we suppose that the blue box on the right of
 the Figure \ref{fig:cover-example2} is the smallest box we can take to cover any set
 to calculate the outer measure.
 
-Before moving on, let's see an example of non-measurable set (in our simplified
+\section{Carathéodory criterion}
+Let's introduce non-measurable set (in our simplified
 sense) and measurable set (in the same sense):
 \begin{figure}[H]
     \centering
@@ -110,5 +120,111 @@ with the boxes ideally without any white space.}
     \label{fig:non-measurable-and-measurable}
 \end{figure}
 
+\begin{remark}
+    The "unpretty" set on the left from the Figure
+    \ref{fig:non-measurable-and-measurable} is actually measurable by Lebesgue
+    Measure. However, we introduce it as a metaphor to overly complex structure 
+    for an example of "non-measurable".
+\end{remark}
+
+This unprettiness on the left of the non measurable set is the key to
+understand the Carathéodory criterion, let's take a set $A$ and draw them
+together with "unpretty" $E$ :
+
+\begin{figure}[H]
+    \centering
+    \incfig{a-and-unpretty-e}
+    \caption{The set $A$ with the set  $E$}
+    \label{fig:a-and-unpretty-e}
+\end{figure}
+
+Let's take a look at how to approximate its outer measure with boxes:
+\begin{figure}[H]
+    \centering
+    \incfig{a-outer-measure-by-boxes}
+    \caption{a-outer-measure-by-boxes}
+    \label{fig:a-outer-measure-by-boxes}
+\end{figure}
+
+If $E$ is measurable, then for our chosen  $A$, we must have
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+That is to say, that if we split $A$ on the parts of  $E$ and its complement, the sum of the measures of the splitted parts equals to the measure of $A$, let's take a look on the split of $A$:
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a}
+    \caption{The set $A$ splitted by $E$}
+    \label{fig:split-of-a}
+\end{figure}
+
+Let's now approxiamte the outer measure.
+
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a-outer-measure}
+    \caption{Approximation of the outer measure of the two parts of the set $A$}
+    \label{fig:split-of-a-outer-measure}
+\end{figure}
+As you can see, those "unpretty" parts of $E$ divide  $A$ into two subsets with
+"branches" that require more boxes to cover them thus we get inequality:
+ \[
+\lambda^*(A) < \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+Let's now see an example with a measurable  $E$.
+
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a-by-measurable-e}
+    \caption{$A$, measurable $E$ and the split of $A$ by $E$}
+    \label{fig:split-of-a-by-measurable-e}
+\end{figure}
+
+Now the border of the split look nicer and with the cover:
+\begin{figure}[H]
+    \centering
+    \incfig{cover-of-a-splitted-by-measurable-e}
+    \caption{Coverage of the two parts of the $A$}
+    \label{fig:cover-of-a-splitted-by-measurable-e}
+\end{figure}
+
+As you can see, the nice border allows us to use the same number of boxes as we needed to cover $A$, thus we get an equality:
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+\section{Important nuances}%
+\label{sec:Important nuances}
+
+\begin{itemize}
+    \item 
+        The "Non-Measurable" Drawings Are Just Analogies: This is the most significant
+        simplification. The "unpretty" black blob shown in the figures (e.g., Figure \ref{fig:a-and-unpretty-e})
+        is, technically, a Lebesgue measurable set.  Truly non-measurable sets, like
+        the Vitali set, are so pathologically complex that they cannot be drawn. They
+        are composed of a completely disconnected "dust" of points. The drawing is a
+        metaphor for the extreme boundary complexity that causes the Carathéodory
+        criterion to fail.
+    \item 
+        The Covering Process: The presented process of "covering" oversimplifies the
+        idea of real covering and the measure, that of an outer measure by
+        imagining a single grid of "the smallest box". In reality, the definition of
+        outer measure involves finding the infimum—the greatest lower bound—of the sum
+        of volumes of all possible countable collections of boxes that cover the set,
+        with boxes of any size and position. The core idea of covering presented here
+        efficiency still holds true under this precise definition.
+\end{itemize}
+
+
+
+
+\section{Conclusion}%
+\label{sec:Conclusion}
+The Carathéodory criterion is a \textbf{definition} of a \textit{measurable}
+set thus is a fundamental part of the Measure Theory. This explanation may
+\textit{not} be correct or rigourous. However, it should help to find an
+intuition behind the concept that seem to be unintuitive.
 
 \end{document}

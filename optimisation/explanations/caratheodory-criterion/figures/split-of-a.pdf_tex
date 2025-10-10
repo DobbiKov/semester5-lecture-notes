@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.4 (e7c3feb1, 2024-10-09), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'non-measurable-and-measurable.pdf' (pdf, eps, ps)
+%% Accompanies image file 'split-of-a.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{453.84378749bp}%
+    \setlength{\unitlength}{283.46456693bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,9 +50,14 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.25141017)%
+  \begin{picture}(1,0.5)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{non-measurable-and-measurable.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{split-of-a.pdf}}%
+    \put(0.66215523,0.415811){\color[rgb]{0.92941176,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A \cap E$\end{tabular}}}}%
+    \put(0.22957106,0.40942459){\color[rgb]{0.92941176,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A \cap E^c$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{split-of-a.pdf}}%
+    \put(1.17416382,0.22154251){\color[rgb]{0.92941176,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A$\end{tabular}}}}%
+    \put(1.54812653,0.22865326){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$E$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
