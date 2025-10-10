@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a}
+    \caption{The set $A$ splitted by $E$}
+    \label{fig:split-of-a}
+\end{figure}

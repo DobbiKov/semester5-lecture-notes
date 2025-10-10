@@ -1,0 +1,4 @@
+\begin{remark}
+    L'ensemble "laid" à gauche de la Figure
+    \ref{fig:non-measurable-and-measurable} est en réalité mesurable selon la mesure de Lebesgue. Cependant, nous l'introduisons comme une métaphore d'une structure excessivement complexe pour un exemple de "non-mesurable".
+\end{remark}

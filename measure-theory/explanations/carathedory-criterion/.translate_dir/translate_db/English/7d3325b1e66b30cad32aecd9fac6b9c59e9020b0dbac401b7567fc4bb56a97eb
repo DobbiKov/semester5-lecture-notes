@@ -1,0 +1,8 @@
+That is the intuitive way of the \textit{Lebesgue Outer Measure} (see the
+definition ~\ref{defn:lebesgue-outer-measure}). We look for smaller boxes and
+better placements to cover over set $E$ in order to find the smallest size of
+such cover.
+
+In the rest of this explanation we suppose that the blue box on the right of
+the Figure \ref{fig:cover-example2} is the smallest box we can take to cover any set
+to calculate the outer measure.

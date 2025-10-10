@@ -1,0 +1,6 @@
+If $E$ is measurable, then for our chosen  $A$, we must have
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+That is to say, that if we split $A$ on the parts of  $E$ and its complement, the sum of the measures of the splitted parts equals to the measure of $A$, let's take a look on the split of $A$:

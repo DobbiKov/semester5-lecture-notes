@@ -1,0 +1,6 @@
+\begin{definition}
+Soit $\Omega$ un espace et soit $E \subset \Omega$. $E$ est \textbf{mesurable} si et seulement si pour tout sous-ensemble de $\Omega$ noté $A$, pas nécessairement mesurable
+\[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+\end{definition}

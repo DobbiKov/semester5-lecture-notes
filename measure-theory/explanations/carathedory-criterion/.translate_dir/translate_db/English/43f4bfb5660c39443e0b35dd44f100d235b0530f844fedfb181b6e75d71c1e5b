@@ -1,0 +1,6 @@
+\begin{definition}
+Let $\Omega$ be a space and with $E \subset \Omega$. $E$ is  \textbf{measurable} if and only if for all subset of $\Omega$ denoted as $A$, not necessarily measurable
+\[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+\end{definition}

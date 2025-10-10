@@ -1,0 +1,19 @@
+{
+  "name": "car-cr",
+  "lang_dirs": [
+    {
+      "language": "French",
+      "path": "/Users/dobbikov/Desktop/latex/semester5/measure-theory/explanations/carathedory-criterion/fr"
+    }
+  ],
+  "src_dir": {
+    "language": "English",
+    "path": "/Users/dobbikov/Desktop/latex/semester5/measure-theory/explanations/carathedory-criterion/en"
+  },
+  "root_path": "/Users/dobbikov/Desktop/latex/semester5/measure-theory/explanations/carathedory-criterion",
+  "translatable_files": [
+    "/Users/dobbikov/Desktop/latex/semester5/measure-theory/explanations/carathedory-criterion/en/main.tex"
+  ],
+  "llm_service": "google",
+  "llm_model": "gemini-2.0-flash"
+}

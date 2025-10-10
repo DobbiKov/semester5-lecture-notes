@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{a-and-unpretty-e}
+    \caption{The set $A$ with the set  $E$}
+    \label{fig:a-and-unpretty-e}
+\end{figure}

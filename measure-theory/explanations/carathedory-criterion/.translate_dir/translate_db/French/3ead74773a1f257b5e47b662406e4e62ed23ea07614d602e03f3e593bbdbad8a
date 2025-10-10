@@ -1,0 +1,8 @@
+\begin{definition}
+    Une mesure extérieure est une application notée $\lambda^*: \Omega \to \R^+$ qui satisfait les propriétés suivantes :
+    \begin{enumerate}
+        \item $\lambda^*(\emptyset) = 0$
+        \item $A \subset B \subset \Omega \implies \lambda^*(A) < \lambda^*(B)$ 
+        \item $\lambda^*(\cup A_n) \le \sum_n \lambda^*(A_n)$
+    \end{enumerate}
+\end{definition}

@@ -1,0 +1,6 @@
+\begin{remark}
+    The "unpretty" set on the left from the Figure
+    \ref{fig:non-measurable-and-measurable} is actually measurable by Lebesgue
+    Measure. However, we introduce it as a metaphor to overly complex structure 
+    for an example of "non-measurable".
+\end{remark}

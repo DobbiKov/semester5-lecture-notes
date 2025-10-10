@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{cover-of-a-splitted-by-measurable-e}
+    \caption{Coverage of the two parts of the $A$}
+    \label{fig:cover-of-a-splitted-by-measurable-e}
+\end{figure}

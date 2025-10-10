@@ -1,0 +1,8 @@
+\begin{figure}[H]
+    \centering
+    \incfig{non-measurable-and-measurable}
+    \caption{The set on the left is non measurable because it is not "pretty
+    enough" to cover it with boxes. However, the one on the right is covered
+with the boxes ideally without any white space.}
+    \label{fig:non-measurable-and-measurable}
+\end{figure}

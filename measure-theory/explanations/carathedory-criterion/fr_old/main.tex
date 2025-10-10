@@ -1,0 +1,471 @@
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 710da82be16b7a4215f6514d2ba72252fbceddfa00f35d11881f7b4a7574f405
+% --- CHUNK_METADATA_END ---
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english, french]{babel}
+\usepackage{float}
+\usepackage{amsmath, amssymb, amsthm}
+
+\usepackage[margin=0.8in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %  sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyfoot[R]{Yehor Korotenko}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{Carathéodory criterion intuition}
+
+
+%  figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{hyperref}
+
+\usepackage{setspace}
+\setlength{\parindent}{0in}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+
+\author{Yehor Korotenko}
+\title{Carathéodory Criterion}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 49d34b0366eb0a68eb35c75d6d8aeb1d60be3c49779501a7e1cdf4941acdab46
+% --- CHUNK_METADATA_END ---
+\begin{document}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+% --- CHUNK_METADATA_END ---
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 479ce8267a8dc66449e53b838492edeab11f9f116eed87da087547c1cd388ae6
+% --- CHUNK_METADATA_END ---
+\section{Introduction}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 7c786d292441a3b2eb2fba55a353848bf503b84395ce11009dd18757c39abc47
+% --- CHUNK_METADATA_END ---
+
+   En théorie de la mesure, après avoir défini la % --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: a8b64e122657b2b55a0a0fc22f914a37c896a1ef153bc8c2ecce664f4bdc01f8
+% --- CHUNK_METADATA_END ---
+\textbf{mesure extérieure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 7c2c4f31e775f07e6951e4f760e1b5003cf7d30dabe1511defe70ec04cab4cbd
+% --- CHUNK_METADATA_END ---
+(notée $\lambda^*$), nous devons définir des ensembles qui sont mesurables car tous les ensembles ne le sont pas, par exemple % --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 8e660d1e13152bb2c7869b5ee580e9b805277f3fb2d504cf33f4b01d1fa09781
+% --- CHUNK_METADATA_END ---
+\textit{Ensemble de Vitali}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 0d941d2e119fd4c082e6789a99c76b4b2ce05d698728ca32b096af8183a9e851
+% --- CHUNK_METADATA_END ---
+. Par conséquent,
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 43f4bfb5660c39443e0b35dd44f100d235b0530f844fedfb181b6e75d71c1e5b
+% --- CHUNK_METADATA_END ---
+\begin{definition}
+Soit 
+Soit $\Omega$ un espace et avec $E \subset \Omega$. $E$ est \textbf{mesurable} si et seulement si pour tout sous-ensemble de $\Omega$ noté $A$, pas nécessairement mesurable
+\[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+\end{definition}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: ed43cbe20f69ffaa2aac2c805d49770cc3ee9d25c54891c10f3cbfda7e533693
+% --- CHUNK_METADATA_END ---
+
+Un fait intéressant à propos de $A$ est qu'il peut être (et est généralement)
+non mesurable. Mais pourquoi cela fonctionne-t-il en premier lieu, même pour
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 04bb828974c35979841aaa4868685c349b9ecb9741405bac7715a93141d9877a
+% --- CHUNK_METADATA_END ---
+\textit{non mesurable}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 1539eeb5a36edfd1296f6a6a14254de489bc8cd52aea377100e4b3a751d57aa8
+% --- CHUNK_METADATA_END ---
+ $A$ ? Commençons par un rappel de ce qu'est une mesure extérieure et de son intuition.
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: bf1fb0e89b81a457beedf6c4045045b68e2ddbaf45513aaaf52a1872b0dc9987
+% --- CHUNK_METADATA_END ---
+\section{Mesure extérieure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: d14506655223461adf0b7bb605d29ca9f0733aa58b98303ec3c6f676b5963409
+% --- CHUNK_METADATA_END ---
+% 
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: e51ac7ecb25a4623df51bd0e320a0d2a651cbbcafd4c5f92c448572d9adcd269
+% --- CHUNK_METADATA_END ---
+\label{sec:Outer measure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+% --- CHUNK_METADATA_END ---
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: cc4738a4b83b1adbdd59a03758cf83a06ae2756902145b6b3b54758f7c18c688
+% --- CHUNK_METADATA_END ---
+\begin{definition}
+    Une mesure extérieure est une application notée comme 
+    Une mesure extérieure est une application notée $\lambda^*: \Omega \to \R^+$ qui satisfait les propriétés suivantes :
+    \begin{enumerate}
+        
+        \item $\lambda^*(\emptyset) = 0$
+        \item $A \subset B \subset \Omega \implies \lambda^*(A) < \lambda^*(B)$ 
+        \item $\lambda^*(\cup A_n) \le \sum_n \lambda^*(A_n)$
+    \end{enumerate}
+\end{definition}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+% --- CHUNK_METADATA_END ---
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: b56ae65e6d040a4bc19b369e8e6b40f50366f9ba826a4ad91b16b9260a27e814
+% --- CHUNK_METADATA_END ---
+\begin{definition}\label{defn:lebesgue-outer-measure}
+    La mesure extérieure de Lebesgue d'un ensemble $E \subset R^n$ est 
+    \[
+        \lambda^*(E) = inf \left\{ \cup_{i \in I} V_i \right\}
+    \] 
+    avec $(V_i)_{i \in I}$ une famille de boîtes telle que $E \subset \cup_{i_I} V_i$.
+\end{definition}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: f894dcbfc4c7c5233dee11dd203ad57cf67d851ecf1114a4cd5950a63fb13e9a
+% --- CHUNK_METADATA_END ---
+
+
+Intuitivement, nous recherchons le plus petit ensemble d'ensembles mesurables (boîtes) qui recouvre
+$E$.
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 934c68fa0a30f00e699bdc4525f7edef26e53e36985f056e71e504c6368e6375
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    \centering
+    \incfig{cover-example2}
+    \caption{Recherche de l'infimum des recouvrements de $E$. \
+        L'espace noir est notre ensemble $E$, les rectangles bleus sont les boîtes de la famille $(V_i)_{i \in I}$. \
+        À droite, les rectangles sont plus petits, ce qui entraîne une moindre quantité d'espaces blancs à prendre en compte.}
+    \label{fig:cover-example2}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 01676848804248afafc9686b2e167a8080bd6276a584b5aca3e8a6d857d407b1
+% --- CHUNK_METADATA_END ---
+
+
+C'est la manière intuitive de la % --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: c56ff9fe7953046a1eb6ac869d5a10c0ebd93e803929641096279a21ac29849f
+% --- CHUNK_METADATA_END ---
+\textit{Mesure extérieure de Lebesgue}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 17ba85abfacb212dbafad2e19b44a139c6a94fc9d4c052cb5201a65ed31de674
+% --- CHUNK_METADATA_END ---
+ (voir la
+définition ~% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 9a73ffd5eea8b1e41028b7d942a38b8a1d9bdba8a953577b9feea39d772eb1eb
+% --- CHUNK_METADATA_END ---
+\ref{defn:lebesgue-outer-measure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 1c2a0296d7c8c66684198643dfd1eadc1263e90f084f2efa03946369ce915dc6
+% --- CHUNK_METADATA_END ---
+). Nous recherchons des boîtes plus petites et de meilleurs emplacements pour recouvrir l'ensemble $E$ afin de trouver la plus petite taille d'un tel recouvrement.
+
+Dans le reste de cette explication, nous supposons que la boîte bleue à droite de la Figure % --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 612d444fe3cc07020b5e2a7f6b38770dc41a57078a6ab820abe297c160b0c777
+% --- CHUNK_METADATA_END ---
+\ref{fig:cover-example2}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 27a971c24e1a55234588d1fe93c84d4e329f73805f176464175d0e4d2035089f
+% --- CHUNK_METADATA_END ---
+ est la plus petite boîte que l'on puisse prendre pour recouvrir n'importe quel ensemble afin de calculer la mesure extérieure.
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 29ffe9d6db7d43a1fb17e107747341b8f2ba09b1176857916ac1f1ce73b87739
+% --- CHUNK_METADATA_END ---
+\section{Critère de Carathéodory}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 1b48b88de562917a71e41254edee313afbab4214a3fb7122e67d7b23d127a306
+% --- CHUNK_METADATA_END ---
+
+Introduisons l'ensemble non mesurable (dans notre sens simplifié) et l'ensemble mesurable (dans le même sens) :
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 1efb5cb36d1bbdc74d9ebe1007a5d699e4b12c8a02d233370d4a4eb3e372976e
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    \centering
+    \incfig{non-measurable-and-measurable}
+    \caption{L'ensemble à gauche n'est pas mesurable car il n'est pas "assez joli" pour être recouvert de boîtes. Cependant, celui de droite est idéalement recouvert de boîtes sans espace blanc.}
+    \label{fig:non-measurable-and-measurable}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070
+% --- CHUNK_METADATA_END ---
+
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: af9ecba9a056478ad5be1a3d6aa7d097ba153ff4f356d3649c4f7407e203514e
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+    The "unpretty" set on the left from the Figure
+    
+    L'ensemble "laid" à gauche de la figure
+    \ref{fig:non-measurable-and-measurable} est en réalité mesurable par la mesure de Lebesgue. Cependant, nous l'introduisons comme une métaphore d'une structure excessivement complexe pour un exemple de "non-mesurable".
+\end{remark}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: fa2b7eb5c47c257f3c0245454875bbdfe59f9eb1e8cf63e9ff77c73b225a6b72
+% --- CHUNK_METADATA_END ---
+
+
+Cette laideur à gauche de l'ensemble non mesurable est la clé pour
+comprendre le critère de Carathéodory, prenons un ensemble $A$ et dessinons-les
+ensemble avec $E$ "laid" :
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 1ca63b535042e6dc695961ea2c91cb34ceb62b00f8ddddcc818753937b6c9cde
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    \centering
+    \incfig{a-and-unpretty-e}
+    \caption{L'ensemble $A$ avec l'ensemble $E$}
+    \label{fig:a-and-unpretty-e}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 8d9b2a829be06e12452af7082b2fdf2a1f9c82835f675d5b29f8922a2310f225
+% --- CHUNK_METADATA_END ---
+Voyons maintenant comment approximer sa mesure extérieure avec des boîtes :% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: ce880e9153ad54c08d88944a37540e3bff2136cc914f7f556d4a4125afb48b27
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    
+    
+    \centering
+    \incfig{a-outer-measure-by-boxes}
+    \caption{a-outer-measure-by-boxes}
+    \label{fig:a-outer-measure-by-boxes}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 4e8fa644b901c5f6c4d329a99c0ca0c4e596c6554abf58a56f2f584615d5027e
+% --- CHUNK_METADATA_END ---
+
+
+Si $E$ est mesurable, alors pour notre $A$ choisi, nous devons avoir
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+Autrement dit, si nous divisons $A$ en les parties de $E$ et son complément, la somme des mesures des parties divisées est égale à la mesure de $A$, regardons de plus près la division de $A$ :
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 85b6813484ca81723ed3a9400ab008958ec9c4ab6ffea2d1fcba9fb3136ff08a
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    
+    
+    \centering
+    \incfig{split-of-a}
+    \caption{L'ensemble $A$ divisé par $E$}
+    \label{fig:split-of-a}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 12cb525f57f64b139ec9874fe12258ba362f0d4b9fcd19ef2dd663131e91c247
+% --- CHUNK_METADATA_END ---
+
+
+Approximons maintenant la mesure extérieure.
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: faa2fd36a52b0341dbf38f022143184af863851e376e653462b51678a28724aa
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    \centering
+    \incfig{split-of-a-outer-measure}
+    \caption{Approximation de la mesure extérieure des deux parties de l'ensemble $A$}
+    \label{fig:split-of-a-outer-measure}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 4881de5cd32dafa1e8b691f97edb595e03738d15c8f3a53be63e508cb10d41fd
+% --- CHUNK_METADATA_END ---
+
+Comme vous pouvez le constater, ces parties « peu jolies » de $E$ divisent $A$ en deux sous-ensembles avec des « branches » qui nécessitent plus de boîtes pour les couvrir, ce qui nous donne l'inégalité :
+ \[
+\lambda^*(A) < \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+Voyons maintenant un exemple avec un $E$ mesurable.
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 23a5191eb4b5291253a6cab0b762dc8c8f0249ef3c8ae345a0eeb4b8235e6ccb
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    \centering
+    \incfig{split-of-a-by-measurable-e}
+    \caption{$A$, $E$ mesurable et la division de $A$ par $E$}
+    \label{fig:split-of-a-by-measurable-e}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 6391389d6afe46a3b66ebd7f3b48dde1395e30c49f3bbea2fe67667fa72a03ad
+% --- CHUNK_METADATA_END ---
+Maintenant, la bordure de la division est plus belle et avec la couverture :% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: cc6d6043bb3ba7b0991184a90452ddaacda4143490900f7404a883ff0a02b7da
+% --- CHUNK_METADATA_END ---
+\begin{figure}[H]
+    
+    
+    
+    \centering
+    \incfig{cover-of-a-splitted-by-measurable-e}
+    \caption{Recouvrement des deux parties de $A$}
+    \label{fig:cover-of-a-splitted-by-measurable-e}
+\end{figure}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: b021249404dc95f9bdb86e87dd538ac3ab75881a332ba10fbb532be0cf75c195
+% --- CHUNK_METADATA_END ---
+
+
+Comme vous pouvez le constater, la bordure bien définie nous permet d'utiliser le même nombre de boîtes que celui dont nous avions besoin pour couvrir $A$, nous obtenons donc une égalité :
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 300151e9a3d04bc9b7334a9ef0aea17ab2b73776c146a254a448d6e358080a28
+% --- CHUNK_METADATA_END ---
+\section{Nuances importantes}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: d14506655223461adf0b7bb605d29ca9f0733aa58b98303ec3c6f676b5963409
+% --- CHUNK_METADATA_END ---
+% 
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 3f8c052c3f5ef5bd2d992d74b310373deee35fdb7b551db918a2e94ced747c0c
+% --- CHUNK_METADATA_END ---
+\label{sec:Important nuances}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 75a11da44c802486bc6f65640aa48a730f0f684c5c07a42ba3cd1735eb3fb070
+% --- CHUNK_METADATA_END ---
+
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: bc9ed60e743b38efab1d3f44936a79439a7d91a827403c5c0ddefeed11c3bad8
+% --- CHUNK_METADATA_END ---
+\begin{itemize}
+    
+    \item 
+        Les dessins "non mesurables" ne sont que des analogies : Il s'agit de la simplification la plus importante. La tache noire "moche" représentée dans les figures (par exemple, la figure \ref{fig:a-and-unpretty-e}) est, techniquement, un ensemble mesurable au sens de Lebesgue. Les ensembles véritablement non mesurables, comme l'ensemble de Vitali, sont d'une complexité tellement pathologique qu'ils ne peuvent pas être dessinés. Ils sont composés d'une "poussière" de points complètement déconnectée. Le dessin est une métaphore de la complexité extrême de la frontière qui fait échouer le critère de Carathéodory.
+    \item 
+        Le processus de recouvrement : Le processus de "recouvrement" présenté simplifie à l'excès l'idée de recouvrement réel et de mesure, celle d'une mesure extérieure en imaginant une seule grille de "la plus petite boîte". En réalité, la définition de la mesure extérieure consiste à trouver l'infimum (la plus grande borne inférieure) de la somme des volumes de toutes les collections dénombrables possibles de boîtes qui recouvrent l'ensemble, avec des boîtes de toutes tailles et positions. L'idée centrale de l'efficacité du recouvrement présentée ici reste valable dans le cadre de cette définition précise.
+\end{itemize}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 7c370d9536d7d0d6a0f7cd7f9826692acd93e4fb05ba46f7b630b879740343d3
+% --- CHUNK_METADATA_END ---
+
+
+
+
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 7c6ffa22d25048eb3151789183257f6e7e30da0e839bc9442905cd1eab2d7122
+% --- CHUNK_METADATA_END ---
+\section{Conclusion}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: d14506655223461adf0b7bb605d29ca9f0733aa58b98303ec3c6f676b5963409
+% --- CHUNK_METADATA_END ---
+% 
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 21bdb7030418bfb4e4fbb75a83247677b3d4fc3a70617c9bbc63844fc3460354
+% --- CHUNK_METADATA_END ---
+\label{sec:Conclusion}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: f5952f99d22715a25dfc08a31d40a17f246f194839367d82f345c01462a43e16
+% --- CHUNK_METADATA_END ---
+
+Le critère de Carathéodory est un
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 28c2c02828742d5927674e37b6b082133528ab6a2efbd0e0f29a00a2bb2c67f9
+% --- CHUNK_METADATA_END ---
+\textbf{définition}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: f9405cdd863a3136d7d009e0998fed10f7debd36dfde395cbac5b7668dfe29a0
+% --- CHUNK_METADATA_END ---
+ d'un % --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: f6c283dff57bd2bdbd60247352d86f1d60364e83abed5e3fb342563382ae80ca
+% --- CHUNK_METADATA_END ---
+\textit{mesurable}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 12d1cf6c4c28270f5b8d0590ef05e14ef2142dd4387ecbb23be69307425057e1
+% --- CHUNK_METADATA_END ---
+
+Cet ensemble est donc une partie fondamentale de la théorie de la mesure. Cette explication peut
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 9a3f85daa32e1d30bebe2e074985f1dc443609f5226e1a8960d3785965db6f53
+% --- CHUNK_METADATA_END ---
+\textit{non}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 08f053c45f0a9609543335d82b79da09fc69624e6a9a868a4fd0c182d96af2fe
+% --- CHUNK_METADATA_END ---
+ Être correct ou rigoureux. Cependant, cela devrait aider à trouver une intuition derrière le concept qui semble être inintuitif.
+
+% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: 2dc670e7ffe1f12aa0326631b39a0b6d72da153425c7f5f9aed627a71c1487d6
+% --- CHUNK_METADATA_END ---
+\end{document}

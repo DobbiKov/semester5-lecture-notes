@@ -1,0 +1,6 @@
+Si $E$ est mesurable, alors pour notre $A$ choisi, nous devons avoir
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+C'est-à-dire que si nous divisons $A$ en les parties de $E$ et son complément, la somme des mesures des parties divisées est égale à la mesure de $A$, examinons la division de $A$:

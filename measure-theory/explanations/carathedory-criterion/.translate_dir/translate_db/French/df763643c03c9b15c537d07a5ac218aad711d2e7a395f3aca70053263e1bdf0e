@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{a-and-unpretty-e}
+    \caption{L'ensemble $A$ avec l'ensemble $E$}
+    \label{fig:a-and-unpretty-e}
+\end{figure}

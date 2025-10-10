@@ -1,0 +1,6 @@
+Comme vous pouvez le constater, ces parties "peu attrayantes" de $E$ divisent $A$ en deux sous-ensembles avec des "branches" qui nécessitent plus de boîtes pour les couvrir, ce qui nous donne l'inégalité :
+ \[
+\lambda^*(A) < \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+Voyons maintenant un exemple avec un $E$ mesurable.

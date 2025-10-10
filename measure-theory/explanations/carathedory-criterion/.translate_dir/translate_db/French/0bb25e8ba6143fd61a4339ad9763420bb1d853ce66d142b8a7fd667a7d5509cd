@@ -1,0 +1,4 @@
+Comme vous pouvez le constater, la belle bordure nous permet d'utiliser le même nombre de boîtes que nécessaire pour couvrir $A$, ce qui nous donne une égalité :
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\]

@@ -1,0 +1,7 @@
+As you can see, those "unpretty" parts of $E$ divide  $A$ into two subsets with
+"branches" that require more boxes to cover them thus we get inequality:
+ \[
+\lambda^*(A) < \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\] 
+
+Let's now see an example with a measurable  $E$.

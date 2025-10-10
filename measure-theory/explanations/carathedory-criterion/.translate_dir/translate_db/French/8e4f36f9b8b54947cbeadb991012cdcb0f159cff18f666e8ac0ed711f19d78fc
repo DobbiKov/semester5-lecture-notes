@@ -1,0 +1,9 @@
+\begin{figure}[H]
+    \centering
+    \incfig{cover-example2}
+    \caption{Recherche de l'infimum des recouvrements de $E$. \
+        L'espace noir est notre
+        ensemble $E$, les rectangles bleus sont les boîtes de la famille $(V_i)_{i \in I}$. \
+        À droite, les rectangles sont plus petits, ce qui conduit à une quantité moindre d'espaces blancs à prendre en compte.}
+    \label{fig:cover-example2}
+\end{figure}

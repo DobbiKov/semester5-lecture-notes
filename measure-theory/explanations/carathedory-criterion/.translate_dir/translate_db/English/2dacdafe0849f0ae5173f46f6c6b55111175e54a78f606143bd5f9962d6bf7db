@@ -1,0 +1,4 @@
+As you can see, the nice border allows us to use the same number of boxes as we needed to cover $A$, thus we get an equality:
+ \[
+\lambda^*(A) = \lambda^*(A \cap E) + \lambda^*(A \cap E^c)
+\]

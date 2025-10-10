@@ -1,0 +1,3 @@
+In measure theory, after defining the \textbf{outer measure}(denoted as $\lambda^*$) we need to
+   define sets that are measurable as not all the sets are measurable, for
+   instance \textit{Vitali set}. Hence,

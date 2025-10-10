@@ -1,0 +1,3 @@
+C’est la manière intuitive d’aborder la \textit{Mesure extérieure de Lebesgue} (voir la définition ~\ref{defn:lebesgue-outer-measure}). Nous cherchons des boîtes plus petites et de meilleurs placements pour recouvrir l’ensemble $E$ afin de trouver la plus petite taille d’un tel recouvrement.
+
+Dans le reste de cette explication, nous supposons que la boîte bleue à droite de la Figure \ref{fig:cover-example2} est la plus petite boîte que nous puissions prendre pour recouvrir n’importe quel ensemble afin de calculer la mesure extérieure.

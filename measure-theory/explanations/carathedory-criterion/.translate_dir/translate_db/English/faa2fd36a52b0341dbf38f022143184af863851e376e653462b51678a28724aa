@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a-outer-measure}
+    \caption{Approximation of the outer measure of the two parts of the set $A$}
+    \label{fig:split-of-a-outer-measure}
+\end{figure}

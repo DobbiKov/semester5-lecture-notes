@@ -1,0 +1,3 @@
+An interesting fact about $A$ is that it may be (and usually is)
+non-measurable. But why does it work in the first place even for
+\textit{non-measurable} $A$? Let's start with a reminder what an outer measure and its intuition is.

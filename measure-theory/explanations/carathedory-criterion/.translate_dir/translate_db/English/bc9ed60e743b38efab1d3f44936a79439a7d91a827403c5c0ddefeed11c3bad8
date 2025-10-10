@@ -1,0 +1,18 @@
+\begin{itemize}
+    \item 
+        The "Non-Measurable" Drawings Are Just Analogies: This is the most significant
+        simplification. The "unpretty" black blob shown in the figures (e.g., Figure \ref{fig:a-and-unpretty-e})
+        is, technically, a Lebesgue measurable set.  Truly non-measurable sets, like
+        the Vitali set, are so pathologically complex that they cannot be drawn. They
+        are composed of a completely disconnected "dust" of points. The drawing is a
+        metaphor for the extreme boundary complexity that causes the Carathéodory
+        criterion to fail.
+    \item 
+        The Covering Process: The presented process of "covering" oversimplifies the
+        idea of real covering and the measure, that of an outer measure by
+        imagining a single grid of "the smallest box". In reality, the definition of
+        outer measure involves finding the infimum—the greatest lower bound—of the sum
+        of volumes of all possible countable collections of boxes that cover the set,
+        with boxes of any size and position. The core idea of covering presented here
+        efficiency still holds true under this precise definition.
+\end{itemize}

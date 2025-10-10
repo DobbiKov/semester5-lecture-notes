@@ -1,0 +1,6 @@
+\begin{itemize}
+    \item 
+        Les dessins « non mesurables » ne sont que des analogies : il s’agit de la simplification la plus importante. La tache noire « laide » montrée dans les figures (par exemple, la figure \ref{fig:a-and-unpretty-e}) est, techniquement, un ensemble mesurable au sens de Lebesgue. Les ensembles véritablement non mesurables, comme l’ensemble de Vitali, sont d’une complexité tellement pathologique qu’ils ne peuvent pas être dessinés. Ils sont composés d’une « poussière » de points complètement déconnectée. Le dessin est une métaphore de l’extrême complexité des frontières qui fait échouer le critère de Carathéodory.
+    \item 
+        Le processus de recouvrement : le processus de « recouvrement » présenté simplifie à l’excès l’idée de recouvrement réel et de mesure, celle d’une mesure extérieure en imaginant une seule grille de « la plus petite boîte ». En réalité, la définition de la mesure extérieure consiste à trouver l’infimum — la plus grande borne inférieure — de la somme des volumes de toutes les collections dénombrables possibles de boîtes qui recouvrent l’ensemble, avec des boîtes de toutes tailles et positions. L’idée centrale de recouvrement présentée ici, l’efficacité, reste valable dans le cadre de cette définition précise.
+\end{itemize}

@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{split-of-a-by-measurable-e}
+    \caption{$A$, $E$ mesurable et la division de $A$ par $E$}
+    \label{fig:split-of-a-by-measurable-e}
+\end{figure}

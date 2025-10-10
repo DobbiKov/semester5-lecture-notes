@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{non-measurable-and-measurable}
+    \caption{L'ensemble à gauche n'est pas mesurable car il n'est pas "assez joli" pour être recouvert de boîtes. Cependant, celui de droite est idéalement recouvert de boîtes sans espace blanc.}
+    \label{fig:non-measurable-and-measurable}
+\end{figure}
