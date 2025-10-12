@@ -13,4 +13,5 @@
 !figures/*
 !*/figures/*
 !*/figures/*.pdf
+!**/figures/*.pdf
 !figures/*.pdf
