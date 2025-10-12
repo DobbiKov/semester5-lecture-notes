@@ -12,3 +12,4 @@
 !figures
 !figures/*
 !*/figures/*
+!*/figures/*.pdf
