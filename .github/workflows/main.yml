@@ -25,10 +25,26 @@ jobs:
         latexmk_shell_escape: true
         working_directory: optimisation/cheatsheet/
 
+    - name: Carathéodory Criterion Intuition En
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: measure-theory/explanations/carathedory-criterion/en/
+
+    - name: Carathéodory Criterion Intuition Fr
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: measure-theory/explanations/carathedory-criterion/fr/
+
     - name: Check PDF files
       run: |
         file probas/cheatsheet.pdf | grep -q ' PDF '
         file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
+        file measure-theory/explanations/carathedory-criterion/en/main.pdf | grep -q ' PDF '
+        file measure-theory/explanations/carathedory-criterion/fr/main.pdf | grep -q ' PDF '
         
     - name: Upload to GitHub pages
       run: |
@@ -46,6 +62,9 @@ jobs:
         # (*) To add a file, add the following command for that file
         cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
         cp -f optimisation/cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet.pdf"
+
+        cp -f measure-theory/explanations/carathedory-criterion/en/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-en.pdf"
+        cp -f measure-theory/explanations/carathedory-criterion/fr/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-fr.pdf"
 
         cd "$GITHUB_WORKSPACE/deploy"
 
