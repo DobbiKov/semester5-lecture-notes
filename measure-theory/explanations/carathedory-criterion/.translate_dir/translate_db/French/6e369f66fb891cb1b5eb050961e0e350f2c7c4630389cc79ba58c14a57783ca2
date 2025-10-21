@@ -1,0 +1,7 @@
+\begin{definition}\label{defn:lebesgue-outer-measure}
+    La mesure extérieure de Lebesgue d'un ensemble $E \subset R^n$ est 
+    \[
+        \lambda^*(E) = \inf \left\{ \cup_{i \in I} V_i \right\}
+    \] 
+    avec $(V_i)_{i \in I}$ une famille de boîtes telle que $E \subset \cup_{i_I} V_i$.
+\end{definition}

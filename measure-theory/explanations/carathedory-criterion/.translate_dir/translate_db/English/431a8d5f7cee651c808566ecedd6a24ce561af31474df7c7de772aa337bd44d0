@@ -1,0 +1,7 @@
+\begin{definition}\label{defn:lebesgue-outer-measure}
+    The Lebesgue outer measure of a set $E \subset R^n$ is 
+    \[
+        \lambda^*(E) = \inf \left\{ \cup_{i \in I} V_i \right\}
+    \] 
+    with $(V_i)_{i \in I}$ a family of boxes such that $E \subset \cup_{i_I} V_i$.
+\end{definition}
