@@ -47,6 +47,11 @@
 \begin{document}
 \maketitle
 \section{Mathématiques Générales} 
+\subsection{Factoriel}
+\[
+    n! \sim \sqrt{2\pi n}\left(\frac{n}{e}\right)^n 
+\] 
+
 \subsection{Binomial}
 \[
     \binom{n}{k} = \frac{n!}{k!(n-k)!}
@@ -57,6 +62,16 @@ Propriétés utiles:
     \item $\binom{n}{1} = n$ 
     \item $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$
 \end{enumerate}
+
+Les approximations:
+\[
+    \binom{n}{n/2}\approx \frac{2^n}{\sqrt{\pi n/2}}
+\] 
+
+Pour $k$ fixé et  $n$ grand:
+ \[
+     \binom{n}{k} \approx \frac{n^n}{k!}
+\] 
 
 \section{Les loi à densité}%
 \label{sec:Les loi à densité}
