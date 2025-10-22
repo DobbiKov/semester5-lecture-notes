@@ -1,6 +1,6 @@
 % --- CHUNK_METADATA_START ---
 % needs_review: True
-% src_checksum: 710da82be16b7a4215f6514d2ba72252fbceddfa00f35d11881f7b4a7574f405
+% src_checksum: e9b365f6eddf217553237088a5f1ca2d31ac2d87df7f5b367c61c786b398b4bb
 % --- CHUNK_METADATA_END ---
 \documentclass[a4paper]{article}
 
@@ -14,7 +14,7 @@
 \usepackage[margin=0.8in]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhf{} %  sets both header and footer to nothing
+\fancyhf{} %   sets both header and footer to nothing
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead{}
 \fancyfoot[R]{Yehor Korotenko}
@@ -22,7 +22,7 @@
 \fancyfoot[L]{Carathéodory criterion intuition}
 
 
-%  figure support
+%   figure support
 \usepackage{import}
 \usepackage{xifthen}
 \pdfminorversion=7
@@ -45,16 +45,17 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem{eg}{Example}[section]
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{definition}{Définition}[section]
+\newtheorem{eg}{Exemple}[section]
 \newtheorem{prop}{Proposition}[section]
-\newtheorem{property}{Property}[section]
+\newtheorem{property}{Propriété}[section]
 \newtheorem*{notation}{Notation}
-\newtheorem*{remark}{Remark}
+\newtheorem*{remark}{Remarque}
+\newtheorem{exercise}{Exercice}[section]
 
 \author{Yehor Korotenko}
-\title{Carathéodory Criterion}
+\title{Critère de Carathéodory}
 % --- CHUNK_METADATA_START ---
 % needs_review: True
 % src_checksum: 49d34b0366eb0a68eb35c75d6d8aeb1d60be3c49779501a7e1cdf4941acdab46
@@ -111,6 +112,12 @@ Un fait intéressant concernant $A$ est qu'il peut être (et l'est généralemen
     \] 
     avec $(V_i)_{i \in I}$ une famille de boîtes telle que $E \subset \cup_{i_I} V_i$.
 \end{definition}% --- CHUNK_METADATA_START ---
+% needs_review: True
+% src_checksum: bd28879b4867489692d1a34687cfb963374f9b5bcf73698513f5ca20649da20f
+% --- CHUNK_METADATA_END ---
+\begin{exercise}
+   Ces deux définitions sont-elles équivalentes ? Fournissez une preuve ou un contre-exemple.
+\end{exercise}% --- CHUNK_METADATA_START ---
 % needs_review: True
 % src_checksum: 83d3a9f0b5bec4c8c7e3706ae3b55f983af34db7102d79ed5087aa5aac4518aa
 % --- CHUNK_METADATA_END ---
