@@ -1,0 +1,273 @@
+\chapter{Lecture 8: La convergence en loi}
+La loi, c'est ce qu'il y a de plus important!
+\section{Definition}
+Il existe des suites de variables qui ne converge ni presque surement, ni
+en probabilité, ni dans $L^1$, mais dont la loi converge, même constante !
+
+\begin{eg}
+    $(\Omega, \mathcal{F}, P) = ([0, 1], \mathcal{B}([0, 1]), \lambda)$
+
+\begin{figure}[H]
+    \centering
+    \incfig{example-cv-loi}
+    \caption{example-cv-loi}
+    \label{fig:example-cv-loi}
+\end{figure}
+
+Pour tout $n$, la loi de  $X_n$ est la loi  $Bernoulli(\frac{1}{2})$
+\[
+\forall n, P(X_n = 0) = P(X_n = 1) = \frac{1}{2}
+\] 
+et donc $P_{X_n} = Ber(\frac{1}{2})$ ne dépend pas de $n$!
+\end{eg}
+
+\begin{definition}
+    Une suite de variables aléatoires $(X_n)_{n \in \N}$ converge en loi vers
+    une variable aléatoire $X$, ce que l'on note  $X_n \xrightarrow[]{L} X$, ssi:
+    \begin{itemize}
+        \item pour toute fonction $f: \R \to  \R$ continue bornée,
+            \[
+                \lim_{n \to \infty} E[f(X_n)] = E[f(X)]
+            \] 
+    \end{itemize}
+\end{definition}
+
+Remarquons que $E[f(X_n)]$ ne dépend que de la loi de  $X_n$, i.e.:
+ \[
+     E[f(X_n)] = \int_{{\Omega}}^{{}} {f(X_n)} \: d{P} \underset{\text{transfert}}{=} \int_{{\R}}^{{}} {f(x)} \: d{\underbrace{P_{X_n}(x)}_{\text{loi de } X_n}} {}
+\] 
+
+Ainsi, la convergence en loi s'applique même dans des situations où les variables aléatoires $X_n$ ne sont pas définies sur le même espace de probas  $(\Omega, \mathbb{F}, P)$, i.e. si:
+ \[
+     X_n: (\Omega_n, \mathbb{F}_n, P_n) \longrightarrow (\R, \mathcal{B}(\R))
+\] 
+où $(\Omega_n, \mathbb{F}_n, P_n)$ n'ont aucun lien a priori. Ceci distingue
+fondamentalement la convergence en loi, des autres modes de convergence.
+
+\section{La fonction de répartition}%
+\label{sec:La fonction de répartition}
+Soit $X$ une variable aléatoire  $(\Omega, \mathcal{F}, P) \longrightarrow (\R, \mathcal{B}(\R))$
+
+\begin{definition}
+    La fonction de répartition de $X$, notée  $F_X$, est la fonction définie par: 
+     \[
+    \forall x \in \R, F_X(x) = P(X \le x)
+    \] 
+\end{definition}
+
+On a $F_X(x) = P_X(]-\infty, x])$. Comme les intervalles $]-\infty, x]$, $x \in
+\R$ engendrent les boréliens et forment une famille stable par l'intersection
+finie, par unicité de l'extension, la loi $P_X$ est détérminée par  $F_X$.
+
+\begin{corollary}
+   La fonction de répartition $F_X$ détérmine la loi $P_X$ de  $X$.
+\end{corollary}
+
+\begin{prop}\label{prop:prop-de-fonction-de-repartition}
+    Une fonction de répartition $F$ vérifie:
+    \begin{enumerate}
+        \item $F$ est croissante de  $R$ dans  $[0, 1]$.
+        \item  $F$ est continue à droite. 
+        \item $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to +\infty} F(x) = 1$
+    \end{enumerate}
+\end{prop}
+\begin{newproof}
+   \begin{enumerate}
+       \item évident
+       \item Soit $x_0 \in \R$, Regardons
+           \[
+               \lim_{x \to x_0, \, x > x_0} F_X(x) = \lim_{x \to x_0, \, x > x_0} P_X(]-\infty, x]) \underset{\substack{\text{continuité} \\ \text{monotone de } P_X}}{=} P_X\left(\bigcap_{\substack{x > x_0 \\ x \in \Q}} ]-\infty, x]\right) = P_X(]-\infty, x_0]) = F_X(x_0)
+           \] 
+       \item \[
+               \lim_{x \to -\infty} F_X(x) = \lim_{x \to -\infty, x \in \Z} P_X(]-\infty, x])  = P_X(\bigcap_{x \in \Z} ]-\infty, x]) = P_X(\O) = 0
+       \] 
+   \end{enumerate} 
+\end{newproof}
+\begin{note}
+   Dans certains livres $F_X$ est définie par  $F_X(x) = P(X < x)$ 
+\end{note}
+
+\section{Exemples}%
+\label{sec:Exemples}
+
+\begin{eg}
+    
+   $X \sim Ber(p)$,  $P(X = 0) = 1 - p$, $F_X(0) = P(X \le 0) = 1-p$
+
+\begin{figure}[H]
+    \centering
+    \incfig{ex-fonction-repartition}
+    \caption{ex-fonction-repartition}
+    \label{fig:ex-fonction-repartition}
+\end{figure}
+\end{eg}
+
+\begin{eg}
+    
+$X \sim Unif(\{1, \ldots, n\})$
+
+\begin{figure}[H]
+    \centering
+    \incfig{ex-fonction-repartition-unif}
+    \caption{ex-fonction-repartition-unif}
+    \label{fig:ex-fonction-repartition-unif}
+\end{figure}
+\end{eg}
+\begin{eg}
+    
+$X \sim Unif([0, 1])$
+\begin{figure}[H]
+    \centering
+    \incfig{ex-fonction-repartition-unif-0-1}
+    \caption{ex-fonction-repartition-unif-0-1}
+    \label{fig:ex-fonction-repartition-unif-0-1}
+\end{figure}
+\end{eg}
+
+\begin{eg}
+    $F_X \sim Exp(\alpha)$,  $F_X(x) = \int_{{0}}^{{x}} {\alpha e^{-\alpha t}} \: d{t} = 1 - e^{-\alpha t}$, $x \ge 0$   
+
+\begin{figure}[H]
+    \centering
+    \incfig{ex-fonction-repartition-exp}
+    \caption{ex-fonction-repartition-exp}
+    \label{fig:ex-fonction-repartition-exp}
+\end{figure}
+\end{eg}
+
+Plus généralement, si la loi de $X$ a une densité  $f$, alors 
+ \[
+F_X(x) = \int_{{-\infty}}^{{x}} {f(t)} \: d{t} {}
+\] 
+
+\section{La bijection}%
+\label{sec:La bijection}
+Si $\mu$ est une mesure de probabilité sur  $(\R, \mathcal{B}(\R))$, sa fonction de répartition $F_{\mu}$ est l'application de  $\R$ dans $[0, 1]$ définie par:
+ \[
+     \forall x \in \R, F_{\mu}(x) = \mu(]-\infty, x])
+\] 
+Cohérance: si $X$ est une variable aléatoire
+ \[
+     F_X(x) = P_X(]-\infty, x]) = F_{P_X}(x)
+\] 
+
+\begin{eg}
+    La loi normale: $X \sim \mathcal{N}(0, 1)$ 
+    \[
+        F_X(x) = \int_{{-\infty}}^{{x}} {e^{-\frac{t^2}{2}} \frac{1}{\sqrt{2 \pi} }} \: d{t} = \mathop{erf}(x)
+    \] 
+    \[
+    1 - F_X(x) = \int_{{x}}^{{+\infty}} {e^{-\frac{t^2}{2}} \frac{1}{\sqrt{2 \pi} }} \: d{t} {} = \mathop{erfc}(x)
+    \] 
+\end{eg}
+
+Notons $\mathcal{M}_1(\R)$ l'ensemble des mesures de probabilité sur $(\R, \mathcal{B}(\R))$, notons $\mathcal{R}$ l'ensemble des fonction de répartition sur $\R$ (les fonction qui vérifie la \cref{prop:prop-de-fonction-de-repartition})
+
+\begin{theorem}
+    L'application $\mu \in \mathcal{M}_1(\R) \longmapsto F_{\mu} \in \mathcal{R}$ est une bijection!
+\end{theorem}
+
+\subsection{Construction d'une loi singulière}
+i.e. la loi $\mu$ sans atomes:  $\forall x, \mu(\{x\}) = 0$ et telle que 
+\[
+    \exists c, \, \mu(c) = 1 \quad \underset{\text{Lebesgue}}{\lambda(c)} = 0
+\] 
+
+\begin{figure}[H]
+    \centering
+    \incfig{loi-singuliere}
+    \caption{loi-singuliere}
+    \label{fig:loi-singuliere}
+\end{figure}
+
+Puis, $(F_n)$.  $\mu$ associée à  $F_{\infty}$
+
+Montrer que $F_n \longrightarrow F_{\infty}$ sur $[0, 1]$ uniformément.
+
+\section{Traduction sur les fonctions de répartition}%
+\label{sec:Traduction sur les fonctions de répartition}
+Comme la convergence en loi ne porte que sur les lois des variables aléatoires,
+elle doit pouvoir s'exprimer via les fonctions de répartitions.
+
+\begin{theorem}
+    Soit $(X_n)_{n \in \N}$, $X$ des variables aléatoires réélles et notons
+    $(F_{X_n})_{n \in \N}$, $F_X$ les fonctions de répartitions associées.
+    Alors, on a équivalence:
+    \begin{enumerate}
+        \item La suite $(X_n)$ converge en loi vers  $X$
+        \item En tout point  $x$ de  $\R$ où $F_X$ est continue, la suite  $(F_n(x))_{n \in \N}$ converge vers $F_X(x)$, i.e. 
+             \[
+            \lim_{n \to \infty} F_{X_n}(x) = F_X(x)
+            \] 
+    \end{enumerate}
+\end{theorem}
+
+\begin{newproof}
+   \begin{itemize}
+       \item $1) \implies 2)$: Je prends $f(x) = 1_{]-\infty,x]}$, alors
+           \[
+           E\left( f(X_n) \right) = P(X_n \le x) = F_{X_n}(x)
+           \] 
+           avec $E(f(X_n)) \to E(f(X))$ et $F_{X_n} \to F_X(x)$. Par contre, problème: $f$ n'est pas continue en  $x$.
+
+           \textbf{Vraie preuve:} Soit $x_0$ un pt où  $F_X$ est continue. Il s'agit de montrer que 
+            \[
+           \lim_{n \to \infty} F_{X_n}(x_0) = F_X(x_0)
+           \] 
+           Soit $\varepsilon > 0$ et considérons les fonctions  $f$,  $g$
+           suivantes.
+            \begin{figure}[H]
+                \centering
+                \incfig{fonctions-f-et-g}
+                \caption{fonctions-f-et-g}
+                \label{fig:fonctions-f-et-g}
+            \end{figure}
+            \[
+                \forall x \in \R, \, 1_{]-\infty, x_0 - \varepsilon]}(x) \le f(x) \le 1_{]-\infty, x_0]}(x) \le g(x) \le 1_{]-\infty, x_0 + \varepsilon]}(x)
+            \] 
+            et $f$ et  $g$ sont continues, donc 
+            \[
+                E(f(X_n)) \to E(f(X)) \qquad F(g(X_n)) \to E(g(X))
+            \] 
+            Mettons $X_n$ à la place de  $x$ dans les inégalités et prenons l'esperance :
+            \[
+                E(f(X_n)) \le F_{X_n}(x_0) \le E(g(X_n)) \quad \forall n
+            \] 
+            avec $E(f(X_n)) \xrightarrow[n \to +\infty]{} E(f(X))$
+            \[
+                F_{X}(x_0 - \varepsilon) \le \limsup_{n \to \infty} F_{X_n}(x_0) \le \limsup_{n} F_{X_n}(x_0) \le E(g(X)) \le F_X(x_0 + \varepsilon) \quad \forall \varepsilon > 0 
+            \] 
+            avec $F_X(x_0 + \varepsilon) \xrightarrow[\varepsilon \to 0]{} F_X(x_0)$ par la continuité à droite.
+        \item $2) \implies 1)$: $F_{X_n}(x) \longrightarrow F_X(x)$ en tout
+            point $x$ où  $F_X$ est continue. Soit $f: \R \to \R$ continue
+            bornée. Il faut montrer que $E(f(X_n)) \to E(f(X))$. 
+
+            Soit $\varepsilon > 0$. Comme  $\lim_{-\infty} F_X = 0$,
+            $\lim_{+\infty} F_X = 1$, il existe $a < 0$ tel que $F_X(a) <
+            \varepsilon$, $F_X(b) > 1 - \varepsilon$, $F_X$ continue en  $a$ et
+            $b$. Ensuite on écrit
+             \[
+            E(f(X_n)) = \int_{{}}^{{}} {f(X_n)} \: d{P} = \int_{{X_n \le a}}^{{}} {f(X_n)} \: d{P} + \int_{{a < X_n < b}}^{{}} f(X_n) \: d{P} + \int_{{X_n > b}}^{{}} {f(X_n)} \: d{P} 
+            \] 
+            \begin{align*}
+               & \left| \int_{{X_n < a}}^{{}} {f(X_n)} \: d{P} \right|& \le \int_{{X_n < a}}^{{}} {\left| f(X_n) \right| } \: d{P} &\le \|f\|_{\infty}P(X_n \le a) = \|f\|_{\infty}F_{X_n}(a)\\
+               & \left| \int_{{X_n > b}}^{{}} {f(X_n)} \: d{P} \right|& &\le \|f\|_{\infty}P(X_n > b) = \|f\|_{\infty}(1 - F_{X_n}(b))
+            \end{align*}
+            Soit $x_0 = a < x_1 < \ldots < x_k = b$, une subdivision de $[a, b]$ telle que $F_X$ est continue en $x_0, x_1, \ldots, x_k$.
+            Définissons $f_k^+$
+             \[
+                 f_k^+(x) = \sum_{l=1}^{k} 1_{]x_{l-1}, x_{l}]}(x) \sup_{]x_{l-1}, x_{l}]}f
+            \] 
+            Alors $f \le f_k^+$ sur $[a, b]$ et 
+             \[
+                 \int_{{a < X_n \le b}}^{{}} {f(X_n)} \: d{P} \le \int_{{a < X_n \le b}}^{{}} {f_k^+(X_n)} \: d{P} = \sum_{l=1}^{k} \sup_{]x_{l-1}, x_{l}]} f \int_{{x_{l-1} < X_n < x_l}}^{{}} {} \: d{P}  
+            \] 
+            $k \to +\infty$. Je dis que: $\forall x \in ]a, b]$, $|f_k^+(x)| \le \|f\|_{\infty}$ et $\lim_{k \to +\infty} f_k^+(x) = f(x)$, par continuité de $f$ au point  $x$. Lorsque  $k \to  +\infty$ le pas de la subdivision $\to 0$.
+            Et donc 
+            \[
+                \lim_{k \to +\infty} E(f_k^+(X)) = E(f(X)1_{]a, b]}(X))
+            \] 
+            grâce au thm de convergence dominée.
+   \end{itemize} 
+
+\end{newproof}
