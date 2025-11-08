@@ -161,7 +161,7 @@ Cohérance: si $X$ est une variable aléatoire
     \] 
 \end{eg}
 
-Notons $\mathcal{M}_1(\R)$ l'ensemble des mesures de probabilité sur $(\R, \mathcal{B}(\R))$, notons $\mathcal{R}$ l'ensemble des fonction de répartition sur $\R$ (les fonction qui vérifie la \cref{prop:prop-de-fonction-de-repartition})
+Notons $\mathcal{M}_1(\R)$ l'ensemble des mesures de probabilité sur $(\R, \mathcal{B}(\R))$, notons $\mathcal{R}$ l'ensemble des fonction de répartition sur $\R$ (les fonction qui vérifie la \protect\cref{prop:prop-de-fonction-de-repartition})
 
 \begin{theorem}
     L'application $\mu \in \mathcal{M}_1(\R) \longmapsto F_{\mu} \in \mathcal{R}$ est une bijection!
@@ -267,7 +267,16 @@ elle doit pouvoir s'exprimer via les fonctions de répartitions.
             \[
                 \lim_{k \to +\infty} E(f_k^+(X)) = E(f(X)1_{]a, b]}(X))
             \] 
-            grâce au thm de convergence dominée.
+            grâce au théorème de convergence dominée. D'où $\forall \varepsilon > 0$
+            \begin{align*}
+                \limsup_{n} \int_{{}}^{{}} {f(X_n)} \: d{P} &\le 2 \varepsilon \|f\|_{\infty} + E(f(X)1_{]a, b]}(X)) \\
+                                                            &\le 4 \varepsilon \|f\|_{\infty} + E(f(X))
+            \end{align*}
+            Alors, avec $\varepsilon \to 0$,
+            \[
+            \limsup_{n} E(f(X_n)) \le E(f(X)) 
+            \] 
+            Même travail pour le $\limsup$.
    \end{itemize} 
 
 \end{newproof}
