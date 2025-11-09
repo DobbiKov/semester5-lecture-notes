@@ -6,3 +6,4 @@ My notes for the 5th semester of my undergraduate studies in Paris-Saclay Univer
 - [Probability CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/probas_cheatsheet.pdf)
 - [Carathéodory Criterion (English)](https://dobbikov.github.io/semester5-lecture-notes/measure-theory-caratheodory-criterion-en.pdf)
 - [Carathéodory Criterion (French)](https://dobbikov.github.io/semester5-lecture-notes/measure-theory-caratheodory-criterion-fr.pdf)
+- [Probability Lecture Notes](https://dobbikov.github.io/semester5-lecture-notes/probas_notes.pdf)
