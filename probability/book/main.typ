@@ -1,7 +1,7 @@
 #import "@local/dobbikov-book:1.0.0":*
 
 #show: dobbikov.with(
-  title: [New Document],
+  title: [Measure and Probability Theory],
   subtitle: none,
   author: "Yehor KORORTENKO",
   date: datetime.today(),

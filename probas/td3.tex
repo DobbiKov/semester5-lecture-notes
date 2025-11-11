@@ -1,0 +1,127 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+
+\title{TD3 : Lois à densité}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Exercice 1 : Échauffement}
+Soit $X$ une v.a. de loi uniforme sur $[0,1]$.
+\begin{enumerate}
+    \item[0)] Donnez un exemple de construction de $X$.
+    \item[1)] Quelle est la probabilité que $X$ soit un rationnel ?
+    \item[2)] Quelle est la probabilité que le chiffre 7 apparaisse dans l’écriture décimale de $X$ ?
+    \item[3)] Soit $Y = \pi (X - 1/2)$. Quelle est la loi de $Y$ ?
+    \item[4)] Quelle est la loi de $\tan(Y)$ ?
+    \item[5)] Que vaut $E((\tan(Y))^2)$ ?
+\end{enumerate}
+
+\section*{Exercice 2 : Rapport aléatoire}
+Soit $X$ une v.a. qui suit la loi uniforme sur $[0,1]$.  
+Soit $U$ la longueur du plus petit intervalle parmi $[0,X]$ et $[X,1]$, et soit $V$ la longueur du plus grand des deux.
+\begin{enumerate}
+    \item[1)] Quelle est la loi de $U$ ? Et celle de $V$ ?
+    \item[2)] Calculez $E(U)$ et $E(V)$, puis $E(V)/E(U)$.
+    \item[3)] Quelle est la loi du rapport $V/U$ ?
+    \item[4)] Calculez l’espérance de $V/U$.
+\end{enumerate}
+
+\section*{Exercice 3 : Transformations d’exponentielles}
+Soit $X$ une v.a. de loi exponentielle de paramètre $\lambda$.
+\begin{enumerate}
+    \item[1)] Quelle est la loi de $\exp(-\lambda X)$ ?
+    \item[2)] Quelle est la loi de $\sqrt{2\lambda X}$ ?
+    \item[3)] Comment pouvons-nous retrouver la loi normale à partir de $X$ ?
+\end{enumerate}
+
+\section*{Exercice 4 : Transformations d’uniformes}
+Soit $U$ une v.a. de loi uniforme sur $[0,1]$.
+\begin{enumerate}
+    \item[1)] Quelle est la loi de $\frac{1}{1-U}$ ?
+    \item[2)] Quelle est la loi de $\sqrt{U}$ ?
+    \item[3)] Soit $p \in [0,1]$. Quelle est la loi de $\mathbf{1}_{\{U < p\}}$ ?
+\end{enumerate}
+
+\section*{Exercice 5 : Moments}
+Soit $X$ une v.a. dont la loi admet une densité $f$. Soit $k \geq 1$ et supposons que $X^k$ est intégrable.
+\begin{enumerate}
+    \item[1)] Exprimez $E(X^k)$, le moment d’ordre $k$ de $X$, à l’aide d’une intégrale faisant intervenir sa densité.
+    \item[2)] Même question pour $E((X - E(X))^k)$, le moment centré d’ordre $k$ de $X$.
+    \item[3)] Nous considérons les trois lois classiques :
+    \begin{itemize}
+        \item la loi uniforme sur $[a,b]$ notée $\mathcal{U}(a,b)$,
+        \item la loi exponentielle de paramètre $\lambda$ notée $\mathrm{Exp}(\lambda)$,
+        \item la loi normale $\mathcal{N}(m,\sigma^2)$ de paramètres $m$ et $\sigma^2$.
+    \end{itemize}
+    Pour chacune de ces trois lois, calculez le moment d’ordre $k$, ainsi que le moment centré d’ordre $k$.
+\end{enumerate}
+
+\section*{Exercice 6 : Loi Gamma}
+
+La loi Gamma $G(a,\lambda)$ de paramètres $a > 0$ et $\lambda > 0$ est la loi de densité :
+\[
+g_{a,\lambda}(x) = \mathbf{1}_{\{x \geq 0\}} \, C \, \lambda^a x^{a-1} \exp(-\lambda x)
+\]
+où $C$ est une constante.
+
+\begin{enumerate}
+    \item[0)] Déterminer la valeur de $C$.
+    \item[1)] Quelle est la loi $G(1,\lambda)$ ?
+    \item[2)] Soit $Z$ une v.a. de loi $G(a,1)$, et soit $\lambda > 0$. Quelle est la loi de $X = Z/\lambda$ ?
+    \item[3)] Calculer la moyenne et la variance de $Z$.
+\end{enumerate}
+
+\bigskip
+
+\section*{Exercice 7 : La fonction muette, justification}
+
+Soient $\mu$ et $\nu$ deux mesures de probabilité sur $\mathbb{R}$. Supposons que, pour toute fonction continue bornée $f : \mathbb{R} \to \mathbb{R}$,
+\[
+\int_{\mathbb{R}} f(x) \, d\mu(x) = \int_{\mathbb{R}} f(x) \, d\nu(x).
+\]
+
+\begin{enumerate}
+    \item Soit $[a,b]$ un intervalle de $\mathbb{R}$ et soit $\delta > 0$.
+    \begin{enumerate}
+        \item[a)] Construisez une fonction continue $f : \mathbb{R} \to [0,1]$, définie par morceaux, qui satisfait :
+        \[
+        \forall x \in \mathbb{R}, \quad \mathbf{1}_{[a,b]}(x) \leq f(x) \leq \mathbf{1}_{[a-\delta, \, b+\delta]}(x).
+        \]
+        
+        \item[b)] Montrez que
+        \[
+        \mu([a,b]) \leq \nu([a-\delta, \, b+\delta]).
+        \]
+        
+        \item[c)] En déduire que
+        \[
+        \mu([a,b]) \leq \nu([a,b]),
+        \]
+        puis que $\mu([a,b]) = \nu([a,b])$.
+    \end{enumerate}
+    
+    \item Notons $\mathcal{A}$ la collection suivante :
+    \[
+    \mathcal{A} = \{ B \in \mathcal{B}(\mathbb{R}) : \mu(B) = \nu(B) \}.
+    \]
+    \begin{enumerate}
+        \item[a)] Montrez que $\mathcal{A}$ est stable par différence propre :
+        \[
+        \forall A,B \in \mathcal{A}, \, A \subset B \quad \Rightarrow \quad B \setminus A \in \mathcal{A}.
+        \]
+        
+        \item[b)] Montrez que $\mathcal{A}$ est stable par limite croissante : si $(A_n)_{n \in \mathbb{N}}$ est une suite croissante d’éléments de $\mathcal{A}$, alors $\bigcup_{n \in \mathbb{N}} A_n$ est encore dans $\mathcal{A}$.
+        
+        \item[c)] Montrez que $\mathcal{A}$ est une tribu.
+    \end{enumerate}
+    
+    \item Conclure finalement que $\mu = \nu$.
+\end{enumerate}
+
+\end{document}
+

@@ -1,0 +1,164 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+Une variable aléatoire réelle \( X \) est dite distribuée sur le réseau \( \alpha \mathbb{Z} \), où \( \alpha > 0 \), si
+\[
+P(X \in \alpha \mathbb{Z}) = 1 \quad \text{et} \quad \forall \beta > \alpha, \; P(X \in \beta \mathbb{Z}) < 1.
+\]
+
+De manière équivalente, \( \alpha \mathbb{Z} \) est le plus petit réseau tel que \( P(X \in \alpha \mathbb{Z}) = 1 \). 
+S’il n’existe pas de tel nombre réel \( \alpha \), la v.a. \( X \) est dite non-réseau, et nous convenons de dire qu’elle est distribuée sur \( 0\mathbb{Z} \), que nous identifions à \( \mathbb{R} \).
+
+\bigskip
+0) Cette convention vous paraît-elle cohérente?
+
+\medskip
+
+Dans tout le problème, nous considérons une suite \( (X_n)_{n \in \mathbb{N}^*} \) de v.a. réelles i.i.d. distribuée sur le réseau \( \alpha \mathbb{Z} \), où \( \alpha \geq 0 \).  
+Nous construisons la marche aléatoire \( (S_n)_{n \in \mathbb{N}} \) associée, définie par :
+
+\[
+\forall n \in \mathbb{N}, \quad S_n = X_1 + \cdots + X_n.
+\]
+
+\medskip
+
+Un point \( x \in \mathbb{R} \) est dit \textbf{récurent} si :
+
+\[
+\forall \varepsilon > 0, \quad P(|S_n - x| < \varepsilon \text{ infiniment souvent}) = 1.
+\]
+
+\medskip
+
+Un point \( x \in \mathbb{R} \) est dit \textbf{possible} si :
+
+\[
+\forall \varepsilon > 0, \ \exists k \in \mathbb{N}, \quad P(|S_k - x| < \varepsilon) > 0.
+\]
+
+\bigskip
+
+\noindent \textbf{Partie I : Généralités.}
+
+\medskip
+
+\noindent 1) a) Montrez que l’ensemble des points récurrents est une partie fermée de \( \mathbb{R} \).
+
+\smallskip
+
+\noindent b) Montrez qu’un point possible appartient à \( \alpha \mathbb{Z} \).
+\textbf{2) a)} Montrez que, pour tous $\varepsilon > 0$, $n, k \geq 1$,
+
+\[
+\{\, |S_k - y| < \varepsilon \,\} \cap 
+\{\, |S_{n+k} - S_k - (x - y)| < 2\varepsilon \ \text{f.s.} \,\}
+\subset 
+\{\, |S_n - x| < \varepsilon \ \text{f.s..} \,\},
+\]
+
+où \textit{f.s.} signifie \textit{finitement souvent}.
+
+3) \quad
+a) \; Rappeler à quelles conditions une partie de $\mathbb{R}$ est un sous-groupe de $\mathbb{R}$ pour l’addition.
+
+b) \; Montrez que l’ensemble des points récurrents est \sout{un sous-groupe fermé de $\mathbb{R}$} soit vide soit un groupe.
+
+Nous admettrons le résultat suivant : les sous-groupes fermés de $\mathbb{R}$ sont exactement les réseaux
+$\beta \mathbb{Z}$, $\beta \ge 0$.
+
+c) \; Montrez que $\alpha \mathbb{Z}$ est le plus petit sous-groupe fermé de $\mathbb{R}$ qui contient tous les états possibles.
+
+4) \quad Supposons que la marche aléatoire $(S_n)_{n \in \mathbb{N}}$ admette un point récurrent. Montrez que :
+
+\textbf{a)} $0$ est récurrent;\\
+\textbf{b)} si $y$ est possible, alors $-y$ est récurrent;\\
+\textbf{c)} tous les points de $\alpha \mathbb{Z}$ sont récurrents.\\[1em]
+
+\section*{Partie II : Un critère de récurrence}
+
+Soit $I$ un intervalle borné de $\mathbb{R}$ tel que $I \cap \alpha \mathbb{Z} \neq \varnothing$.\\[0.5em]
+
+\noindent
+\textbf{5)} Montrez que si
+\[
+\sum_{n \ge 0} P(S_n \in I) < \infty,
+\]
+alors aucun point de $\alpha \mathbb{Z}$ n’est récurrent.\\[0.5em]
+
+\noindent
+Nous supposons désormais
+\[
+\sum_{n \ge 0} P(S_n \in I) = \infty.
+\]
+6) Soit $\varepsilon > 0$ plus petit que la moitié de la longueur de $I$. Montrez que
+\[
+\exists x \in \alpha \mathbb{Z} \cap I, \quad \sum_{k \ge 0} P(|S_k - x| < \varepsilon) = \infty. \tag{1}
+\]
+Nous fixons $x, \varepsilon$ vérifiant (1), et nous définissons les événements, pour $k \in \mathbb{N}$,
+\[
+A_k = \left\{ |S_k - x| < \varepsilon, \; \forall n \ge 1, \; |S_{k+n} - x| \ge \varepsilon \right\}.
+\]
+
+\textbf{7)} Montrez que, pour $k \in \mathbb{N}$,
+\[
+\{ |S_k - x| < \varepsilon, \ \forall n \geq 1 \ |S_{n+k} - S_k| \geq 2\varepsilon \} \subset A_k,
+\]
+puis que
+\[
+P(A_k) \geq P(|S_k - x| < \varepsilon) \, P(\forall n \geq 1 \ |S_n| \geq 2\varepsilon).
+\tag{2}
+\]
+
+\medskip
+\noindent
+\textbf{8)} a) En sommant les inégalités (2), montrez que
+\[
+P(|S_n - x| < \varepsilon \ \text{f. s.}) 
+\geq P(\forall n \geq 1 \ |S_n| \geq 2\varepsilon) 
+\left( \sum_{k \geq 0} P(|S_k - x| < \varepsilon) \right).
+\]
+b) En déduire que $P(\forall n \geq 1 \ |S_n| \geq 2\varepsilon) = 0.$
+
+\medskip
+\noindent
+\textbf{9)} Soient $\delta, \varepsilon$ tels que $0 < \delta < \varepsilon$ et $k \in \mathbb{N}$.
+
+\medskip
+a) Montrez que
+\[
+\{ |S_k| < \delta, \ \forall n \geq 1 \ |S_{k+n}| \geq \varepsilon \}
+\subset
+\{ |S_k| < \delta, \ \forall n \geq 1 \ |S_{k+n} - S_k| \geq \varepsilon - \delta \}.
+\]
+
+\medskip
+b) À l’aide de la question 8)b), montrez que
+\[
+P(|S_k| < \delta, \ \forall n \geq 1 \ |S_{k+n}| \geq \varepsilon) = 0.
+\]
+
+\medskip
+c) En déduire que
+\[
+P(|S_k| < \varepsilon, \ \forall n \geq 1 \ |S_{k+n}| \geq \varepsilon) = 0.
+\]
+
+\medskip
+d) Montrez enfin que
+\[
+\forall \varepsilon > 0, \quad P(|S_n| < \varepsilon \ \text{f. s.}) = 0.
+\]
+
+\medskip
+\noindent
+\textbf{10)} Conclure que $0$ est récurrent et énoncez le théorème démontré.
+
+
+\end{document}
+

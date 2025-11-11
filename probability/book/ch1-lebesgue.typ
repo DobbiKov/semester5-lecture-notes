@@ -1,8 +1,19 @@
 #import "@local/dobbikov-book:1.0.0":*
+#import "preamble.typ"
 #set math.equation(numbering: "(1)")
+#set heading(numbering: "1.1.1.1.1")
+
+#let no_num_eq(input) = {
+  math.equation(
+    numbering: none,
+    block: true,
+    input
+  ) 
+}
+
 = Lebesgue
 == Introduction
-Almost all the probability theory is build around the *measure theory* and
+Almost all the probability theory is built around the *measure theory* and
 *lebesgue integral*. You can skip this chapter if you are already familiar with
 these two notions. However, I would highly recommend to read this chapter
 anyway because I provide here an intuition to those notions and their
@@ -148,7 +159,7 @@ that would be a proportion of population of the city living at the interval  $x$
 Our custom definition of density. Then our probability is:
 $
 P(X in [a, b]) = sum_(k = a)^b f(k)
-$ 
+$<eq:proba_between_a_and_b>
 For simplicity, we denote the number of people living in the city by the letter
 $rho$. Thus,
 $
@@ -164,7 +175,38 @@ The very important axiom(?) of probability.
 
 However, our precision is not accurate, we can find a probability for the
 intervals of the length of 1 km, that is actually a lot. Let's make them
-smaller, that means we increase the number of points.
+smaller, that means we increase the number of points. Imagine we need now to
+know the density of population on each 100 meters of the city. If previously
+the random variable $X$ took the values in  ${0, 1, dots, 126}$, then now it
+  takes values in  ${0, 1/10, 2/10, ..., 1, 1 1/10, 1 2/10, ..., 125 9/10,
+  126}$. Worth mentioning: our random variable is still discrete.
+
+We introduce a new density $d'$, that takes a values that represents a
+  particular 100 kilometer of the city and returns the density at the point,
+  $f'$ for the probability. We may again calculate the probability with better
+  precision as we did in @eq:proba_between_a_and_b.
+
+However, at some point, it is still not enough, we may want to obtain a better
+precision again and again. Then an other question arises: what is enough? $(1/10)^#text("th")$ of a meter? 1 cm? What if we include ants in population? Then 1 mm? 
+
+The problem is we can't know what is _enough_. Hence, we introduce a notion of continuous random variables.
+#defn("Continuous Random Varible")[
+  A random variable is continuous if it takes infinitely(uncountable) many values.
+]
+
+Let now again (re)define a random variable  $X: Omega -> RR_+$ where $Omega$
+denotes a set of people living in a city and  $RR_+$ is positive real numbers
+that represent a particular place (kilometer) where a person lives ($1/10$
+means that a person lives in the first hunder meter of the city).
+
+
+
+The variable $X$ as a random variable has it's *PDF*
+#no_num_eq($
+f: RR_+ -> RR_+
+$)
+that provides the density of the population at the given point of the city
+giving the proportion of the population living at the given point.
 
 #defn("Probability Density Function")[
  TODO 
