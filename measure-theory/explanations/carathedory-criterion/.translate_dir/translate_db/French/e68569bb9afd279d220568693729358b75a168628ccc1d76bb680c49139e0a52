@@ -1,0 +1,6 @@
+\begin{figure}[H]
+    \centering
+    \incfig{a-outer-measure-by-boxes}
+    \caption{Une mesure extérieure de l'ensemble $A$ couverte par des boîtes}
+    \label{fig:a-outer-measure-by-boxes}
+\end{figure}
