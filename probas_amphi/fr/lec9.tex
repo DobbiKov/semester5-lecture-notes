@@ -1,0 +1,262 @@
+\chapter{Lecture 9: Fonctions Caractéristiques}
+Si $f$ est une fonction de  $\R$ dans  $\C$ et si  $\mu$ est une mesure de
+probabilité sur $(\R, \mathcal{B}(\R))$, on définit
+\[
+    \int_{{}}^{{}} {f} \: d{\mu} = \int_{{}}^{{}} {\mathcal{R}e f} \: d{\mu} + i \int_{{}}^{{}} {\mathcal{I}m f} \: d{\mu} 
+\] 
+sous réserve que $Re \, f$ et  $Im \, f$ sont intégrables.
+
+\section{Définition}
+
+\begin{definition}
+    Si $\mu$ est une mesure de probabilité sur $(\R, \mathcal{B}(\R))$, sa
+    fonction caractéristique, notée $\phi_{\mu}$ est la fonction $\R \to
+    \mathbb{C}$ définie par:
+    \[
+        \forall u \in \R, \, \phi_{\mu}(u) = \int_{{R}}^{{}} {e^{iux}} \: d{\mu(x)} 
+    \] 
+    qui est bien définie car $|e^{iux}| = 1$, et donc $Re \, e^{iux} = \cos u
+    x$ est $\mu$ intégrable.
+\end{definition}
+
+\begin{definition}
+    Si  $X$ est une v.a réelle définie sur un espace de probas  $(\Omega,
+    \mathbb{F}, P)$, sa fonction caractéristique notée $\phi_X$ est la fonction de
+    $\R$ dans $\mathbb{C}$ définie par:
+    \[
+        \forall u \in \R, \, \phi_X(u) = E[e^{iuX}] = \int_{{\Omega}}^{{}}
+        {e^{iuX}} \: d{P} = \int_{{\omega \in \Omega}}^{{}} e^{iuX(\omega)} \:
+        d{P(\omega)} {}
+    \] 
+    (bien définie car $\left| e^{iuX} \right| = 1$ donc $e^{iuX}$ est $P$ intégrable)
+\end{definition}
+
+Lien entre les 2 définitions: Par la formule de transfert 
+\[
+    E\left[ e^{iuX} \right] = \int_{{\R}}^{{}} {e^{iux}} \: d{P_X(x)} 
+\] 
+et donc $\phi_X = \phi_{P_X}$.
+
+La fonction caractéristique d'une variable aléatoire $X$ est, à un signe près,
+la transformée de Fourier de sa loi  $P_X$
+
+\section{Exemples}
+\subsection{Bernoulli}
+Si $X \sim \operatorname{Ber}(p)$ $P(X=1) = p$ $P(X=0)=1-p$
+
+\subsection{Poisson}
+Si  $X \sim \mathcal{P}(\theta)$, $\forall k \in \N, \, P(X=k) = e^{-\theta}\frac{\theta^k}{k!}$ 
+\[
+    \phi_X(u) = E[e^{iuX}] = \sum_{k=0}^{+\infty} e^{iuk}e^{-\theta}\frac{\theta^k}{k!} =
+    \sum_{k\ge 0}^{} e^{-\theta}\frac{( e^{iu}\theta )^k}{k!} = e^{-\theta}e^{\theta e^{iu}} =
+    e^{\theta (e^{iu} - 1)}
+\] 
+
+\subsection{Exponentielle}
+$X \sim Exp(\alpha)$
+
+ \[
+     E[e^{iuX}] = \int_{{\R^+}}^{} e^{iux}\alpha e^{-\alpha x} \: d{\lambda(x)} = \int_{{\R^+}}^{} \alpha e^{(iu - \alpha)x} \: d{\lambda(x)} = \frac{\alpha}{iu - \alpha} e^{(iu - \alpha)}x \big|_0^{+\infty} = \frac{\alpha}{iu - \alpha}
+\] 
+
+\section{Propriétés}
+\begin{prop}
+    Si $X$ est une variable aléatoire, sa fonction caractéristique $\phi_X$ vérifie:
+    \begin{enumerate}[i)]
+        \item $\phi_X(0) = 1$. 
+        \item $\forall u \in \R, \, |\phi_X(u)| \le 1$
+        \item $\forall u \in \R, \overline{\phi_X(u)} = \phi_X(-u)$
+        \item $\phi_X$ est continue sur $\R$
+    \end{enumerate}
+\end{prop}
+\begin{newproof}
+    \begin{itemize}
+        \item[ii)] $\left| E[e^{iuX}] \right| \le E[|e^{iuX}|] = 1$ \\
+        \item[iv)]
+        Soit  $u_0 \in \R$ et montrons que $\phi_X$ est continue en $u_0$
+        \[
+            \phi_X(u) = \int_{{}}^{{}} e^{iux} \: d{P_X(x)} 
+        \] 
+        Il s'agit d'une intégrale dependant d'un paramètre. Ici, 
+        \[
+            \forall u \in \R, \forall x \in \R, \, |e^{iux}| \le 1
+        \] 
+        majoration uniforme en $u$, par une fonction $P$ intégrable.
+        Par le theorem de convergence dominé, 
+         \[
+        \lim_{u \to u_0} \phi_X(u) = \phi_X(u_0)
+        \] 
+        Effet d'une transformation affine: $X$ variable aléatoire, $\alpha, \beta
+        \in \R$, alors 
+        $$ \forall u \in \R, \phi_{\alpha X + \beta}(u) = e^{iu \beta}\phi_X(\alpha u) $$
+        car 
+        \[
+            E[e^{iu(\alpha X + \beta)}] = E\left[ e^{iu \beta}e^{iu \alpha X} \right] = e^{iu \beta} E\left[ e^{iu \alpha X} \right]
+        \] 
+    \end{itemize}
+\end{newproof}
+
+\section{La loi gaussienne}
+Soit $m \in \R$, $\sigma > 0$ et $X$ une variable aléatoire de loi
+$\mathcal{N}(m, \sigma^2)$. Posons, $Z = \frac{X - m}{\sigma}$ ssi $X = m +
+\sigma Z$, alors $Z \sim \mathcal{N}(0, 1)$ et calculons $\phi_Z$.
+
+ \[
+     \phi_Z(u) = E[e^{iuZ}] = \int_{{\R}}^{{}} e^{iux} e^{i \frac{x^2}{2}} \frac{1}{\sqrt{2 \pi}}\: d{x} 
+\] 
+$iux - \frac{x^2}{2} = -\frac{1}{2}(x - iu)^2 - \frac{u^2}{2}$
+donc
+\[
+    \phi_Z(u) = \int_{{\R}}^{} e^{-\frac{1}{2}(x - iu)^2 e^{-\frac{u^2}{2}}}
+    \frac{1}{\sqrt{2 \pi} } \: d{x} = e^{- \frac{u^2}{2}} \int_{{\R}}^{}
+    {e^{-\frac{1}{2}(x - iu)^2} \frac{1}{\sqrt{2 \pi} }} \: d{x} {}
+\] 
+Calcul de $I(u) = \int_{{\R}}^{} {e^{-\frac{1}{2}(x - iu)^2}} \: d{x}$
+\[
+    I(0) = \int_{{\R}}^{} {e^{-\frac{1}{2}x^2}} \: d{x} = \sqrt{2 \pi} 
+\] 
+\begin{figure}[H]
+    \centering
+    \incfig{i-0-drawing}
+    \caption{I-0-drawing}
+    \label{fig:i-0-drawing}
+\end{figure}
+
+Calculons $I'(u)$.
+\[
+    I(u) = \int_{{}}^{{}} {f(x, u)} \: d{x} \text{ avec } f(x, u) = e^{-\frac{1}{2}(x - iu)^2}
+\] 
+On espère:
+\[
+I'(u) = \int_{{}}^{{}} {\frac{\partial f}{\partial u}(x, u)} \: d{x} 
+\] 
+$f(x,u)$ est $\mathcal{C}^1$ de $\R \times \R \to  \mathbb{C}$
+\[
+    \frac{\partial f}{\partial u}(x, u) = i(x - iu)e^{-\frac{1}{2}(x - iu)^2}
+\] 
+\[
+    \left| \frac{\partial f}{\partial u}(x, u) \right| \le (|x| + |u|)e^{-\frac{1}{2}(x^2 + u^2)}
+\] 
+La fonction avec $u \in \R$, $|u|e^{-\frac{u^2}{2}}$ est bornée sur $\R$ et donc 
+\[
+    \exists M > 0, \forall u \in \R, \forall x \in \R \, \left| \frac{\partial f}{\partial u}(x, u) \right| \le (|x| + M)e^{-\frac{x^2}{2}}
+\] 
+Cette fonction est $\lambda$ intégrable et ne dépend pas de $u$. Alors,  $I$
+est dérivable et sa dérivée vaut ainsi
+\[
+    I'(u) = \int_{{\R}}^{{}} {\frac{\partial}{\partial u}f(x, u)} \: d{x} =
+    \int_{{\R}}^{} {i(x - iu)e^{-\frac{1}{2}(x - iu)^2}} \: d{x} 
+\] 
+\[
+    \frac{\partial f}{\partial u} = i(x - iu)e^{-\frac{1}{2}(x - iu)^2}
+\] 
+\[
+    \frac{\partial f}{\partial x} = -(x - iu)e^{-\frac{1}{2}(x - iu)^2}
+\] 
+alors 
+\[
+    I'(u) = 
+    -i \int_{{\R}}^{} {\frac{\partial f}{\partial x}(x, u)} \: d{x} = 
+    -i \left[ f(x, u) \right]_{-\infty}^{+\infty} = 0
+\] 
+d'où $I(u) = \text{constante} = I(0) = \sqrt{2 \pi} $.
+
+On trouve finalement
+\[
+    \phi_Z(u) = e^{- \frac{u^2}{2}}
+\] 
+si $Z \sim \mathcal{N}(0,1)$.
+
+Si $X \sim \mathcal{N}(m, \sigma^2)$, $X = \sigma Z + m$
+\[
+    \phi_X(u) = e^{ium - \frac{\sigma^2 u^2}{2}}
+\] 
+Posons  
+\[
+    g_{\sigma} = \frac{e^{-\frac{x^2}{2 \sigma^2}}}{\sigma \sqrt{2 \pi} }
+\] 
+\[
+    \int_{{}}^{{}} {e^{iux}g_{\sigma}(x)} \: d{x} = \frac{\sqrt{2 \pi} }{\sigma}g_{\frac{1}{\sigma}}(u)
+\] 
+\section{Théorème d'injectivité}
+\begin{theorem}[Théorème d'injectivité]
+    Notons $\mathcal{M}_1(\R)$ l'ensemble des mesures de probas sur $(\R, \mathcal{B}(\R))$.
+    L'application qui à une mesure de probas $\mu$ associe sa fonction
+    caractéristique $\phi_{\mu}$ est injective.
+    \[
+        \mu \in \mathcal{M}_1(\R) \longrightarrow \phi_{\mu} 
+    \] 
+    Ainsi, si $X$ est une variable aléatoire, la fonction $\phi_X$ caractérise la loi de $X$.
+\end{theorem}
+
+Cas particulier: Si $\mu$ admet une densité $f$, alors $\phi_{\mu}(u) = \int_{}^{} {e^{iux}f(x)} \: d{\lambda(x)} $
+
+\begin{newproof}
+   Soit $(\Omega, \mathcal{F}, P )$ un espace de probas sur lequel sont
+   définies deux variables aléatoires indépendantes $X$ et $Y$ telles que $X
+   \sim \mu$ et $Y \sim \mathcal{N}(0, 1) $ et soit $signa > 0$. 
+
+   Idée: Nous allons convoler $\mu$ avec une gaussienne pour la régulariser et nous allons montrer que cette loi convolée est déterminée par $\phi_\mu$. Pour cela, nous étudions $X + \sigma Y$. Soit, $f: \R\to \R$ continue à support compact.
+   \[
+       E\left( f(X + \sigma Y) \right) = \int_{{\Omega}}^{{}} {f(X + \sigma Y)} \: d{P} = \int_{x}^{{}} \int_{y}^{{}} f(x + \sigma y) \: d{P_{(X, Y)}(x, y)} \text{ avec } P_{(X, Y)} = P_X \otimes P_Y
+   \] 
+   On sait que $P_X = \mu$ et $P_Y = \mathcal{N}(0, 1)$ 
+
+   \[
+       E\left( f(X + \sigma Y) \right) = \iint f(x + \sigma y) \: d{\mu(x)} g_1(y) d{y} = \iint f(x + \sigma y') \: d{\mu(x)} g_1(y') d{y'}
+   \] 
+   On a vu que $\int e^{iux} g_{\sigma}(x) d{x} = \frac{\sqrt{2 \pi} }{\sigma} g_{\frac{1}{\sigma}}(u)$, $x \to t$, $u \to y'$, $\sigma \to \frac{1}{\sigma}$
+    \[
+        g_{\sigma}(y') = \frac{1}{\sqrt{2 \pi} \sigma} \int e^{i y' t}g_{\frac{1}{\sigma}} d{t}
+    \] 
+    \begin{align*}
+        E\left( f(X + \sigma Y) \right) &= \iiint f(x + y') \frac{1}{\sqrt{2 \pi} \sigma} e^{i y' t} g_{\frac{1}{\sigma}}(t) \: d{t} \, d{y'} \, d{\mu(x)} \quad z = x + y' \text{ garde } t, x \\
+                                        &= \iiint f(z) \frac{1}{\sqrt{2 \pi} \sigma} e^{i (z - x) t} g_{\frac{1}{\sigma}}(t) \: d{t} \, d{z} \, d{\mu(x)} 
+    \end{align*}
+    Par le theorem de Fubini
+    \[
+        \left| f(z) e^{i(z - x)t} g_{\frac{1}{\sigma}} \right| \le \|f\|_{\infty}g_{\frac{1}{\sigma}}(t)
+    \] 
+    $f$ support compact, $L^1(\R \times \R \times \R, \mu \otimes \lambda \otimes \lambda)$
+
+    \begin{align*}
+        E\left( f(X + \sigma Y) \right) &= \int_z \int_t f(z)\frac{1}{\sqrt{2 \pi} \sigma}e^{izt} g_{\frac{1}{\sigma}}(t) \left( \int_{x}^{} {e^{-itx}} \: d{\mu(x)}  \right) \: d{t} \, d{z}\\
+                                        &= \int_z \int_t f(z)\frac{1}{\sqrt{2 \pi} \sigma}e^{izt} g_{\frac{1}{\sigma}}(t) \phi_{\mu}(-t) \: d{t} \, d{z}
+    \end{align*}
+    Ainsi, la loi de $X + \sigma Y$ est déterminée par  $\phi_{\mu}$.
+    
+    Faisons $\sigma \to 0$. Je dis que $X + \sigma Y \xrightarrow[]{L} X$,
+    $\sigma \to 0$ et donc la loi de $X$ est déterminée par la famille de
+    variable aléatoire  $X + \sigma Y$, $\sigma > 0$ dont les lois sont
+    déterminées par $\phi_{\mu}$.
+
+    Je dis que $X + \sigma Y \xrightarrow[]{P} X$. En effet: soit $\epsilon > 0$
+     \[
+    P\left( |X + \sigma Y - X| > \varepsilon \right) = P\left( \sigma |Y| > \varepsilon \right) = P\left( |Y| > \frac{\varepsilon}{\sigma} \right) 
+    \] 
+    \[
+        \lim_{\sigma \to 0} P\left( |Y| > \frac{\varepsilon}{\sigma} \right) = P\left( \bigcap_{\sigma > 0} \left\{ |Y| > \frac{\varepsilon}{\sigma} \right\} \right) = P\left( |Y| = +\infty \right) = 0
+    \] 
+    \[
+    X + \sigma Y \xrightarrow[]{P} X \implies X + \sigma Y \xrightarrow[]{L} X
+    \] 
+
+    here picture of all convergences
+
+    Prouvons finalement: $X_n \xrightarrow[]{P} X \implies X_n \xrightarrow[]{L} X$ 
+
+    Soit $x$ un point de continuité de $F_X$.
+    \[
+    P(X_n \le x) = F_{X_n}(x) \le  P(|X_n - X| > \varepsilon) + P(X \le x + \varepsilon)
+    \] 
+    \[
+    \limsup_{n \to +\infty} F_{X_n}(x) \le F_{X} (X + \varepsilon) \forall \varepsilon > 0
+    \] 
+    \[
+    P(X \le x - \varepsilon) \le P(|X_n - X| \ge \varepsilon) + P(X_n \le x)
+    \] 
+    \[
+    F_X(x - \varepsilon) \le \liminf_{n \to +\infty} F_{X_n}(x)
+    \] 
+    avec $F_X(x - \varepsilon) \xrightarrow[\varepsilon \to 0]{} F_X(x)$ car $F_X$ continue en $x$.
+\end{newproof}
