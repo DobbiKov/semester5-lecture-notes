@@ -1,0 +1,303 @@
+\chapter{Lecture 10: Le Théorème Limite Central}
+
+\section{Le théorème de Paul Lévy}%
+\label{sec:Le théorème de Paul Lévy}
+
+\begin{theorem}[de Paul Lévy]
+    Soit $X, \, X_n, \, n \in \N$ des variables aléatoires réelles et soit $\phi_X,
+    \phi_{X_n}, \, n \in \N$ leurs fonctions caractéristiques.
+    Nous avons équivalence entre:
+    \begin{enumerate}[i)]
+        \item $X_n \xrightarrow[]{L} X$
+        \item $\forall u \in \R, \, \lim_{n \to \infty} \phi_{X_n}(u) = \phi_X(u)$
+    \end{enumerate}
+\end{theorem}
+\begin{newproof}
+   Sens facile:
+   \begin{itemize}
+       \item i) $\implies$ ii)
+
+           \[
+               \phi_{X_n}(u) = E\left[ e^{iuX_n} \right] = E[\cos(uX_n)] + i E[\sin(uX_n)]
+           \] 
+           Le fonctions $x \mapsto \cos(ux), \sin(ux)$ $u$ étant fixé sont
+           continues bornées et donc par la définition de la convergence en loi 
+           \[
+               E[\cos(uX_n)] \xrightarrow[n \to  +\infty]{} E[\cos(ux)]
+           \] 
+           \[
+               E[\sin(uX_n)] \xrightarrow[n \to  +\infty]{} E[\sin(ux)]
+           \] 
+           et donc 
+           \[
+           \phi_{X_n}(u) \xrightarrow[n \to +\infty]{} \phi_X(u)
+           \] 
+
+       \item ii) $\implies$ i)
+
+           Nous utilisons la même stratégie que pour prouver l'injectivité de
+           la transformation de Fourier des mesures de probabilités. Nous
+           supposons que $X, \, X_n, \, n \in \N$ sont toutes définies sur un
+           même espace de probabilités $(\Omega, \mathcal{F}, P)$, sur lequel
+           est aussi définie une variable aléatoire $Y$, indépendante de  $X,
+           X_n, \, n \in \N$ et de loi $\mathcal{N}(0, 1)$.
+
+           Soit $f: \R \to  \R$ une fonction continue à support compact. Nous
+           supposons  ii) vraie et nous voulons montrer que $X_n
+           \xrightarrow[]{L} X$.
+
+           Soit $\sigma > 0$ et écrivons
+           \[
+               E\left[ f(X_n) \right] - E[f(X)] = E[f(X_n) - f(X_n + \sigma Y)]
+               + E[f(X_n + \sigma Y)] - E[f(X + \sigma Y)] + E\left[ f(X +
+               \sigma Y) - f(X) \right] 
+           \] 
+
+           Comme $f$ est continue à support compact, elle est uniformément continue: 
+            \[
+           \forall \varepsilon > 0 \exists \delta > 0, \, \forall x,y \in \R \,
+           |x-y| < \delta \implies |f(x) - f(y)| < \varepsilon
+           \] 
+
+           Soit $\varepsilon > 0$ fixé. Soit $\delta$ associé à $\varepsilon$ 
+           comme ci-dessus. Écrivons
+           \begin{align*}
+               &\left| E(f(X_n) - f(X_n + \sigma Y)) \right| \le E(|f(X_n) - f(X_n +
+               \sigma Y)|) \\
+               = &\int_{|\sigma Y| \ge \delta}^{} {|f(X_n) - f(X_n + \sigma Y)|} \: d{P} + \int_{|\sigma Y| < \delta}^{} |f(X_n) - f(X_n + \sigma Y)| \: d{P} 
+           \end{align*}
+           \begin{align*}
+               \int_{|\sigma Y| \ge \delta}^{}  | |  \: d{P} \le 2
+               \|f\|_{\infty} \int_{|\sigma Y| \ge \delta}^{} 1 \: d{P} =
+               2\|f\|_{\infty} P(|\sigma Y| \ge \delta)
+           \end{align*}
+           Je dis que 
+           \[
+               \lim_{\sigma \to 0} P(|\sigma Y| > \delta) = \lim_{\sigma \to 0} P\left(|Y| > \frac{\delta}{\sigma}\right) = 0
+           \] 
+           donc
+           \[
+           \exists \sigma_0 \, 2 \|f\|_{\infty} P\left( |\sigma_0 Y| \ge \delta \right) < \varepsilon
+           \] 
+           \[
+           \int_{|\sigma Y| < \delta}^{} \left| f(X_n) - f(X_n + \sigma Y) \right|  \: d{P} < \varepsilon
+           \] 
+
+           On a donc $\left| E[f(X_n) - f(X_n + \sigma Y)] \right| <
+           2\varepsilon$ vraie pour tout $n$!. Par le même argument, on a
+           $|E[f(X + \sigma_0 Y) - f(X)] < 2\varepsilon$. Reste le terme du
+           milieu. On a donc
+           \[
+               \forall n \in \N \, \left| E[f(X_n)] - E[f(X)] \right| \le 2\varepsilon + \left| E[f(X_n + \sigma Y) - f(X + \sigma Y)] \right| + 2\varepsilon
+           \] 
+           Nous utilisons la formule du cours précédent
+           \[
+               E[f(X_n + \sigma_0 Y)] \iint_{u, z} f(z)e^{iuz}\frac{1}{\sqrt{2\pi} \sigma } g_{\frac{1}{\sigma}}(u) \phi_{X_n}(-u) \, d{u} \: d{z}
+           \] 
+           % \[
+           %     E[f(X + \sigma_0 Y)]
+           % \] 
+           Posons  
+           \[
+               F_n(u, z) = f(z)e^{iuz} \frac{1}{\sqrt{2 \pi} \sigma_0 } g_{\frac{1}{\sigma_0}}(u) \phi_{X_n}(-u)
+           \] 
+           \[
+           |F_n(u,z)| \le |f(z)|\frac{1}{\sqrt{2 \pi} \sigma_0 } g_{\frac{1}{\sigma_0}}(u)
+           \] 
+           domination par une fonction qui ne dépend pas de $n$ et qui est dans  $\mathcal{L}^1\left(d{\lambda(u), \: d{\lambda(z)}}\right) = \mathcal{L}^1\left(\R^2, d{\lambda(u), \: d{\lambda(z)}}\right)$ 
+
+           Par le TCD:  
+           \[
+               \exists N \: \forall n \ge N \: \left| E[f(X_n + \sigma_0 Y)] - E[f(X + \sigma_0 Y)] \right| < \varepsilon
+           \] 
+           Alors, pour $n \ge N$
+           \[
+               \left| E[f(X_n)] - E[f(X)] \right| \le 2\varepsilon + \varepsilon + 2\varepsilon < 5\varepsilon
+           \] 
+   \end{itemize}
+\end{newproof}
+
+\section{Moments}
+\begin{prop}
+    Soit $X$ une variable aléatoire réelle. Soit  $k \ge 1$ et
+    supposons que $E[|X|^k] < +\infty$. Alors $\phi_{X}$ est $k$ fois
+    dérivable. Et de plus
+    \[
+        E[X^k] = i^k \phi_X^{(k)}(0)
+    \] 
+\end{prop}
+\begin{newproof}
+    \[
+        \phi_X(u) = \int_{\R}^{} {e^{iux}} \: d{P_X(x)} {}
+    \] 
+    Faisons le cas où $k=1$ : $E[|X|] < +\infty$. Il s'agit d'une
+    intégrale à paramètre et on veut donner par rapport à $u$. 
+    Pose $F(x, u) = e^{iux}$
+    On
+     \[
+         \frac{\partial F}{\partial u}(x, u) = ixe^{iux}
+    \] 
+    $|\frac{\partial F}{\partial u}(x, u)| \le |x|$ fonction majorante
+    qui est $P_X$ intégrable et qui ne dépend pas de  $u$.
+
+    Thm de dérivation: $\phi_X$ dérivable et 
+    \[
+        \phi_X^{'}(u) = \int_{}^{} \frac{\partial F}{\partial u}(x, u) \: d{x} = i \int_{}^{} xe^{iux} \: d{P_X(x)} 
+    \] 
+    d'où
+    \[
+        \phi_X^{'}(0) = i \int_{}^{} x \: d{P_X(x)} = iE(X)
+    \] 
+    Ce résultat de (re)trouver facilement la suite des moments.
+\end{newproof}
+
+\section{Exemples}
+\begin{eg}
+    $X \sim \mathcal{U}([-1, 1])$ 
+    \[
+        \phi_X(u) = \int_{{\R}}^{} e^{iux} 1_{[-1, 1]} \frac{1}{2} \: d{x} = \frac{e^{iu} - e^{-iu}}{2iu} = \frac{\sin u}{u} = \sum_{n \ge 0}^{} (-1)^n \frac{u^{2n}}{(2n + 1)!}
+    \] 
+    car
+    \[
+        \sin u = \sum_{n \ge 0}^{} (-1)^n \frac{u^{2n + 1}}{(2n + 1)!}
+    \] 
+
+    d'où $\phi_X^{(2n)}(0) = \frac{(-1)^n}{(2n + 1)!} (2n)! = \frac{(-1)^n}{2n + 1}$ 
+    \[
+        E[X^{2n}] = \frac{1}{2n + 1}
+    \] 
+    et
+    \[
+        E[X^2n] = \int_{-1}^{1} x^{2n} \frac{1}{2} \: d{x} {}
+    \] 
+\end{eg}
+\begin{eg}[Gaussienne]
+   $X \sim \mathcal{N}(0, 1)$ 
+   \[
+       \phi_X(u) = e^{-\frac{u^2}{2}} = \sum_{n \ge  0}^{} \frac{1}{n!} \frac{u^{2n}}{2^n}
+   \] 
+   d'où
+   \[
+       \phi_X^{(2n)}(0) = \frac{(-1)^n (2n)!}{n! 2^n} = (i)^{2n} E[X^{2n}]
+   \] 
+   d'où
+   \[
+       E[X^{2n}] = \frac{(2n)!}{n! 2^n}
+   \] 
+\end{eg}
+
+\section{Convolution}
+\begin{lemma}
+   Soient $X, Y$ deux variables aléatoires indépendantes. Alors,
+   \[
+   \forall u \in \R, \: \phi_{X + Y}(u) = \phi_X(u)\phi_Y(u)
+   \] 
+\end{lemma}
+\begin{newproof}
+   \[
+       \phi_{X + Y}(u) = E[e^{iu(X + Y)}] = E[e^{iuX}e^{iuY}] = E[e^{iuX}] E[e^{iuY}] = \phi_X(u)\phi_Y(u)
+   \]  
+   car indépendante.
+\end{newproof}
+\begin{corollary}
+   Si $X_1, \ldots, X_n$ sont $n$ variables aléatoires i.i.d. alors 
+    \[
+        \phi_{X_1 + \ldots + X_n}(u) = \left( \phi_{X_1}(u) \right)^n
+   \] 
+\end{corollary}
+Supposons que $X$ variable aléatoire une loi de densité  $f$ et  $Y$ une
+variable aléatoire de densité  $g$ et $X, Y$ indépendantes. Alors,
+\[
+    \phi_{X + Y}(u) = \iint_{x, y} e^{iu(x+y)}f(x)g(y) \:d{x}\:d{y}
+\] 
+Pose $z = x + y$, garde  $x$, remplace $y$.
+\begin{align*}
+    &\phi_{X + Y}(u) = \iint_{x, z} e^{iuz}f(x)g(z-x) \: d{x} \: d{z} \quad \text{ Fubini}\\
+    =& \int_{{z}}^{} \left( \int_{x}^{} f(x)g(z - x) \: d{x} \right)  \: d{z} = \int_{{}}^{{}} e^{iuz} h(z) \: d{z} 
+\end{align*}
+où 
+    \[
+    h(z) = \int_{{}}^{{}} f(x)g(z - x) \: d{x} = (f * g)(z) 
+    \] 
+produit de convolution de $f$ et $g$.
+
+Par identification des deux formules, on conclut que $X + Y$ a une loi de densité $f * g$.
+
+ \begin{eg}
+   $g = g_{\sigma}(x)$ 
+   \[
+       f*g_{\sigma} (z) = \int_{{}}^{{}} f(x)g_{\sigma}(z - x) \: d{x} = \int_{{}}^{{}} f(z - x)g_{\sigma}(x) \: d{x} 
+   \] 
+\end{eg}
+
+Dès que $f$ et $g$ sont dans $\mathcal{L}^1$, le produit de convolution $f * g$
+est bien définie et aussi dans $\mathcal{L}^1(\lambda)$ 
+
+\section{Le théorème limite central}
+\begin{theorem}[limite central]
+    Soit $(X_n)_{n\ge 1}$ une suite de variables aléatoires i.i.d qui admettent
+    un moment d'ordre $2$. Posons  $m = E[X_1]$ et  $\sigma^2 =
+    \operatorname{Var}(X_1)$. Alors
+     \[
+    \frac{X_1 + \ldots + X_n - nm}{\sqrt{n}  } \xrightarrow[]{L} \mathcal{N}(0, \sigma^2)
+    \] 
+\end{theorem}
+\begin{remark}
+    Attention, il faut abosolument centrer les variables aléatoires en
+    soustrayant $nE[X_1] = nm$. Par contre, on peut normaliser $\sqrt{n
+    Var(X_1)} $, i.e
+    \[
+    \frac{X_1 + \ldots + X_n - nm}{\sqrt{n} \sigma } \xrightarrow[]{} \mathcal{N}(0,1) 
+    \] 
+\end{remark}
+Il s'agit d'une résultat universel. Dès que les variables aléatoires $(X_n)$
+ont un moment d'ordre $2$, les fluctuations de $X_1 + \ldots + X_n$ autour de
+sa moyenne sont décrites par la loi gaussienne.
+
+Le TLC ou TCL est un raffinement de la loi des grands nombres, sous l'hypothèse
+d'existence d'un moment d'ordre $2$. 
+\[
+    \frac{X_1 + \ldots + X_n}{n} = E[X_1] + \frac{R_n}{\sqrt{n} }
+\] 
+avec $R_n$ une variable aléatoire (représentant le reste) qui  $R_n
+\xrightarrow[]{L} \mathcal{N}(0, \sigma^2)$
+
+Histoire: Abraham de Moivre (1733). The doctrine of chances.
+
+Pierre Simon de laplace (1812).
+
+Lindeberg.
+
+Turing 1934.
+
+\begin{newproof}
+    Posons $Y_n = \frac{X_1 + \ldots + X_n - nm}{\sqrt{n} }$ et aussi
+    $\tilde{X}_k = X_k - m$ pour  $1 \le k \le n$ et étudions la convergence en
+    loi de $Y_n$ à l'aide des fonctions caractéristiques. 
+    \[
+        \phi_{Y_n}(u) = E[e^{iuY_n}] = E\left( e^{iu(\frac{ \tilde{X}_1 }{\sqrt{n} } + \ldots + \frac{ \tilde{X}_n }{\sqrt{n} })} \right) = E\left( e^{iu \frac{\tilde{X}_1}{\sqrt{n} }} \right) \ldots E\left( e^{iu \frac{\tilde{X}_n}{\sqrt{n} }} \right) = \left( \phi_{\tilde{X}_1 }(\frac{u}{\sqrt{n} }) \right)^n 
+    \] 
+
+    $\phi_{\tilde{X}_1}(u)$ est 2 fois dérivable car $E[\tilde{X}_1^2] < +\infty$ et donc elle admet un développement limité à l'ordre  2.
+    \begin{align*}
+        \phi_{\tilde{X}_1}(u) &= \phi_{\tilde{X}_1}(0) + u\phi_{\tilde{X}_1}^{'}(0) + \frac{u^2}{2}\phi_{\tilde{X}_1}^{''}(0) + o(u^2)\\
+                              &= 1 + iE[\tilde{X}_1]u - \frac{u^2}{2}E[\tilde{X}_1^2] + o(u^2)
+    \end{align*}
+    \[
+        \phi_{\tilde{X}_1}(u) = 1 + 0 - \frac{\sigma^2 u^2}{2} + o(u^2) \qquad \sigma^2 = E[\tilde{X}_1^2]
+    \] 
+    d'où
+    \[
+        \phi_{\tilde{X}_1}(\frac{u}{\sqrt{n} }) = 1 - \frac{\sigma^2 u^2}{2n} + o(\frac{1}{n}) \quad n \to +\infty
+    \] 
+    d'où
+    \begin{align*}
+        \phi_{Y_n}(u) &= \left( 1 - \frac{\sigma^2 u^2}{2n} + o(\frac{1}{n}) \right)^n \\
+                      &= \exp\left(n \ln\left( 1 - \frac{\sigma^2 u^2}{2n} + o(\frac{1}{n}) \right) \right)\\
+                      &= \exp\left( -\frac{\sigma^2 u^2}{2} + o(1) \right) \to e^{-\frac{\sigma^2 u^2}{2}} = \phi_{\mathcal{N}(0, 1)}(u)
+    \end{align*}
+    Ici on utilise le $\ln$ complexe
+     \[
+         \ln(1 + z) = z - \frac{z^2}{2} + \frac{z^3}{3} + \ldots = \sum_{n \ge 1}^{} (-1)^{n-1} \frac{z^n}{n}
+    \] 
+\end{newproof}
