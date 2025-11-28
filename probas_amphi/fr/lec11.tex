@@ -1,0 +1,268 @@
+\chapter{Lecture 11: Processus de Poisson}
+
+\section{Introduction}
+Nous voulons modéliser des événements qui arrivent à des dates précises mais imprévisibles.
+
+\begin{eg}
+   Séismes, désintégration des atomes, pluie, début ou fin d'appel téléphoniques.
+\end{eg}
+
+À chaque occurrence d'un événement, nous marquons un impact sur l'axe des temps:
+
+\begin{figure}[H]
+    \centering
+    \incfig{exemple-laxe-temps-processus-poisson2}
+    \caption{exemple-laxe-temps-processus-poisson2}
+    \label{fig:exemple-laxe-temps-processus-poisson2}
+\end{figure}
+
+Hypothèses: 
+\begin{enumerate}[i)]
+    \item Les conditions de l'experience ne changent pas au cours du temps
+    \item Les nombres d'impacts dans des intervalles de temps disjoints sont indépendants.
+\end{enumerate}
+
+Pour $t\ge 0$, nous notons $N(t)$ le nombre d'impacts dans  $[0, t]$. Nous
+avons une famille de v.a.  $(N(t))_{t \ge 0}$ indexée par un paramètre continu:
+c'est un processus stochastique.
+
+\section{Construction d'un modèle discret}
+Soit $n\ge 1$ un entier: Nous subdivisons l
+axe réel en intervalles de longueur $\frac{1}{n}$ : $[\frac{k}{n}, \frac{k+1}{n}[$, $k \ge 0$
+
+\begin{figure}[H]
+    \centering
+    \incfig{subdivision-axe-processus-poisson}
+    \caption{subdivision axe processus poisson}
+    \label{fig:subdivision-axe-processus-poisson}
+\end{figure}
+
+Un intervalle $[\frac{k}{n}, \frac{k+1}{n}[$ est dit occupé s'il contient au
+moins un impact et vide sinon. Notons $p_n$ la probabilité qu'un intervalle
+$[\frac{k}{n}, \frac{k+1}{n}[$ soit occupé. Par l'hyp $i)$,  $p_n$ ne depend
+pas de l'intervalle.
+
+Pour $t > 0$, nous notons  $N_n(t)$ le nombre d'intervalles $[\frac{k}{n},
+\frac{k+1}{n}[$ qui sont inclus dans $[0, t]$  ($\frac{k+1}{n} \le t$) et qui
+sont occupés. Par l'hypothèse  $ii)$, les états vides ou occupés de ces
+intervalles sont indépendants et  $N_n(t)$ suit la loi binomiale $B( \lfloor nt \rfloor, p_n)$ 
+
+Étudions la limite en loi de $N_n(t)$ par exemple à l'aide des fonctions caractéristiques:
+ \[
+     \phi_{N_n(t)}(u) = E(e^{iuN_n(t)})
+\] 
+
+Hypothèse: $p_n \to 0$, sinon le modèle explose
+
+\begin{align*}
+    \phi_{N_n(t)}(u) &= (1 - p_n + p_ne^{iu})^{\left\lfloor nt \right\rfloor} \\
+                     &= e^{\left\lfloor nt \right\rfloor}\ln(1 + p_n(e^{iu} - 1)) \\
+                     &= e^{\left\lfloor nt \right\rfloor}(p_n(e^{iu} - 1) + o(p_n)) \\
+                     &= e^{\left\lfloor nt \right\rfloor}p_n(e^{iu} - 1) + o(np_n)
+\end{align*}
+
+Supposons $np_n \xrightarrow[n \to +\infty]{} \lambda$. Alors
+\begin{align*}
+    \lim_{n \to \infty} \phi_{N_n(t)}(u) = e^{\lambda(e^{iu}-1)}
+\end{align*}
+et donc  
+\[
+    N_n(t) \xrightarrow[n \to +\infty]{\mathcal{L}} \mathcal{P}(\lambda)
+\] 
+
+\begin{remark}
+   $x \sim \mathcal{P}(\lambda)$ si $X$ est à valeurs dans  $\N$ et 
+   \[
+       \forall k \in \N \, P(X = k) = e^{-\lambda}\frac{\lambda^k}{k!}
+   \] 
+   \[
+       E[X] = \lambda \qquad \operatorname{Var}(X) = \lambda \qquad \phi_{X}(u) = e^{\lambda (e^{iu} - 1)}
+   \] 
+\end{remark}
+
+\section{Instants de saut}
+Nous avons montré que, à $t$ fixé,  $N_n(t) \to \mathcal{P}(\lambda t)$, mais
+en fait la fonction $t \mapsto N_n(t)$ est une fonction aléatoire nulle en 0,
+croissante, d'accroissements $0$ ou  $1$.
+
+\begin{figure}[H]
+    \centering
+    \incfig{instants-de-sauts}
+    \caption{instants-de-sauts}
+    \label{fig:instants-de-sauts}
+\end{figure}
+La loi de la fonction aléatoire $t \mapsto N_n(t)$ converge-t-elle quand $n \to
+\infty$?
+ 
+Nous définissons les instants de sauts de $N_n(t)$:
+ \[
+     \forall k\ge 1 \, T_k^n = \inf \left\{ t \ge 0 : N_n(t) = k \right\}
+\] 
+la fonction $N_n(t)$ est complément déterminée par ses instants de saut: en effet
+ \[
+     N_n(t) = \sum_{k}^{} k 1_{[T_k^n, T_{k+1}^n[}(t)
+\] 
+
+Examinons la convergence des instrants de saut $T_k^n$ et commençons par  $T_1^n$.
+Soit  $i\ge 0$, regardons 
+$$
+P(T_1^n > \frac{i}{n}) = P([0, \frac{1}{n}[, \ldots, [\frac{i-1}{n}, \frac{i}{n}[ \text{ vide})
+$$.
+
+\begin{figure}[H]
+    \centering
+    \incfig{introduisons-suite-de-vas-convergence-sauts}
+    \caption{introduisons-suite-de-vas-convergence-sauts}
+    \label{fig:introduisons-suite-de-vas-convergence-sauts}
+\end{figure}
+Nous introduisons une suite de variables aléatoires $X_k$, $k \ge 0$ tq:
+\[
+X_k = \begin{cases}
+    0 \text{ si l'intervalle } [\frac{k}{n}, \frac{k+1}{n}[ \text{ vide}    \\
+    1 \text{ si l'intervalle } [\frac{k}{n}, \frac{k+1}{n}[ \text{ occupé}    
+\end{cases}
+\] 
+$$
+P(T_1^n > \frac{i}{n}) = P(X_0 = 0, \ldots, X_{i-1}=0) = (1 - p_n)^i
+$$
+d'où 
+\[
+    \forall t>0 \, P(T_1^n > t) = (1 - p_n)^{\left\lfloor nt \right\rfloor} \xrightarrow[n \to +\infty]{} e^{-\lambda t}
+\] 
+comme $(1 - p_n)^{\left\lfloor nt \right\rfloor} = e^{\left\lfloor nt
+\right\rfloor}\ln(1 - p_n)$ et $np_n \to \lambda$ et $p_n \sim
+\frac{\lambda}{n}$,
+d'où
+\[
+    \forall t \, F_{T_1^n}(t) \xrightarrow[]{} 1 - e^{- \lambda t}
+\] 
+d'où
+\[
+    T_1^n \xrightarrow[]{\mathcal{L}} \operatorname{Exp}(\lambda)
+\] 
+
+\begin{remark}
+    Une variable aléatoire $X$ suit la loi $\operatorname{Exp}(\lambda)$ si sa
+    loi est de densité 
+     \[
+         1_{\R^+}(x)\lambda e^{-\lambda x}
+    \] 
+    et alors \[
+        E[X] = \frac{1}{\lambda} \qquad \operatorname{Var}(X) = \frac{1}{\lambda^2} \qquad F_X(t) = 1 - e^{-\lambda t}
+    \] 
+\end{remark}
+\begin{figure}[H]
+    \centering
+    \incfig{sauts-loi-exp}
+    \caption{sauts-loi-exp}
+    \label{fig:sauts-loi-exp}
+\end{figure}
+Je dis que $T_2^n - T_1^n$ est indépendant de  $T_1^n$ et il a même loi: 
+
+Vérifions: soit $i, j \ge 1$ et regardons 
+\begin{align*}
+    P(T_1^n = \frac{i}{n}, \, T_2^n - T_1^n = \frac{j}{n}) &= P(X_0 = 0, X_1 = 0, \ldots, X_{i-1}=0, X_i = 1, X_{i+1} = 0, \ldots, X_{i+j-1}=0, X_{i+j}=1)\\
+                                                           &= (1-p_n)^i p_n (1-p_n)^j p_n^j
+\end{align*}
+d'où le résultat 
+\[
+= P(T_1^n = \frac{i}{n})P(T_2^n - T_1^n = \frac{j}{n})
+\] 
+aussi
+\[
+    (T_1^n, T_2^n - T_1^n) \xrightarrow[]{\mathcal{L}} \operatorname{Exp}(\lambda) \otimes \operatorname{Exp}(\lambda)
+\] 
+deux lois exponentielles indépendantes.
+
+Par récurrence, on montre que
+\[
+    (T_1^n, T_2^n - T_1^n, \ldots, T_k^n - T_{k-1}^n) \xrightarrow[n \to +\infty]{\mathcal{L}} (\operatorname{Exp}(\lambda))^{\otimes k}
+\] 
+
+\section{Le processus de Poisson}
+\begin{figure}[H]
+    \centering
+    \incfig{nnt-de-t}
+    \caption{nnt-de-t}
+    \label{fig:nnt-de-t}
+\end{figure}
+
+Soit $(Y_n)_{n \ge 1}$ une suite i.i.d. $\operatorname{Exp}(\alpha)$. Posons
+ \[
+\forall n\ge 1 \, S_n = Y_1 + \ldots + Y_n
+\] 
+Définissons
+\[
+    \forall t \ge 0 \, N(t) = \max \{ n \ge 0 : S_n \le t \}
+\] 
+Alors $(N(t))_{t \ge 0}$ est le processus de Poisson d'intensité $\lambda$.
+Pour chaque $t$,  $N(t)$ est une variable aléatoire  $\mathcal{P}(\lambda t)$,
+mais nous avons construit un continum de variables aléatoires $(N(t), t \ge 0)$
+sur le même espace de probas !
+\[
+S_n \xrightarrow[n \to +\infty]{} +\infty \text{ p.s.}
+\] 
+$N(t)$ est l'unique indice tq  $S_{N(t)} \le t < S_{N(t) + 1}$
+ 
+\section{La loi exponentielle}
+La loi qui régit l'intervalle entre 2 impacts successifs est la loi
+$\operatorname{Exp}(\lambda)$. Elle surgit comme limite de lois géométriques
+renormalisées ?
+
+Si  $X \sim \operatorname{Geom}(\frac{\lambda}{n})$, 
+\[
+    \frac{1}{n}X \xrightarrow[]{\mathcal{L}} \operatorname{Exp}(\lambda)
+\] 
+
+Ces 2 lois possèdent une propriété remarquable, l'absence de mémoire !
+i.e 
+\[
+\forall s, t > 0 \, P(T > t + s  \mid T > s) = P(T > t)
+\] 
+
+La loi du temps résiduel à attendre sachant qu'on a déjà attendu $s$ est la
+même que la loi du temps d'attente total.
+
+Elles sont utilisées pour modéliser des phénomènes qui ne présentent pas de vieillissement: 
+\begin{itemize}
+    \item temps de vie d'un atome
+    \item durée d'un appel téléphonique incohérent
+\end{itemize}
+\section{Applications}
+Carte de Londres. 537 impacts. Quadrillage $0,25$ km$^2$ $\to $ 576 carrés donc $0,9323$ impacts/carré
+\begin{figure}[H]
+    \centering
+    \incfig{carte-de-londres}
+    \caption{carte-de-londres}
+    \label{fig:carte-de-londres}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{c | c | c | c | c | c | c}
+$k$  impacts       & 0  & 1 & 2  & 3  & 4  & 5 \\
+\hline
+relevés                   & 229  & 211 & 93  & 35  & 7  & 1 \\
+$576 \mathcal{P}(0,9323)$ & 226,74  & 211,39 & 98,54  & 30,62  & 7,14  & 1,57 
+\end{tabular}
+\end{center}
+
+Autobus: Les arrivées de bus à un arrêt sont modeliées par un processus de
+$\mathcal{P}(\alpha)$, le temps moyen entre 2 bus est $\frac{1}{\alpha}$.
+J'arrive à l'instant $t$. quel sera mon temps d'attente ?
+
+1$^{\text{er}}$ raisonnement: Vu l'absence de memoire de la loi $\operatorname{Exp}(\alpha)$,
+mon temps d'attente suit une loi  $\operatorname{Exp}(\alpha)$ donc en moyenne  $\frac{1}{\alpha}$.
+
+2$^{\text{eme}}$ raisonnement: j'arrive au hasard entre 2 bus, par symétrie,
+mon temps moyen d'attente est la moitié de la longueur typique de $s$
+intervalles  $\frac{1}{2\alpha}$ 
+
+\[
+S_n = Y_1 + \ldots + Y_n \qquad N(t)
+\] 
+$S_n$ instants d'arrivées des bus. Soit  $K$ tel que  
+\[
+    S_{K-1} < t \le S_{K-1} + Y_K
+\] 
+Mon temps d'attente est $S_k - t$ et temps moyen  $E[S_K - t]$ mais cet intervalle 
+$Y_K$ ne suit pas la loi exponentielle et donc (pas $\frac{1}{2 \alpha}$ mais $\frac{2}{2\alpha}$)

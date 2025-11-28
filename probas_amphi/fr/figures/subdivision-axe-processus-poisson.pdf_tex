@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.4 (e7c3feb1, 2024-10-09), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'i-0-drawing.pdf' (pdf, eps, ps)
+%% Accompanies image file 'subdivision-axe-processus-poisson.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -50,9 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5)%
+  \begin{picture}(1,0.125)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{i-0-drawing.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{subdivision-axe-processus-poisson.pdf}}%
+    \put(0.16476496,0.01504326){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{subdivision-axe-processus-poisson.pdf}}%
+    \put(0.24631546,0.01521155){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{subdivision-axe-processus-poisson.pdf}}%
+    \put(0.3296786,0.01449916){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{2}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{subdivision-axe-processus-poisson.pdf}}%
+    \put(0.41241652,0.01295026){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{3}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{subdivision-axe-processus-poisson.pdf}}%
+    \put(0.49485884,0.01318124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{4}{n}$\end{tabular}}}}%
+    \put(0.58108088,0.01320807){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

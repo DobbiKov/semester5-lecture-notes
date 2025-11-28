@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.4 (e7c3feb1, 2024-10-09), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'i-0-drawing.pdf' (pdf, eps, ps)
+%% Accompanies image file 'introduisons-suite-de-vas-convergence-sauts.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -53,6 +53,19 @@
   \begin{picture}(1,0.5)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{i-0-drawing.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{introduisons-suite-de-vas-convergence-sauts.pdf}}%
+    \put(0.16453767,0.3668649){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{introduisons-suite-de-vas-convergence-sauts.pdf}}%
+    \put(0.24608817,0.3670332){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{1}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{introduisons-suite-de-vas-convergence-sauts.pdf}}%
+    \put(0.32945134,0.3663208){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{2}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{introduisons-suite-de-vas-convergence-sauts.pdf}}%
+    \put(0.41218926,0.36477191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{3}{n}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{introduisons-suite-de-vas-convergence-sauts.pdf}}%
+    \put(0.49463158,0.36500289){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{4}{n}$\end{tabular}}}}%
+    \put(0.58085365,0.36502972){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0.20104885,0.46601181){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_0$\end{tabular}}}}%
+    \put(0.28515526,0.46601181){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_1$\end{tabular}}}}%
+    \put(0.37156595,0.46601181){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X_2$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

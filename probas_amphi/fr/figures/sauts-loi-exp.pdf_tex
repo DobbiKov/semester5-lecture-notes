@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.4 (e7c3feb1, 2024-10-09), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'i-0-drawing.pdf' (pdf, eps, ps)
+%% Accompanies image file 'sauts-loi-exp.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -50,9 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5)%
+  \begin{picture}(1,0.16666667)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{i-0-drawing.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{sauts-loi-exp.pdf}}%
+    \put(0.41946719,0.03457476){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{sauts-loi-exp.pdf}}%
+    \put(0.41065671,0.10285651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{sauts-loi-exp.pdf}}%
+    \put(0.59235821,0.03462543){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{sauts-loi-exp.pdf}}%
+    \put(0.47167632,0.03457476){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_1$\end{tabular}}}}%
+    \put(0.51304426,0.03457476){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$T_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{sauts-loi-exp.pdf}}%
   \end{picture}%
 \endgroup%
