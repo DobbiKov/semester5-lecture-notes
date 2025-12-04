@@ -46,6 +46,20 @@ jobs:
         latexmk_shell_escape: true
         working_directory: measure-theory/explanations/carathedory-criterion/fr/
 
+    - name: Integration Cheatsheet En
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: measure-theory/cheatsheet/en/
+
+    - name: Integration Cheatsheet Fr
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: measure-theory/cheatsheet/fr/
+
     - name: Check PDF files
       run: |
         file probas/cheatsheet.pdf | grep -q ' PDF '
@@ -53,6 +67,8 @@ jobs:
         file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
         file measure-theory/explanations/carathedory-criterion/en/main.pdf | grep -q ' PDF '
         file measure-theory/explanations/carathedory-criterion/fr/main.pdf | grep -q ' PDF '
+        file measure-theory/cheatsheet/en/main.pdf | grep -q ' PDF '
+        file measure-theory/cheatsheet/fr/main.pdf | grep -q ' PDF '
         
     - name: Upload to GitHub pages
       run: |
@@ -75,6 +91,8 @@ jobs:
         cp -f measure-theory/explanations/carathedory-criterion/en/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-en.pdf"
         cp -f measure-theory/explanations/carathedory-criterion/fr/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-fr.pdf"
 
+        cp -f measure-theory/cheatsheet/en/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-cheatsheet-en.pdf"
+        cp -f measure-theory/cheatsheet/fr/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-cheatsheet-fr.pdf"
         cd "$GITHUB_WORKSPACE/deploy"
 
         git add -A
