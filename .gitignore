@@ -8,6 +8,11 @@
 *.out
 .DS_Store
 *.pdf
+*/.translate_dir
+*/.translate_dir
+*/*/.translate_dir
+*/*/*/.translate_dir
+*/*/*/*/.translate_dir
 !*/figures/
 !figures
 !figures/*
