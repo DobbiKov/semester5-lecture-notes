@@ -1,0 +1,212 @@
+\documentclass[10pt, a4paper, landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+
+% Page Layout
+\geometry{top=1cm, bottom=1cm, left=1cm, right=1cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\rfoot{\footnotesize Generated from Chapters 3 \& 4: Intégrale de Lebesgue}
+
+% Colors
+\definecolor{secblue}{RGB}{0, 50, 120}
+\definecolor{boxbg}{RGB}{245, 247, 250}
+\definecolor{boxframe}{RGB}{0, 50, 120}
+
+% Section Styling
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{secblue}}{}{0em}{}[\hrule]
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+
+% Custom Box Environment
+\newtcolorbox{cheatbox}[1]{
+  colback=boxbg,
+  colframe=boxframe,
+  coltitle=white,
+  title=\textbf{#1},
+  boxrule=0.5pt,
+  arc=2pt,
+  left=2pt, right=2pt, top=2pt, bottom=2pt,
+  fonttitle=\small\sffamily
+}
+
+% Math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Lspace}{\mathcal{L}}
+\newcommand{\Eplus}{\mathcal{E}^+}
+\newcommand{\Ind}{\mathbf{1}}
+\newcommand{\dlam}{d\lambda}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \textbf{\color{secblue} Lebesgue Integration Cheatsheet}} \\
+    \small Based on \textit{Intégrale de Lebesgue sur $\R$} and \textit{sur $\R^d$}
+\end{center}
+
+\begin{multicols*}{3}
+
+% ==========================================
+% COLUMN 1: Integration on R
+% ==========================================
+
+\section{Integration on $\R$}
+
+\begin{cheatbox}{1. Simple Functions (Fonctions Étagées)}
+A function $f: X \to [0, +\infty]$ is \textbf{simple positive} ($\Eplus(X)$) if it takes a finite number of values $\{c_1, \dots, c_n\}$ on measurable sets $A_j$:
+\[ f = \sum_{j=1}^n c_j \Ind_{A_j} \]
+\textbf{Integral Definition:}
+\[ \int_X f \, \dlam = \sum_{c \in f(X)} c \lambda(f^{-1}(\{c\})) \]
+With convention $0 \times \infty = 0$.
+\end{cheatbox}
+
+\begin{cheatbox}{2. Measurable Positive Functions}
+For a measurable $f: X \to [0, +\infty]$:
+\[ \int_X f \, \dlam = \sup \left\{ \int_X \varphi \, \dlam : \varphi \in \Eplus(X), \varphi \le f \right\} \]
+\textbf{Approximation:} Every measurable $f \ge 0$ is the limit of an increasing sequence of simple functions $\varphi_n \nearrow f$.
+\end{cheatbox}
+
+\begin{cheatbox}{3. Integrable Functions ($\Lspace^1$)}
+A measurable function $f: X \to \R$ is \textbf{integrable} (denoted $f \in \Lspace^1(X)$) if:
+\[ \int_X |f| \, \dlam < +\infty \]
+\textbf{Definition of Integral:}
+\[ \int_X f \, \dlam = \int_X f^+ \, \dlam - \int_X f^- \, \dlam \]
+where $f^+ = \max(f, 0)$ and $f^- = \max(-f, 0)$.
+\end{cheatbox}
+
+\begin{cheatbox}{Key Properties}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Linearity:} $\int (\alpha f + \beta g) = \alpha \int f + \beta \int g$.
+    \item \textbf{Monotonicity:} $f \le g \implies \int f \le \int g$.
+    \item \textbf{Triangle Inequality:} $|\int f| \le \int |f|$.
+    \item \textbf{Null Sets:} $\int_N f = 0$ if $\lambda(N)=0$.
+    \item \textbf{Vanishing Integral:} For $f \ge 0$, $\int f = 0 \iff f = 0$ a.e.
+\end{itemize}
+\end{cheatbox}
+
+\begin{cheatbox}{Markov Inequality}
+For measurable $f \ge 0$ and $\alpha > 0$:
+\[ \lambda(\{x \in X : f(x) \ge \alpha\}) \le \frac{1}{\alpha} \int_X f \, \dlam \]
+\end{cheatbox}
+
+\begin{cheatbox}{Relation to Riemann}
+If $f: [a,b] \to \R$ is continuous (or Riemann-integrable), it is Lebesgue integrable and the integrals coincide.
+\end{cheatbox}
+
+% ==========================================
+% COLUMN 2: Limit Theorems & Parameters
+% ==========================================
+
+\section{Limit Theorems}
+
+\begin{cheatbox}{Monotone Convergence (Beppo-Levi)}
+If $(f_n)$ is an \textbf{increasing} sequence of measurable \textbf{positive} functions ($0 \le f_n \le f_{n+1}$):
+\[ \lim_{n \to \infty} \int_X f_n \, \dlam = \int_X \left( \lim_{n \to \infty} f_n \right) \, \dlam \]
+\textit{Note: Allows limit/integral exchange even if integral is infinite.}
+\end{cheatbox}
+
+\begin{cheatbox}{Fatou's Lemma}
+For any sequence of measurable \textbf{positive} functions $(f_n \ge 0)$:
+\[ \int_X \liminf_{n \to \infty} f_n \, \dlam \le \liminf_{n \to \infty} \int_X f_n \, \dlam \]
+\end{cheatbox}
+
+\begin{cheatbox}{Dominated Convergence Theorem (DCT)}
+Let $(f_n)$ be a sequence of measurable functions such that:
+\begin{enumerate}[leftmargin=*, nosep]
+    \item $f_n(x) \to f(x)$ for almost every $x$.
+    \item \textbf{Domination:} There exists $g \in \Lspace^1(X)$ such that $|f_n(x)| \le g(x)$ for all $n$, a.e. $x$.
+\end{enumerate}
+Then $f \in \Lspace^1(X)$ and:
+\[ \lim_{n \to \infty} \int_X f_n \, \dlam = \int_X f \, \dlam \]
+\end{cheatbox}
+
+\section{Integrals with Parameters}
+Let $F(u) = \int_X f(u,x) \, \dlam(x)$ for $u \in I$.
+
+\begin{cheatbox}{Continuity}
+$F$ is continuous on $I$ if:
+\begin{itemize}[leftmargin=*, nosep]
+    \item $x \mapsto f(u,x)$ is measurable.
+    \item $u \mapsto f(u,x)$ is continuous a.e.
+    \item \textbf{Domination:} $|f(u,x)| \le g(x)$ with $g \in \Lspace^1$.
+\end{itemize}
+\end{cheatbox}
+
+\begin{cheatbox}{Differentiability (Leibniz Rule)}
+$F$ is differentiable and $F'(u) = \int \frac{\partial f}{\partial u} \dlam$ if:
+\begin{itemize}[leftmargin=*, nosep]
+    \item $x \mapsto f(u,x)$ is integrable.
+    \item $u \mapsto f(u,x)$ is differentiable a.e.
+    \item \textbf{Domination:} $|\frac{\partial f}{\partial u}(u,x)| \le g(x)$ with $g \in \Lspace^1$.
+\end{itemize}
+\end{cheatbox}
+
+% ==========================================
+% COLUMN 3: R^d, Fubini, Change of Vars
+% ==========================================
+
+\section{Integration on $\R^d$}
+
+\begin{cheatbox}{Measure on $\R^d$}
+Built from products of intervals (pavés).
+\begin{itemize}[leftmargin=*, nosep]
+    \item $\lambda_d(A \times B) = \lambda_p(A) \lambda_{d-p}(B)$.
+    \item Sets of dimension $k < d$ (e.g., lines in $\R^2$) have measure 0.
+    \item Invariant by translation and rotation (isometries).
+\end{itemize}
+\end{cheatbox}
+
+\begin{cheatbox}{Tonelli's Theorem (Positive Functions)}
+If $f: \R^{p+q} \to [0, +\infty]$ is measurable \textbf{positive}:
+\begin{align*}
+\int_{\R^{p+q}} f \, \dlam 
+&= \int_{\R^q} \left( \int_{\R^p} f(x,y) dx \right) dy \\
+&= \int_{\R^p} \left( \int_{\R^q} f(x,y) dy \right) dx
+\end{align*}
+\textit{Use this to check integrability (i.e., if integral is finite).}
+\end{cheatbox}
+
+\begin{cheatbox}{Fubini's Theorem (Integrable Functions)}
+If $f: \R^{p+q} \to \R$ is \textbf{integrable} ($f \in \Lspace^1$), then:
+\begin{itemize}[leftmargin=*, nosep]
+    \item The slices $x \mapsto f(x,y)$ are in $\Lspace^1$ for a.e. $y$.
+    \item The integral order can be swapped (same formula as Tonelli).
+\end{itemize}
+\textbf{Standard Strategy:} Use Tonelli on $|f|$ to prove $f \in \Lspace^1$, then Fubini to compute.
+\end{cheatbox}
+
+\section{Change of Variables}
+
+\begin{cheatbox}{Linear Transformation}
+If $T: \R^d \to \R^d$ is an isomorphism and $f \in \Lspace^1$:
+\[ \int_{\R^d} f(y) \, dy = \int_{\R^d} f(Tx) \, |\det T| \, dx \]
+\end{cheatbox}
+
+\begin{cheatbox}{General Diffeomorphism ($C^1$)}
+Let $\Phi: U \to V$ be a $C^1$-diffeomorphism between open sets in $\R^d$. 
+$f \in \Lspace^1(V)$ iff $(f \circ \Phi) |\det J_\Phi| \in \Lspace^1(U)$.
+\[ \int_V f(y) \, dy = \int_U f(\Phi(x)) \, |\det J_\Phi(x)| \, dx \]
+where $J_\Phi(x)$ is the Jacobian matrix.
+\end{cheatbox}
+
+\begin{cheatbox}{Example: Polar Coordinates ($\R^2$)}
+$\Phi(r, \theta) = (r \cos \theta, r \sin \theta)$. 
+Determinant: $|\det J_\Phi| = r$.
+\[ \int_{\R^2} f \, dx dy = \int_0^\infty \int_{-\pi}^\pi f(r\cos\theta, r\sin\theta) \, r \, d\theta dr \]
+\textit{Application:} $\int_\R e^{-x^2} dx = \sqrt{\pi}$.
+\end{cheatbox}
+
+\end{multicols*}
+\end{document}
