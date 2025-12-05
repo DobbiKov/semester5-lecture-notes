@@ -1,0 +1,213 @@
+\chapter{Lecture 12: Percolation}
+\section{Le problème}
+Immergons une pierre spongieuse dans l'eau. Elle contient plein canaux
+
+% picture 1 here
+
+\[
+\text{molécule d'eau} \ll \text{ diamètre canal } \ll \text{ pierre}
+\] 
+
+
+Le centre de la pierre sera-t-il mouillé?
+
+En 1957, Broadbent et Hammersley inventèrent le modèle math de la percolation,
+pour étudier les milieux poreux aléatoires.
+
+\section{Le réseau carré}
+
+\begin{definition}
+    Un graphe est un couple $(V, E)$ où  
+    \begin{itemize}
+        \item $V$ est un ensemble de points: les sommets
+        \item $E$ un ensemble des paires de points de  $V$: les arrêtes (edges)
+    \end{itemize}
+\end{definition}
+
+\begin{eg}
+    $V = \{1, 2, 3\}$,  $E = \{\{2, 3\}\}$ 
+    % picture 2 here
+\end{eg}
+
+Nous munissons $\Z^2$ d'une structure de graphe. L'ensemble $\mathbb{E}^2$ des arrêtes est constitué des paires 
+$\{x, y \}$ où $x,y \in \Z^2$ sont plus proches voisins, i.e. $|x - y|_2 = 1$
+
+% picture 3 here
+
+ \begin{definition}
+     Le réseau carré est le graphe $(\Z^2, \mathbb{E}^2)$.
+\end{definition}
+
+% picture 4 here
+
+\begin{definition}
+    Un chemin est une suite de sommets $x_0, x_1, \ldots, x_n$, $2$ à $2$
+    distincts tels que: pour tout $i \ge 0$, $\{x_i, x_{i+1}\}$ est une arrête.
+    Si le chemin s'arrête au sommet $x_n$, nous disons qu'il relie  $x_0$ à  $x_n$
+    et qu'il est fini de longueur  $n$. S'il est infini, nous disons qu'il
+    relie  $x_0$ à l'infini.
+\end{definition}
+
+\begin{definition}
+    Un circuit est un chemin $x_0, \ldots, x_n$ tels que $x_0$ et $x_n$ sont voisins.
+    Un tel circuit a pour longueur  $n+1$.
+\end{definition}
+
+% picture 5 here
+
+\section{L'espace de probabilité}
+Les arrêtes du graphe jouent le rôle des canaux. Nous allons les ouvrir ou les
+fermer au hasard, indépendamment, avec proba $p \in ]0, 1[$.
+
+Ouvrir - l'eau peut passer, fermer - bloquer.
+
+Nous prennons comme space de configurations
+\[
+    \Omega = \{ 0, 1 \}^{\mathbb{E}^2}
+\] 
+
+Un élément $\omega$ de  $\Omega$ est une fonction de  $\mathbb{E}^2 \to \{0, 1\}$.
+L'arrête  $e \in \mathbb{E}^2$ est ouverte (resp. fermé) dans la configuration
+$\omega$ si  $\omega(e) = 1$ (resp. $0$). 
+
+Nous munissons $\Omega$ de la tribu  $\mathcal{F}$ cylindrique, engendré par
+les événements de la forme:
+\[
+     \{ \omega \in \Omega : \omega(e_1) = \varepsilon_1, \ldots,
+     \omega(e_n)=\varepsilon_n  \}, n \ge 1, e_1, \ldots, e_n \in \mathbb{E}^2,
+     \varepsilon_1, \ldots, \varepsilon_n \in \{ 0, 1 \}
+\] 
+A-t-on que $\mathcal{F} = \mathcal{P}(\Omega)$? Nous munissons finalement
+l'espace mesurable  $(\Omega, \mathcal{F})$ de la proba 
+\[
+    P_p = \oplus_{e \in \mathbb{E}^2} ( (1-p)\delta_{\omega(e) = 0} + p\delta_{\omega(e)=1} )
+\] 
+produit tensoriel des Bernoulli($p$).
+
+\section{Les clusters ouverts}
+Nous tirons au hasard l'état des arrêtes. Nous enlevons  les arrêtes fermés.
+
+% picture 6 here
+Nous obtenons ainsi un graphe aléatoire. Précisement, soit $\omega$ une
+configuration. Nous considérons le graphe de sommets les points de  $\Z^2$, et
+d'arêtes les arrêtes ouvertes dans $\omega$ uniquement.
+
+Le but de la percolation est de comprendre la géométrie de ce graphe aléatoire.
+
+Si  $x \in Z^2$, la composante connexe de $x$ dans ce graphe est
+appelé le cluster ouvert de  $x$, dans $\omega$ et est noté  $C(x, \omega)$.
+
+Si  $x, y \in \Z^2$, on note $\{ x \leftrightarrow y \}$ l'événement: il existe
+dans  $\omega$ un chemin qui relie $x$ à  $y$ et dont toutes les arêtes sont
+ouvertes. Alors
+\[
+    C(x) = \{ y \in \Z^2 : y \leftrightarrow x \}
+\] 
+Ainsi $C(x) = C(x, \omega)$ est un ensemble aléatoire avec $|C(x, \omega)|$
+cardinal.
+
+% picture 8 here 
+
+\section{La probabilité de percolation}
+La quantité fondamentale pour analyser le modèleest 
+\[
+\Theta(p) = P_p(|C(0)| = \infty) = P_p( \leftrightarrow \infty)
+\] 
+
+% picture 9 here
+
+\begin{align*}
+    \Theta: [0, 1] &\longrightarrow [0, 1] 
+\end{align*}
+
+\begin{itemize}
+    \item $\Theta(0) = 0$
+    \item $\Theta(1) = 1$
+    \item $\Theta$ croissante
+\end{itemize}
+Pour cela on utilise un couplage; i.e, on construit un espace $(\Omega_1 \times
+\Omega_2, \mathcal{F}_1 \oplus \mathcal{F}_2, P)$ tel que sous $P$ la loi de la
+$1^{\text{ère}}$ marginale $\omega_1$ est $p_1$, $2^{\text{nde}}$ marginale
+$\omega_2$ et tel que toutes les arêtes ouvertes dans $\omega_1$ le sont aussi
+dans  $\omega_2$. Si on a pu faire cela, alors 
+\begin{align*}
+    \Theta(p_1) = P_{p_1}(0 \leftrightarrow \infty) &= P(0 \leftrightarrow \infty \text{ dans } \omega_1) \\
+                                                    &\le P(0 \leftrightarrow \infty \text{ dans } \omega_2) = P_{p_2}(0 \leftrightarrow\infty) = \Theta(p_2)
+\end{align*}
+$p_1 < p_2$ et $x_1 \le x_2$
+
+On prends $U \sim \mathcal{U}([0, 1])$ et on pose $X_{\phi} = 1_{U \le p}$,
+$P(X_p = 1) = p$, alors  $0 \le p \le 1$ et $X_{p_1} \le X_{p_2}$.
+
+\section{La transition de phase}
+Le modèle de percolation est fascinant car c'est le modèle le plus simple qui
+présente une transition de phase.
+
+\begin{theorem}
+    Il existe une valeur critique $p_c$ strictement entre  $0$ et  $1$ tel que: 
+    \[
+        \Theta(p) = 0 \text{ si } p < p_c \text{ et } \Theta(p) > 0 \, p > p_c
+    \] 
+\end{theorem}
+\begin{newproof}
+   Montrons que $p_c > 0$, 
+   \[
+       P_c = \sup \{p \in [0, 1] : \Theta(p) = 0\}
+   \] 
+   Soit $n \ge  1$, $\Theta(p) = P_p(0 \leftrightarrow \infty) \le P_p$, (il
+   existe chemin de longueur $n$ issu de 0 dont les arêtes sont ouvertes).
+   $$
+   \Theta(p) = P_p\left(\bigcup_{x_0 = 0, \ldots, x_n \, \text{ chemin} }\{ \text{ les arêtes de} x_0, \ldots, x_n \text{ sont ouvertes}\}\right)
+   $$ 
+   \begin{align*}
+       \Theta(p) &\le \sum_{x_0 = 0, \ldots, x_n}^{} P\left( \text{les arêtes de } x_0, \ldots, x_n \text{ sont ouvertes} \right) \\
+                 &= p^n |\{ \text{chemins } x_0, \ldots, x_n \text{ issus de } 0\}| \\
+                 &=p^n |\{ \text{chemins de longueur } n \text{ issus de } 0\}|
+                 \le p^n \cdot x \cdot 3 \cdot \ldots \cdot 3 = 4 \cdot 3^{n-1}
+                 \le 4 p^n 3^{n-1}
+   \end{align*}
+   donc $\Theta(p) = 0$.
+
+   $p_c < 1$. Dualité, le reseau dual de  $\Z^2$ est $\Z^2 + (\frac{1}{2},
+   \frac{1}{2}) = \Z^{2*}$.
+   À une arête du reseau $\Z^2$ nous associons l'arête $e^*$ de  $\Z^{2*}$ tel
+   que $e$ et  $e^*$ se coupent orthogonalement en leur milieu. Si $e$ est
+   ouverte dans  $\omega$, nous déclarons  $e^*$ ouverte dans $\omega^*$. Le modèle est auto-dual.
+
+   % picture 11 here
+    $\Theta(p) > 0$ pour  $p$ proche de  $1$.
+
+     \[
+    1 - \Theta(p) = 1 - P_p(|C(0)| = \infty) = P_p(|C(0)| < \infty)
+    \] 
+
+    Fait topologique: Si $C(0)$ est fini, alors il existe un circuit dual
+    d'arêtes fermées qui entoure  $0$. 
+
+    % picture 12 here
+
+    \[
+    1 - \Theta(p) \le P_p(\exists \text{ circuit dual fermé entourant } 0)
+    \] 
+    \[
+        = P_p\left( \bigcup_{\gamma=x_0^* \ldots x_n^* \text{ circuit dual entourant } 0} \{ \text{les arêtes de $\gamma$ sont fermés} \} \right) 
+    \] 
+    \[
+        = P_p\left( \bigcup_{n\ge 4} \bigcup_{\exists \gamma \text{ dual fermé longueur } n} \right) \le \sum_{n\ge 4}^{} \sum_{\gamma}^{} P(\text{les arêtes de } \gamma \text{ sont fermées})
+    \] 
+    \begin{align*}
+        1 - \Theta(p) &\le \sum_{n\ge 4}^{} \sum_{\gamma}^{} (1 - p)^n = \sum_{n\ge 4}^{} (1-p)^n|\{\text{circuits fermés de longueure } n \text{ entourant } 0\}| \\
+                      &\le \sum_{n\ge 4}^{} (1 - p)^n n 4 3^{n-1} \xrightarrow[p \to 1]{} \\
+                      &\le (1-p)^4 \sum_{}^{} 
+    \end{align*}
+    Ainsi 
+    \[
+    \lim_{p \to 1} \Theta(p) = 1
+    \] 
+    et donc $p_c < 1$.
+
+    Allure de  $\Theta$
+
+    Kesten 1980, $p_c = \frac{1}{2}$, $d \ge 3$
+    % here picture 13
+\end{newproof}
