@@ -24,12 +24,12 @@ jobs:
         root_file: main.tex
         latexmk_shell_escape: true
         working_directory: probas_amphi/fr
-    - name: Probas Lectures
+    - name: Probas Long Cheatsheet
       uses: xu-cheng/latex-action@v3
       with:
         root_file: main.tex
         latexmk_shell_escape: true
-        working_directory: probas_full_cheatsheet/
+        working_directory: probas_full_cheatsheet
         
     - name: Optimisation Cheatsheet
       uses: xu-cheng/latex-action@v3
