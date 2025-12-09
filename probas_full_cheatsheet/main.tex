@@ -1,0 +1,248 @@
+\documentclass[10pt, a4paper, landscape]{article}
+
+% Packages for formatting and math
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+
+% Geometry settings for a cheatsheet layout
+\geometry{top=1cm, bottom=1cm, left=1cm, right=1cm}
+
+% Custom colors
+\definecolor{myblue}{RGB}{0, 50, 120}
+\definecolor{myred}{RGB}{180, 0, 0}
+\definecolor{sectionbg}{RGB}{230, 240, 255}
+
+% Section formatting
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{white}\colorbox{myblue}}{\thesection}{1em}{}[\vspace{0.1cm}]
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{myblue}}{\thesubsection}{1em}{}
+
+% Remove paragraph indentation
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.1em}
+
+% Custom commands
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Ind}{\mathbb{1}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+
+\begin{document}
+
+\begin{center}
+    {\huge \textbf{Aide-Mémoire : Probabilités (MDD303)}} \\
+    \textit{Basé sur le polycopié de cours}
+\end{center}
+
+\begin{multicols*}{3}
+
+% -----------------------------------------------------------------------
+\section{Modèle Probabiliste}
+\textbf{Espace de probabilité} $(\Omega, \mathcal{F}, \Prob)$ :
+\begin{itemize}[leftmargin=*]
+    \item $\Omega$ : Ensemble des résultats possibles.
+    \item $\mathcal{F}$ : Tribu ($\sigma$-algèbre). Contient $\Omega$, stable par complémentaire et union dénombrable.
+    \item $\Prob$ : Mesure de probabilité ($\Prob(\Omega)=1$, $\sigma$-additive).
+\end{itemize}
+
+\textbf{Tribu Borélienne} $\mathcal{B}(\R)$ : Plus petite tribu contenant les intervalles ouverts/fermés de $\R$.
+
+\textbf{Variable Aléatoire (v.a.)} : Application $X: \Omega \to \R$ mesurable (i.e., $X^{-1}(B) \in \mathcal{F}$ pour tout $B \in \mathcal{B}(\R)$).
+
+\textbf{Loi d'une v.a.} $\Prob_X$ : Mesure sur $\R$ définie par $\Prob_X(B) = \Prob(X \in B)$.
+
+\subsection{Espérance et Variance}
+\textbf{Espérance} : $\E[X] = \int_{\Omega} X d\Prob$.
+\begin{itemize}[leftmargin=*]
+    \item Si $X \ge 0$, $\E[X] = \sup \{ \E[\delta] : \delta \text{ étagée}, 0 \le \delta \le X \}$.
+    \item Cas général : $\E[X] = \E[X^+] - \E[X^-]$. Intégrable si $\E[|X|] < \infty$.
+\end{itemize}
+
+\textbf{Variance} : $\Var(X) = \E[(X - \E[X])^2] = \E[X^2] - \E[X]^2$.
+
+% -----------------------------------------------------------------------
+\section{Mesure de Lebesgue et Densité}
+\textbf{Mesure de Lebesgue ($\lambda$)} : Unique mesure sur $\mathcal{B}(\R)$ telle que $\lambda([a,b]) = b-a$.
+
+\textbf{Loi à densité} : Il existe $f \ge 0$ borélienne telle que :
+$$ \forall A \in \mathcal{B}(\R), \quad \Prob(X \in A) = \int_A f(x) dx $$
+Condition : $\int_{\R} f(x) dx = 1$.
+
+\textbf{Formule de Transfert} (Fondamentale) :
+$$ \E[g(X)] = \int_{\Omega} g(X(\omega)) d\Prob = \int_{\R} g(x) d\Prob_X(x) $$
+Si densité $f$ : $\boxed{\E[g(X)] = \int_{\R} g(x) f(x) dx}$
+
+\textbf{Lois usuelles} :
+\begin{itemize}[leftmargin=*]
+    \item \textcolor{myblue}{Uniforme} $\mathcal{U}([a,b])$ : $f(x) = \frac{1}{b-a}\Ind_{[a,b]}(x)$.
+    \item \textcolor{myblue}{Exponentielle} $\mathcal{E}(\alpha)$ : $f(x) = \alpha e^{-\alpha x} \Ind_{\R_+}(x)$.
+    \item \textcolor{myblue}{Normale} $\mathcal{N}(m, \sigma^2)$ : $f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-m)^2}{2\sigma^2}}$.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+\section{Indépendance}
+\textbf{Événements} : $P(A \cap B) = P(A)P(B)$.
+\textbf{Variables} : $X_1, \dots, X_n$ sont indép. si $\forall B_i \in \mathcal{B}(\R)$ :
+$$ \Prob(X_1 \in B_1, \dots, X_n \in B_n) = \prod_{i=1}^n \Prob(X_i \in B_i) $$
+
+\textbf{Propriétés} :
+\begin{itemize}[leftmargin=*]
+    \item $X, Y$ indép $\implies \E[f(X)g(Y)] = \E[f(X)]\E[g(Y)]$.
+    \item $X, Y$ indép et intégrables $\implies \E[XY] = \E[X]\E[Y]$.
+    \item $X, Y$ indép $\implies \Cov(X,Y) = 0$ (Réciproque fausse).
+    \item $\Var(X+Y) = \Var(X) + \Var(Y)$ (si indép).
+\end{itemize}
+
+\textbf{Lemme des coalitions} : Si $X_i$ indép, les fonctions de paquets disjoints $(f(X_1, X_2), g(X_3))$ sont indép.
+
+% -----------------------------------------------------------------------
+\section{Suites de v.a. et Convergence}
+\textbf{Modes de convergence} :
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Presque sûre (p.s.)} : $\Prob(\lim X_n = X) = 1$.
+    \item \textbf{En moyenne ($L^r$)} : $\lim \E[|X_n - X|^r] = 0$.
+    \item \textbf{En probabilité ($\Prob$)} : $\forall \epsilon > 0, \lim \Prob(|X_n - X| > \epsilon) = 0$.
+\end{enumerate}
+
+\textbf{Hiérarchie} :
+$$ L^r \implies \Prob \quad \text{et} \quad p.s. \implies \Prob $$
+(p.s. n'implique pas $L^r$ et vice-versa).
+
+\textbf{Lemmes de Borel-Cantelli} (Évènement $A_n$ i.s. = infiniment souvent) :
+\begin{enumerate}
+    \item $\sum \Prob(A_n) < \infty \implies \Prob(A_n \text{ i.s.}) = 0$.
+    \item $\sum \Prob(A_n) = \infty$ ET $(A_n)$ \textbf{indépendants} $\implies \Prob(A_n \text{ i.s.}) = 1$.
+\end{enumerate}
+
+% -----------------------------------------------------------------------
+\section{Marches Aléatoires et Récurrence}
+$S_n = \sum_{i=1}^n X_i$ avec $X_i$ i.i.d.
+\textbf{Critère de récurrence} : La marche repasse par 0 une infinité de fois p.s. ssi :
+$$ \sum_{n=0}^\infty \Prob(S_n = 0) = +\infty $$
+
+\textbf{Résultats} (Marche symétrique sur $\Z^d$) :
+\begin{itemize}[leftmargin=*]
+    \item $d=1$ : Récurrente ($\Prob(S_{2n}=0) \sim \frac{1}{\sqrt{\pi n}}$).
+    \item $d=2$ : Récurrente ($\Prob(S_{2n}=0) \sim \frac{1}{\pi n}$).
+    \item $d \ge 3$ : Transiente ($\Prob(S_{2n}=0) \sim n^{-d/2}$).
+\end{itemize}
+
+% -----------------------------------------------------------------------
+\section{Loi du 0-1 et Séries}
+\textbf{Tribu asymptotique (de queue)} : $\mathcal{T} = \bigcap_{n \ge 0} \sigma(X_n, X_{n+1}, \dots)$.
+
+\textbf{Loi du 0-1 de Kolmogorov} : Si $(X_n)$ indépendants, tout événement $A \in \mathcal{T}$ vérifie $\Prob(A) \in \{0, 1\}$.
+\textit{Exemple : convergence d'une série aléatoire.}
+
+\textbf{Inégalité de Kolmogorov} : Pour $X_i$ centrées indép. :
+$$ \Prob(\max_{1\le k \le n} |S_k| \ge \alpha) \le \frac{1}{\alpha^2} \Var(S_n) $$
+
+% -----------------------------------------------------------------------
+\section{Lois des Grands Nombres (LGN)}
+\textbf{Inégalités} :
+\begin{itemize}[leftmargin=*]
+    \item Markov ($X \ge 0$) : $\Prob(X \ge \lambda) \le \frac{\E[X]}{\lambda}$.
+    \item Bienaymé-Chebyshev : $\Prob(|X-\mu| \ge t) \le \frac{\Var(X)}{t^2}$.
+\end{itemize}
+
+Soit $(X_n)$ i.i.d avec $\E[X_1] = m$.
+\begin{tcolorbox}[colback=sectionbg, colframe=myblue, title=Loi Faible (WLLN)]
+Si moment d'ordre 2 (ou 1) existe :
+$$ \frac{S_n}{n} \xrightarrow{\Prob} m $$
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=sectionbg, colframe=myblue, title=Loi Forte (SLLN)]
+Si $\E[|X_1|] < \infty$ :
+$$ \frac{S_n}{n} \xrightarrow{p.s.} m $$
+\end{tcolorbox}
+
+% -----------------------------------------------------------------------
+\section{Convergence en Loi}
+\textbf{Définition} ($X_n \xrightarrow{\mathcal{L}} X$) : Pour toute fonction $f$ continue bornée :
+$$ \lim_{n \to \infty} \E[f(X_n)] = \E[f(X)] $$
+
+\textbf{Fonction de Répartition} : $F_X(x) = \Prob(X \le x)$.
+Caractérise la loi.
+$X_n \xrightarrow{\mathcal{L}} X \iff F_{X_n}(x) \to F_X(x)$ en tout point de continuité de $F_X$.
+
+% -----------------------------------------------------------------------
+\section{Fonctions Caractéristiques}
+\textbf{Définition} : $\phi_X(u) = \E[e^{iuX}] = \int_{\R} e^{iux} d\Prob_X(x)$.
+\textbf{Propriétés} :
+\begin{itemize}[leftmargin=*]
+    \item $\phi_X(0)=1$, $|\phi_X(u)| \le 1$, continue.
+    \item \textbf{Injectivité} : $\phi_X$ caractérise la loi de $X$.
+    \item \textbf{Indépendance} : $X, Y$ indép $\implies \phi_{X+Y} = \phi_X \cdot \phi_Y$.
+    \item \textbf{Moments} : $\phi_X^{(k)}(0) = i^k \E[X^k]$.
+    \item \textbf{Affine} : $\phi_{aX+b}(u) = e^{iub}\phi_X(au)$.
+\end{itemize}
+
+\textbf{Théorème de Paul Lévy} :
+$X_n \xrightarrow{\mathcal{L}} X \iff \forall u, \phi_{X_n}(u) \to \phi_X(u)$.
+
+\textbf{Tableau des f.c. usuelles} :
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Loi & $\phi_X(u)$ \\
+\midrule
+$Ber(p)$ & $1-p+pe^{iu}$ \\
+$\mathcal{P}(\lambda)$ & $\exp(\lambda(e^{iu}-1))$ \\
+$\mathcal{E}(\alpha)$ & $\frac{\alpha}{\alpha-iu}$ \\
+$\mathcal{N}(m, \sigma^2)$ & $e^{ium - \frac{1}{2}\sigma^2 u^2}$ \\
+$\mathcal{U}([a,b])$ & $\frac{e^{iub}-e^{iua}}{iu(b-a)}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% -----------------------------------------------------------------------
+\section{Théorème Central Limite (TCL)}
+Soit $(X_n)$ i.i.d avec $\E[X_i]=m$ et $\Var(X_i)=\sigma^2 < \infty$.
+\begin{tcolorbox}[colback=white, colframe=myred, title=TCL]
+$$ \frac{S_n - nm}{\sigma\sqrt{n}} \xrightarrow{\mathcal{L}} \mathcal{N}(0, 1) $$
+\end{tcolorbox}
+Interprétation : La somme de v.a. i.i.d. centrées réduites converge vers une Gaussienne standard.
+
+% -----------------------------------------------------------------------
+\section{Processus de Poisson}
+Modélise des événements rares/aléatoires (sauts).
+\textbf{Définition} : Processus de comptage $(N(t))_{t \ge 0}$.
+\begin{itemize}[leftmargin=*]
+    \item Accroissements indépendants et stationnaires.
+    \item $N(t) \sim \mathcal{P}(\lambda t)$.
+\end{itemize}
+\textbf{Instants de saut} $T_n$ :
+\begin{itemize}[leftmargin=*]
+    \item Temps inter-arrivées $Y_i = T_i - T_{i-1}$ sont i.i.d $\sim \mathcal{E}(\lambda)$.
+    \item Temps d'arrivée $T_n = \sum Y_i \sim \Gamma(n, \lambda)$.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+\section{Percolation (Réseau carré $\Z^2$)}
+Modèle de milieux poreux. Chaque arête est ouverte avec proba $p$, fermée avec $1-p$.
+\textbf{Cluster ouvert} $C(0)$ : composante connexe de 0.
+\textbf{Probabilité de percolation} : $\Theta(p) = \Prob_p(|C(0)| = \infty)$.
+
+\textbf{Transition de phase} : Il existe $p_c \in (0,1)$ tel que :
+\begin{itemize}[leftmargin=*]
+    \item $p < p_c \implies \Theta(p) = 0$ (pas de percolation).
+    \item $p > p_c \implies \Theta(p) > 0$ (percolation).
+\end{itemize}
+\textbf{Théorème (Kesten)} : Pour $\Z^2$, $\boxed{p_c = 1/2}$.
+
+\end{multicols*}
+\end{document}
