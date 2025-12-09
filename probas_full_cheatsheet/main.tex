@@ -23,7 +23,12 @@
 
 % Section formatting
 \titleformat{\section}
-  {\normalfont\large\bfseries\color{white}\colorbox{myblue}}{\thesection}{1em}{}[\vspace{0.1cm}]
+  {\normalfont\large\bfseries\color{white}}% format (only declarations!)
+  {\colorbox{myblue}{\thesection}}% label
+  {1em}% separation
+  {}% before-code
+  [\vspace{0.1cm}]% after-code
+
 \titleformat{\subsection}
   {\normalfont\normalsize\bfseries\color{myblue}}{\thesubsection}{1em}{}
 
@@ -51,6 +56,7 @@
 \begin{multicols*}{3}
 
 % -----------------------------------------------------------------------
+
 \section{Modèle Probabiliste}
 \textbf{Espace de probabilité} $(\Omega, \mathcal{F}, \Prob)$ :
 \begin{itemize}[leftmargin=*]
@@ -75,6 +81,7 @@
 \textbf{Variance} : $\Var(X) = \E[(X - \E[X])^2] = \E[X^2] - \E[X]^2$.
 
 % -----------------------------------------------------------------------
+
 \section{Mesure de Lebesgue et Densité}
 \textbf{Mesure de Lebesgue ($\lambda$)} : Unique mesure sur $\mathcal{B}(\R)$ telle que $\lambda([a,b]) = b-a$.
 
