@@ -24,6 +24,12 @@ jobs:
         root_file: main.tex
         latexmk_shell_escape: true
         working_directory: probas_amphi/fr
+    - name: Probas Lectures
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: probas_full_cheatsheet/
         
     - name: Optimisation Cheatsheet
       uses: xu-cheng/latex-action@v3
@@ -63,6 +69,7 @@ jobs:
     - name: Check PDF files
       run: |
         file probas/cheatsheet.pdf | grep -q ' PDF '
+        file probas_full_cheatsheet/main.pdf | grep -q ' PDF '
         file probas_amphi/fr/main.pdf | grep -q ' PDF '
         file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
         file measure-theory/explanations/carathedory-criterion/en/main.pdf | grep -q ' PDF '
@@ -85,6 +92,7 @@ jobs:
 
         # (*) To add a file, add the following command for that file
         cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
+        cp -f probas_full_cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/probas_full_cheatsheet.pdf"
         cp -f probas_amphi/fr/main.pdf "$GITHUB_WORKSPACE/deploy/probas_notes.pdf"
         cp -f optimisation/cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet.pdf"
 
