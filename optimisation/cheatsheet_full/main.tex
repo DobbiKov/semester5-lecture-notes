@@ -1,0 +1,259 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox} % Replaces the broken manual box definition
+
+% Configuration de la page
+\geometry{top=1cm,bottom=1cm,left=1cm,right=1cm}
+\pagestyle{empty}
+
+% Couleurs
+\definecolor{sectioncolor}{RGB}{30, 80, 160}
+\definecolor{boxcolor}{RGB}{240, 245, 255}
+\definecolor{boxborder}{RGB}{200, 210, 230}
+
+% Redéfinition des sections
+\titleformat{\section}
+  {\color{sectioncolor}\sffamily\bfseries\large}
+  {}{0em}{}[\hrule]
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+
+\titleformat{\subsection}
+  {\color{sectioncolor}\sffamily\bfseries\normalsize}
+  {}{0em}{}
+\titlespacing*{\subsection}{0pt}{2pt}{1pt}
+
+% Configuration de la boîte (remplace l'environnement cassé)
+\newtcolorbox{mybox}{
+    colback=boxcolor,
+    colframe=boxborder,
+    boxrule=0.5pt,
+    left=2pt,
+    right=2pt,
+    top=2pt,
+    bottom=2pt,
+    arc=2pt
+}
+
+% Raccourcis mathématiques
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand{\hess}{\text{H}}
+
+\begin{document}
+\footnotesize
+\begin{multicols*}{3}
+
+% ---------------------------------------------------------
+% CHAPITRE 1 & 2: BASES ET CALCUL DIFFÉRENTIEL
+% ---------------------------------------------------------
+\section*{Calcul Différentiel}
+
+\subsection*{Dérivées Partielles et Gradient}
+Soit $f: U \subset \R^n \to \R$.
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dérivée partielle} par rapport à $x_i$ :
+    $$ \frac{\partial f}{\partial x_i}(x) = \lim_{t \to 0} \frac{f(x+te_i) - f(x)}{t} $$
+    \item \textbf{Gradient} ($\nabla f$) : Vecteur des dérivées partielles.
+    $$ \nabla f(x) = \left( \frac{\partial f}{\partial x_1}(x), \dots, \frac{\partial f}{\partial x_n}(x) \right)^T $$
+    \item \textbf{Différentielle} ($D_x f$) : Application linéaire t.q.
+    $$ f(x+h) - f(x) = D_x f(h) + o(\norm{h}) $$
+    Pour $f$ scalaire : $D_x f(h) = \langle \nabla f(x), h \rangle$.
+\end{itemize}
+
+\subsection*{Hessienne et Théorème de Schwarz}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Théorème de Schwarz} : Si $f$ est $\mathcal{C}^2$, alors :
+    $$ \frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i} $$
+    \item \textbf{Matrice Hessienne} ($H_f(x)$) : Matrice symétrique des dérivées secondes.
+    $$ [H_f(x)]_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}(x) $$
+\end{itemize}
+
+\subsection*{Développements Limités (Taylor)}
+Soit $f$ de classe $\mathcal{C}^2$ sur $U$.
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Ordre 1} :
+    $ f(x+h) = f(x) + \langle \nabla f(x), h \rangle + o(\norm{h}) $
+    \item \textbf{Ordre 2} :
+    $$ f(x+h) = f(x) + \langle \nabla f(x), h \rangle + \frac{1}{2} \langle H_f(x)h, h \rangle + o(\norm{h}^2) $$
+\end{itemize}
+
+% ---------------------------------------------------------
+% CHAPITRE 2: EXTREMA SANS CONTRAINTES
+% ---------------------------------------------------------
+\section*{Extrema Sans Contraintes}
+
+\subsection*{Conditions d'Existence}
+\begin{mybox}
+\textbf{Théorème des bornes atteintes :} \\
+Si $K \subset \R^n$ est \textbf{compact} (fermé et borné) et $f$ continue, alors $f$ atteint son minimum et son maximum sur $K$.
+\end{mybox}
+
+\subsection*{Conditions Nécessaires (Ordre 1)}
+\textbf{Point critique} : $x$ est critique si $\nabla f(x) = 0$.
+\\
+Si $f$ admet un extremum local en $x$, alors $x$ est un point critique.
+
+\subsection*{Conditions Suffisantes (Ordre 2)}
+Soit $x$ un point critique ($\nabla f(x) = 0$). On étudie $H_f(x)$.
+\begin{itemize}[leftmargin=*]
+    \item $H_f(x)$ \textbf{définie positive} (valeurs propres $>0$) $\implies$ \textbf{Minimum local strict}.
+    \item $H_f(x)$ \textbf{définie négative} (valeurs propres $<0$) $\implies$ \textbf{Maximum local strict}.
+    \item Valeurs propres de signes opposés $\implies$ \textbf{Point selle} (pas d'extremum).
+\end{itemize}
+
+\textbf{Cas $n=2$ (Notations de Monge)} : \\
+Posons $r = \frac{\partial^2 f}{\partial x^2}, s = \frac{\partial^2 f}{\partial x \partial y}, t = \frac{\partial^2 f}{\partial y^2}$.
+\begin{itemize}[leftmargin=*]
+    \item $rt - s^2 < 0 \implies$ Point selle.
+    \item $rt - s^2 > 0$ et $r > 0 \implies$ Minimum.
+    \item $rt - s^2 > 0$ et $r < 0 \implies$ Maximum.
+\end{itemize}
+
+% ---------------------------------------------------------
+% CHAPITRE 3: CONTRAINTES
+% ---------------------------------------------------------
+\section*{Optimisation sous Contraintes}
+
+\subsection*{Contraintes d'Égalité (Lagrange)}
+Minimiser $f(x)$ sous $g_1(x) = \dots = g_m(x) = 0$.
+\begin{mybox}
+\textbf{Théorème des Multiplicateurs de Lagrange :} \\
+Si $\tilde{x}$ est un extremum local et que les vecteurs $\{ \nabla g_i(\tilde{x}) \}$ sont \textbf{linéairement indépendants} (contraintes qualifiées), alors $\exists \lambda_1, \dots, \lambda_m \in \R$ tels que :
+$$ \nabla f(\tilde{x}) = \sum_{i=1}^m \lambda_i \nabla g_i(\tilde{x}) $$
+\end{mybox}
+Le \textbf{Lagrangien} est défini par :
+$$ \mathcal{L}(x, \lambda) = f(x) - \sum_{i=1}^m \lambda_i g_i(x) $$
+Condition : $\nabla_x \mathcal{L} = 0$ et $\nabla_\lambda \mathcal{L} = 0$.
+
+\subsection*{Contraintes d'Inégalité (KKT)}
+Minimiser $f(x)$ sous :
+\begin{itemize}
+    \item $g_i(x) = 0$ ($1 \le i \le m$)
+    \item $h_j(x) \le 0$ ($1 \le j \le p$)
+\end{itemize}
+
+\begin{mybox}
+\textbf{Conditions de Karush-Kuhn-Tucker (KKT) :} \\
+Si $\tilde{x}$ est un minimum local et que les contraintes sont qualifiées, alors $\exists \lambda \in \R^m, \mu \in \R^p$ tels que :
+\begin{enumerate}
+    \item \textbf{Stationnarité :} $\nabla f(\tilde{x}) = \sum \lambda_i \nabla g_i(\tilde{x}) + \sum \mu_j \nabla h_j(\tilde{x})$
+    \item \textbf{Admissibilité :} $g_i(\tilde{x}) = 0$ et $h_j(\tilde{x}) \le 0$
+    \item \textbf{Signe :} $\mu_j \le 0$ (pour un min)
+    \item \textbf{Complémentarité :} $\mu_j h_j(\tilde{x}) = 0$ ($\mu_j=0$ si contrainte inactive).
+\end{enumerate}
+\end{mybox}
+\textit{Note : Pour un maximum, $\mu_j \ge 0$.}
+
+\subsection*{Qualification des contraintes}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Indépendance linéaire :} Les gradients des contraintes actives sont linéairement indépendants.
+    \item \textbf{Qualification linéaire :} Si les contraintes sont affines ($Ax \le b$), la qualification est automatique.
+\end{itemize}
+
+\section*{Dualité}
+\textbf{Problème Primal :} $p^* = \inf_x \sup_{\lambda, \mu} \mathcal{L}(x, \lambda, \mu)$. \\
+\textbf{Problème Dual :} $d^* = \sup_{\lambda, \mu} \inf_x \mathcal{L}(x, \lambda, \mu)$ avec $\mu \le 0$.
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dualité Faible :} $d^* \le p^*$ (toujours vrai).
+    \item \textbf{Dualité Forte :} $d^* = p^*$. Vrai si le problème est convexe et satisfait la condition de \textbf{Slater} (il existe un point strictement admissible $h_j(x) < 0$).
+\end{itemize}
+
+% ---------------------------------------------------------
+% CHAPITRE 4: CONVEXITÉ
+% ---------------------------------------------------------
+\section*{Convexité}
+
+\subsection*{Définitions et Propriétés}
+Un ensemble $U$ est convexe si $\forall x,y \in U, t \in [0,1], (1-t)x + ty \in U$.
+Une fonction $f: U \to \R$ est \textbf{convexe} si :
+$$ f( (1-t)x + ty ) \le (1-t)f(x) + t f(y) $$
+
+\textbf{Caractérisations ($f \in \mathcal{C}^1$ ou $\mathcal{C}^2$) :}
+\begin{enumerate}
+    \item \textbf{Ordre 1 :} $f(y) \ge f(x) + \langle \nabla f(x), y-x \rangle$. \\
+    (Le graphe est au-dessus de la tangente).
+    \item \textbf{Ordre 2 :} $H_f(x)$ est une matrice \textbf{positive} ($\forall h, \langle H_f(x)h, h \rangle \ge 0$).
+\end{enumerate}
+
+\begin{mybox}
+\textbf{Théorème fondamental :} \\
+Pour une fonction convexe sur un ouvert convexe :
+\begin{itemize}
+    \item Tout minimum local est un \textbf{minimum global}.
+    \item Si $\nabla f(x) = 0$, alors $x$ est un minimum global.
+    \item Si $f$ est strictement convexe, le minimum (s'il existe) est \textbf{unique}.
+\end{itemize}
+\end{mybox}
+
+\subsection*{Opérations conservant la convexité}
+\begin{itemize}[leftmargin=*]
+    \item Somme de fonctions convexes.
+    \item Multiplication par un scalaire positif.
+    \item Composition $g \circ f$ si $f$ convexe et $g$ convexe croissante.
+    \item Maximum de fonctions convexes.
+\end{itemize}
+
+\subsection*{Optimisation Quadratique}
+$f(x) = \frac{1}{2}\langle Ax, x \rangle + \langle b, x \rangle$.
+\begin{itemize}[leftmargin=*]
+    \item $\nabla f(x) = Ax + b$ (si $A$ symétrique).
+    \item $H_f(x) = A$.
+    \item $f$ convexe $\iff A$ positive.
+    \item Si $A$ définie positive, unique min global en $x = -A^{-1}b$.
+\end{itemize}
+
+% ---------------------------------------------------------
+% ALGORITHMES
+% ---------------------------------------------------------
+\section*{Algorithmes Numériques}
+
+\subsection*{Méthode de Newton}
+Pour résoudre $\nabla f(x) = 0$. Convergence quadratique (rapide) mais locale et coûteuse (inversion de matrice).
+$$ x_{k+1} = x_k - [H_f(x_k)]^{-1} \nabla f(x_k) $$
+
+\subsection*{Descente de Gradient}
+Pour minimiser $f$. On suit la direction opposée au gradient.
+$$ x_{k+1} = x_k - t_k \nabla f(x_k) $$
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Pas constant :} $t_k = t$. Converge si $t < 2/L$ ($L$ = constante de Lipschitz du gradient).
+    \item \textbf{Pas optimal :} $t_k$ minimise $\phi(t) = f(x_k - t \nabla f(x_k))$.
+    \item \textbf{Cas quadratique ($A$ def. pos.) :} Convergence globale garantie.
+\end{itemize}
+
+\subsection*{Méthode d'Uzawa}
+Pour optimisation quadratique sous contraintes $Hx \le d$. Itération sur le multiplicateur dual $\mu$.
+$$ \begin{cases}
+Ax_{k} + b - H^T \mu_k = 0 \quad (\text{Minimisation en } x) \\
+\mu_{k+1} = P_{\R_-}(\mu_k - \rho (H x_k - d)) \quad (\text{Projection})
+\end{cases} $$
+Converge si $0 < \rho < 2\lambda_{\min}(A) / \norm{H}^2$.
+
+% ---------------------------------------------------------
+% COMPLÉMENTS
+% ---------------------------------------------------------
+\section*{Théorèmes Classiques}
+
+\subsection*{Fonctions Implicites}
+Si $g(x, y) = 0$ et $\frac{\partial g}{\partial y} \neq 0$, alors on peut exprimer localement $y = \varphi(x)$.
+\\
+\textbf{Général :} Si la jacobienne partielle est inversible, on peut paramétrer la surface de contrainte.
+
+\subsection*{Inversion Locale}
+Si $f$ est $\mathcal{C}^1$ et $D_x f$ est inversible en $a$, alors $f$ est un difféomorphisme local autour de $a$.
+
+\subsection*{Espace Tangent}
+Pour une sous-variété définie par $g(x)=0$, l'espace tangent en $x$ est l'orthogonal du gradient :
+$$ T_x \mathcal{S} = (\text{Vect}\{\nabla g_1(x), \dots, \nabla g_m(x)\})^\perp $$
+
+\end{multicols*}
+\end{document}
