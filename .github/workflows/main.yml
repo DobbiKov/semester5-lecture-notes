@@ -31,6 +31,13 @@ jobs:
         latexmk_shell_escape: true
         working_directory: probas_full_cheatsheet
         
+    - name: Optimisation Full Cheatsheet
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: optimisation/cheatsheet_full/
+
     - name: Optimisation Cheatsheet
       uses: xu-cheng/latex-action@v3
       with:
@@ -72,6 +79,7 @@ jobs:
         file probas_full_cheatsheet/main.pdf | grep -q ' PDF '
         file probas_amphi/fr/main.pdf | grep -q ' PDF '
         file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
+        file optimisation/cheatsheet_full/main.pdf | grep -q ' PDF '
         file measure-theory/explanations/carathedory-criterion/en/main.pdf | grep -q ' PDF '
         file measure-theory/explanations/carathedory-criterion/fr/main.pdf | grep -q ' PDF '
         file measure-theory/cheatsheet/en/main.pdf | grep -q ' PDF '
@@ -95,6 +103,7 @@ jobs:
         cp -f probas_full_cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/probas_full_cheatsheet.pdf"
         cp -f probas_amphi/fr/main.pdf "$GITHUB_WORKSPACE/deploy/probas_notes.pdf"
         cp -f optimisation/cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet.pdf"
+        cp -f optimisation/cheatsheet_full/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet_full.pdf"
 
         cp -f measure-theory/explanations/carathedory-criterion/en/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-en.pdf"
         cp -f measure-theory/explanations/carathedory-criterion/fr/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-fr.pdf"
