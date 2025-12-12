@@ -4,6 +4,7 @@ My notes for the 5th semester of my undergraduate studies in Paris-Saclay Univer
 ## Part of available notes
 ### Optimisation
 - [Optimisation CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/optimisation_cheatsheet.pdf)
+- [Optimisation Full CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/optimisation_cheatsheet_full.pdf)
 
 ### Probability Theory
 - [Probability CheatSheet Long](https://dobbikov.github.io/semester5-lecture-notes/probas_full_cheatsheet.pdf)
