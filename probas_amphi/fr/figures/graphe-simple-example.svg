@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240mm"
+   height="50mm"
+   viewBox="0 0 240 50"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="graphe-simple-example.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect1-3"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2-7"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2-7-2"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect1-3-3"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.84566104"
+     inkscape:cx="413.28616"
+     inkscape:cy="54.98657"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showborder="true"
+     width="200mm"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1800"
+     inkscape:window-height="1096"
+     inkscape:window-x="3"
+     inkscape:window-y="44"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       units="mm"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4"
+       dotted="false"
+       originx="0"
+       originy="0" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-177)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 76.236768,188.94493 -4.742839,4.21586"
+       id="path1"
+       inkscape:path-effect="#path-effect1"
+       inkscape:original-d="m 76.236768,188.94493 -4.742839,4.21586"
+       transform="translate(27.532702,-8.7604052)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 71.149151,188.67039 4.82913,5.07059"
+       id="path2"
+       inkscape:path-effect="#path-effect2"
+       inkscape:original-d="m 71.149151,188.67039 4.82913,5.07059"
+       transform="translate(27.532702,-8.7604052)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 76.236768,188.94493 -4.742839,4.21586"
+       id="path1-9"
+       inkscape:path-effect="#path-effect1-3"
+       inkscape:original-d="m 76.236768,188.94493 -4.742839,4.21586"
+       transform="translate(57.252641,-6.5382152)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 71.149151,188.67039 4.82913,5.07059"
+       id="path2-0"
+       inkscape:path-effect="#path-effect2-7"
+       inkscape:original-d="m 71.149151,188.67039 4.82913,5.07059"
+       transform="translate(57.252641,-6.5382152)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 76.236768,188.94493 -4.742839,4.21586"
+       id="path1-9-9"
+       inkscape:path-effect="#path-effect1-3-3"
+       inkscape:original-d="m 76.236768,188.94493 -4.742839,4.21586"
+       transform="translate(29.909236,27.068009)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 71.149151,188.67039 4.82913,5.07059"
+       id="path2-0-9"
+       inkscape:path-effect="#path-effect2-7-2"
+       inkscape:original-d="m 71.149151,188.67039 4.82913,5.07059"
+       transform="translate(29.909236,27.068009)" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:Monospace;-inkscape-font-specification:Monospace;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       x="87.180237"
+       y="183.88144"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="stroke-width:0.2"
+         x="87.180237"
+         y="183.88144">$1$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:Monospace;-inkscape-font-specification:Monospace;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       x="140.10071"
+       y="183.60439"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="stroke-width:0.2"
+         x="140.10071"
+         y="183.60439">$2$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;font-family:Monospace;-inkscape-font-specification:Monospace;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       x="110.36375"
+       y="218.29752"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:0.2"
+         x="110.36375"
+         y="218.29752">$3$</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:round"
+       d="m 124.89524,205.99354 c -2.14606,1.54728 -4.21458,3.20209 -6.1952,4.95616 -4.07764,3.61121 -7.78185,7.64445 -11.02746,12.01869 -2.02846,2.73384 -3.87725,5.59914 -5.57568,8.54937 -1.57652,2.73846 -3.024192,5.5511 -4.336638,8.42548"
+       id="path4"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="m 124.89524,205.99354 c -2.41873,0.74425 -4.40868,3.25085 -6.1952,4.95616 -3.90042,3.72313 -7.77425,7.68108 -11.02746,12.01869 -2.06085,2.7478 -3.68587,5.71466 -5.57568,8.54937 -1.29216,1.93824 -4.336638,6.26908 -4.336638,8.42548"
+       transform="translate(5.4170559,-21.397917)" />
+  </g>
+</svg>
