@@ -23,6 +23,13 @@ jobs:
       with:
         root_file: main.tex
         latexmk_shell_escape: true
+        working_directory: ias-cheatsheet
+
+    - name: Probas Lectures
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
         working_directory: probas_amphi/fr
     - name: Probas Long Cheatsheet
       uses: xu-cheng/latex-action@v3
@@ -77,6 +84,7 @@ jobs:
       run: |
         file probas/cheatsheet.pdf | grep -q ' PDF '
         file probas_full_cheatsheet/main.pdf | grep -q ' PDF '
+        file ias-cheatsheet/main.pdf | grep -q ' PDF '
         file probas_amphi/fr/main.pdf | grep -q ' PDF '
         file optimisation/cheatsheet/main.pdf | grep -q ' PDF '
         file optimisation/cheatsheet_full/main.pdf | grep -q ' PDF '
@@ -104,6 +112,8 @@ jobs:
         cp -f probas_amphi/fr/main.pdf "$GITHUB_WORKSPACE/deploy/probas_notes.pdf"
         cp -f optimisation/cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet.pdf"
         cp -f optimisation/cheatsheet_full/main.pdf "$GITHUB_WORKSPACE/deploy/optimisation_cheatsheet_full.pdf"
+
+        cp -f ias-cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/ias-cheatsheet-english.pdf"
 
         cp -f measure-theory/explanations/carathedory-criterion/en/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-en.pdf"
         cp -f measure-theory/explanations/carathedory-criterion/fr/main.pdf "$GITHUB_WORKSPACE/deploy/measure-theory-caratheodory-criterion-fr.pdf"
