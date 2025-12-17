@@ -1,0 +1,325 @@
+\documentclass[10pt, a4paper, landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage[margin=0.4in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+% Colors for visual hierarchy
+\definecolor{sectioncolor}{RGB}{0, 51, 102}
+\definecolor{boxcolor}{RGB}{245, 245, 245}
+
+% Formatting tweaks for density
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2em}
+\setlist[itemize]{leftmargin=*, noitemsep, topsep=0pt}
+
+% Custom section headings
+\titleformat{\section}
+{\bfseries\large\color{sectioncolor}}
+{}{0em}{}[\hrule]
+
+\titleformat{\subsection}
+{\bfseries\normalsize\color{sectioncolor}}
+{}{0em}{}
+
+% Environment for emphasized formulas
+\newenvironment{formula}
+{\begin{center}\colorbox{boxcolor}{\parbox{0.98\linewidth}}}
+{\end{center}}
+
+\begin{document}
+
+\begin{center}
+    {\Large \bfseries Machine Learning Cheat Sheet} \\
+    \footnotesize Based on course materials: Linear Models, Optimization, PCA, Bayesian Learning, Clustering, NLP
+\end{center}
+
+\begin{multicols*}{3}
+
+% -----------------------------------------------------------------------
+% SECTION 1: INTRODUCTION & VOCABULARY
+% -----------------------------------------------------------------------
+\section{1. Basics \& Notation}
+\textbf{Supervised Learning:} Learning $f(\vec{x}) \approx y$ from labeled pairs $(\vec{x}, y)$ (Ground Truth).
+\begin{itemize}
+    \item \textbf{Regression:} Target $y \in \mathbb{R}$ (continuous).
+    \item \textbf{Classification:} Target $y$ is discrete class label.
+\end{itemize}
+\textbf{Notation:}
+\begin{itemize}
+    \item Input: $X = \{\vec{x}^{(n)}\}_{n=1}^N$ where $\vec{x}^{(n)} \in \mathbb{R}^D$.
+    \item Parameters: $\Theta$ or $\vec{\theta}$ (e.g., weights $\vec{a}$, bias $b$).
+    \item Prediction: $\hat{y} = f_\theta(\vec{x})$.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+% SECTION 2: LINEAR REGRESSION
+% -----------------------------------------------------------------------
+\section{2. Linear Regression}
+\textbf{Model:} Linear combination of inputs.
+$$ f_\theta(\vec{x}) = \vec{a} \cdot \vec{x} + b \quad \text{or} \quad f(\vec{x}) = \sum_{p=0}^P a_p x^p \text{ (Poly)} $$
+.
+
+\textbf{Cost Function (MSE):} Minimizes squared errors.
+$$ J(\theta) = \frac{1}{N} \sum_{n=1}^{N} (f_\theta(\vec{x}_n) - y_n)^2 $$
+.
+
+\textbf{Gradient Descent (Optimization):}
+Iterative update to find $\theta^*$ that minimizes $J$.
+$$ \vec{\theta} \leftarrow \vec{\theta} - \eta \vec{\nabla}_{\theta} J $$
+where $\eta$ is the \textbf{learning rate}.
+
+\textbf{Strategies:}
+\begin{itemize}
+    \item \textbf{Full Batch:} Uses all $N$ examples for gradient $\nabla J_N$.
+    \item \textbf{Stochastic (SGD):} Uses 1 random example $n$.
+    \item \textbf{Mini-Batch:} Uses subset of $m$ examples.
+\end{itemize}
+
+% -----------------------------------------------------------------------
+% SECTION 3: CLASSIFICATION
+% -----------------------------------------------------------------------
+\section{3. Linear Classification}
+\subsection{The Perceptron}
+Binary classifier ($y \in \{-1, +1\}$).
+\textbf{Model:} Linear separator (hyperplane).
+$$ \hat{y} = \text{sign}(\vec{w} \cdot \vec{x}) $$
+.
+
+\textbf{Cost Function:} Sum of distances of misclassified points.
+$$ J = \frac{1}{N} \sum_{n=1}^{N} \max(0, -(\vec{w} \cdot \vec{x}_n) t_n) $$
+.
+
+\textbf{Update Rule:} For misclassified points only.
+$$ \vec{w} \leftarrow \vec{w} + \eta \frac{1}{N} \sum_{n \in \text{mis}} \vec{x}_n t_n $$
+.
+
+\subsection{Multi-class (Softmax / Logistic)}
+For $K > 2$ classes. Replaces sign with Softmax probability.
+\textbf{Model (Softmax):} Probability of class $k$.
+$$ P(y=k|\vec{x}) = \frac{\exp(\vec{w}_k \cdot \vec{x})}{\sum_j \exp(\vec{w}_j \cdot \vec{x})} $$
+.
+
+\textbf{Cost Function (Cross-Entropy):}
+$$ J = \sum_{l} t_l \log(\hat{y}_l) $$
+where $t_l$ is the one-hot truth vector.
+
+\subsection{SVM (Support Vector Machine)}
+\textbf{Concept:} Maximizes the \textbf{margin} between classes.
+Only \textit{support vectors} (points closest to boundary or misclassified) affect the boundary.
+
+% -----------------------------------------------------------------------
+% SECTION 4: PREPROCESSING
+% -----------------------------------------------------------------------
+\section{4. Preprocessing}
+\textbf{Standardization:} Centers data on 0 with variance 1.
+Important when features have different units.
+$$ x_{n,d}' = \frac{x_{n,d} - \langle x_d \rangle}{\sigma_d} $$
+.
+
+\textbf{Min-Max Scaling:} Maps data to $[0, 1]$.
+$$ x'_{n,d} = \frac{x_{n,d} - \min(x_d)}{\max(x_d) - \min(x_d)} $$
+.
+
+\textbf{One-Hot Encoding:} For categorical data (no order).
+Class $k \to (0, ..., 1, ..., 0)$ ($1$ at index $k$).
+
+% -----------------------------------------------------------------------
+% SECTION 5: PCA (DIM. REDUCTION)
+% -----------------------------------------------------------------------
+\section{5. PCA (Principal Component Analysis)}
+\textbf{Goal:} Project data from $D$ to $D'$ dimensions ($D' < D$) while maximizing variance (information).
+
+\textbf{1. Covariance Matrix:}
+$$ C = \frac{1}{N} \sum_{n=1}^N (\vec{x}_n - \langle \vec{x} \rangle)(\vec{x}_n - \langle \vec{x} \rangle)^T $$
+.
+
+\textbf{2. Eigen Decomposition:} Find directions of max variance.
+$$ C \vec{u}_i = \lambda_i \vec{u}_i $$
+$\vec{u}_i$: Principal direction. $\lambda_i$: Variance along $\vec{u}_i$.
+
+\textbf{3. Projection:} Using matrix $P$ of top $D'$ eigenvectors.
+$$ \vec{x}' = (\vec{x} - \langle \vec{x} \rangle) P $$
+.
+
+\textbf{4. Reconstruction (with loss):}
+$$ \vec{x}_{rec} = \vec{x}' P^T + \langle \vec{x} \rangle $$
+.
+
+% -----------------------------------------------------------------------
+% SECTION 6: PROBABILISTIC MODELS
+% -----------------------------------------------------------------------
+\section{6. Bayesian Learning}
+\textbf{MLE (Maximum Likelihood Estimation):}
+Find parameters $\Theta$ that make data most probable.
+$$ \Theta^* = \operatorname{argmax}_\Theta \sum_{n=1}^N \log P(\vec{x}_n | \Theta) $$
+.
+
+\subsection{Example: Gaussian MLE}
+For data following $\mathcal{N}(\mu, \sigma^2)$:
+\begin{itemize}
+    \item $\hat{\mu} = \frac{1}{N} \sum x_n$ (Empirical Mean).
+    \item $\hat{\sigma}^2 = \frac{1}{N} \sum (x_n - \mu)^2$ (Empirical Variance).
+\end{itemize}
+
+\subsection{Naive Bayes Classifier}
+\textbf{Assumption:} Features $x_d$ are \textbf{independent} given class $k$.
+$$ P(\vec{x}|y=k) = \prod_{d=1}^D P(x_d | y=k) $$
+.
+
+\textbf{Training (Bernoulli):} Learn prob. of feature $d$ in class $k$.
+$$ p_{k,d} = \frac{\sum_{n} x_{n,d} \mathbb{I}(y_n=k)}{\sum_{n} \mathbb{I}(y_n=k)} $$
+Also learn class priors $\pi_k = \frac{1}{N} \sum \mathbb{I}(y_n=k)$.
+
+\textbf{Decision (MAP):} Predict class $k$ maximizing posterior.
+$$ k^* = \operatorname{argmax}_k [ \log \pi_k + \sum_d \log P(x_d | p_{k,d}) ] $$
+.
+
+% -----------------------------------------------------------------------
+% SECTION 7: CLUSTERING (K-MEANS)
+% -----------------------------------------------------------------------
+\section{7. Clustering (K-Means)}
+Unsupervised grouping into $K$ clusters with centers $\vec{\mu}_k$.
+\textbf{Objective:} Minimize intra-cluster variance (Inertia).
+$$ J = \sum_{n=1}^N \sum_{k=1}^K a_{nk} ||\vec{x}_n - \vec{\mu}_k||^2 $$
+where $a_{nk}=1$ if $x_n \in k$, else $0$.
+
+\textbf{Algorithm:} Iterate until convergence.
+1. \textbf{Assignment:} Assign point to closest center.
+   $$ k^* = \operatorname{argmin}_k ||\vec{x}_n - \vec{\mu}_k|| $$
+2. \textbf{Update:} Move center to mean of its points.
+   $$ \vec{\mu}_k = \frac{\sum_n a_{nk} \vec{x}_n}{\sum_n a_{nk}} $$
+.
+
+% -----------------------------------------------------------------------
+% SECTION 8: NLP BASICS
+% -----------------------------------------------------------------------
+\section{8. NLP (Natural Language Proc.)}
+\textbf{Bag of Words:} Vector of word counts.
+\textbf{TF-IDF:} Weighs words by importance (rare words $>$ common words).
+\begin{itemize}
+    \item \textbf{TF (Term Freq):} Count of term $t$ in doc $d$.
+\[
+\text{TF}(t,d) = \frac{\text{number of times term } t \text{ appears in } d}{\text{total number of words in } d}
+\]
+    \item \textbf{IDF (Inv Doc Freq):} Penalizes common words.
+    $$ IDF(t) = \log\left(\frac{1+N_{docs}}{1+DF(t)}\right) + 1 $$
+
+    where 
+    \begin{itemize}
+        \item $N_{docs}$ is a total number of documents
+        \item  $DF(t)$ number of documents where the term  $t$ appears
+    \end{itemize}
+    So if a word is very common like "the", then it appears in almost every
+    document and its $IDF$ would be small but if the word is rare like "Cauchy
+    inequality" it is more informative and its  $IDF$ would be higher.
+    \item \textbf{Score:} $TF\text{-}IDF = TF(t,d) \times IDF(t)$
+\end{itemize}
+.
+
+% -----------------------------------------------------------------------
+% SECTION 9: MODEL EVALUATION
+% -----------------------------------------------------------------------
+\section{9. Pipeline \& Splits}
+\textbf{Data Split:}
+\begin{itemize}
+    \item \textbf{Train:} Optimize parameters $\theta$.
+    \item \textbf{Validation:} Optimize hyper-parameters.
+    \item \textbf{Test:} Final performance evaluation.
+\end{itemize}
+\textbf{Overfitting:} Model learns noise. High score on train, low on validation. Fixes: Regularization, more data.
+
+\section*{Support Vector Machines (SVM)}
+
+% --- 1. Geometric Basics ---
+\subsection*{1. Geometric Basics}
+\begin{itemize}
+    \item \textbf{Hyperplane:} $w^T x + b = 0$
+    \item \textbf{Decision Rule:} $f(x) = \text{sign}(w^T x + b)$
+    \item \textbf{Geometric Margin:} $\gamma = \frac{2}{||w||}$
+\end{itemize}
+
+% --- 2. Primal Optimization ---
+\subsection*{2. Primal Optimization}
+\textbf{Hard Margin} (Linearly Separable):
+\begin{align*}
+    \min_{w, b} \quad & \frac{1}{2} ||w||^2 \\
+    \text{s.t.} \quad & y_i (w^T x_i + b) \ge 1, \quad \forall i
+\end{align*}
+
+\textbf{Soft Margin} (With Slack $\xi_i$):
+\begin{align*}
+    \min_{w, b, \xi} \quad & \frac{1}{2} ||w||^2 + C \sum_{i=1}^n \xi_i \\
+    \text{s.t.} \quad & y_i (w^T x_i + b) \ge 1 - \xi_i \\
+                      & \xi_i \ge 0
+\end{align*}
+\textit{Note: $C$ controls bias-variance trade-off (Large $C$ = Harder margin).}
+
+% --- 3. Dual Formulation ---
+\subsection*{3. Dual Formulation}
+Maximize w.r.t Lagrange multipliers $\alpha_i$:
+\begin{align*}
+    \max_{\alpha} \quad & \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i, x_j) \\
+    \text{s.t.} \quad & 0 \le \alpha_i \le C \\
+                      & \sum_{i=1}^n \alpha_i y_i = 0
+\end{align*}
+\textbf{Prediction:} $f(x) = \text{sign}(\sum_{i \in SV} \alpha_i y_i K(x_i, x) + b)$
+
+% --- 4. Common Kernels ---
+\subsection*{4. Common Kernels $K(x, x')$}
+\begin{itemize}
+    \item \textbf{Linear:} $x^T x'$
+    \item \textbf{Polynomial:} $(\gamma x^T x' + r)^d$
+    \item \textbf{RBF (Gaussian):} $\exp(-\gamma ||x - x'||^2)$
+\end{itemize}
+
+% --- 5. Hinge Loss ---
+\subsection*{5. Hinge Loss}
+Used for Gradient Descent optimization:
+$$ L(y, f(x)) = \max(0, 1 - y \cdot f(x)) $$
+
+\section{10. Models}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Model} & \textbf{Type of Problem it Resolves} \\ \hline
+Linear Regression & Regression (Supervised); Optimization and Gradient Descent explanation \\ \hline
+Polynomial Regression & Regression (Supervised); Modeling non-linear relationships \\ \hline
+Perceptron & Binary Classification (Supervised) \\ \hline
+Linear Classifiers & Classification (Supervised); Separating hyperplanes \\ \hline
+Support Vector Machine (SVM) & Classification (Supervised); Handles linear and non-linearly separable data \\ \hline
+Na\"ive Bayes & Classification (Supervised); Assumes feature independence \\ \hline
+Gaussian Na\"ive Bayes & Classification (Supervised); Features modelled with Gaussian distributions \\ \hline
+Gaussian Model (Non-Na\"ive) & Classification (Supervised); Modeling correlated dimensions \\ \hline
+Minimum Distance Classifier & Classification (Supervised); Assigns points to closest class representative \\ \hline
+Decision Trees & Classification (Supervised); Sequence of threshold-based questions \\ \hline
+Random Forest Regressor & Regression (Supervised); Learning curve analysis \\ \hline
+k-Nearest Neighbours (k-NN) & Classification (Supervised) \\ \hline
+Principal Component Analysis (PCA) & Dimensionality Reduction, Visualisation, Data Compression (Unsupervised) \\ \hline
+K-Means & Clustering (Unsupervised) \\ \hline
+Gaussian Mixture Models & Clustering / Density Estimation (Unsupervised) \\ \hline
+Density Estimation (Histograms, KDE) & Density Estimation (Unsupervised); Modeling probability density \\ \hline
+Bag of Words (BOW) & Text Representation (NLP); Based on word frequency \\ \hline
+TF-IDF & Text Representation / Tokenisation (NLP) \\ \hline
+Word Embeddings & Text Representation (NLP); Semantic proximity mapping \\ \hline
+Word2Vec & Text Embedding Architecture (NLP) \\ \hline
+Skip-gram & Context Word Prediction (NLP) \\ \hline
+Continuous Bag-Of-Words (CBOW) & Target Word Prediction (NLP) \\ \hline
+\end{tabular}
+
+\section{11. KNN}
+We are already given points and we need to classify a new point, we just look
+at the points closest to the new one, look at their classes and take the class
+of majority.
+
+\end{multicols*}
+\end{document}
+
