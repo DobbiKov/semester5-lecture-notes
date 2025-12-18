@@ -164,6 +164,24 @@ Find parameters $\Theta$ that make data most probable.
 $$ \Theta^* = \operatorname{argmax}_\Theta \sum_{n=1}^N \log P(\vec{x}_n | \Theta) $$
 .
 
+\subsection{Algorithm: Finding MLE Parameters}
+To find the parameters $\Theta^*$ that maximize the likelihood of the data:
+
+1. \textbf{Define Likelihood:} Formulate the likelihood function $\mathcal{L}(\Theta) = P(X | \Theta)$. Assuming $N$ independent and identically distributed (i.i.d.) samples:
+   $$ \mathcal{L}(\Theta) = \prod_{n=1}^{N} P(\vec{x}_n | \Theta) $$
+
+2. \textbf{Log-Likelihood:} Take the natural logarithm to convert the product into a sum (easier to differentiate and numerically stable):
+   $$ l(\Theta) = \log \mathcal{L}(\Theta) = \sum_{n=1}^{N} \log P(\vec{x}_n | \Theta) $$
+
+3. \textbf{Differentiate:} Calculate the gradient of the log-likelihood with respect to the parameters $\Theta$:
+   $$ \nabla_{\Theta} l(\Theta) = \frac{\partial}{\partial \Theta} \sum_{n=1}^{N} \log P(\vec{x}_n | \Theta) $$
+
+4. \textbf{Solve:} Set the gradient to zero to find critical points (analytical solution):
+   $$ \nabla_{\Theta} l(\Theta) = 0 $$
+   \textit{Note: If an analytical solution is impossible, use iterative optimization methods like Gradient Ascent.}
+
+5. \textbf{Verify:} Ensure the critical point is a maximum (e.g., check that the second derivative/Hessian is negative definite).
+
 \subsection{Example: Gaussian MLE}
 For data following $\mathcal{N}(\mu, \sigma^2)$:
 \begin{itemize}
@@ -229,14 +247,43 @@ where $a_{nk}=1$ if $x_n \in k$, else $0$.
 % -----------------------------------------------------------------------
 % SECTION 9: MODEL EVALUATION
 % -----------------------------------------------------------------------
-\section{9. Pipeline \& Splits}
-\textbf{Data Split:}
+\section{9. Pipeline \& Evaluation}
+\subsection{Data Splitting Strategy}
+To properly evaluate models, split data into three sets:
 \begin{itemize}
-    \item \textbf{Train:} Optimize parameters $\theta$.
-    \item \textbf{Validation:} Optimize hyper-parameters.
-    \item \textbf{Test:} Final performance evaluation.
+\item \textbf{Train Set:} Used to learn model parameters $\theta$ (fitting).
+\item \textbf{Validation Set:} Used to optimize hyper-parameters $\mu$ (e.g., regularization coeff., number of clusters). Parameters $\theta$ are fixed here.
+\item \textbf{Test Set:} Used for final performance assessment. Neither parameters nor hyper-parameters are tuned here.
 \end{itemize}
-\textbf{Overfitting:} Model learns noise. High score on train, low on validation. Fixes: Regularization, more data.
+
+\subsection{Fitting Issues (Bias-Variance Tradeoff)}
+Diagnosed using \textbf{Learning Curves} (Error vs. Training Size/Complexity).
+\textbf{1. Underfitting (High Bias)}
+\begin{itemize}
+\item \textbf{Characterization:} High error on \textbf{both} Training and Validation sets.
+\item \textbf{Cause:} Model is too simple (under-parametrized) or lacks expressiveness to capture data patterns.
+\item \textbf{Fixes:} Increase model complexity (e.g., add polynomial features), reduce regularization.
+\end{itemize}
+
+\textbf{2. Overfitting (High Variance)}
+\begin{itemize}
+\item \textbf{Characterization:} Low Training error but High Validation error (large gap between curves).
+\item \textbf{Cause:} Model is too complex (over-parametrized), learning noise/outliers instead of the signal.
+\item \textbf{Fixes:}
+\begin{itemize}
+\item \textbf{Regularization:} Penalize large weights.
+\item \textbf{More Data:} Increase training set size.
+\item \textbf{Dimensionality Reduction:} Remove irrelevant features (PCA).
+\end{itemize}
+\end{itemize}
+
+\subsection{Handling Class Imbalance}
+When classes are not represented equally (e.g., rare diseases, fraud), accuracy is a misleading metric. We use re-balancing techniques:
+\begin{itemize}
+\item \textbf{Oversampling:} Increasing the number of instances in the minority class (e.g., duplicating examples).
+\item \textbf{Undersampling:} Decreasing the number of instances in the majority class.
+\item \textbf{Application:} Apply during the pre-processing phase to ensure the model does not become biased toward the majority class.
+\end{itemize}
 
 \section*{Support Vector Machines (SVM)}
 
@@ -287,7 +334,13 @@ Maximize w.r.t Lagrange multipliers $\alpha_i$:
 Used for Gradient Descent optimization:
 $$ L(y, f(x)) = \max(0, 1 - y \cdot f(x)) $$
 
-\section{10. Models}
+\section{10. KNN}
+We are already given points and we need to classify a new point, we just look
+at the points closest to the new one, look at their classes and take the class
+of majority.
+
+\newpage
+\section{11. Models}
 \begin{tabular}{|c|c|}
 \hline
 \textbf{Model} & \textbf{Type of Problem it Resolves} \\ \hline
@@ -315,10 +368,6 @@ Skip-gram & Context Word Prediction (NLP) \\ \hline
 Continuous Bag-Of-Words (CBOW) & Target Word Prediction (NLP) \\ \hline
 \end{tabular}
 
-\section{11. KNN}
-We are already given points and we need to classify a new point, we just look
-at the points closest to the new one, look at their classes and take the class
-of majority.
 
 \end{multicols*}
 \end{document}
