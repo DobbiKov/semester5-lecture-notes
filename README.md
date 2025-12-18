@@ -2,6 +2,8 @@
 My notes for the 5th semester of my undergraduate studies in Paris-Saclay University
 
 ## Part of available notes
+### IAS
+- [cheatsheet](https://dobbikov.github.io/semester5-lecture-notes/ias-cheatsheet.pdf)
 ### Optimisation
 - [Optimisation CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/optimisation_cheatsheet.pdf)
 - [Optimisation Full CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/optimisation_cheatsheet_full.pdf)
