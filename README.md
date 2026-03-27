@@ -13,6 +13,9 @@ My notes for the 5th semester of my undergraduate studies in Paris-Saclay Univer
 - [Probability CheatSheet](https://dobbikov.github.io/semester5-lecture-notes/probas_cheatsheet.pdf)
 - [Probability Lecture Notes (French)](https://dobbikov.github.io/semester5-lecture-notes/probas_notes.pdf)
 
+- [Probability Lecture Notes MDD303 (French)](https://dobbikov.github.io/semester5-lecture-notes/mdd303-probas.pdf)
+- [Probability Lecture Notes MDD303 (English)](https://dobbikov.github.io/semester5-lecture-notes/mdd303-probas-en.pdf)
+
 ### Measure Theory and Integration
 - [Carathéodory Criterion (English)](https://dobbikov.github.io/semester5-lecture-notes/measure-theory-caratheodory-criterion-en.pdf)
 - [Carathéodory Criterion (French)](https://dobbikov.github.io/semester5-lecture-notes/measure-theory-caratheodory-criterion-fr.pdf)
