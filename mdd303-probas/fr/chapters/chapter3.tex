@@ -1,0 +1,201 @@
+\chapter{Indépendance}
+\sloppy
+
+
+\section{Tribu engendrée par une variable aléatoire}
+Soit $(\Omega, \mathcal{F}, P)$ un espace de probabilité.
+\begin{definition}[Sous-tribu]
+Une sous-tribu $\mathcal{G}$ de $\mathcal{F}$ est une tribu qui est incluse dans $\mathcal{F}$, c'est-à-dire $\mathcal{G} \subset \mathcal{F}$. Pour tout $A \in \mathcal{G}$, on a $A \in \mathcal{F}$.
+\end{definition}
+\begin{definition}[Tribu d'une variable aléatoire]
+Soit $X$ une variable aléatoire (v.a.) de $(\Omega, \mathcal{F}, P)$ dans $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. La tribu engendrée par la v.a. $X$, notée $\sigma(X)$, est la plus petite tribu sur $\Omega$ pour laquelle $X$ est mesurable. Elle est définie par :
+\[ \sigma(X) = \sigma(\{X^{-1}(B) \mid B \in \mathcal{B}(\mathbb{R})\}) \]
+Il est à noter que la collection d'ensembles $\{X^{-1}(B) \mid B \in \mathcal{B}(\mathbb{R})\}$ est elle-même une tribu.
+\end{definition}
+Comme $X$ est une v.a., pour tout $B \in \mathcal{B}(\mathbb{R})$, on a $X^{-1}(B) \in \mathcal{F}$. Par conséquent, $\sigma(X)$ est une sous-tribu de $\mathcal{F}$.
+\section{Définitions fondamentales}
+\subsection{Indépendance d'événements}
+\begin{definition}
+Soit $n \ge 2$. Les $n$ événements $A_1, \ldots, A_n$ de $\mathcal{F}$ sont dits indépendants si, pour toute partie $I \subseteq \{1, \ldots, n\}$, on a :
+\[ P\left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} P(A_i) \]
+\end{definition}
+\begin{remark}
+Attention, "être indépendants" est une condition beaucoup plus forte que "être indépendants deux à deux".
+\end{remark}
+\subsection{Indépendance de variables aléatoires}
+\begin{definition}
+Les $n$ variables aléatoires $X_1, \ldots, X_n$ de $\Omega$ dans $\mathbb{R}$ sont dites indépendantes si, pour tous boréliens $B_1, \ldots, B_n$ de $\mathbb{R}$, on a :
+\[ P(X_1 \in B_1, \ldots, X_n \in B_n) = P(X_1 \in B_1) \cdots P(X_n \in B_n) \]
+où la notation $P(A, B)$ signifie $P(A \cap B)$.
+\end{definition}
+\subsection{Indépendance de sous-tribus}
+\begin{definition}
+Les $n$ sous-tribus $\mathcal{F}_1, \ldots, \mathcal{F}_n$ de $\mathcal{F}$ sont dites indépendantes si, pour tout choix d'événements $A_1 \in \mathcal{F}_1, \ldots, A_n \in \mathcal{F}_n$, on a :
+\[ P(A_1 \cap \cdots \cap A_n) = P(A_1) \cdots P(A_n) \]
+\end{definition}
+\subsection{Liens entre les définitions}
+Les trois définitions précédentes sont hiérarchisées.
+\begin{itemize}
+    \item Les événements $A_1, \ldots, A_n$ sont indépendants si et seulement si les variables aléatoires indicatrices $\mathbf{1}_{A_1}, \ldots, \mathbf{1}_{A_n}$ sont indépendantes.
+    \item Les variables aléatoires $X_1, \ldots, X_n$ sont indépendantes si et seulement si les tribus qu'elles engendrent, $\sigma(X_1), \ldots, \sigma(X_n)$, sont indépendantes.
+\end{itemize}
+La définition basée sur les tribus est donc la plus générale. Elle permet de traiter des situations plus complexes, comme le cas de variables aléatoires à valeurs dans des espaces quelconques.
+\section{Variables aléatoires générales}
+\begin{definition}
+Soit $(E, \mathcal{E})$ un espace mesurable. Une variable aléatoire à valeurs dans $E$ est une application $X: \Omega \to E$ qui est mesurable de $(\Omega, \mathcal{F})$ dans $(E, \mathcal{E})$, c'est-à-dire :
+\[ \forall B \in \mathcal{E}, \quad X^{-1}(B) \in \mathcal{F} \]
+\end{definition}
+\begin{definition}[Loi d'une variable aléatoire]
+La loi de $X$ est la mesure de probabilité $P_X$ sur $(E, \mathcal{E})$ définie par :
+\[ \forall B \in \mathcal{E}, \quad P_X(B) = P(X \in B) = P(X^{-1}(B)) \]
+\end{definition}
+Ce formalisme permet de construire des vecteurs aléatoires et même des fonctions aléatoires.
+\begin{example}
+Soient $X, Y$ deux v.a. à valeurs dans $\mathbb{R}$. On pose $Z = (X,Y)$. Alors $Z$ est un vecteur aléatoire de $\mathbb{R}^2$. On dit que la loi de $Z$ admet une densité s'il existe une fonction mesurable $f: \mathbb{R}^2 \to \mathbb{R}_+$ telle que pour tout $B \in \mathcal{B}(\mathbb{R}^2)$ :
+\[ P_Z(B) = P(Z \in B) = \iint_B f(x,y) \,dx\,dy \]
+\end{example}
+\section{Lois Produits}
+Soient $(E_1, \mathcal{E}_1, \mu_1), \ldots, (E_n, \mathcal{E}_n, \mu_n)$ $n$ espaces de probabilité.
+Une question naturelle se pose : existe-t-il un espace de probabilité $(\Omega, \mathcal{F}, P)$ sur lequel sont définies $n$ variables aléatoires $X_1, \ldots, X_n$ telles que :
+\begin{itemize}
+    \item $X_1, \ldots, X_n$ sont indépendantes.
+    \item Pour tout $i \in \{1, \ldots, n\}$, $X_i$ est à valeurs dans $E_i$ et a pour loi $\mu_i$.
+\end{itemize}
+La réponse est affirmative et est fournie par la construction de la mesure produit.
+\subsection{Construction de variables indépendantes}
+Considérons l'espace produit cartésien $E = E_1 \times \cdots \times E_n$. On le munit de la tribu produit $\mathcal{E} = \mathcal{E}_1 \otimes \cdots \otimes \mathcal{E}_n$, qui est la tribu engendrée par les "rectangles mesurables" de la forme $B_1 \times \cdots \times B_n$, où $B_i \in \mathcal{E}_i$ pour chaque $i$.
+\begin{theorem}[Loi produit]
+Il existe une unique mesure de probabilité $\mu$ sur l'espace mesurable $(E, \mathcal{E})$ telle que pour tous $B_1 \in \mathcal{E}_1, \ldots, B_n \in \mathcal{E}_n$ :
+\[ \mu(B_1 \times \cdots \times B_n) = \mu_1(B_1) \cdots \mu_n(B_n) \]
+Cette mesure est appelée la mesure produit de $\mu_1, \ldots, \mu_n$ et est notée $\mu = \mu_1 \otimes \cdots \otimes \mu_n$.
+\end{theorem}
+Pour répondre à notre question initiale, il suffit de poser :
+\begin{itemize}
+    \item $\Omega = E = E_1 \times \cdots \times E_n$
+    \item $\mathcal{F} = \mathcal{E} = \mathcal{E}_1 \otimes \cdots \otimes \mathcal{E}_n$
+    \item $P = \mu = \mu_1 \otimes \cdots \otimes \mu_n$
+\end{itemize}
+Et de définir les variables aléatoires $X_i$ comme les projections sur la $i$-ème composante, pour $i \in \{1, \ldots, n\}$ :
+\[ X_i: \Omega \to E_i, \quad \omega = (\omega_1, \ldots, \omega_n) \mapsto \omega_i \]
+\begin{proof}
+Vérifions que ces $X_i$ ont les propriétés désirées.
+\begin{enumerate}
+    \item \textbf{Loi de $X_i$ :} Soit $i \in \{1, \ldots, n\}$ et $B_i \in \mathcal{E}_i$. La loi de $X_i$ est donnée par :
+    \begin{align*}
+    P_{X_i}(B_i) &= P(X_i \in B_i) = \mu(\{\omega = (\omega_1, \ldots, \omega_n) \in \Omega \mid \omega_i \in B_i\}) \\
+    &= \mu(E_1 \times \cdots \times E_{i-1} \times B_i \times E_{i+1} \times \cdots \times E_n) \\
+    &= \mu_1(E_1) \cdots \mu_{i-1}(E_{i-1}) \mu_i(B_i) \mu_{i+1}(E_{i+1}) \cdots \mu_n(E_n)
+    \end{align*}
+    Comme $\mu_j(E_j)=1$ pour tout $j$, on obtient $P_{X_i}(B_i) = \mu_i(B_i)$. Donc $X_i$ a bien pour loi $\mu_i$.
+    \item \textbf{Indépendance des $X_i$ :} Soient $B_1 \in \mathcal{E}_1, \ldots, B_n \in \mathcal{E}_n$. Par définition de l'indépendance :
+    \begin{align*}
+    P(X_1 \in B_1, \ldots, X_n \in B_n) &= \mu(\{\omega = (\omega_1, \ldots, \omega_n) \mid \forall i, \omega_i \in B_i\}) \\
+    &= \mu(B_1 \times \cdots \times B_n) \\
+    &= \mu_1(B_1) \cdots \mu_n(B_n) \\
+    &= P(X_1 \in B_1) \cdots P(X_n \in B_n)
+    \end{align*}
+    Les variables $X_1, \ldots, X_n$ sont donc indépendantes.
+\end{enumerate}
+\end{proof}
+\subsection{Application : variables i.i.d.}
+Un cas particulier important est celui où $(E_i, \mathcal{E}_i) = (\mathbb{R}, \mathcal{B}(\mathbb{R}))$ pour tout $i$, et où toutes les lois sont identiques : $\mu_1 = \cdots = \mu_n = \nu$. Le théorème garantit alors l'existence d'un espace de probabilité sur lequel sont définies $n$ variables aléatoires $X_1, \ldots, X_n$ \textbf{indépendantes et identiquement distribuées} (i.i.d.), de loi commune $\nu$.
+\section{Regroupement par blocs}
+L'indépendance se conserve par regroupement.
+\begin{theorem}
+Soient $\mathcal{F}_1, \ldots, \mathcal{F}_n$ des sous-tribus indépendantes. Soient $I$ et $J$ deux parties disjointes de $\{1, \ldots, n\}$. Alors les tribus $\mathcal{G} = \sigma(\bigcup_{i \in I} \mathcal{F}_i)$ et $\mathcal{H} = \sigma(\bigcup_{j \in J} \mathcal{F}_j)$ sont indépendantes.
+\end{theorem}
+La preuve de ce théorème repose sur le lemme d'unicité de l'extension, aussi connu sous le nom de lemme de la classe monotone ou théorème $\pi-\lambda$ de Dynkin.
+\begin{lemma}[Unicité de l'extension]
+Soient $P_1$ et $P_2$ deux mesures de probabilité sur un espace mesurable $(\Omega, \mathcal{F})$. Supposons qu'il existe une collection $\mathcal{C}$ d'événements telle que :
+\begin{enumerate}
+    \item[i)] $\mathcal{C}$ engendre $\mathcal{F}$, i.e., $\sigma(\mathcal{C}) = \mathcal{F}$.
+    \item[ii)] $\mathcal{C}$ est stable par intersection finie (c'est un $\pi$-système), i.e., $\forall A, B \in \mathcal{C}, A \cap B \in \mathcal{C}$.
+    \item[iii)] $P_1$ et $P_2$ coïncident sur $\mathcal{C}$, i.e., $\forall C \in \mathcal{C}, P_1(C) = P_2(C)$.
+\end{enumerate}
+Alors $P_1 = P_2$ (elles coïncident sur toute la tribu $\mathcal{F}$).
+\end{lemma}
+\begin{proof}[Idée de la preuve du théorème]
+On veut montrer que $\forall D \in \mathcal{G}, \forall E \in \mathcal{H}, P(D \cap E) = P(D)P(E)$.
+\begin{enumerate}
+    \item On fixe d'abord un événement $D$ dans une classe simple génératrice de $\mathcal{G}$, par exemple $D = \bigcap_{i \in I} D_i$ avec $D_i \in \mathcal{F}_i$. On suppose $P(D)>0$.
+    \item On définit deux mesures de probabilité sur $(\Omega, \mathcal{H})$ : $P_1(E) = P(E|D) = \frac{P(E \cap D)}{P(D)}$ et $P_2(E) = P(E)$.
+    \item On montre que $P_1$ et $P_2$ coïncident sur une collection $\mathcal{C}$ qui est un $\pi$-système engendrant $\mathcal{H}$. La collection des "rectangles" $E = \bigcap_{j \in J} E_j$ avec $E_j \in \mathcal{F}_j$ convient. En effet, pour un tel $E$ :
+    \begin{align*}
+    P(E \cap D) &= P\left( \left(\bigcap_{j \in J} E_j\right) \cap \left(\bigcap_{i \in I} D_i\right) \right) \\
+    &= \left( \prod_{j \in J} P(E_j) \right) \left( \prod_{i \in I} P(D_i) \right) \quad \text{(par indépendance des } \mathcal{F}_k) \\
+    &= P(E) P(D)
+    \end{align*}
+    Donc $P_1(E) = P(E|D) = P(E) = P_2(E)$.
+    \item Par le lemme d'unicité, $P_1(E) = P_2(E)$ pour tout $E \in \mathcal{H}$, ce qui signifie $P(E \cap D) = P(E)P(D)$ pour tout $E \in \mathcal{H}$ et pour $D$ de la forme "rectangle".
+    \item On refait un raisonnement similaire en fixant $E \in \mathcal{H}$ et en faisant varier $D$ dans $\mathcal{G}$.
+\end{enumerate}
+\end{proof}
+Ce théorème se généralise par récurrence.
+\begin{proposition}
+Soient $\mathcal{F}_1, \ldots, \mathcal{F}_n$ des tribus indépendantes. Soient $I_1, \ldots, I_k$ des parties de $\{1, \ldots, n\}$ qui sont deux à deux disjointes. Alors les tribus $\mathcal{G}_j = \sigma(\bigcup_{i \in I_j} \mathcal{F}_i)$ pour $j=1, \ldots, k$ sont indépendantes.
+\end{proposition}
+Un corollaire direct pour les variables aléatoires est le suivant :
+\begin{theorem}[Corollaire]
+Soient $X_1, \ldots, X_n$ des v.a. indépendantes. Soient $I_1, \ldots, I_k$ des parties disjointes de $\{1, \ldots, n\}$. Les vecteurs aléatoires $V_j = (X_i)_{i \in I_j}$ pour $j=1, \ldots, k$ sont indépendants.
+\end{theorem}
+\section{Espérance et indépendance}
+L'indépendance a une conséquence très importante sur le calcul des espérances.
+\begin{proposition}
+Soient $X$ et $Y$ deux variables aléatoires réelles. Les deux conditions suivantes sont équivalentes :
+\begin{enumerate}
+    \item[i)] $X$ et $Y$ sont indépendantes.
+    \item[ii)] Pour toutes fonctions boréliennes $f, g: \mathbb{R} \to \mathbb{R}$ telles que $f(X)$, $g(Y)$ et $f(X)g(Y)$ sont intégrables, on a :
+    \[ E[f(X)g(Y)] = E[f(X)]E[g(Y)] \]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\textbf{(ii) $\implies$ (i) :} Il suffit de choisir des fonctions indicatrices. Soient $A, B \in \mathcal{B}(\mathbb{R})$. On pose $f = \mathbf{1}_A$ et $g = \mathbf{1}_B$. Ces fonctions sont boréliennes et bornées, donc les v.a. $\mathbf{1}_A(X)$, $\mathbf{1}_B(Y)$ et leur produit sont intégrables.
+L'égalité devient :
+\[ E[\mathbf{1}_A(X) \mathbf{1}_B(Y)] = E[\mathbf{1}_A(X)] E[\mathbf{1}_B(Y)] \]
+Ce qui se traduit par :
+\[ P(X \in A, Y \in B) = P(X \in A) P(Y \in B) \]
+Ceci étant vrai pour tous boréliens $A$ et $B$, $X$ et $Y$ sont indépendantes.
+\textbf{(i) $\implies$ (ii) :} La preuve se fait par étapes successives (principe de la classe monotone).
+\begin{enumerate}
+    \item \textbf{Fonctions indicatrices :} Si $f = \mathbf{1}_A$ et $g = \mathbf{1}_B$, l'égalité est la définition de l'indépendance, comme vu ci-dessus. C'est donc vrai.
+    \item \textbf{Fonctions étagées positives :} Par linéarité de l'espérance, l'égalité s'étend aux fonctions étagées positives (combinaisons linéaires finies à coefficients positifs de fonctions indicatrices).
+    \item \textbf{Fonctions mesurables positives :} Toute fonction mesurable positive peut être approchée par une suite croissante de fonctions étagées positives. Par le théorème de convergence monotone, l'égalité passe à la limite.
+    \item \textbf{Fonctions intégrables générales :} On décompose $f = f^+ - f^-$ et $g = g^+ - g^-$, où $f^+, f^-, g^+, g^-$ sont des fonctions positives. On applique le résultat précédent à chaque paire et on utilise la linéarité de l'espérance.
+    \begin{align*}
+    E[f(X)g(Y)] &= E[(f^+(X) - f^-(X))(g^+(Y) - g^-(Y))] \\
+    &= E[f^+(X)g^+(Y) - f^+(X)g^-(Y) - f^-(X)g^+(Y) + f^-(X)g^-(Y)] \\
+    &= E[f^+(X)g^+(Y)] - E[f^+(X)g^-(Y)] - E[f^-(X)g^+(Y)] + E[f^-(X)g^-(Y)] \\
+    &= E[f^+(X)]E[g^+(Y)] - E[f^+(X)]E[g^-(Y)] - E[f^-(X)]E[g^+(Y)] + E[f^-(X)]E[g^-(Y)] \\
+    &= (E[f^+(X)] - E[f^-(X)])(E[g^+(Y)] - E[g^-(Y)]) \\
+    &= E[f(X)]E[g(Y)]
+    \end{align*}
+\end{enumerate}
+\end{proof}
+Un corollaire immédiat et fondamental :
+\begin{theorem}[Corollaire]
+Soient $X$ et $Y$ deux v.a. indépendantes telles que $E[|X|] < \infty$ et $E[|Y|] < \infty$. Alors $XY$ est intégrable ($E[|XY|] < \infty$) et on a :
+\[ E[XY] = E[X]E[Y] \]
+\end{theorem}
+\section{Covariance}
+\begin{definition}
+Soient $X$ et $Y$ deux variables aléatoires sur $(\Omega, \mathcal{F}, P)$ qui sont intégrables, et dont le produit $XY$ est également intégrable.
+La covariance de $X$ et $Y$ est définie par :
+\[ \text{cov}(X,Y) = E[(X-E[X])(Y-E[Y])] \]
+\end{definition}
+En développant l'expression, on obtient une formule plus pratique :
+\begin{align*}
+\text{cov}(X,Y) &= E[XY - X E[Y] - Y E[X] + E[X]E[Y]] \\
+&= E[XY] - E[X]E[Y] - E[Y]E[X] + E[X]E[Y] \\
+&= E[XY] - E[X]E[Y]
+\end{align*}
+La covariance est une mesure de la dépendance linéaire entre deux variables.
+\begin{proposition}
+Si $X$ et $Y$ sont indépendantes et intégrables, alors leur covariance est nulle :
+\[ \text{cov}(X,Y) = 0 \]
+\end{proposition}
+\begin{proof}
+Si $X$ et $Y$ sont indépendantes et intégrables, d'après le corollaire précédent, $E[XY] = E[X]E[Y]$. Par conséquent, $\text{cov}(X,Y) = E[XY] - E[X]E[Y] = 0$.
+\end{proof}
+\begin{remark}
+La réciproque est fausse ! Deux variables peuvent avoir une covariance nulle (on dit qu'elles sont non corrélées) sans être indépendantes. La covariance ne capture que les dépendances linéaires.
+\end{remark}

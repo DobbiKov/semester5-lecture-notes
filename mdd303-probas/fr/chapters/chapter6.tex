@@ -1,0 +1,145 @@
+\chapter{Le problème des signes aléatoires}
+\sloppy
+
+
+\section{Le problème}
+Soit $(u_n)_{n \in \mathbb{N}}$ une suite (déterministe) de nombres réels.
+Soit $(\epsilon_n)_{n \in \mathbb{N}}$ une suite infinie i.i.d. de Bernoulli(1/2) telle que:
+\[ \forall n \in \mathbb{N}, \quad \mathbb{P}(\epsilon_n = -1) = \mathbb{P}(\epsilon_n = 1) = 1/2 \]
+La série $\sum \epsilon_n u_n$ converge-t-elle?
+\begin{itemize}
+    \item Si $u_n \not\to 0$, la série ne converge pas.
+    \item Si la série $\sum |u_n|$ est absolument convergente, alors $\sum \epsilon_n u_n$ est p.s. absolument convergente.
+\end{itemize}
+Regardons la série harmonique: $\sum 1/n = +\infty$.
+\[ \sum_{n \ge 1} \frac{(-1)^{n-1}}{n} = 1 - 1/2 + 1/3 - \dots = \ln(2) \]
+\section{Convergence dans $L^2$}
+\begin{proposition}
+La série de v.a. $\sum u_n \epsilon_n$ converge dans $L^2$ si et seulement si la série $\sum |u_n|^2$ converge.
+\end{proposition}
+\begin{proof}
+Posons $S_n = \sum_{k=0}^n \epsilon_k u_k$.
+Alors, la série $\sum \epsilon_n u_n$ converge dans $L^2$ ssi la suite $(S_n)_{n \in \mathbb{N}}$ converge dans $L^2$.
+L'espace $L^2(\Omega, \mathcal{F}, \mathbb{P})$ est complet pour $\| \cdot \|_2$.
+Ainsi, la suite $(S_n)_{n \in \mathbb{N}}$ converge ssi elle vérifie le critère de Cauchy.
+Soit $m<n$, regardons:
+\begin{align*}
+    \|S_n - S_m\|_2^2 &= \int |S_n - S_m|^2 d\mathbb{P} \\
+    &= E[(S_n-S_m)^2] \\
+    &= E\left[\left(\sum_{k=m+1}^n \epsilon_k u_k\right)^2\right] \\
+    &= E\left[\sum_{m<k,l \le n} \epsilon_k \epsilon_l u_k u_l\right] = \sum_{m<k,l \le n} u_k u_l E(\epsilon_k \epsilon_l)
+\end{align*}
+Pour $k \neq l$, $E(\epsilon_k \epsilon_l) = E(\epsilon_k)E(\epsilon_l) = 0$ car les v.a. sont indépendantes et centrées. Pour $k=l$, $E(\epsilon_k^2)=1$.
+Donc,
+\[ \|S_n - S_m\|_2^2 = \sum_{k=m+1}^n u_k^2 = a_n - a_m \quad \text{où } a_n = \sum_{k=0}^n u_k^2 \]
+Ainsi, la suite $(S_n)$ est de Cauchy dans $L^2$ ssi la suite $(a_n)$ est de Cauchy dans $\mathbb{R}$.
+\end{proof}
+\section{La loi du 0-1 de Kolmogorov}
+\begin{definition}
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de v.a. définies sur l'espace $(\Omega, \mathcal{F}, \mathbb{P})$.
+La \textbf{tribu de queue}, ou \textbf{tribu asymptotique}, associée à la suite $(X_n)$ est la tribu:
+\[ \mathcal{T} = \bigcap_{n \ge 0} \sigma(X_n, X_{n+1}, \dots) \]
+Un événement $A \in \mathcal{F}$ est dit \textbf{asymptotique} pour la suite $(X_n)$ s'il est dans la tribu asymptotique.
+\end{definition}
+\begin{example}
+Les événements suivants sont asymptotiques:
+\begin{itemize}
+    \item $\{ \limsup X_n > 100 \}$
+    \item $\{ \liminf X_n \in [0,1] \}$
+    \item $\{ \omega : \lim X_n(\omega) \text{ existe} \}$
+    \item $\{ \omega : \sum \epsilon_n(\omega) u_n \text{ converge} \}$, qui est un événement asymptotique pour la suite $(\epsilon_n)_{n \in \mathbb{N}}$.
+\end{itemize}
+\end{example}
+\begin{theorem}[Loi du 0-1 de Kolmogorov]
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de v.a. indépendantes.
+Soit A un événement asymptotique pour la suite $(X_n)$. Alors $\mathbb{P}(A)$ vaut 0 ou 1.
+\end{theorem}
+\subsection*{Application au problème des signes}
+L'événement $\{\sum \epsilon_n u_n \text{ converge}\}$ est un événement asymptotique pour la suite $(\epsilon_n)$. Comme les $(\epsilon_n)$ sont indépendantes, la probabilité de cet événement est 0 ou 1.
+Soit la série converge p.s., soit elle ne converge pas p.s.
+\section{Un résultat d'approximation}
+La \textbf{différence symétrique} de 2 ensembles A et B est $A \Delta B = (A \cup B) \setminus (A \cap B)$.
+\begin{itemize}
+    \item $A \Delta \emptyset = \emptyset \Delta A = A$
+    \item $A \Delta A = \emptyset$
+    \item $\forall A, B, C, \quad A \Delta (B \Delta C) = (A \Delta B) \Delta C$
+    \item $(\mathcal{P}(\Omega), \Delta)$ est un groupe abélien.
+\end{itemize}
+\begin{proposition}
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de v.a. et soit A un événement dans la tribu $\sigma(X_0, X_1, \dots)$.
+Alors il existe une suite d'événements $(A_n)_{n \in \mathbb{N}}$ telle que:
+\begin{itemize}
+    \item $\forall n \in \mathbb{N}, \exists k(n), \quad A_n \in \sigma(X_0, \dots, X_{k(n)})$
+    \item $\lim_{n \to \infty} \mathbb{P}(A_n \Delta A) = 0$
+\end{itemize}
+\end{proposition}
+\begin{remark}
+$\forall A, B, \quad |\mathbb{P}(A) - \mathbb{P}(B)| \le \mathbb{P}(A \Delta B)$, donc on aura aussi $\lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}(A)$.
+\end{remark}
+\begin{proof}
+Considérons $\mathcal{G}$ la collection des événements pour lesquels le résultat est vrai. On montre que $\mathcal{G}$ est une $\sigma$-algèbre.
+L'algèbre $\mathcal{A} = \bigcup_m \sigma(X_0, \dots, X_m)$ est contenue dans $\mathcal{G}$. En effet, si $A \in \sigma(X_0, \dots, X_m)$, il suffit de prendre $A_n=A$ pour tout $n$.
+On montre ensuite que $\mathcal{G}$ est une tribu.
+\begin{itemize}
+    \item $\Omega \in \mathcal{G}$.
+    \item Si $A \in \mathcal{G}$ et $(A_n)$ est une suite qui approxime $A$, alors la suite $(A_n^c)$ approxime $A^c$:
+    \[ \mathbb{P}(A^c \Delta A_n^c) = \mathbb{P}(A \Delta A_n) \to 0 \]
+    \item Si $(A_m)_{m \ge 1}$ est une suite de $\mathcal{G}$, alors $A = \bigcup_m A_m \in \mathcal{G}$.
+    Comme $A_m \in \mathcal{G}$, il existe $(A_{m,n})_n$ approximante pour $A_m$.
+    $\forall n, \forall m \ge 1, \exists k(m,n), A_{m,n} \in \sigma(X_0, \dots, X_{k(m,n)})$ et $\lim_{n \to \infty} \mathbb{P}(A_m \Delta A_{m,n}) = 0$.
+    Comme $\lim_{M \to \infty} \mathbb{P}(A \setminus \bigcup_{m=1}^M A_m) = 0$, $\forall M \ge 1, \exists \varphi(M)$ t.q. $\mathbb{P}(A \setminus \bigcup_{m=1}^{\varphi(M)} A_m) < 1/M$.
+    Ensuite, $\forall m \in \{1, \dots, \varphi(M)\}$, $\exists N(M,m)$ t.q. $\forall n > N(M,m)$, $\mathbb{P}(A_m \Delta A_{m,n}) \le \frac{1}{\varphi(M)M}$.
+    Prenons alors $N(M) = \max\{N(M,m), 1 \le m \le \varphi(M)\}$ et $A_M' = \bigcup_{m=1}^{\varphi(M)} A_{m, N(M,m)}$.
+    \begin{align*}
+        \mathbb{P}(A \Delta A_M') &\le \mathbb{P}\left(A \Delta \bigcup_{m=1}^{\varphi(M)} A_m\right) + \mathbb{P}\left(\left(\bigcup_{m=1}^{\varphi(M)} A_m\right) \Delta A_M'\right) \\
+        &< \frac{1}{M} + \sum_{m=1}^{\varphi(M)} \mathbb{P}(A_m \Delta A_{m,N(M,m)}) \\
+        &\le \frac{1}{M} + \sum_{m=1}^{\varphi(M)} \frac{1}{\varphi(M)M} = \frac{1}{M} + \frac{1}{M} = \frac{2}{M} \to 0
+    \end{align*}
+\end{itemize}
+Puisque $\mathcal{G}$ est une $\sigma$-algèbre contenant $\mathcal{A}$, $\mathcal{G}$ contient $\sigma(\mathcal{A}) = \sigma(X_0, X_1, \dots)$.
+\end{proof}
+On applique ce résultat pour prouver la loi du 0-1. Soit $(X_n)$ indépendantes, $A \in \mathcal{T} = \bigcap_k \sigma(X_k, X_{k+1}, \dots)$.
+Il existe $(A_n)$ avec $A_n \in \sigma(X_0, \dots, X_{k(n)})$ et $\lim \mathbb{P}(A \Delta A_n) = 0$.
+D'abord, $|\mathbb{P}(A) - \mathbb{P}(A_n)| \le \mathbb{P}(A \Delta A_n) \to 0$, donc $\mathbb{P}(A_n) \to \mathbb{P}(A)$.
+De plus, $A_n \in \sigma(X_0, \dots, X_{k(n)})$ et $A \in \mathcal{T} \subset \sigma(X_{k(n)+1}, X_{k(n)+2}, \dots)$.
+Comme $(X_n)$ sont indépendantes, les deux tribus sont indépendantes. Donc $A$ et $A_n$ aussi.
+\[ \mathbb{P}(A \cap A_n) = \mathbb{P}(A) \mathbb{P}(A_n) \xrightarrow{n \to \infty} \mathbb{P}(A)^2 \]
+Aussi, $|\mathbb{P}(A) - \mathbb{P}(A \cap A_n)| = \mathbb{P}(A \setminus A_n) \le \mathbb{P}(A \Delta A_n) \to 0$, d'où $\lim \mathbb{P}(A \cap A_n) = \mathbb{P}(A)$.
+On conclut que $\mathbb{P}(A) = \mathbb{P}(A)^2$, ce qui implique $\mathbb{P}(A) \in \{0,1\}$.
+\section{Inégalité de Kolmogorov}
+\begin{theorem}
+Soient $X_1, \dots, X_n$ n v.a. indépendantes, centrées ($E(X_i)=0$) et de variances finies.
+Posons $\forall k \in \{1, \dots, n\}, S_k = X_1 + \dots + X_k$.
+Alors $\forall \alpha > 0$,
+\[ \mathbb{P}(\max_{1 \le k \le n} |S_k| \ge \alpha) \le \frac{1}{\alpha^2} \mathrm{Var}(S_n) \]
+\end{theorem}
+\begin{proof}
+Pour $k \in \{1, \dots, n\}$, on introduit l'événement $A_k = \{|S_1| < \alpha, \dots, |S_{k-1}| < \alpha, |S_k| \ge \alpha\}$.
+Les événements $(A_k)$ sont disjoints. Posons $A = \bigcup_{k=1}^n A_k = \{ \max_{1 \le k \le n} |S_k| \ge \alpha \}$.
+\begin{align*}
+    \mathrm{Var}(S_n) = E(S_n^2) &= \int_\Omega S_n^2 d\mathbb{P} \ge \int_A S_n^2 d\mathbb{P} \\
+    &= \sum_{k=1}^n \int_{A_k} S_n^2 d\mathbb{P} \quad \text{car les } A_k \text{ sont disjoints}
+\end{align*}
+De plus, 
+\begin{align*}
+    \int_{A_k} S_n^2 d\mathbb{P} &= \int_{A_k} (S_k + (S_n - S_k))^2 d\mathbb{P} \\
+    &= \int_{A_k} \left( S_k^2 + 2S_k(S_n - S_k) + (S_n - S_k)^2 \right) d\mathbb{P} \\
+    &\ge \int_{A_k} \left( S_k^2 + 2S_k(S_n - S_k) \right) d\mathbb{P}
+\end{align*}
+Le terme $\mathbf{1}_{A_k} S_k$ est $\sigma(X_1, \dots, X_k)$-mesurable. Le terme $S_n - S_k = \sum_{j=k+1}^n X_j$ est $\sigma(X_{k+1}, \dots, X_n)$-mesurable. Par indépendance,
+\[ E[\mathbf{1}_{A_k} S_k (S_n - S_k)] = E[\mathbf{1}_{A_k} S_k] E[S_n - S_k] = E[\mathbf{1}_{A_k} S_k] \cdot 0 = 0 \]
+Donc $\int_{A_k} 2S_k(S_n - S_k) d\mathbb{P} = 0$.
+On a donc $\int_{A_k} S_n^2 d\mathbb{P} \ge \int_{A_k} S_k^2 d\mathbb{P}$.
+Sur $A_k$, on a $|S_k| \ge \alpha$, donc $S_k^2 \ge \alpha^2$.
+\[ \int_{A_k} S_k^2 d\mathbb{P} \ge \int_{A_k} \alpha^2 d\mathbb{P} = \alpha^2 \mathbb{P}(A_k) \]
+En sommant sur $k$:
+\[ \mathrm{Var}(S_n) \ge \sum_{k=1}^n \alpha^2 \mathbb{P}(A_k) = \alpha^2 \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) = \alpha^2 \mathbb{P}(A) \]
+Ce qui donne le résultat.
+\end{proof}
+\section{Convergence de séries de v.a. indépendantes}
+\begin{theorem}
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de v.a. indépendantes, centrées et de variances finies, $\forall n, E(X_n)=0, E(X_n^2) < \infty$.
+Si $\sum E(X_n^2) < \infty$, alors la série $\sum X_n$ converge p.s.
+\end{theorem}
+Une conséquence des résultats précédents est que, pour le problème des signes aléatoires:
+\[ \sum_{n \in \mathbb{N}} u_n^2 < \infty \iff \sum_{n \in \mathbb{N}} \epsilon_n u_n \text{ converge p.s.} \]

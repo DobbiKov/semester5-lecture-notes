@@ -1,0 +1,184 @@
+\chapter{Théorème Central Limite}
+\sloppy
+
+
+\section{Le théorème de Paul Lévy}
+\begin{theorem}[Paul Lévy]
+Soit $(X_n)_{n \in \mathbb{N}}$ une suite de v.a. réelles et soit $X$ une v.a. réelle. Soit $\phi_{X_n}$, $\phi_X$ leurs fonctions caractéristiques. Nous avons équivalence entre:
+\begin{enumerate}
+    \item[i)] $X_n \xrightarrow{\mathcal{L}} X$
+    \item[ii)] $\forall u \in \mathbb{R}, \lim_{n \to \infty} \phi_{X_n}(u) = \phi_X(u)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Sens facile : i) $\implies$ ii) \\
+On a $\phi_{X_n}(u) = \mathbb{E}[e^{iuX_n}] = \mathbb{E}[\cos(uX_n)] + i\mathbb{E}[\sin(uX_n)]$.
+Les fonctions $x \mapsto \cos(ux)$ et $x \mapsto \sin(ux)$ (u étant fixé) sont continues et bornées. Par définition de la convergence en loi,
+\begin{align*}
+    \mathbb{E}[\cos(uX_n)] &\xrightarrow[n \to \infty]{} \mathbb{E}[\cos(uX)] \\
+    \mathbb{E}[\sin(uX_n)] &\xrightarrow[n \to \infty]{} \mathbb{E}[\sin(uX)]
+\end{align*}
+et donc $\phi_{X_n}(u) \xrightarrow[n \to \infty]{} \phi_X(u)$.
+\vspace{1cm}
+Sens réciproque : ii) $\implies$ i) \\
+Nous utilisons la même stratégie que pour prouver l'injectivité de la transformée de Fourier des mesures de probabilités. Nous supposons que $X, X_n$ pour $n \in \mathbb{N}$ sont toutes définies sur un même espace de probas $(\Omega, \mathcal{F}, P)$, sur lequel est aussi définie une v.a. $Y$ indépendante de $X, X_n$ pour $n \in \mathbb{N}$, et de la loi $\mathcal{N}(0,1)$.
+Soit $f: \mathbb{R} \to \mathbb{R}$ une fonction continue à support compact. Nous supposons ii) vrai, et nous voulons montrer que $X_n \xrightarrow{\mathcal{L}} X$. Soit $\sigma > 0$ et écrivons :
+\begin{align*}
+    \mathbb{E}[f(X_n)] - \mathbb{E}[f(X)] &= \mathbb{E}[f(X_n) - f(X_n + \sigma Y)] + \mathbb{E}[f(X_n + \sigma Y)] - \mathbb{E}[f(X + \sigma Y)] \\
+    &+ \mathbb{E}[f(X + \sigma Y) - f(X)]
+\end{align*}
+Comme $f$ est continue à support compact, elle est uniformément continue.
+\[
+\forall \varepsilon > 0, \exists \delta > 0, \forall x,y \in \mathbb{R}, |x-y| < \delta \implies |f(x) - f(y)| < \varepsilon
+\]
+Soit $\varepsilon > 0$ fixé. Soit $\delta$ associé à $\varepsilon$ comme ci-dessus. Écrivons :
+\begin{align*}
+    |\mathbb{E}[f(X_n) - f(X_n + \sigma Y)]| &\leq \mathbb{E}[|f(X_n) - f(X_n + \sigma Y)|] \\
+    &= \int_{|\sigma Y| \leq \delta} |f(X_n) - f(X_n + \sigma Y)| dP + \int_{|\sigma Y| > \delta} |f(X_n) - f(X_n + \sigma Y)| dP
+\end{align*}
+\begin{align*}
+    \int_{|\sigma Y| \leq \delta} |f(X_n) - f(X_n + \sigma Y)| dP &< \varepsilon \\
+    \int_{|\sigma Y| > \delta} |f(X_n) - f(X_n + \sigma Y)| dP &\leq \int_{|\sigma Y| > \delta} 2\|f\|_{\infty} dP = 2\|f\|_{\infty} \mathbb{P}(|\sigma Y| > \delta)
+\end{align*}
+On a $\lim_{\sigma \to 0} \mathbb{P}(|\sigma Y| > \delta) = \lim_{\sigma \to 0} \mathbb{P}(|Y| > \delta/\sigma) = 0$. Donc $\exists \sigma_0$ tel que pour $\sigma < \sigma_0$, $2\|f\|_{\infty} \mathbb{P}(|\sigma Y| > \delta) < \varepsilon$.
+On a donc $|\mathbb{E}[f(X_n) - f(X_n + \sigma Y)]| < 2\varepsilon$.
+Par le même argument, on a $|\mathbb{E}[f(X + \sigma Y) - f(X)]| < 2\varepsilon$.
+Reste le terme du milieu.
+\[
+\forall n \in \mathbb{N}, \quad |\mathbb{E}[f(X_n)] - \mathbb{E}[f(X)]| \leq 2\varepsilon + |\mathbb{E}[f(X_n + \sigma Y) - f(X + \sigma Y)]| + 2\varepsilon
+\]
+Nous utilisons la formule du cours précédent (via la convolution avec une Gaussienne) :
+\[
+\mathbb{E}[f(X_n + \sigma Y)] = \iint f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X_n}(-u) du dz
+\]
+\[
+\mathbb{E}[f(X + \sigma Y)] = \iint f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X}(-u) du dz
+\]
+où $g_{1/\sigma}$ est la densité de $\mathcal{N}(0, 1/\sigma^2)$.
+Posons $F_n(u,z) = f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X_n}(-u)$. On a :
+\[
+|F_n(u,z)| \leq |f(z)| \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u)
+\]
+Cette majoration ne dépend pas de $n$ et est dans $L^1(d\lambda(u), d\lambda(z)) = L^1(\mathbb{R}^2, \lambda^{\otimes 2})$.
+Par le théorème de convergence dominée (TCD), comme $\phi_{X_n}(u) \to \phi_X(u)$, on a :
+\[
+\exists N, \forall n \geq N, \quad |\mathbb{E}[f(X_n + \sigma Y)] - \mathbb{E}[f(X + \sigma Y)]| < \varepsilon
+\]
+Alors, pour $n \geq N$,
+\[
+|\mathbb{E}[f(X_n)] - \mathbb{E}[f(X)]| < 2\varepsilon + \varepsilon + 2\varepsilon = 5\varepsilon
+\]
+Ceci étant vrai pour tout $\varepsilon > 0$, on a $\mathbb{E}[f(X_n)] \to \mathbb{E}[f(X)]$ pour toute fonction $f$ continue à support compact, ce qui est la définition de la convergence en loi.
+\end{proof}
+\section{Moments}
+\begin{proposition}
+Soit $X$ une v.a. réelle. Soit $k \geq 1$. Supposons que $\mathbb{E}[|X|^k] < \infty$.
+Alors $\phi_X$ est $k$ fois dérivable, et de plus
+\[ \phi_X^{(k)}(0) = i^k \mathbb{E}[X^k] \]
+\end{proposition}
+\begin{proof}
+Faisons la preuve pour $k=1$. On a $\mathbb{E}[|X|] < \infty$.
+La fonction caractéristique est $\phi_X(u) = \int_{\mathbb{R}} e^{iux} dP_X(x)$.
+Il s'agit d'une intégrale à paramètre, et on veut dériver par rapport à $u$.
+Posons $F(x,u) = e^{iux}$. On a $\frac{\partial F}{\partial u}(x,u) = ix e^{iux}$.
+On a $\left|\frac{\partial F}{\partial u}(x,u)\right| = |ix e^{iux}| = |x|$.
+La fonction majorante $|x|$ est $P_X$-intégrable car $\mathbb{E}[|X|] < \infty$, et elle ne dépend pas de $u$.
+Par le théorème de dérivation sous le signe intégral, $\phi_X$ est dérivable et
+\[ \phi'_X(u) = \int_{\mathbb{R}} \frac{\partial F}{\partial u}(x,u) dP_X(x) = \int_{\mathbb{R}} ix e^{iux} dP_X(x) \]
+D'où $\phi'_X(0) = \int_{\mathbb{R}} ix dP_X(x) = i \mathbb{E}[X]$.
+Le résultat pour $k > 1$ s'obtient par récurrence.
+\end{proof}
+Ce résultat permet de trouver facilement la suite des moments.
+\subsection*{Exemples}
+\begin{example}[Loi uniforme]
+Soit $X \sim \mathcal{U}([-1,1])$. La densité est $f(x) = \frac{1}{2} \mathbf{1}_{[-1,1]}(x)$.
+\begin{align*}
+    \phi_X(u) = \int_{-1}^1 e^{iux} \frac{1}{2} dx = \frac{1}{2} \left[ \frac{e^{iux}}{iu} \right]_{-1}^1 = \frac{e^{iu} - e^{-iu}}{2iu} = \frac{\sin(u)}{u}
+\end{align*}
+On connaît le développement en série de $\sin(u) = \sum_{n=0}^\infty (-1)^n \frac{u^{2n+1}}{(2n+1)!}$.
+D'où $\phi_X(u) = \frac{\sin(u)}{u} = \sum_{n=0}^\infty (-1)^n \frac{u^{2n}}{(2n+1)!}$.
+La dérivée d'ordre $2n$ en $0$ est $(2n)!$ fois le coefficient de $u^{2n}$:
+\[ \phi_X^{(2n)}(0) = (2n)! \frac{(-1)^n}{(2n+1)!} \]
+D'où, $\mathbb{E}[X^{2n}] = \frac{\phi_X^{(2n)}(0)}{i^{2n}} = \frac{1}{(-1)^n} (2n)! \frac{(-1)^n}{(2n+1)!} = \frac{1}{2n+1}$.
+Plus facile: $\mathbb{E}[X^{2n}] = \int_{-1}^1 x^{2n} \frac{1}{2} dx = \frac{1}{2} \left[ \frac{x^{2n+1}}{2n+1} \right]_{-1}^1 = \frac{1}{2n+1}$.
+\end{example}
+\begin{example}[Loi Gaussienne]
+Soit $X \sim \mathcal{N}(0,1)$. On sait que $\phi_X(u) = e^{-u^2/2}$.
+Le développement en série est :
+\[ \phi_X(u) = e^{-u^2/2} = \sum_{n=0}^\infty \frac{1}{n!} \left( -\frac{u^2}{2} \right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{n! 2^n} u^{2n} \]
+On en déduit que $\phi_X^{(2n)}(0) = (2n)! \frac{(-1)^n}{n! 2^n}$.
+D'où $\mathbb{E}[X^{2n}] = \frac{\phi_X^{(2n)}(0)}{i^{2n}} = \frac{1}{(-1)^n} \frac{(2n)! (-1)^n}{n! 2^n} = \frac{(2n)!}{n! 2^n}$.
+\end{example}
+\section{Convolution}
+\begin{lemma}
+Soient $X, Y$ deux v.a. indépendantes. Alors $\forall u \in \mathbb{R}$,
+\[ \phi_{X+Y}(u) = \phi_X(u) \phi_Y(u) \]
+\end{lemma}
+\begin{proof}
+$\phi_{X+Y}(u) = \mathbb{E}[e^{iu(X+Y)}] = \mathbb{E}[e^{iuX} e^{iuY}]$. Par indépendance de $X$ et $Y$, les v.a. $e^{iuX}$ et $e^{iuY}$ sont aussi indépendantes. Donc,
+\[ \mathbb{E}[e^{iuX} e^{iuY}] = \mathbb{E}[e^{iuX}] \mathbb{E}[e^{iuY}] = \phi_X(u) \phi_Y(u) \]
+\end{proof}
+\begin{corollary}
+Si $X_1, \dots, X_n$ sont $n$ v.a. indépendantes, alors $\phi_{X_1+\dots+X_n}(u) = \prod_{i=1}^n \phi_{X_i}(u)$.
+Si de plus elles sont identiquement distribuées, $\phi_{X_1+\dots+X_n}(u) = (\phi_{X_1}(u))^n$.
+\end{corollary}
+Supposons que $X$ a une loi de densité $f$ et $Y$ une loi de densité $g$, et $X,Y$ indépendantes.
+\[ \phi_{X+Y}(u) = \iint_{\mathbb{R}^2} e^{iu(x+y)} f(x)g(y) dx dy \]
+On pose $z=x+y$. On garde $x$ et on remplace $y=z-x$.
+\begin{align*}
+    \phi_{X+Y}(u) &= \iint e^{iuz} f(x)g(z-x) dx dz \quad \text{(Fubini)} \\
+    &= \int e^{iuz} \left( \int f(x)g(z-x) dx \right) dz = \int e^{iuz} h(z) dz
+\end{align*}
+où $h(z) = \int f(x)g(z-x) dx = (f*g)(z)$ est le produit de convolution de $f$ et $g$.
+Par identification de ces deux formules, on voit que $X+Y$ a une loi de densité $f*g$.
+Dès que $f$ et $g$ sont dans $L^1$, le produit de convolution $f*g$ est bien défini et aussi dans $L^1$.
+\section{Théorème Central Limite}
+\begin{theorem}[Théorème Central Limite]
+Soit $(X_n)_{n \geq 1}$ une suite de v.a. i.i.d. (indépendantes et identiquement distribuées) qui admet un moment d'ordre 2. Posons $m = \mathbb{E}[X_i]$ et $\sigma^2 = \text{Var}[X_i]$. Alors,
+\[ \frac{X_1 + \dots + X_n - nm}{\sqrt{n}} \xrightarrow[n \to \infty]{\mathcal{L}} \mathcal{N}(0, \sigma^2) \]
+\end{theorem}
+\textbf{Attention :} Il faut absolument centrer les v.a. en soustrayant $\mathbb{E}[X_1+\dots+X_n] = nm$. \\
+Par contre, on peut normaliser pour obtenir une variance de 1 :
+\[ \frac{X_1 + \dots + X_n - nm}{\sqrt{n}\sigma} \xrightarrow[n \to \infty]{\mathcal{L}} \mathcal{N}(0, 1) \]
+\subsection*{Histoire}
+Il s'agit d'un résultat universel. Dès que les v.a. $(X_n)$ ont un moment d'ordre 2, les fluctuations de $X_1, \dots, X_n$ autour de sa moyenne sont décrites par la loi gaussienne. Le TLC (ou TCL) est un raffinement de la loi des grands nombres, sous l'hypothèse d'existence d'un moment d'ordre 2.
+\begin{itemize}
+    \item \textbf{Abraham de Moivre (1733)} : \textit{The doctrine of chances}.
+    \item \textbf{Pierre Simon de Laplace (1812)} : \textit{Traité de Mécanique céleste} et \textit{Théorie analytique des probabilités} (CLT pour la loi binomiale, théorème de Moivre-Laplace).
+    \item \textbf{Lindeberg}, \textbf{Turing (1934)}.
+\end{itemize}
+\begin{proof}[Preuve du TCL]
+On pose $Y_n = \frac{X_1 + \dots + X_n - nm}{\sqrt{n}}$ et $\tilde{X}_k = X_k - m$ pour $1 \leq k \leq n$.
+On a $\mathbb{E}[\tilde{X}_k] = 0$ et $\mathbb{E}[\tilde{X}_k^2] = \sigma^2$.
+On peut réécrire $Y_n = \frac{1}{\sqrt{n}} \sum_{k=1}^n \tilde{X}_k$.
+Étudions la convergence en loi de $Y_n$ à l'aide des fonctions caractéristiques. Les $\tilde{X}_k$ sont i.i.d.
+\begin{align*}
+    \phi_{Y_n}(u) = \mathbb{E}\left[ e^{iu Y_n} \right] = \mathbb{E}\left[ e^{i \frac{u}{\sqrt{n}} \sum_{k=1}^n \tilde{X}_k} \right] &= \mathbb{E}\left[ \prod_{k=1}^n e^{i \frac{u}{\sqrt{n}} \tilde{X}_k} \right] \\
+    &= \prod_{k=1}^n \mathbb{E}\left[ e^{i \frac{u}{\sqrt{n}} \tilde{X}_k} \right] \quad \text{(par indépendance)} \\
+    &= \left( \phi_{\tilde{X}_1}\left(\frac{u}{\sqrt{n}}\right) \right)^n \quad \text{(car i.i.d.)}
+\end{align*}
+Comme $\mathbb{E}[\tilde{X}_1^2] < \infty$, $\phi_{\tilde{X}_1}$ est deux fois dérivable. Elle admet donc un développement limité à l'ordre 2 en 0 :
+\[ \phi_{\tilde{X}_1}(v) = \phi_{\tilde{X}_1}(0) + v \phi'_{\tilde{X}_1}(0) + \frac{v^2}{2} \phi''_{\tilde{X}_1}(0) + o(v^2) \]
+Calculons les coefficients:
+\begin{itemize}
+    \item $\phi_{\tilde{X}_1}(0) = \mathbb{E}[e^0] = 1$
+    \item $\phi'_{\tilde{X}_1}(0) = i \mathbb{E}[\tilde{X}_1] = i \cdot 0 = 0$
+    \item $\phi''_{\tilde{X}_1}(0) = i^2 \mathbb{E}[\tilde{X}_1^2] = - \sigma^2$
+\end{itemize}
+Donc, $\phi_{\tilde{X}_1}(v) = 1 - \frac{\sigma^2 v^2}{2} + o(v^2)$.
+Appliquons ce développement avec $v = u/\sqrt{n}$:
+\[ \phi_{\tilde{X}_1}\left(\frac{u}{\sqrt{n}}\right) = 1 - \frac{\sigma^2}{2} \left(\frac{u}{\sqrt{n}}\right)^2 + o\left(\left(\frac{u}{\sqrt{n}}\right)^2\right) = 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \]
+Maintenant, on élève à la puissance $n$:
+\[ \phi_{Y_n}(u) = \left( 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right)^n \]
+Pour trouver la limite, on utilise le logarithme (complexe). On sait que pour $z \to 0$, $\ln(1+z) = z + O(z^2)$.
+\begin{align*}
+    \ln(\phi_{Y_n}(u)) &= n \ln\left( 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right) \\
+    &= n \left( -\frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right) \\
+    &= -\frac{\sigma^2 u^2}{2} + n \cdot o\left(\frac{1}{n}\right) = -\frac{\sigma^2 u^2}{2} + o(1)
+\end{align*}
+Ainsi, $\lim_{n \to \infty} \ln(\phi_{Y_n}(u)) = -\frac{\sigma^2 u^2}{2}$.
+Par continuité de l'exponentielle,
+\[ \lim_{n \to \infty} \phi_{Y_n}(u) = e^{-\frac{\sigma^2 u^2}{2}} \]
+On reconnaît la fonction caractéristique de la loi $\mathcal{N}(0, \sigma^2)$.
+On conclut par le théorème de Paul Lévy que $Y_n \xrightarrow{\mathcal{L}} \mathcal{N}(0, \sigma^2)$.
+\end{proof}

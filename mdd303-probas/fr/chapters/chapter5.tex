@@ -1,0 +1,213 @@
+\chapter{Transience et récurrence des marches}
+\sloppy
+
+
+Soit $d \ge 1$ et $(X_n)_{n \ge 1}$ une suite de v.a. définies sur $(\Omega, \mathcal{F}, P)$ à valeurs dans $\mathbb{Z}^d$. La marche aléatoire associée est la suite $(S_n)_{n \ge 0}$ définie par $S_0=0, \quad \forall n \ge 1 \quad S_n=X_1+\dots+X_n$.
+La marche aléatoire $(S_n)_{n \ge 0}$ est dite récurrente si elle repasse par 0 une infinité de fois avec probabilité 1, et transiente sinon.
+\section{Premier critère de récurrence}
+\begin{proposition}
+Si la marche revient en 0 avec probabilité 1, alors elle repasse par 0 une infinité de fois avec probabilité 1.
+\end{proposition}
+\begin{proof}
+Soit $R$ l'instant de la dernière visite de 0, i.e. $R = \sup\{n > 0; S_n = 0\}$.
+Supposons que $P(\exists n \ge 1, S_n=0) = 1$ et regardons, pour $k \ge 1$
+\begin{align*}
+    P(R=k) &= P(S_k=0, \forall n>k, S_n-S_k \neq 0) \\
+    &= P(X_1+\dots+X_k = 0, \forall n>k, X_{k+1}+\dots+X_n \neq 0)
+\end{align*}
+Or l'événement $\{\forall n>k, X_{k+1}+\dots+X_n \neq 0\}$ est dans $\sigma(X_i, i \ge k+1)$.
+Par le théorème de regroupement par blocs, cet événement est indépendant de $\{X_1+\dots+X_k=0\}$.
+D'où $P(R=k) = P(S_k=0) P(\forall n>k, S_n-S_k \neq 0)$.
+De plus, la suite $(X_{k+1}, X_{k+2}, \dots)$ a la même loi que $(X_1, X_2, \dots)$.
+Donc $P(\forall n>k, S_n-S_k \neq 0) = P(\forall n \ge 1, S_n \neq 0)$.
+Sachant que $P(S_k=0) \le 1$, on a:
+\begin{align*}
+    P(R=k) &\le P(\forall n \ge 1, S_n \neq 0) \\
+    &\le 1 - P(\exists n \ge 1, S_n = 0) = 1-1=0
+\end{align*}
+Ainsi, $P(R=k)=0$ for all $k \in \mathbb{N}^*$.
+Or, la probabilité que la marche visite 0 un nombre fini de fois est:
+\begin{equation*}
+    P(R < +\infty) = P(\bigcup_{k \in \mathbb{N}^*} \{R=k\}) \le \sum_{k \in \mathbb{N}^*} P(R=k) = 0
+\end{equation*}
+Cela signifie que la probabilité que la marche ne revienne qu'un nombre fini de fois est nulle. Elle revient donc une infinité de fois avec probabilité 1.
+\end{proof}
+\begin{theorem}[Équivalence]
+Nous avons équivalence entre:
+\begin{enumerate}
+    \item $P(\exists n \ge 1, S_n=0) = 1$ (la marche repasse par 0).
+    \item $P(S_n \text{ visite 0 une infinité de fois}) = 1$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+Souvent, il est plus facile de montrer qu'un événement arrive une infinité de fois avec probabilité 1 plutôt que de montrer qu'il arrive une fois avec probabilité 1.
+\end{remark}
+\section{Le lemme de Borel-Cantelli}
+Soit $(\Omega, \mathcal{F}, P)$ un espace de probabilité. Soit $(A_n)_{n \in \mathbb{N}}$ une suite d'événements de $\mathcal{F}$.
+Nous définissons la limite inférieure et la limite supérieure de cette suite d'événements.
+\begin{definition}
+\begin{itemize}
+    \item $\liminf A_n = \bigcup_{n \ge 0} \bigcap_{m \ge n} A_m = \{ \omega \in \Omega : \omega \text{ appartient à tous les } A_n \text{ sauf un nombre fini} \}$.
+    \item $\limsup A_n = \bigcap_{n \ge 0} \bigcup_{m \ge n} A_m = \{ \omega \in \Omega : \omega \text{ appartient à une infinité d'} A_n \}$.
+\end{itemize}
+Par ailleurs, l'événement $\limsup A_n$ est souvent noté $\{A_n \text{ arrive infiniment souvent}\}$ ou, en abrégé, $\{A_n \text{ i.s.}\}$ (infiniment souvent).
+\end{definition}
+\begin{example}
+\begin{itemize}
+    \item Soit $(X_n)$ une suite de v.a. réelles et $B \in \mathcal{B}(\mathbb{R})$. Alors $\limsup \{X_n \in B\} = \{X_n \in B \text{ i.s.}\}$.
+    \item Pour la marche aléatoire, $\limsup \{S_n=0\} = \{S_n=0 \text{ i.s.}\}$.
+\end{itemize}
+\end{example}
+\begin{lemma}[Lemme de Borel-Cantelli]
+Soit $(A_n)_{n \in \mathbb{N}}$ une suite d'événements.
+\begin{itemize}
+    \item \textbf{Partie I:} Si la série $\sum_n P(A_n)$ converge, alors $P(A_n \text{ i.s.}) = 0$.
+    \item \textbf{Partie II:} Si la série $\sum_n P(A_n)$ diverge et si les événements $(A_n)$ sont indépendants, alors $P(A_n \text{ i.s.}) = 1$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+\textbf{I)} Supposons que la série $\sum P(A_n)$ converge. Alors
+\begin{equation*}
+    P(A_n \text{ arrive infiniment souvent}) = P(\bigcap_{n \ge 0} \bigcup_{m \ge n} A_m)
+\end{equation*}
+La séquence d'événements $B_n = \bigcup_{m \ge n} A_m$ est décroissante.
+Par le théorème de convergence monotone:
+\begin{equation*}
+    P(\bigcap_{n \ge 0} B_n) = \lim_{n \to \infty} P(B_n) = \lim_{n \to \infty} P(\bigcup_{m \ge n} A_m)
+\end{equation*}
+Par la $\sigma$-additivité:
+\begin{equation*}
+    P(\bigcup_{m \ge n} A_m) \le \sum_{m \ge n} P(A_m)
+\end{equation*}
+Or la série $\sum P(A_n)$ converge, donc le reste de la série tend vers 0:
+\begin{equation*}
+    \lim_{n \to \infty} \sum_{m \ge n} P(A_m) = 0
+\end{equation*}
+Donc, $P(A_n \text{ i.s.}) = 0$.
+\vspace{1cm}
+\textbf{II)} Supposons que $\sum P(A_n) = +\infty$ et que les $(A_n)$ sont indépendants.
+Nous voulons montrer que $P(A_n \text{ i.s.}) = P(\bigcap_{n} \bigcup_{m \ge n} A_m) = 1$.
+Regardons le complémentaire:
+\begin{equation*}
+    P(\{A_n \text{ i.s.}\}^c) = P(\bigcup_{n} \bigcap_{m \ge n} A_m^c)
+\end{equation*}
+Soit $n$ fixé, regardons $P(\bigcap_{m \ge n} A_m^c)$.
+Pour tout $N > n$:
+\begin{equation*}
+    P(\bigcap_{m=n}^N A_m^c) = \prod_{m=n}^N P(A_m^c) \quad \text{par indépendance}
+\end{equation*}
+\begin{equation*}
+    = \prod_{m=n}^N (1 - P(A_m))
+\end{equation*}
+En utilisant le fait que $1-x \le e^{-x}$, on a
+\begin{equation*}
+    \prod_{m=n}^N (1 - P(A_m)) \le \prod_{m=n}^N e^{-P(A_m)} = \exp\left(-\sum_{m=n}^N P(A_m)\right)
+\end{equation*}
+Comme la série $\sum P(A_n)$ diverge, $\sum_{m=n}^N P(A_m) \to \infty$ quand $N \to \infty$.
+Donc, $\exp(-\sum_{m=n}^N P(A_m)) \to 0$ quand $N \to \infty$.
+Ainsi, pour tout $n$, $P(\bigcap_{m \ge n} A_m^c) = 0$.
+Par $\sigma$-additivité,
+\begin{equation*}
+    P(\{A_n \text{ i.s.}\}^c) = P(\bigcup_{n} \bigcap_{m \ge n} A_m^c) \le \sum_n P(\bigcap_{m \ge n} A_m^c) = \sum_n 0 = 0.
+\end{equation*}
+D'où $P(A_n \text{ i.s.}) = 1$.
+\end{proof}
+\subsection{Application: Le singe et Shakespeare}
+Mettons un singe à taper à la machine à écrire. Quelle est la probabilité qu'il tape les œuvres complètes de Shakespeare?
+Soit $(X_n)_{n \ge 1}$ une suite i.i.d. de Bernoulli(p), $0 < p < 1$.
+$\forall n \ge 1$, $P(X_n=1)=p$, $P(X_n=0)=1-p$.
+Soit $k \ge 1$ et $(\epsilon_1, \dots, \epsilon_k)$ une suite de 0 et de 1 fixée.
+Regardons l'événement $A_n = \{X_n=\epsilon_1, X_{n+1}=\epsilon_2, \dots, X_{n+k-1}=\epsilon_k\}$.
+La probabilité de cet événement est $P(A_n) = p^{\sum \epsilon_i} (1-p)^{k-\sum \epsilon_i}$, qui ne dépend pas de $n$.
+Donc la série $\sum P(A_n) = +\infty$.
+Cependant, les $(A_n)$ ne sont pas indépendants, on ne peut pas appliquer la partie II de Borel-Cantelli directement.
+Considérons les événements $B_n=A_{nk}$, pour $n \ge 1$. Par le théorème de regroupement par blocs, les $(B_n)$ sont indépendants.
+Et $\sum P(B_n)=+\infty$. Par BC II, $P(B_n \text{ i.s.}) = 1$, ce qui implique que l'événement se produit une infinité de fois.
+\section{Un second critère de récurrence}
+Revenons à notre marche aléatoire $S_0=0$, $S_n=X_1+\dots+X_n$.
+Soit $T$ l'instant du premier retour en 0: $T=\min\{n \ge 1, S_n=0\}$, avec la convention $\inf \emptyset = +\infty$.
+Posons, pour $n \ge 1$, $u_n = P(S_n=0)$ et $f_n = P(T=n)$. On pose $u_0=1$ et $f_0=0$.
+Pour $n \ge 1$, on peut décomposer l'événement $\{S_n=0\}$ selon la valeur du premier temps de retour $T$:
+\begin{align*}
+    u_n = P(S_n=0) &= P(\{S_n=0\} \cap \bigcup_{k=1}^n \{T=k\}) = \sum_{k=1}^n P(S_n=0, T=k) \\
+    &= \sum_{k=1}^n P(S_1 \neq 0, \dots, S_{k-1} \neq 0, S_k=0, S_n=0)
+\end{align*}
+Par indépendance des accroissements, l'événement $\{S_n-S_k=0\}$ est indépendant de $\{T=k\}$.
+\begin{align*}
+    u_n &= \sum_{k=1}^n P(S_1 \neq 0, \dots, S_{k-1} \neq 0, S_k=0) P(S_n-S_k=0) \\
+    &= \sum_{k=1}^n P(T=k) P(S_{n-k}=0) \\
+    u_n &= \sum_{k=1}^n f_k u_{n-k} \quad \forall n \ge 1
+\end{align*}
+Aux suites $(u_n)$ et $(f_n)$, nous associons leurs séries génératrices, définies pour $s \in [0,1)$:
+\begin{align*}
+    U(s) &= \sum_{n \ge 0} u_n s^n \\
+    F(s) &= \sum_{n \ge 0} f_n s^n = E(s^T)
+\end{align*}
+La relation de récurrence $u_n = \sum_{k=1}^n f_k u_{n-k}$ est une convolution. Pour $n \ge 1$:
+\begin{equation*}
+    u_n s^n = \sum_{k=1}^n f_k u_{n-k} s^n = \sum_{k=1}^n (f_k s^k)(u_{n-k}s^{n-k})
+\end{equation*}
+En sommant sur $n \ge 1$:
+\begin{align*}
+    \sum_{n \ge 1} u_n s^n &= \sum_{n \ge 1} \sum_{k=1}^n (f_k s^k)(u_{n-k}s^{n-k}) \\
+    U(s) - u_0 &= \left(\sum_{k \ge 1} f_k s^k\right) \left(\sum_{j \ge 0} u_j s^j\right) \\
+    U(s) - 1 &= F(s) U(s)
+\end{align*}
+On obtient donc la relation $U(s)(1 - F(s)) = 1$ pour $s \in [0,1)$.
+En faisant tendre $s \to 1^-$, les séries étant à termes positifs, on a par le théorème de convergence monotone:
+\begin{align*}
+    \lim_{s \to 1^-} U(s) &= \sum_{n \ge 0} u_n = \sum_{n \ge 0} P(S_n=0) \\
+    \lim_{s \to 1^-} F(s) &= \sum_{n \ge 0} f_n = \sum_{n \ge 0} P(T=n) = P(T < +\infty) = P(\exists n \ge 1, S_n=0)
+\end{align*}
+Ainsi, on obtient la relation:
+\begin{equation*}
+    \left(\sum_{n \ge 0} P(S_n=0)\right) \left(1 - P(\exists n \ge 1, S_n=0)\right) = 1
+\end{equation*}
+Cette égalité implique que les deux termes sont finis ou infinis en même temps. En particulier, $\sum P(S_n=0) = +\infty$ si et seulement si $1 - P(\exists n \ge 1, S_n=0) = 0$, c'est-à-dire $P(\exists n \ge 1, S_n=0) = 1$.
+Ceci nous mène au théorème d'équivalence suivant:
+\begin{theorem}[Critères de récurrence]
+Les affirmations suivantes sont équivalentes:
+\begin{enumerate}
+    \item $P(\exists n \ge 1, S_n=0) = 1$ (la marche est récurrente au sens du premier retour).
+    \item $P(S_n=0 \text{ i.s.}) = 1$ (la marche est récurrente).
+    \item $\sum_{n=0}^{\infty} P(S_n=0) = +\infty$.
+\end{enumerate}
+\end{theorem}
+\section{Application aux marches sur $\mathbb{Z}^d$}
+\subsection{La marche sur $\mathbb{Z}$}
+Soit $0<p<1$ et $(X_n)$ i.i.d. de loi $\text{Ber}(p)$ sur $\{-1, 1\}$, i.e. $P(X_n=1)=p$ et $P(X_n=-1)=1-p$.
+Pour que $S_{2n}=0$, il faut autant de pas $+1$ que de pas $-1$, soit $n$ de chaque. $P(S_{2k+1}=0)=0$.
+\begin{equation*}
+    P(S_{2n}=0) = \binom{2n}{n} p^n (1-p)^n
+\end{equation*}
+En utilisant l'approximation de Stirling $k! \sim \sqrt{2\pi k} (\frac{k}{e})^k$, on obtient:
+\begin{equation*}
+    \binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}
+\end{equation*}
+D'où,
+\begin{equation*}
+    P(S_{2n}=0) \sim \frac{(4p(1-p))^n}{\sqrt{\pi n}}
+\end{equation*}
+La série $\sum_n P(S_{2n}=0)$ se comporte comme une série géométrique.
+\begin{itemize}
+    \item Si $p=1/2$, $4p(1-p)=1$ et $P(S_{2n}=0) \sim \frac{1}{\sqrt{\pi n}}$. La série $\sum \frac{1}{\sqrt{n}}$ diverge, donc la marche symétrique sur $\mathbb{Z}$ est \textbf{récurrente}.
+    \item Si $p \neq 1/2$, $4p(1-p)<1$. La série $\sum \frac{(4p(1-p))^n}{\sqrt{\pi n}}$ converge, donc la marche sur $\mathbb{Z}$ est \textbf{transiente}.
+\end{itemize}
+\subsection{La marche symétrique sur $\mathbb{Z}^2$}
+Soit $(X_n)$ une suite de v.a. i.i.d. à valeurs dans $\{(1,0), (-1,0), (0,1), (0,-1)\}$, avec probabilité $1/4$ pour chaque.
+On peut montrer que:
+\begin{equation*}
+    P(S_{2n}=0) \sim \frac{1}{\pi n}
+\end{equation*}
+La série $\sum \frac{1}{n}$ (série harmonique) diverge. La marche symétrique sur $\mathbb{Z}^2$ est \textbf{récurrente}.
+\subsection{La marche symétrique sur $\mathbb{Z}^d, d \ge 3$}
+Pour la marche symétrique sur $\mathbb{Z}^3$, on a:
+\begin{equation*}
+    P(S_{2n}=0) = O(n^{-3/2})
+\end{equation*}
+La série $\sum n^{-3/2}$ converge (série de Riemann avec $p=3/2 > 1$). La marche symétrique sur $\mathbb{Z}^3$ est \textbf{transiente}.
+En dimension $d>3$, la marche symétrique dans $\mathbb{Z}^d$ est transiente, et le nombre moyen de retours en 0 est:
+\begin{equation*}
+    U_d = \frac{1}{(2\pi)^d} \int_{[-\pi,\pi]^d} \frac{1}{1-\frac{1}{d}\sum_{k=1}^d \cos u_k} d u_1 \dots d u_d
+\end{equation*}
+Cet intégrale est finie pour $d \ge 3$.

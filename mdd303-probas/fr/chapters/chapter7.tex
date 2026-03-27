@@ -1,0 +1,167 @@
+\chapter{Les lois des grands nombres}
+\sloppy
+
+
+\section{Inégalités fondamentales}
+\subsection{Inégalité de Markov}
+\begin{proposition}
+Soit $X$ une v.a. positive. Alors $\forall \lambda > 0$,
+\[
+P(X \ge \lambda) \le \frac{1}{\lambda} E[X].
+\]
+\end{proposition}
+\begin{remark}
+Comme $X \ge 0$, $E[X]$ est toujours défini, éventuellement $E[X] = +\infty$.
+\end{remark}
+\begin{proof}
+On a
+\begin{align*}
+E[X] = \int_{\Omega} X dP &= \int_{\{X \ge \lambda\}} X dP + \int_{\{X < \lambda\}} X dP \\
+&\ge \int_{\{X \ge \lambda\}} X dP \quad (\text{car } X \ge 0) \\
+&\ge \int_{\{X \ge \lambda\}} \lambda dP \quad (\text{car sur } \{X \ge \lambda\}, X \ge \lambda) \\
+&= \lambda P(X \ge \lambda).
+\end{align*}
+En divisant par $\lambda > 0$, on obtient le résultat.
+\end{proof}
+L'inégalité de Markov permet de prouver de nombreuses inégalités plus générales.
+\subsection{Inégalité de Bienaymé-Chebyshev}
+\begin{proposition}
+Soit $X$ une v.a. qui admet un moment d'ordre 2, c'est-à-dire, $E[X^2] < +\infty$. Alors $\forall t > 0$,
+\[
+P(|X - E[X]| \ge t) \le \frac{1}{t^2} \text{Var}(X).
+\]
+\end{proposition}
+\begin{proof}
+L'inégalité est triviale si $t \le 0$. Soit $t>0$. On a
+\[
+P(|X - E[X]| \ge t) = P((X - E[X])^2 \ge t^2).
+\]
+On applique l'inégalité de Markov à la variable aléatoire positive $Y = (X - E[X])^2$ avec $\lambda = t^2$:
+\[
+P(Y \ge t^2) \le \frac{E[Y]}{t^2}.
+\]
+Or, $E[Y] = E[(X - E[X])^2] = \text{Var}(X)$. D'où le résultat:
+\[
+P(|X - E[X]| \ge t) \le \frac{\text{Var}(X)}{t^2}.
+\]
+\end{proof}
+L'intérêt de cette inégalité réside dans sa simplicité et le fait qu'elle est très bien adaptée aux sommes de variables aléatoires.
+\section{La loi faible des grands nombres}
+\begin{theorem}
+Soit $\mu$ une mesure de probas sur $\mathbb{R}$ qui est intégrable, c'est-à-dire $\int_{\mathbb{R}} |x| d\mu(x) < +\infty$.
+Soit $m = \int_{\mathbb{R}} x d\mu(x)$.
+Pour $n \ge 1$, soient $X_1, \dots, X_n$ des v.a. i.i.d. de loi $\mu$. Alors, $\forall \varepsilon > 0$,
+\[
+\lim_{n \to \infty} P\left(\left|\frac{X_1 + \dots + X_n}{n} - m\right| \ge \varepsilon\right) = 0.
+\]
+\end{theorem}
+\begin{remark}
+Si $(X_n)$ est une suite de v.a. i.i.d. de loi $\mu$, cela s'écrit:
+\[
+\frac{X_1 + \dots + X_n}{n} \xrightarrow[n\to\infty]{P} m.
+\]
+\end{remark}
+\begin{remark}
+En fait, par la formule de transfert appliquée au vecteur $(X_1, \dots, X_n)$, on a:
+\[
+P\left(\left|\frac{X_1+\dots+X_n}{n} - m\right| \ge \varepsilon\right) = P_{\mu^{\otimes n}}\left(\{(x_1, \dots, x_n) \in \mathbb{R}^n, \left|\frac{x_1+\dots+x_n}{n} - m\right| \ge \varepsilon\}\right).
+\]
+Ainsi, la loi faible est en fait un résultat asymptotique sur la suite de lois $(\mu^{\otimes n}, n \ge 1)$. La loi ne nécessite pas d'avoir une suite i.i.d.
+\end{remark}
+\begin{proof}[Preuve (sous l'hypothèse d'un moment d'ordre 2)]
+Supposons que la loi $\mu$ admette un moment d'ordre 2. Posons $\sigma^2 = \text{Var}(\mu) = \int_{\mathbb{R}} (x-m)^2 d\mu(x)$.
+Soit $\bar{X}_n = \frac{X_1 + \dots + X_n}{n}$.
+Le calcul de l'espérance donne:
+\[
+E[\bar{X}_n] = E\left[\frac{X_1 + \dots + X_n}{n}\right] = \frac{1}{n}(E[X_1] + \dots + E[X_n]) = \frac{1}{n}(n \cdot m) = m.
+\]
+Soit $\varepsilon > 0$. En appliquant l'inégalité de Bienaymé-Chebyshev à $\bar{X}_n$:
+\[
+P(|\bar{X}_n - m| \ge \varepsilon) \le \frac{\text{Var}(\bar{X}_n)}{\varepsilon^2}.
+\]
+Calculons la variance:
+\begin{align*}
+\text{Var}(\bar{X}_n) &= \text{Var}\left(\frac{X_1 + \dots + X_n}{n}\right) \\
+&= \frac{1}{n^2} \text{Var}(X_1 + \dots + X_n) \\
+&= \frac{1}{n^2} (\text{Var}(X_1) + \dots + \text{Var}(X_n)) \quad (\text{par indépendance}) \\
+&= \frac{1}{n^2} (n \cdot \sigma^2) \quad (\text{car les lois sont identiques}) \\
+&= \frac{\sigma^2}{n}.
+\end{align*}
+D'où
+\[
+P\left(\left|\frac{X_1 + \dots + X_n}{n} - m\right| \ge \varepsilon\right) \le \frac{\sigma^2}{n\varepsilon^2} \xrightarrow[n\to\infty]{} 0.
+\]
+\end{proof}
+\section{La loi forte des grands nombres}
+\begin{theorem}[Loi forte des grands nombres]
+Soit $(X_n)_{n \ge 1}$ une suite de v.a. i.i.d. intégrables, c'est-à-dire $E[|X_1|] < +\infty$. Alors
+\[
+\frac{X_1 + \dots + X_n}{n} \xrightarrow[n\to\infty]{p.s.} E[X_1].
+\]
+\end{theorem}
+\begin{proof}[Éléments de preuve]
+La preuve se décompose en plusieurs étapes.
+\subsubsection*{1ère étape : Centrage}
+Posons $m = E[X_1]$. Quitte à remplacer $X_n$ par $X_n - m$ pour $n \ge 1$, nous pouvons supposer que la suite est centrée, c'est-à-dire que $E[X_i] = 0$ pour tout $i$.
+\subsubsection*{2ème étape : Troncature}
+Posons, pour tout $n \ge 1$, $Y_n = X_n \mathbb{I}_{\{|X_n| \le n\}}$. C'est-à-dire :
+\[ Y_n = \begin{cases} X_n & \text{si } |X_n| \le n \\ 0 & \text{sinon} \end{cases} \]
+On peut alors décomposer la moyenne de la manière suivante :
+\[
+\frac{X_1 + \dots + X_n}{n} = \frac{(X_1 - Y_1) + \dots + (X_n - Y_n)}{n} + \frac{Y_1 + \dots + Y_n}{n}.
+\]
+La preuve consiste à montrer que les deux termes du membre de droite tendent vers 0 presque sûrement. Pour le premier terme, on utilise le lemme suivant.
+\end{proof}
+\begin{lemma}
+Soit $(X_n)_{n \ge 1}$ une suite de v.a. i.i.d. On a équivalence entre :
+\begin{enumerate}
+    \item[i)] $E[|X_1|] < +\infty$
+    \item[ii)] $P(|X_n| > n \text{ i.s.}) = 0$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Comme les événements $\{|X_n| > n\}$ pour $n \ge 1$ ne sont pas indépendants (car la loi est la même), on ne peut pas appliquer directement le second lemme de Borel-Cantelli. Cependant, le premier lemme de Borel-Cantelli s'applique. Les événements $\{|X_n|>n\}$ sont indépendants. Par le lemme de Borel-Cantelli, on a l'équivalence :
+\[
+P(|X_n| > n \text{ i.s.}) = 0 \iff \sum_{n \ge 1} P(|X_n| > n) < +\infty.
+\]
+Comme les variables $X_n$ sont identiquement distribuées, $P(|X_n| > n) = P(|X_1| > n)$, donc l'équivalence devient
+\[
+\sum_{n \ge 1} P(|X_1| > n) < +\infty.
+\]
+Il reste à montrer que $\sum_{n \ge 1} P(|X_1| > n) < +\infty \iff E[|X_1|] < +\infty$.
+Pour une variable aléatoire positive $Z$, on a $E[Z] = \int_0^{+\infty} P(Z > t) dt$. Appliquons cela à $Z = |X_1|$:
+\begin{align*}
+E[|X_1|] &= \int_0^{+\infty} P(|X_1| > t) dt \\
+&= \sum_{n=0}^{\infty} \int_n^{n+1} P(|X_1| > t) dt.
+\end{align*}
+Pour $t \in [n, n+1)$, on a l'encadrement $P(|X_1| > n+1) \le P(|X_1| > t) \le P(|X_1| > n)$. En intégrant sur $[n, n+1]$, on obtient :
+\[
+P(|X_1| > n+1) \le \int_n^{n+1} P(|X_1| > t) dt \le P(|X_1| > n).
+\]
+En sommant sur $n \ge 0$:
+\[
+\sum_{n=0}^{\infty} P(|X_1| > n+1) \le \sum_{n=0}^{\infty} \int_n^{n+1} P(|X_1| > t) dt \le \sum_{n=0}^{\infty} P(|X_1| > n).
+\]
+Ce qui se réécrit :
+\[
+\sum_{k=1}^{\infty} P(|X_1| > k) \le E[|X_1|] \le \sum_{k=0}^{\infty} P(|X_1| > k) = P(|X_1|>0) + \sum_{k=1}^{\infty} P(|X_1| > k).
+\]
+L'espérance $E[|X_1|]$ est donc finie si et seulement si la série $\sum_{n \ge 1} P(|X_1| > n)$ converge.
+\end{proof}
+Par le lemme, comme $E[|X_1|] < \infty$, on a $P(|X_n| > n \text{ i.s.}) = 0$, ce qui est équivalent à $P(X_n \ne Y_n \text{ i.s.}) = 0$.
+Ceci implique que la série $\sum (X_n - Y_n)$ converge presque sûrement. Par le lemme de Kronecker, il s'ensuit que
+\[
+\frac{(X_1 - Y_1) + \dots + (X_n - Y_n)}{n} \xrightarrow[n\to\infty]{p.s.} 0.
+\]
+La preuve complète de la loi forte des grands nombres requiert alors de montrer que le second terme $\frac{1}{n}\sum_{i=1}^n Y_i$ converge également vers 0 p.s., ce qui se fait en utilisant le critère de Kolmogorov.
+\section{Critère de Kolmogorov}
+\begin{proposition}
+Soit $(Z_n)_{n \ge 1}$ une suite de v.a. indépendantes et centrées ($E[Z_n]=0$ pour tout $n$).
+Si $\sum_{n \ge 1} \frac{E[Z_n^2]}{n^2} < +\infty$, alors la série $\sum_{n \ge 1} \frac{Z_n}{n}$ converge p.s. et
+\[
+\frac{Z_1 + \dots + Z_n}{n} \xrightarrow[n\to\infty]{p.s.} 0.
+\]
+\end{proposition}
+\begin{proof}
+La preuve est omise.
+\end{proof}

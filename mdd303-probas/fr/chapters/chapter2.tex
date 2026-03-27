@@ -1,0 +1,181 @@
+\chapter{Mesure de Lebesgue et Lois de Probabilité}
+\sloppy
+
+
+\section{La mesure de Lebesgue}
+\begin{definition}
+Une mesure sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ est une application $\mu$ de $\mathcal{B}(\mathbb{R})$ dans $[0, +\infty[$ telle que $\mu(\emptyset) = 0$ et qui est $\sigma$-additive, c'est-à-dire :
+\[
+\forall (B_n)_{n \in \mathbb{N}} \in \mathcal{B}(\mathbb{R})^{\mathbb{N}}, \quad \left( \forall n \neq m, B_n \cap B_m = \emptyset \implies \mu\left(\bigcup_{n \in \mathbb{N}} B_n\right) = \sum_{n \in \mathbb{N}} \mu(B_n) \right)
+\]
+\end{definition}
+\begin{theorem}
+Il existe une unique mesure $\lambda$ sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ qui vérifie :
+\[
+\forall a, b \in \mathbb{R}, a < b, \quad \lambda([a,b]) = b-a.
+\]
+Cette mesure est appelée la \textbf{mesure de Lebesgue} et est notée $\lambda$.
+\end{theorem}
+\begin{remark}
+L'existence d'une telle mesure n'est pas du tout évidente, c'est un résultat mathématique profond.
+\end{remark}
+\subsection*{Idée de la preuve}
+Nous définissons pour une partie quelconque $A$ de $\mathbb{R}$ la mesure extérieure de Lebesgue $\lambda^*(A)$ par :
+\[
+\lambda^*(A) = \inf \left\{ \sum_{i \in I} (b_i - a_i) ; (a_i)_{i \in I}, (b_i)_{i \in I} \text{ familles de réels tq } \forall i \in I, a_i < b_i, A \subset \bigcup_{i \in I} ]a_i, b_i[ \right\}
+\]
+$\lambda^*$ n'est pas une mesure, elle est sous-additive mais pas $\sigma$-additive. On montre que la restriction de $\lambda^*$ à $\mathcal{B}(\mathbb{R})$ est $\sigma$-additive et on prend alors $\lambda = \lambda^*|_{\mathcal{B}(\mathbb{R})}$.
+\subsection*{Premières propriétés}
+\begin{itemize}
+    \item Pour tout $x \in \mathbb{R}$, $\lambda(\{x\}) = 0$.
+    \item Si $A \subset \mathbb{R}$ est dénombrable, alors $\lambda(A) = \sum_{x \in A} \lambda(\{x\}) = 0$ par $\sigma$-additivité.
+    \item Il existe des boréliens $C$ de $\mathbb{R}$ non dénombrables tels que $\lambda(C)=0$.
+\end{itemize}
+\section{Loi uniforme sur $[0,1]$}
+La loi uniforme sur $[0,1]$ est la mesure de probabilité $P$ sur $([0,1], \mathcal{B}([0,1]))$ obtenue comme la restriction de la mesure de Lebesgue $\lambda$ à $[0,1]$ :
+\[
+\forall B \in \mathcal{B}([0,1]), \quad P(B) = \lambda(B).
+\]
+Nous souhaitons construire un modèle mathématique de l'expérience qui consiste à tirer un nombre au hasard dans $[0,1]$, uniformément.
+Nous prenons l'espace probabilisable $(\Omega, \mathcal{F}) = ([0,1], \mathcal{B}([0,1]))$. La tribu borélienne $\mathcal{B}([0,1])$ est, au choix :
+\begin{itemize}
+    \item la tribu engendrée par les sous-intervalles de $[0,1]$,
+    \item ou bien la tribu trace de $\mathcal{B}(\mathbb{R})$ sur $[0,1]$, c'est-à-dire $\{B \cap [0,1] : B \in \mathcal{B}(\mathbb{R})\}$.
+\end{itemize}
+Cet espace est muni de la probabilité $P = \lambda|_{[0,1]}$.
+Nous définissons alors une variable aléatoire $X$ en posant :
+\begin{align*}
+    X: \Omega = [0,1] &\to \mathbb{R} \\
+    \omega &\mapsto X(\omega) = \omega
+\end{align*}
+On dit que $X$ est un nombre choisi au hasard uniformément dans $[0,1]$.
+La loi de $X$, notée $P_X$, est $\lambda|_{[0,1]}$. En effet, pour tout $B \in \mathcal{B}([0,1])$ :
+\[
+P_X(B) = P(X \in B) = P(\{\omega \in \Omega : X(\omega) \in B\}) = P(B) = \lambda(B).
+\]
+\section{Lois à densité}
+\begin{definition}
+Une loi de probabilité $\mu$ sur $\mathbb{R}$ est dite \textbf{à densité} s'il existe une fonction $f$ borélienne positive telle que :
+\[
+\forall A \in \mathcal{B}(\mathbb{R}), \quad \mu(A) = \int_A f d\lambda = \int_A f(x) dx.
+\]
+La fonction $f$ est appelée la densité (ou une densité) de $\mu$. Une densité est une fonction borélienne positive qui vérifie :
+\[
+\int_{\mathbb{R}} f d\lambda = \int_{\mathbb{R}} f(x) dx = 1.
+\]
+La densité d'une loi n'est pas unique, elle est définie à un ensemble de mesure de Lebesgue nul près. Inversement, étant donnée une fonction $f$ borélienne positive qui vérifie cette condition, on peut construire une loi de probabilité sur $\mathbb{R}$ associée à $f$ via la formule ci-dessus.
+\end{definition}
+\begin{example}[Exemples fondamentaux]
+\begin{itemize}
+    \item \textbf{Loi uniforme} sur un intervalle $[a,b]$, notée $\mathcal{U}([a,b])$. C'est la loi de densité $\frac{1}{b-a}\mathbb{1}_{[a,b]}(x)$.
+    \item \textbf{Loi exponentielle} de paramètre $\alpha > 0$, notée $\text{Exp}(\alpha)$. C'est la loi de densité $\alpha e^{-\alpha x} \mathbb{1}_{\mathbb{R}_+}(x)$.
+    \item \textbf{Loi normale} ou Gaussienne de paramètres $m, \sigma^2$, notée $\mathcal{N}(m, \sigma^2)$. C'est la loi de densité $\frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x-m)^2}{2\sigma^2}\right)$.
+\end{itemize}
+\end{example}
+\section{Classification des lois sur $\mathbb{R}$}
+Un point $x \in \mathbb{R}$ est un \textbf{atome} de la loi $\mu$ si $\mu(\{x\}) > 0$.
+On dit que la loi $\mu$ est \textbf{diffuse} si elle n'a pas d'atomes.
+On distingue trois types "purs" de lois :
+\begin{itemize}
+    \item \textbf{Lois discrètes :} On dit que $\mu$ est discrète s'il existe un ensemble $D$ fini ou dénombrable tel que $\mu(D) = 1$. On a alors $\mu = \sum_{x \in D} \mu(\{x\}) \delta_x$.
+    \item \textbf{Lois à densité :} On dit que $\mu$ est à densité s'il existe une fonction borélienne $f \ge 0$ telle que $\forall A \in \mathcal{B}(\mathbb{R})$, $\mu(A) = \int_A f d\lambda$.
+    \item \textbf{Lois singulières :} On dit que $\mu$ est singulière si elle est diffuse et s'il existe un ensemble $C$ tel que $\mu(C)=1$ et $\lambda(C)=0$.
+\end{itemize}
+Toute mesure de probabilité sur $\mathbb{R}$ se décompose comme une combinaison convexe de ces trois types :
+\[
+\mu = \alpha_d \mu_d + \alpha_a \mu_a + \alpha_s \mu_s
+\]
+où $\mu_d, \mu_a, \mu_s$ sont respectivement discrète, à densité et singulière, et $\alpha_d, \alpha_a, \alpha_s \in [0,1]$ avec $\alpha_d + \alpha_a + \alpha_s = 1$. Cette écriture est unique.
+\section{L'intégrale de Lebesgue}
+Supposons que nous disposions d'une théorie de l'intégration. Étant donnée une fonction $f \ge 0$ telle que $\int_{\mathbb{R}} f(x) dx = 1$, nous pouvons définir une mesure de probabilité par $\mu(A) = \int_A f(x) dx$ pour toutes les parties $A$ autorisées par la théorie.
+Par exemple, avec l'intégrale de Riemann, on ne peut intégrer que des fonctions "suffisamment régulières" (e.g. continues), et la probabilité n'est définie que sur les intervalles ou les unions finies d'intervalles.
+Le choix de prédilection pour la théorie des probabilités est l'intégrale de Lebesgue, qui permet d'intégrer sur tous les boréliens.
+\subsection*{Résumé de la construction de l'intégrale de Lebesgue}
+\begin{enumerate}
+    \item \textbf{Fonctions étagées :} Une fonction borélienne $s$ est dite étagée si elle prend un nombre fini de valeurs. Elle est de la forme $s = \sum_{i=1}^n a_i \mathbb{1}_{A_i}$, où $a_i \in \mathbb{R}$ et $A_i \in \mathcal{B}(\mathbb{R})$. Son intégrale par rapport à $\lambda$ est :
+    \[ \int s \,d\lambda = \sum_{i=1}^n a_i \lambda(A_i). \]
+    \item \textbf{Fonctions positives :} Si $f$ est une fonction borélienne qui est positive ou nulle, l'intégrale de $f$ par rapport à $\lambda$ est :
+    \[ \int f \,d\lambda = \sup \left\{ \int s \,d\lambda \ ; \ s \text{ étagée, } 0 \le s \le f \right\}. \]
+    Attention, le sup ci-dessus peut être infini.
+    \item \textbf{Fonctions de signe quelconque :} Soit $f$ une fonction borélienne. On dit que $f$ est intégrale si $\int |f| \,d\lambda < +\infty$.
+    Dans ce cas, on décompose $f$ en sa partie positive $f^+ = \max(f,0)$ et sa partie négative $f^- = \max(-f,0) = -\min(f,0)$. On définit alors :
+    \[ \int f \,d\lambda = \int f^+ \,d\lambda - \int f^- \,d\lambda. \]
+    On note $L^1(\mathbb{R}, \lambda)$ l'ensemble des fonctions $\lambda$-intégrables.
+\end{enumerate}
+\section{Formule de transfert}
+Lorsqu'on travaille avec des variables aléatoires, on effectue tout d'abord des manipulations dans l'espace probabilisé $(\Omega, \mathcal{F}, P)$. Lorsqu'il s'agit de faire intervenir les lois spécifiques des v.a., on transfère le calcul dans $\mathbb{R}$.
+\begin{proposition}[Formule de transfert]
+Soit $(\Omega, \mathcal{F}, P)$ un espace probabilisé, $X$ une variable aléatoire à valeurs dans $\mathbb{R}$, et $g: \mathbb{R} \to \mathbb{R}$ une fonction borélienne telle que $g(X)$ soit une variable aléatoire intégrable. Alors
+\[ E(g(X)) = \int_{\Omega} g(X(\omega)) \,dP(\omega) = \int_{\mathbb{R}} g(x) \,dP_X(x). \]
+\end{proposition}
+\begin{proof}[Idée de la preuve]
+La preuve se fait par étapes successives en montrant que la formule est vraie pour des classes de fonctions de plus en plus générales.
+\begin{enumerate}
+    \item \textbf{Cas d'une fonction indicatrice :} Commençons par $g = \mathbb{1}_B$ où $B \in \mathcal{B}(\mathbb{R})$.
+    \begin{align*}
+    \int_{\Omega} \mathbb{1}_B(X(\omega)) \,dP(\omega) &= P(\{\omega \in \Omega; X(\omega) \in B\}) \\
+    &= P(X \in B) = P_X(B) \\
+    &= \int_{\mathbb{R}} \mathbb{1}_B(x) \,dP_X(x).
+    \end{align*}
+    La formule est donc vérifiée pour les fonctions indicatrices.
+    \item \textbf{Cas d'une fonction étagée positive :} Par linéarité de l'intégrale, la formule s'étend aux fonctions étagées positives $s = \sum a_i \mathbb{1}_{B_i}$.
+    \item \textbf{Cas d'une fonction borélienne positive :} On utilise un argument de convergence monotone. Soit $\mathcal{L}$ la collection des fonctions boréliennes positives pour lesquelles la formule de transfert est vraie. On montre que $\mathcal{L}$ vérifie les propriétés suivantes :
+    \begin{enumerate}
+        \item[(i)] $\forall B \in \mathcal{B}(\mathbb{R})$, $\mathbb{1}_B \in \mathcal{L}$.
+        \item[(ii)] $\forall f,g \in \mathcal{L}$, $\forall \alpha, \beta > 0$, $\alpha f + \beta g \in \mathcal{L}$ (stabilité par combinaison linéaire positive).
+        \item[(iii)] $\mathcal{L}$ est stable par limite croissante : si $(f_n)$ est une suite de fonctions de $\mathcal{L}$ telle que $f_n \le f_{n+1}$ et $f_n \to f$ simplement, alors $f \in \mathcal{L}$.
+    \end{enumerate}
+    Par le lemme de la classe monotone, $\mathcal{L}$ contient toutes les fonctions boréliennes positives.
+    \item \textbf{Cas général :} Pour une fonction $g$ de signe quelconque, on applique le résultat à sa partie positive $g^+$ et sa partie négative $g^-$.
+\end{enumerate}
+\end{proof}
+\subsection{Application à l'espérance et la variance}
+Soit $X$ une variable aléatoire intégrable sur $(\Omega, \mathcal{F}, P)$ à valeurs dans $\mathbb{R}$.
+\paragraph{Espérance}
+L'espérance de $X$ est définie par $E(X) = \int_{\Omega} X(\omega) dP(\omega)$. En appliquant la formule de transfert avec $g(x) = x$, on obtient :
+\[
+E(X) = \int_{\mathbb{R}} x \,dP_X(x).
+\]
+Si la loi de $X$, $P_X$, a une densité $f$, alors :
+\[
+E(X) = \int_{x \in \mathbb{R}} x f(x) dx.
+\]
+\paragraph{Variance}
+Si $X$ est de carré intégrable, sa variance est définie par $\text{Var}(X) = E[(X-E(X))^2]$. En posant $m=E(X)$ et en appliquant la formule de transfert à la fonction $g(x) = (x-m)^2$, on obtient :
+\[
+\text{Var}(X) = \int_{\mathbb{R}} (x-m)^2 \,dP_X(x).
+\]
+Si la loi de $X$ a une densité $f$, alors :
+\[
+\sigma^2 = \text{Var}(X) = \int_{x \in \mathbb{R}} (x-m)^2 f(x) dx = \int_{x \in \mathbb{R}} x^2 f(x) dx - m^2.
+\]
+\begin{example}
+\begin{itemize}
+    \item Si $X \sim \text{Exp}(\alpha)$, alors $E(X) = \frac{1}{\alpha}$ et $\text{Var}(X) = \frac{1}{\alpha^2}$.
+    \item Si $X \sim \mathcal{N}(m, \sigma^2)$, alors $E(X) = m$ et $\text{Var}(X) = \sigma^2$.
+\end{itemize}
+\end{example}
+\section{Méthode de la fonction muette}
+La technique de base pour déterminer la loi d'une variable aléatoire $X$ est la méthode de la fonction muette. On prend une fonction borélienne bornée $f: \mathbb{R} \to \mathbb{R}$ et on évalue $E(f(X))$. La formule de transfert, $E(f(X)) = \int_{\mathbb{R}} f(x) \,dP_X(x)$, permet d'identifier la loi $P_X$.
+Cette méthode repose sur la proposition suivante.
+\begin{proposition}
+Soient $\mu_1, \mu_2$ deux mesures de probabilité sur $\mathbb{R}$ telles que pour toute fonction $f: \mathbb{R} \to \mathbb{R}$ continue et bornée, on ait $\int_{\mathbb{R}} f d\mu_1 = \int_{\mathbb{R}} f d\mu_2$.
+Alors $\mu_1 = \mu_2$.
+\end{proposition}
+\begin{example}
+Soit $X \sim \mathcal{U}([0,1])$ et $k \ge 1$. Quelle est la loi de $Y=X^k$ ?
+\end{example}
+\begin{solution}
+Soit $f: \mathbb{R} \to \mathbb{R}$ une fonction continue bornée. Calculons $E(f(X^k))$.
+\begin{align*}
+E(f(X^k)) &= \int_{\Omega} f(X^k(\omega)) dP(\omega) && \\
+           &\stackrel{\text{transfert}}{=} \int_{\mathbb{R}} f(x^k) dP_X(x) && \text{avec } P_X \text{ de densité } \mathbb{1}_{[0,1]}(x) \\
+           &= \int_{\mathbb{R}} f(x^k) \mathbb{1}_{[0,1]}(x) dx = \int_0^1 f(x^k) dx
+\end{align*}
+Effectuons le changement de variable $y = x^k$. Alors $x = y^{1/k}$, et $dx = \frac{1}{k} y^{\frac{1}{k}-1} dy$. Les bornes d'intégration restent de $0$ à $1$.
+\begin{align*}
+E(f(X^k)) &= \int_0^1 f(y) \cdot \frac{1}{k} y^{\frac{1}{k}-1} dy \\
+           &= \int_{\mathbb{R}} f(y) \left( \frac{1}{k} y^{\frac{1}{k}-1} \mathbb{1}_{[0,1]}(y) \right) dy
+\end{align*}
+On reconnaît la forme $\int_{\mathbb{R}} f(y) g(y) dy$. Par la méthode de la fonction muette, on en déduit que la loi de $X^k$ est une loi à densité, et sa densité est la fonction $g(y) = \frac{1}{k} y^{\frac{1}{k}-1} \mathbb{1}_{[0,1]}(y)$.
+\end{solution}

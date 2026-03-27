@@ -1,0 +1,138 @@
+\chapter{Le modèle probabiliste}
+\sloppy
+
+
+Nous considérons un espace aléatoire. Nous notons $\Omega$ l'ensemble des résultats possibles : c'est un ensemble quelconque a priori.
+\section{Événements}
+Un événement associé à l'expérience aléatoire est un ensemble de résultats dont on peut calculer la probabilité. Notons $\mathcal{F}$ la collection de tous les événements.
+Ainsi, $\mathcal{F} \subset \mathcal{P}(\Omega)$, l'ensemble des parties de $\Omega$. Nous demandons en fait que $\mathcal{F}$ soit une tribu ou $\sigma$-algèbre sur $\Omega$.
+\begin{definition}[Tribu ou $\sigma$-algèbre]
+Une tribu ou $\sigma$-algèbre sur $\Omega$ est une collection $\mathcal{F}$ de parties de $\Omega$ qui vérifie:
+\begin{itemize}
+    \item $\Omega \in \mathcal{F}$
+    \item Si $A \in \mathcal{F}$, alors $A^c \in \mathcal{F}$ (stabilité par passage au complémentaire).
+    \item Si $(A_n)_{n \in \mathbb{N}}$ est une suite d'éléments de $\mathcal{F}$, alors leur union $\bigcup_{n \in \mathbb{N}} A_n$ est aussi dans $\mathcal{F}$ (stabilité par union dénombrable).
+\end{itemize}
+\end{definition}
+\begin{remark}
+Une tribu contient forcément $\emptyset$ et $\Omega$.
+En effet, comme $\mathcal{F}$ est non vide, il existe $A \in \mathcal{F}$. Par stabilité par passage au complémentaire, $A^c \in \mathcal{F}$. Par stabilité par union, $A \cup A^c = \Omega \in \mathcal{F}$. Finalement, $\Omega^c = \emptyset \in \mathcal{F}$.
+\end{remark}
+\begin{remark}[Rappel]
+Deux événements $A$ et $B$ sont dits disjoints ou incompatibles s'ils ne peuvent arriver simultanément, c'est-à-dire si $A \cap B$ est l'événement impossible $\emptyset$.
+\end{remark}
+\section{Probabilité}
+Soit $\Omega$ un ensemble équipé d'une tribu $\mathcal{F}$.
+\begin{definition}[Probabilité]
+Une probabilité sur $(\Omega, \mathcal{F})$ est une application $P: \mathcal{F} \to [0,1]$ qui vérifie :
+\begin{enumerate}
+    \item[i)] $P(\Omega) = 1$.
+    \item[ii)] Si $(A_n)_{n \in \mathbb{N}}$ est une suite d'éléments de $\mathcal{F}$ deux à deux disjoints, alors
+    \[
+        P\left(\bigcup_{n \in \mathbb{N}} A_n\right) = \sum_{n \in \mathbb{N}} P(A_n).
+    \]
+\end{enumerate}
+\end{definition}
+Regardons dans le cas où $\Omega$ est fini. Dans ce cas, on prend toujours $\mathcal{F} = \mathcal{P}(\Omega)$. Soient $A, B$ deux événements disjoints. Appliquons ii) à la suite $A_0 = A, A_1=B, A_2=A_3=\dots=\emptyset$. On obtient la propriété d'additivité finie :
+\begin{enumerate}
+    \item[ii')] $\forall A, B$ disjoints, $P(A \cup B) = P(A) + P(B)$.
+\end{enumerate}
+La théorie moderne des probabilités est construite avec l'axiome ii), plus fort que ii'), ne heurte pas l'intuition. Mais surtout, c'est une condition fondamentale qui permet de montrer de nombreux théorèmes limites.
+\begin{definition}[Espace de probabilité]
+Un espace de probabilité est un triplet $(\Omega, \mathcal{F}, P)$ où:
+\begin{itemize}
+    \item $\Omega$ est un ensemble;
+    \item $\mathcal{F}$ est une tribu sur $\Omega$;
+    \item $P$ est une probabilité définie sur $\mathcal{F}$.
+\end{itemize}
+Les éléments de $\mathcal{F}$ s'appellent les événements. (Axiomatique de Kolmogorov 1930).
+\end{definition}
+\section{Tribu borélienne}
+Soit $\Omega$ un ensemble. Si $\mathcal{F}_1, \mathcal{G}$ sont 2 tribus sur $\Omega$, on définit leur intersection $\mathcal{F} \cap \mathcal{G} = \{A \subset \Omega; A \in \mathcal{F} \text{ et } A \in \mathcal{G}\}$. C'est encore une tribu.
+Plus généralement, si $(\mathcal{F}_i)_{i \in I}$ est une famille de tribus sur $\Omega$ indexée par l'ensemble $I$ quelconque, alors $\bigcap_{i \in I} \mathcal{F}_i = \{A \subset \Omega; \forall i \in I, A \in \mathcal{F}_i\}$ est encore une tribu.
+\begin{proposition}[Tribu engendrée]
+Soit $\mathcal{A}$ une collection de parties de $\Omega$. Il existe une unique tribu $\sigma(\mathcal{A})$ qui vérifie:
+\begin{enumerate}
+    \item[i)] $\mathcal{A} \subset \sigma(\mathcal{A})$.
+    \item[ii)] $\forall \mathcal{F}$ tribu, $\mathcal{A} \subset \mathcal{F} \implies \sigma(\mathcal{A}) \subset \mathcal{F}$.
+\end{enumerate}
+La tribu $\sigma(\mathcal{A})$ s'appelle la tribu engendrée par $\mathcal{A}$, c'est la plus petite tribu qui contient $\mathcal{A}$.
+\end{proposition}
+\begin{proof}
+Considérons la tribu suivante: $\bigcap_{\mathcal{F}' \text{ tribu}, \mathcal{A} \subset \mathcal{F}'} \mathcal{F}'$. C'est une intersection de tribus, donc c'est une tribu. Elle contient $\mathcal{A}$ par construction. Elle est contenue dans toute tribu qui contient $\mathcal{A}$. C'est donc la plus petite tribu qui contient $\mathcal{A}$.
+\end{proof}
+\begin{remark}
+C'est le procédé utilisé pour définir le sous-groupe engendré par une famille d'éléments (sev engendré...).
+\end{remark}
+\begin{definition}[Tribu borélienne $\mathcal{B}(\mathbb{R})$]
+La tribu borélienne sur $\mathbb{R}$, notée $\mathcal{B}(\mathbb{R})$, est la plus petite tribu contenant les intervalles. C'est la tribu engendrée par une des familles suivantes:
+\begin{itemize}
+    \item Les intervalles fermés $[a, b]$, avec $a < b \in \mathbb{R}$.
+    \item Les intervalles ouverts $]a, b[$, avec $a < b \in \mathbb{R}$.
+    \item Les semi-intervalles $]-\infty, \lambda]$, avec $\lambda \in \mathbb{R}$.
+    \item Les semi-intervalles $[\lambda, +\infty[$, avec $\lambda \in \mathbb{R}$.
+\end{itemize}
+\end{definition}
+\section{Les variables aléatoires}
+Les variables aléatoires sont les nymphes des espaces de probabilités. Une variable aléatoire (v.a.) est une fonction de l'expérience aléatoire, c'est donc a priori une application $X : \Omega \to \mathbb{R}$. Nous voulons pouvoir calculer la probabilité qu'une variable aléatoire tombe dans un intervalle arbitraire de $\mathbb{R}$. Une condition nécessaire et suffisante pour cela est de demander que $X$ soit mesurable.
+\begin{definition}[Variable aléatoire]
+Soit $(\Omega, \mathcal{F}, P)$ un espace de probabilité. Une variable aléatoire $X$ sur $(\Omega, \mathcal{F}, P)$ est une application $X : \Omega \to \mathbb{R}$ qui est mesurable de $(\Omega, \mathcal{F})$ dans $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, i.e.,
+\[ \forall B \in \mathcal{B}(\mathbb{R}), \quad X^{-1}(B) = \{\omega \in \Omega; X(\omega) \in B\} \in \mathcal{F}. \]
+Ainsi, si $B \in \mathcal{B}(\mathbb{R})$, alors $X^{-1}(B)$ est un événement. On le note simplement $\{X \in B\}$ ou même $X \in B$. De manière générale, on s'efforce de simplifier les formules en enlevant la variable $\omega$ chaque fois qu'elle n'est pas indispensable.
+\end{definition}
+\paragraph{Convention:} On note les v.a. par des lettres majuscules $X, Y, Z, U, V, W$, et leurs valeurs correspondantes par des lettres minuscules $x, y, z, u, v, w$.
+Plus généralement, on peut considérer des v.a. à valeurs $\mathbb{C}$, dans $\mathbb{R}^n$, et en fait, dans n'importe quel ensemble équipé d'une tribu.
+\begin{definition}[Fonction borélienne]
+Une fonction $f : \mathbb{R} \to \mathbb{R}$ est dite borélienne si elle est mesurable de $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ dans $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, i.e., si $\forall B \in \mathcal{B}(\mathbb{R}), f^{-1}(B) = \{x \in \mathbb{R} : f(x) \in B\} \in \mathcal{B}(\mathbb{R})$.
+\end{definition}
+\begin{example}
+Si $X$ est une v.a. et $f$ une fonction borélienne, alors $f(X)$ est encore une v.a.
+\end{example}
+\paragraph{Opérations sur les v.a.:}
+Si $X, Y$ sont des v.a. et $\alpha \in \mathbb{R}$, alors $\alpha X$, $X+Y$, $XY$ sont des v.a.
+Si $(X_n)$ est une suite de v.a., alors $\lim\inf X_n$, $\lim\sup X_n$ et $\lim X_n$ (si elle existe) sont des v.a.
+\paragraph{Lien avec la théorie de la mesure:}
+Un espace $\mathcal{E}$ équipé d'une tribu $\mathcal{E}$ est appelé espace mesurable. Si $(E, \mathcal{E})$ et $(F, \mathcal{F})$ sont 2 espaces mesurables, une fonction $f: E \to F$ est mesurable si $\forall A \in \mathcal{F}, f^{-1}(A) \in \mathcal{E}$. Une probabilité $P$ est une mesure (positive) de masse totale 1.
+\section{La loi d'une v.a.}
+Soit $(\Omega, \mathcal{F}, P)$ un espace de probabilité et soit $X$ une v.a. définie sur $\Omega$ à valeurs dans $\mathbb{R}$.
+
+\begin{definition}[Loi d'une variable aléatoire]
+La loi de la v.a. $X$, notée $P_X$, est la mesure de probabilité sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ définie par:
+\[ \forall B \in \mathcal{B}(\mathbb{R}) \quad P_X(B) = P(X \in B) (= P(X^{-1}(B)) = P(\{\omega \in \Omega; X(\omega) \in B\})). \]
+\end{definition}
+
+Insistons sur le fait que la loi d'une v.a. est une probabilité définie sur l'espace des valeurs de la v.a., dans notre cas, $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+On dit que deux v.a. $X$ et $Y$ ont même loi si $P_X = P_Y$.
+L'objet d'intérêt primordial, quand on étudie une variable aléatoire, c'est sa loi. En effet, nous voulons évaluer les probabilités d'événements associés à la v.a.
+"La loi, c'est fondamental !"
+\section{Espérance}
+\begin{definition}[Variable aléatoire étagée]
+Une variable aléatoire $\delta : \Omega \to \mathbb{R}$ est dite 'étagée' si elle prend un nombre fini de valeurs. Elle s'écrit donc:
+\[ \delta = \sum_{i=1}^n \alpha_i \mathbb{I}_{A_i} \text{ où } \alpha_i \in \mathbb{R}, A_i \in \mathcal{F}. \]
+Son espérance est son intégrale par rapport à $P$, donnée par $E(\delta) = \int \delta dP = \sum_{i=1}^n \alpha_i P(A_i)$.
+\end{definition}
+\begin{definition}[Espérance d'une v.a. positive]
+Si $X: \Omega \to [0, +\infty]$ est une v.a. positive ou nulle, éventuellement elle prend la valeur $+\infty$, on définit son espérance par:
+\[ E(X) = \sup \{E(\delta), \delta \text{ étagée}, 0 \le \delta \le X\}. \]
+C'est aussi l'intégrale de $X$ par rapport à $P$. On note $E(X) = \int X dP$. Attention, on peut avoir $E(X) = +\infty$.
+\end{definition}
+\begin{definition}[Espérance d'une v.a. quelconque]
+Si $X: \Omega \to \mathbb{R}$ est de signe quelconque, on écrit $X = X^+ - X^-$ où :
+\begin{itemize}
+    \item $X^+ = \max(X, 0)$ est la partie positive.
+    \item $X^- = -\min(X, 0)$ est la partie négative.
+\end{itemize}
+$X^+$ et $X^-$ sont 2 v.a. positives.
+Lorsque $E(X^+) < \infty$ et $E(X^-) < \infty$, on pose:
+\[ E(X) = \int X dP = E(X^+) - E(X^-). \]
+Comme de plus, $|X| = X^+ + X^-$, on a équivalence: $E(X^+) < \infty, E(X^-) < \infty \iff E(|X|) < \infty$.
+Dans ce cas, son espérance est $E(X) = \int X dP$. On note $\mathcal{L}^1(\Omega, \mathcal{F}, P)$ l'espace des v.a. intégrables.
+\end{definition}
+\section{Variance}
+\begin{definition}[Variance]
+Si $X$ est une v.a. telle que $E(X^2) < \infty$ (ce qui implique que $X$ est intégrable), on définit sa variance:
+\begin{align*}
+    \text{Var}(X) &= E[(X-E(X))^2] \\
+    &= E(X^2) - [E(X)]^2
+\end{align*}
+\end{definition}
