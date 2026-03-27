@@ -119,7 +119,7 @@ Thus, the weak law is actually an asymptotic result on the sequence of laws $(\m
 % src_checksum: ea86338daa88ee85a6fcfd45f9ad369df36f11bcd8f3a2a40feacf5899900faf
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proof}[Preuve (sous l'hypothèse d'un moment d'ordre 2)]
+\begin{proof}[Proof (under the assumption of a second-order moment)]
 Suppose that the distribution $\mu$ has a second-order moment. Let $\sigma^2 = \text{Var}(\mu) = \int_{\mathbb{R}} (x-m)^2 d\mu(x)$.
 Let $\bar{X}_n = \frac{X_1 + \dots + X_n}{n}$.
 The expectation calculation gives:
@@ -150,7 +150,7 @@ P\left(\left|\frac{X_1 + \dots + X_n}{n} - m\right| \ge \varepsilon\right) \le \
 % src_checksum: 4fdbdf0be6036ce5ec436cd507dc5ca81b4af00f653bbde04cc7861efe7761a8
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{theorem}[Loi forte des grands nombres]
+\begin{theorem}[Strong Law of Large Numbers]
 Let $(X_n)_{n \ge 1}$ be a sequence of i.i.d. integrable random variables, that is, $E[|X_1|] < +\infty$. Then
 \[
 \frac{X_1 + \dots + X_n}{n} \xrightarrow[n\to\infty]{p.s.} E[X_1].
@@ -159,7 +159,7 @@ Let $(X_n)_{n \ge 1}$ be a sequence of i.i.d. integrable random variables, that 
 % src_checksum: 102eae2ee4d543517ca5636836fbad69b318cbc986f2f3558da056122ea3b20f
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proof}[Éléments de preuve]
+\begin{proof}[Proof Sketch]
 The proof is divided into several steps.
 \subsubsection*{Step 1: Centering}
 Let $m = E[X_1]$. By replacing $X_n$ with $X_n - m$ for $n \ge 1$, we can assume that the sequence is centered, meaning that $E[X_i] = 0$ for all $i$.

@@ -14,14 +14,14 @@ when the right-hand side is meaningful, that is, provided that $\text{Re } f$ an
 \section{Definitions}% --- CHUNK_METADATA_START ---
 % src_checksum: d9c15c91d980ace3f55f73ec69bdde2fa3b3cfc28dff6e9bd4f629a39275cd18
 % --- CHUNK_METADATA_END ---
-\begin{definition}[Fonction caractéristique d'une mesure $\mu$]
+\begin{definition}[Characteristic Function of a Measure $\mu$]
 Let $\mu$ be a probability measure on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. Its characteristic function is
 \[ \forall u \in \mathbb{R} \quad \varphi_{\mu}(u) = \int_{\mathbb{R}} e^{iux} d\mu(x). \]
 This function is well-defined for all $u \in \mathbb{R}$, since the function $x \mapsto e^{iux}$ is continuous and bounded because $|e^{iux}| = 1$. Consequently, its real part ($\cos(ux)$) and imaginary part ($\sin(ux)$) are integrable with respect to any probability measure.
 \end{definition}% --- CHUNK_METADATA_START ---
 % src_checksum: 380522c87f64cb8f39d4506b4692efc943f6c7bca753872185eef70a4324dbf9
 % --- CHUNK_METADATA_END ---
-\begin{definition}[Fonction caractéristique d'une v.a.]
+\begin{definition}[Characteristic Function of a R.V.]
 Let $X$ be a real random variable defined on $(\Omega, \mathcal{F}, P)$. Its characteristic function is
 \[ \forall u \in \mathbb{R} \quad \varphi_X(u) = E[e^{iux}]. \]
 \end{definition}% --- CHUNK_METADATA_START ---
@@ -68,7 +68,7 @@ If $X$ is a real random variable, its characteristic function $\varphi_X$ satisf
 % src_checksum: 978e29604aab729da4d48fc0cf9632d2af4f5da3038e0173d9efeee1c4988576
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proposition}[Effet d'une transformation affine]
+\begin{proposition}[Effect of an Affine Transformation]
 Let $X$ be a random variable and $\alpha, \beta \in \mathbb{R}$. The characteristic function of the random variable $\alpha X + \beta$ is given by:
 \[ \varphi_{\alpha X + \beta}(u) = e^{iu\beta} \varphi_X(\alpha u). \]
 \end{proposition}% --- CHUNK_METADATA_START ---
@@ -91,14 +91,14 @@ The calculation is straightforward using the properties of expectation:
 % src_checksum: 86a54675cc6e083d004004f0b14cc401a609abbc473adcdefab52e134232220d
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Loi de Bernoulli][Bernoulli Distribution]
+\begin{example}[Bernoulli Distribution]
 If $X \sim Ber(p)$, then $P(X=1) = p$ and $P(X=0) = 1-p$.
 \[ \varphi_X(u) = E[e^{iux}] = P(X=0)e^{iu \cdot 0} + P(X=1)e^{iu \cdot 1} = (1-p) \cdot 1 + p \cdot e^{iu} = 1-p+pe^{iu}. \]
 \end{example}% --- CHUNK_METADATA_START ---
 % src_checksum: b17af8d86d3d54ebc08bcdc8c7c9294d367eb8b61b1ee9b511e080a9faa8ae90
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Loi de Poisson][Poisson distribution]
+\begin{example}[Poisson Distribution]
 If $X \sim \mathcal{P}(\theta)$, then $P(X=k) = e^{-\theta} \frac{\theta^k}{k!}$ for $k \in \mathbb{N}$.
 \begin{align*}
 \varphi_X(u) = E[e^{iux}] &= \sum_{k=0}^{+\infty} e^{iuk} P(X=k) \\
@@ -110,7 +110,7 @@ If $X \sim \mathcal{P}(\theta)$, then $P(X=k) = e^{-\theta} \frac{\theta^k}{k!}$
 % src_checksum: acbf1af1535e6ffa1ea747d6de76075d0086d4cf080a112e1f18c8373061bc9f
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Loi Exponentielle][Exponential Distribution]
+\begin{example}[Exponential Distribution]
 If $X \sim \mathcal{E}(\alpha)$, its density is $f_X(x) = \alpha e^{-\alpha x}$ for $x \ge 0$.
 \begin{align*}
 \varphi_X(u) = E[e^{iux}] &= \int_{0}^{+\infty} e^{iux} \alpha e^{-\alpha x} dx \\
@@ -122,7 +122,7 @@ If $X \sim \mathcal{E}(\alpha)$, its density is $f_X(x) = \alpha e^{-\alpha x}$ 
 % src_checksum: 99f5dc9e84c8fa406dd7c223a6d1a35cea34dbc2459221f5ddf51f2493881d2d
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[La loi Gaussienne][The Gaussian Distribution]
+\begin{example}[The Gaussian Distribution]
 Let $X$ be a random variable with a normal distribution $\mathcal{N}(m, \sigma^2)$ with $m \in \mathbb{R}$ and $\sigma > 0$.
 Let $Z = \frac{X-m}{\sigma}$. Then $Z$ follows a standard normal distribution, $Z \sim \mathcal{N}(0,1)$.
 First, let us compute $\varphi_Z(u)$.
@@ -204,7 +204,7 @@ This fundamental theorem means that the characteristic function uniquely determi
 % src_checksum: 85df9a18aea8f2f7361755c6d179993cdea9e6a0aef4d6e5b3b10573f368cabb
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proof}[Idée de la preuve]
+\begin{proof}[Proof Idea]
 The idea is to show that the law of $X$ is determined by the family of laws of $X+\sigma Y$ for $\sigma > 0$, where $Y \sim \mathcal{N}(0,1)$ is independent of $X$. The law of $X+\sigma Y$ is a "regularized" (convolved) version of the law of $X$.
 Let $(\Omega, \mathcal{F}, P)$ be a probability space on which two independent random variables are defined: $X \sim \mu$ and $Y \sim \mathcal{N}(0,1)$. For $\sigma > 0$, we study the variable $X_\sigma = X+\sigma Y$.
 The characteristic function of $X_\sigma$ is:

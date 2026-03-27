@@ -123,7 +123,7 @@ Thus, $N_n(t)$ converges in law to a random variable following a Poisson distrib
 % src_checksum: 0e6e81fee2417b4645e9a68aaf4eefb04482750243c5281f7f8327cd09659efb
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{remark}[Rappel sur la loi de Poisson]
+\begin{remark}[Reminder on the Poisson Distribution]
 A random variable $X$ taking values in $\mathbb{N}$ follows a Poisson distribution with parameter $\lambda > 0$, denoted $X \sim \mathcal{P}(\lambda)$, if for all $k \in \mathbb{N}$:
 \[ P(X=k) = e^{-\lambda} \frac{\lambda^k}{k!} \]
 Its \textbf{expectation} and its \textbf{variance} are equal to $\lambda$, i.e., $E[X] = \text{Var}[X] = \lambda$.\\
@@ -173,7 +173,7 @@ We recognize the survival function of an exponential distribution. Therefore, $T
 % src_checksum: f1c89a7ef0c39df04b735340b4a04068555a28092a87b83e24bb49a35c45c95e
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{remark}[Rappel sur la loi Exponentielle]
+\begin{remark}[Reminder on the Exponential Distribution]
 A random variable $X$ follows the exponential distribution with parameter $\lambda > 0$, denoted $\text{Exp}(\lambda)$, if its density function is $f(x) = \lambda e^{-\lambda x}$ for $x \ge 0$.
 Its expectation is $E[X] = 1/\lambda$ and its variance is $\text{Var}[X] = 1/\lambda^2$.
 Its cumulative distribution function is $F_X(x) = P(X \le x) = 1 - e^{-\lambda x}$ for $x \ge 0$.
@@ -223,7 +223,7 @@ The variable $S_n$ represents the time of the $n$-th event.% --- CHUNK_METADATA_
 % src_checksum: 47fe100fac2d53bd970da0b10261db371ddd0739578c96efea2e34ee1e368267
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{definition}[Processus de Poisson]
+\begin{definition}[Poisson Process]
 For any $t \ge 0$, we define the number of events up to time $t$ as:
 \[ N(t) = \max \{ n \ge 0 : S_n \le t \} \]
 The stochastic process $(N(t))_{t \ge 0}$ is called the \textbf{Poisson process} with intensity $\lambda$.

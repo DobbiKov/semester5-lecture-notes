@@ -114,7 +114,7 @@ This result makes it easy to find the sequence of moments.% --- CHUNK_METADATA_S
 % src_checksum: 0da57fba4673cf0700178166bbc3e457ce72d0f62055d28a59d492c253d32e5b
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Loi uniforme][Uniform distribution]
+\begin{example}[Uniform Distribution]
 Let $X \sim \mathcal{U}([-1,1])$. The density is $f(x) = \frac{1}{2} \mathbf{1}_{[-1,1]}(x)$.
 
 \begin{align*}
@@ -132,7 +132,7 @@ Easier: $\mathbb{E}[X^{2n}] = \int_{-1}^1 x^{2n} \frac{1}{2} dx = \frac{1}{2} \l
 % src_checksum: f8aa2b238db0aa5a09f05fe740950ab85c4072a7277547c8d5943dd2c51094a5
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Loi Gaussienne][Gaussian Law]
+\begin{example}[Gaussian Distribution]
 Let $X \sim \mathcal{N}(0,1)$. We know that $\phi_X(u) = e^{-u^2/2}$.
 The series expansion is:
 \[ \phi_X(u) = e^{-u^2/2} = \sum_{n=0}^\infty \frac{1}{n!} \left( -\frac{u^2}{2} \right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{n! 2^n} u^{2n} \]
@@ -190,7 +190,7 @@ Whenever $f$ and $g$ are in $L^1$, the convolution product $f*g$ is well defined
 % src_checksum: ece428f08b2cf7aedff2e4d306693130799f3fc096bcf7eb789108baeff350f9
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{theorem}[Théorème Central Limite]
+\begin{theorem}[Central Limit Theorem]
 Let $(X_n)_{n \geq 1}$ be a sequence of i.i.d. random variables (independent and identically distributed) with a second-order moment. Let $m = \mathbb{E}[X_i]$ and $\sigma^2 = \text{Var}[X_i]$. Then,
 \[ \frac{X_1 + \dots + X_n - nm}{\sqrt{n}} \xrightarrow[n \to \infty]{\mathcal{L}} \mathcal{N}(0, \sigma^2) \]
 \end{theorem}% --- CHUNK_METADATA_START ---

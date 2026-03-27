@@ -121,7 +121,7 @@ The density of a law is not unique; it is defined up to a set of Lebesgue measur
 % src_checksum: e02106dbda30e3e9a20d16c46ff5a04b89f440b4d633d272a3da07b19e3462c3
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Exemples fondamentaux][Fundamental Examples]
+\begin{example}[Fundamental Examples]
 \begin{itemize}
     \item \textbf{Uniform distribution} on an interval $[a,b]$, denoted $\mathcal{U}([a,b])$. It is the distribution with density $\frac{1}{b-a}\mathbb{1}_{[a,b]}(x)$.
     \item \textbf{Exponential distribution} with parameter $\alpha > 0$, denoted $\text{Exp}(\alpha)$. It is the distribution with density $\alpha e^{-\alpha x} \mathbb{1}_{\mathbb{R}_+}(x)$.
@@ -195,14 +195,14 @@ When working with random variables, the first step involves performing manipulat
 % src_checksum: 147d9505d0433ee956003a02d66f8248409dc4f213c5eb4821b128e635208018
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proposition}[Formule de transfert]
+\begin{proposition}[Transfer Formula]
 Let $(\Omega, \mathcal{F}, P)$ be a probability space, $X$ a random variable taking values in $\mathbb{R}$, and $g: \mathbb{R} \to \mathbb{R}$ a Borel function such that $g(X)$ is an integrable random variable. Then
 \[ E(g(X)) = \int_{\Omega} g(X(\omega)) \,dP(\omega) = \int_{\mathbb{R}} g(x) \,dP_X(x). \]
 \end{proposition}% --- CHUNK_METADATA_START ---
 % src_checksum: 5ff1d5838e1ab0a36a0bda7167c1e7ad8842da14d66f341d3fbf7f617cd5b8a5
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{proof}[Idée de la preuve]
+\begin{proof}[Proof Idea]
 The proof proceeds in successive steps by showing that the formula holds for increasingly general classes of functions.
 \begin{enumerate}
     \item \textbf{Case of an indicator function:} Let us start with $g = \mathbb{1}_B$ where $B \in \mathcal{B}(\mathbb{R})$.

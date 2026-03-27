@@ -42,7 +42,7 @@ and thus $P_{X_n} = \text{Ber}(1/2)$ does not depend on $n$.
 % src_checksum: 4abd4f1a873324b9fb96b499adec88c9c757837410a2f4356967f8dceecd9344
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{definition}[Convergence en loi]
+\begin{definition}[Convergence in Distribution]
 Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of real random variables (not necessarily defined on the same probability space). The sequence $(X_n)_{n \in \mathbb{N}}$ converges in law to a random variable $X$, denoted $X_n \xrightarrow{\mathcal{L}} X$, if and only if, for every bounded continuous function $f: \mathbb{R} \to \mathbb{R}$,
 \[
 \lim_{n \to \infty} \mathbb{E}[f(X_n)] = \mathbb{E}[f(X)].
@@ -121,7 +121,7 @@ In some books, $F_X$ is defined as $F_X(x) = P(X < x)$. In this case, the distri
 % src_checksum: b0199b1f96f2eb30ba208c04466a4199f6dfbe3816045292147f699400eb581d
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Fonctions de répartition de lois classiques][Cumulative distribution functions of standard distributions]
+\begin{example}[Cumulative Distribution Functions of Standard Distributions]
 \begin{enumerate}
     \item $X \sim \mathcal{B}(p)$ (Bernoulli distribution). $F_X(x) = 0$ if $x<0$, $1-p$ if $0 \le x < 1$, and $1$ if $x \ge 1$.
     \item $X \sim \mathcal{U}(\{1, \dots, n\})$ (Discrete uniform distribution). $F_X(x) = \frac{\lfloor x \rfloor}{n}$ for $1 \le x \le n$.
@@ -156,7 +156,7 @@ This is a difficult result, which in particular allows for the construction of s
 % src_checksum: c8d62fa60a0bc39bd3a1aad1bd6b16bf26ea39b4352232d56ac41a3eaf6f9361
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{example}[Construction d'une loi singulière][Construction of a singular law]
+\begin{example}[Construction of a Singular Law]
 One can construct a sequence of distribution functions $(F_n)$ on $[0,1]$ that converges uniformly to a continuous function $F_\infty$, the Cantor function. This function $F_\infty$ is a distribution function, but the associated probability measure $\mu$ is singular with respect to the Lebesgue measure $\lambda$. It has no atoms ($\mu(\{x\})=0$ for all $x$) and is concentrated on a set of Lebesgue measure zero (the Cantor set).
 
 \begin{figure}[H]
