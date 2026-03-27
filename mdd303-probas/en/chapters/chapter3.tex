@@ -2,7 +2,8 @@
 % src_checksum: 8ae9592dcf848c91c59cc3e3acb4dc3792213563dee25179b017e6e0fb303aa1
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\chapter{Independence}% --- CHUNK_METADATA_START ---
+\chapter{Independence}
+% --- CHUNK_METADATA_START ---
 % src_checksum: 72866aa510b3cc88f678364c0035ffe135e58e0d2ca75a0b2e5a6cc256da9ebb
 % --- CHUNK_METADATA_END ---
 \sloppy% --- CHUNK_METADATA_START ---
@@ -18,7 +19,7 @@ Let $(\Omega, \mathcal{F}, P)$ be a probability space.% --- CHUNK_METADATA_START
 % needs_review: True
 % --- CHUNK_METADATA_END ---
 \begin{definition}[Sub-$\sigma$-algebra]
-A subtribe $\mathcal{G}$ of $\mathcal{F}$ is a σ-algebra that is included in $\mathcal{F}$, that is, $\mathcal{G} \subset \mathcal{F}$. For any $A \in \mathcal{G}$, we have $A \in \mathcal{F}$.
+A subtribe $\mathcal{G}$ of $\mathcal{F}$ is a $sigma$-algebra that is included in $\mathcal{F}$, that is, $\mathcal{G} \subset \mathcal{F}$. For any $A \in \mathcal{G}$, we have $A \in \mathcal{F}$.
 \end{definition}% --- CHUNK_METADATA_START ---
 % src_checksum: 5a5f23c40a58d01755b12784f4ada8a93479aced98871ada8b7c3771938f2a84
 % needs_review: True
@@ -31,7 +32,7 @@ It should be noted that the collection of sets $\{X^{-1}(B) \mid B \in \mathcal{
 % src_checksum: 5f55cbd241e2d1994b7d7847f58550782734fd870a790e7ad2d2555f124a4681
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-Since $X$ is a random variable, for all $B \in \mathcal{B}(\mathbb{R})$, we have $X^{-1}(B) \in \mathcal{F}$. Therefore, $\sigma(X)$ is a sub-σ-algebra of $\mathcal{F}$.% --- CHUNK_METADATA_START ---
+Since $X$ is a random variable, for all $B \in \mathcal{B}(\mathbb{R})$, we have $X^{-1}(B) \in \mathcal{F}$. Therefore, $\sigma(X)$ is a sub-$sigma$-algebra of $\mathcal{F}$.% --- CHUNK_METADATA_START ---
 % src_checksum: 26d37a1a0271ac64b3556f0ce7ecfc486bd56a4e54aa6b130b21b1c532f2e7cf
 % needs_review: True
 % --- CHUNK_METADATA_END ---
@@ -68,7 +69,7 @@ where the notation $P(A, B)$ means $P(A \cap B)$.
 % src_checksum: 1fcab79119a48c0baeee2dc26a76f027f14c409844d4f0116350155566e75fe5
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\subsection{Independence of sub-σ-algebras}% --- CHUNK_METADATA_START ---
+\subsection{Independence of sub-$sigma$-algebras}% --- CHUNK_METADATA_START ---
 % src_checksum: 3e25f722d9834e22772e5d4a7cc48af4cee78abf14e46b6308e6513e557155c0
 % needs_review: True
 % --- CHUNK_METADATA_END ---
@@ -89,7 +90,7 @@ The three previous definitions are hierarchical.% --- CHUNK_METADATA_START ---
 % --- CHUNK_METADATA_END ---
 \begin{itemize}
     \item The events $A_1, \ldots, A_n$ are independent if and only if the indicator random variables $\mathbf{1}_{A_1}, \ldots, \mathbf{1}_{A_n}$ are independent.
-    \item The random variables $X_1, \ldots, X_n$ are independent if and only if the σ-algebras they generate, $\sigma(X_1), \ldots, \sigma(X_n)$, are independent.
+    \item The random variables $X_1, \ldots, X_n$ are independent if and only if the $sigma$-algebras they generate, $\sigma(X_1), \ldots, \sigma(X_n)$, are independent.
 \end{itemize}% --- CHUNK_METADATA_START ---
 % src_checksum: 97bccf8e16275d46824257371aa129a191a1c88b2b2b7c5e1e433ff1f90e6d14
 % needs_review: True
@@ -127,27 +128,32 @@ Let $X, Y$ be two random variables with values in $\mathbb{R}$. Let $Z = (X,Y)$.
 % src_checksum: 9271cb7837f59f5e1c25b7c02e7e66ee941547f5f2eb92fb88bac9454eb5044b
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\section{Product Laws}% --- CHUNK_METADATA_START ---
+\section{Product Laws}
+% --- CHUNK_METADATA_START ---
 % src_checksum: 2560fcc5d875042016e2326dd753542eb7e9ac096d0737d49ff0ad949552d8e4
 % needs_review: True
 % --- CHUNK_METADATA_END ---
 Let $(E_1, \mathcal{E}_1, \mu_1), \ldots, (E_n, \mathcal{E}_n, \mu_n)$ $n$ be probability spaces.
-A natural question arises: does there exist a probability space $(\Omega, \mathcal{F}, P)$ on which are defined $n$ random variables $X_1, \ldots, X_n$ such that:% --- CHUNK_METADATA_START ---
+A natural question arises: does there exist a probability space $(\Omega, \mathcal{F}, P)$ on which are defined $n$ random variables $X_1, \ldots, X_n$ such that:
+% --- CHUNK_METADATA_START ---
 % src_checksum: bb23914095a9bac07893cbf743ef6b598e4157e7d540fcb6d2b0e14dae2858d8
 % needs_review: True
 % --- CHUNK_METADATA_END ---
 \begin{itemize}
     \item $X_1, \ldots, X_n$ are independent.
     \item For all $i \in \{1, \ldots, n\}$, $X_i$ takes values in $E_i$ and has the distribution $\mu_i$.
-\end{itemize}% --- CHUNK_METADATA_START ---
+\end{itemize}
+% --- CHUNK_METADATA_START ---
 % src_checksum: 48775d168978c992c2137be4fa1a4cdb1cbb0093c88d7e8a501afa42280cddee
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-The answer is affirmative and is provided by the construction of the product measure.% --- CHUNK_METADATA_START ---
+The answer is affirmative and is provided by the construction of the product measure.
+% --- CHUNK_METADATA_START ---
 % src_checksum: e88c9c2c14995582ca1203774c7dca5efca0874d10ed19673fca7a904332a13b
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\subsection{Construction of independent variables}% --- CHUNK_METADATA_START ---
+\subsection{Construction of independent variables}
+% --- CHUNK_METADATA_START ---
 % src_checksum: 1ec7793e32187fc216e08a09dd9ede462c39b30c15c92e93dd2c05030fdcb58c
 % needs_review: True
 % --- CHUNK_METADATA_END ---
@@ -219,7 +225,7 @@ Independence is maintained through grouping.% --- CHUNK_METADATA_START ---
 % needs_review: True
 % --- CHUNK_METADATA_END ---
 \begin{theorem}
-Let $\mathcal{F}_1, \ldots, \mathcal{F}_n$ be independent sub-σ-algebras. Let $I$ and $J$ be two disjoint subsets of $\{1, \ldots, n\}$. Then the σ-algebras $\mathcal{G} = \sigma(\bigcup_{i \in I} \mathcal{F}_i)$ and $\mathcal{H} = \sigma(\bigcup_{j \in J} \mathcal{F}_j)$ are independent.
+Let $\mathcal{F}_1, \ldots, \mathcal{F}_n$ be independent sub-$sigma$-algebras. Let $I$ and $J$ be two disjoint subsets of $\{1, \ldots, n\}$. Then the $sigma$-algebras $\mathcal{G} = \sigma(\bigcup_{i \in I} \mathcal{F}_i)$ and $\mathcal{H} = \sigma(\bigcup_{j \in J} \mathcal{F}_j)$ are independent.
 \end{theorem}% --- CHUNK_METADATA_START ---
 % src_checksum: 0527fed64ca0ca797de1e7d92439d53ebea1aa163aebcbf61e71b27e3ac1e6f7
 % needs_review: True
@@ -265,7 +271,7 @@ This theorem is generalized by recursion.% --- CHUNK_METADATA_START ---
 % --- CHUNK_METADATA_END ---
 
 \begin{proposition}
-Let $\mathcal{F}_1, \ldots, \mathcal{F}_n$ be independent σ-algebras. Let $I_1, \ldots, I_k$ be subsets of $\{1, \ldots, n\}$ that are pairwise disjoint. Then the σ-algebras $\mathcal{G}_j = \sigma(\bigcup_{i \in I_j} \mathcal{F}_i)$ for $j=1, \ldots, k$ are independent.
+Let $\mathcal{F}_1, \ldots, \mathcal{F}_n$ be independent $sigma$-algebras. Let $I_1, \ldots, I_k$ be subsets of $\{1, \ldots, n\}$ that are pairwise disjoint. Then the $sigma$-algebras $\mathcal{G}_j = \sigma(\bigcup_{i \in I_j} \mathcal{F}_i)$ for $j=1, \ldots, k$ are independent.
 \end{proposition}
 % --- CHUNK_METADATA_START ---
 % src_checksum: d474c2633764831730d8205444fe3e34c473067423d1f96da6eea30fdce6edb9

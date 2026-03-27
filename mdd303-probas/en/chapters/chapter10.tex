@@ -96,7 +96,7 @@ Let's prove the case for $k=1$. We have $\mathbb{E}[|X|] < \infty$.
 The characteristic function is $\phi_X(u) = \int_{\mathbb{R}} e^{iux} dP_X(x)$.
 This is a parameterized integral, and we want to derive with respect to $u$.
 Let $F(x,u) = e^{iux}$. We have $\frac{\partial F}{\partial u}(x,u) = ix e^{iux}$.
-We have $\left|\frac{\partial F}{\partial u}(x,u)\right| = |ix e^{{iux}| = |x|$ = |x|.
+We have $\left|\frac{\partial F}{\partial u}(x,u)\right| = |ix e^{iux}| = |x|$ = |x|.
 The dominating function $|x|$ is $P_X$-integrable because $\mathbb{E}[|X|] < \infty$, and it does not depend on $u$.
 By the theorem of differentiation under the integral sign, $\phi_X$ is differentiable and
 \[ \phi'_X(u) = \int_{\mathbb{R}} \frac{\partial F}{\partial u}(x,u) dP_X(x) = \int_{\mathbb{R}} ix e^{iux} dP_X(x) \]
