@@ -31,6 +31,21 @@ jobs:
         root_file: main.tex
         latexmk_shell_escape: true
         working_directory: probas_amphi/fr
+
+    - name: Sipan Probas
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: mdd303-probas/fr
+
+    - name: Sipan Probas English
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: main.tex
+        latexmk_shell_escape: true
+        working_directory: mdd303-probas/en
+
     - name: Probas Long Cheatsheet
       uses: xu-cheng/latex-action@v3
       with:
@@ -92,6 +107,8 @@ jobs:
         file measure-theory/explanations/carathedory-criterion/fr/main.pdf | grep -q ' PDF '
         file measure-theory/cheatsheet/en/main.pdf | grep -q ' PDF '
         file measure-theory/cheatsheet/fr/main.pdf | grep -q ' PDF '
+        file mdd303-probas/fr/main.pdf | grep -q ' PDF '
+        file mdd303-probas/en/main.pdf | grep -q ' PDF '
         
     - name: Upload to GitHub pages
       run: |
@@ -107,6 +124,9 @@ jobs:
         git clone --depth=1 --branch gh-pages git@github.com:dobbikov/semester5-lecture-notes.git "$GITHUB_WORKSPACE/deploy"
 
         # (*) To add a file, add the following command for that file
+        cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
+        cp -f mdd303-probas/fr/main.pdf "$GITHUB_WORKSPACE/deploy/mdd303-probas.pdf"
+        cp -f mdd303-probas/en/main.pdf "$GITHUB_WORKSPACE/deploy/mdd303-probas-en.pdf"
         cp -f probas/cheatsheet.pdf "$GITHUB_WORKSPACE/deploy/probas_cheatsheet.pdf"
         cp -f probas_full_cheatsheet/main.pdf "$GITHUB_WORKSPACE/deploy/probas_full_cheatsheet.pdf"
         cp -f probas_amphi/fr/main.pdf "$GITHUB_WORKSPACE/deploy/probas_notes.pdf"
