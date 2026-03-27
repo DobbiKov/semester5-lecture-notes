@@ -12,11 +12,11 @@ We consider a random space. We denote $\Omega$ the set of possible outcomes: it 
 % src_checksum: a55051e717ae23004b5bca8d56bb82e90be92857e48760de89ad08cf9d4abaa4
 % --- CHUNK_METADATA_END ---
 An event associated with a random experiment is a set of outcomes whose probability can be calculated. Let us denote $\mathcal{F}$ the collection of all events.
-Thus, $\mathcal{F} \subset \mathcal{P}(\Omega)$, the set of subsets of $\Omega$. In fact, we require that $\mathcal{F}$ be a tribe or $\sigma$-algebra over $\Omega$.% --- CHUNK_METADATA_START ---
+Thus, $\mathcal{F} \subset \mathcal{P}(\Omega)$, the set of subsets of $\Omega$. In fact, we require that $\mathcal{F}$ be a $\sigma$-algebra over $\Omega$.% --- CHUNK_METADATA_START ---
 % src_checksum: fe665206755e5d31a338bf2f0ec674656f7489ee9d7d3d1eca10e5769a5ca409
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\begin{definition}[Tribe or $\sigma$-algebra]
+\begin{definition}[$\sigma$-algebra]
 A sigma-algebra or $\sigma$-algebra on $\Omega$ is a collection $\mathcal{F}$ of subsets of $\Omega$ that satisfies:
 \begin{itemize}
     \item $\Omega \in \mathcal{F}$
@@ -29,7 +29,7 @@ A sigma-algebra or $\sigma$-algebra on $\Omega$ is a collection $\mathcal{F}$ of
 % --- CHUNK_METADATA_END ---
 
 \begin{remark}
-A tribe necessarily contains $\emptyset$ and $\Omega$.
+A $\sigma$-algebra necessarily contains $\emptyset$ and $\Omega$.
 Indeed, since $\mathcal{F}$ is non-empty, there exists $A \in \mathcal{F}$. By stability under complementation, $A^c \in \mathcal{F}$. By stability under union, $A \cup A^c = \Omega \in \mathcal{F}$. Finally, $\Omega^c = \emptyset \in \mathcal{F}$.
 \end{remark}
 % --- CHUNK_METADATA_START ---
@@ -89,7 +89,7 @@ The elements of $\mathcal{F}$ are called events. (Kolmogorov Axiomatics 1930).
 % src_checksum: bfd75cd7c37d2383b1b9144b45886f309941a1d12b516d26ef305fa970ac0b16
 % needs_review: True
 % --- CHUNK_METADATA_END ---
-\section{Borel tribe}% --- CHUNK_METADATA_START ---
+\section{Borel $\sigma$-algebra}% --- CHUNK_METADATA_START ---
 % src_checksum: 18f4bf27626725d18e54ecc88a4ad30ea74650493aa8a5682a3561c5811de1f3
 % needs_review: True
 % --- CHUNK_METADATA_END ---
