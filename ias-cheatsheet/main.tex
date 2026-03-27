@@ -339,6 +339,40 @@ We are already given points and we need to classify a new point, we just look
 at the points closest to the new one, look at their classes and take the class
 of majority.
 
+\section*{Decision Trees (Classification \& Regression)}
+
+\subsection*{Core Concept}
+\begin{itemize}
+    \item \textbf{Logic:} Builds a tree of successive binary questions to classify data feature by feature.
+    \item \textbf{Question Structure:} Each node represents 1 feature ($d$), 1 threshold ($s$), and 1 branch leading to a data division ($x_d \le s$).
+    \item \textbf{Leaves:} Final nodes containing predictions. The primary goal is to achieve \textbf{pure leaves} (containing samples from only one class).
+\end{itemize}
+
+\subsection*{Algorithm: Greedy Construction}
+For each feature and every possible threshold, the algorithm calculates the \textbf{purity} of the resulting split.
+\begin{enumerate}
+    \item Identify the best feature/threshold combination that maximizes leaf purity.
+    \item Divide the data according to this cut.
+    \item Repeat recursively for the remaining data in each branch until a stopping criterion is met.
+\end{enumerate}
+
+\subsection*{Purity Metrics}
+\begin{itemize}
+    \item \textbf{Classification:} Gini Impurity or Entropy.
+    \item \textbf{Regression:} Mean Squared Error (MSE).
+\end{itemize}
+
+\subsection*{Handling Mixed Leaves}
+If a leaf is not pure (contains multiple classes), a common strategy is the \textbf{Majority Vote}: assign the class that represents more than $50\%$ of the samples in that node.
+
+\subsection*{Key Scikit-Learn Hyper-parameters}
+\begin{itemize}
+    \item \texttt{criterion}: \textit{'gini'}, \textit{'entropy'}, or \textit{'mse'}.
+    \item \texttt{max\_depth}: Limits the height of the tree to prevent \textbf{overfitting}.
+    \item \texttt{min\_samples\_split}: The minimum number of samples required to split an internal node.
+    \item \texttt{max\_features}: The number of features to consider when looking for the best split (using a subset is computationally cheaper).
+\end{itemize}
+
 \newpage
 \section{11. Models}
 \begin{tabular}{|c|c|}
