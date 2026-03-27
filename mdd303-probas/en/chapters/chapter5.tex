@@ -1,0 +1,359 @@
+% --- CHUNK_METADATA_START ---
+% src_checksum: a88790d438f55f4a9fa653cfe84f05c96bc661a5dfd09fc464b7456fbef09f6b
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\chapter{Transience and Recurrence of Walks}% --- CHUNK_METADATA_START ---
+% src_checksum: 00ae17a3bf722a0c378d7b434831f059c7c711259c43c94ad16e275664c74f4d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\sloppy
+
+Let $d \ge 1$ and $(X_n)_{n \ge 1}$ be a sequence of random variables defined on $(\Omega, \mathcal{F}, P)$ with values in $\mathbb{Z}^d$. The associated random walk is the sequence $(S_n)_{n \ge 0}$ defined by $S_0=0, \quad \forall n \ge 1 \quad S_n=X_1+\dots+X_n$.
+
+The random walk $(S_n)_{n \ge 0}$ is said to be recurrent if it returns to 0 infinitely often with probability 1, and transient otherwise.% --- CHUNK_METADATA_START ---
+% src_checksum: e05c6c1fca41b88d9d00a725de1ca33f873d7e0eaa29eddcca530ba95de00d48
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{First recurrence criterion}% --- CHUNK_METADATA_START ---
+% src_checksum: 19c2ddbc60d832a5f025023842c0e7347699af882a180b9d64c3b2cdd94eb178
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}If the walk returns to 0 with probability 1, then it passes through 0 infinitely often with probability 1.\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: ab39f24372ec6e7fc61d876705d0d57a15d6148a807928091036c57bce3bb201
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Let $R$ be the time of the last visit to 0, i.e., $R = \sup\{n > 0; S_n = 0\}$.
+Assume that $P(\exists n \ge 1, S_n=0) = 1$ and consider, for $k \ge 1$
+\begin{align*}
+    P(R=k) &= P(S_k=0, \forall n>k, S_n-S_k \neq 0) \\
+    &= P(X_1+\dots+X_k = 0, \forall n>k, X_{k+1}+\dots+X_n \neq 0)
+\end{align*}
+The event $\{\forall n>k, X_{k+1}+\dots+X_n \neq 0\}$ is in $\sigma(X_i, i \ge k+1)$.
+By the blocking theorem, this event is independent of $\{X_1+\dots+X_k=0\}$.
+Hence, $P(R=k) = P(S_k=0) P(\forall n>k, S_n-S_k \neq 0)$.
+Moreover, the sequence $(X_{k+1}, X_{k+2}, \dots)$ has the same distribution as $(X_1, X_2, \dots)$.
+Thus, $P(\forall n>k, S_n-S_k \neq 0) = P(\forall n \ge 1, S_n \neq 0)$.
+Given that $P(S_k=0) \le 1$, we have:
+\begin{align*}
+    P(R=k) &\le P(\forall n \ge 1, S_n \neq 0) \\
+    &\le 1 - P(\exists n \ge 1, S_n = 0) = 1-1=0
+\end{align*}
+Thus, $P(R=k)=0$ for all $k \in \mathbb{N}^*$.
+Now, the probability that the walk visits 0 a finite number of times is:
+\begin{equation*}
+    P(R < +\infty) = P(\bigcup_{k \in \mathbb{N}^*} \{R=k\}) \le \sum_{k \in \mathbb{N}^*} P(R=k) = 0
+\end{equation*}
+This means that the probability that the walk returns only a finite number of times is zero. Therefore, it returns an infinite number of times with probability 1.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: ac9365adedadd2e33ef78cdb116ae59d7a77e1cc6db3e8553b49155d8cc8be1a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Équivalence]
+There is equivalence between:
+\begin{enumerate}
+    \item $P(\exists n \ge 1, S_n=0) = 1$ (the walk passes back through 0).
+\item $P(S_n \text{ visits 0 infinitely often}) = 1$.
+\end{enumerate}
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 87bf9f4deedfc4e8a30468c9db662b034aa09379a32f9218c5aacb86c473ab65
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+Often, it is easier to show that an event occurs infinitely often with probability 1 rather than showing that it occurs at least once with probability 1.
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: 7e7c3b98b91410c4024a31df5edb9d7287041fc127c77d4868b0e08c016b9e70
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{The Borel-Cantelli lemma}% --- CHUNK_METADATA_START ---
+% src_checksum: fcdad7cdc5935f8fb2e01fd51fa580a83c6027fe5b10b758340ae029fd71803c
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $(\Omega, \mathcal{F}, P)$ be a probability space. Let $(A_n)_{n \in \mathbb{N}}$ be a sequence of events in $\mathcal{F}$.
+We define the lower limit and the upper limit of this sequence of events.% --- CHUNK_METADATA_START ---
+% src_checksum: 928b31504aa3996ab980d917c0bea308288b84d79216f8aab80ba903dc26cb16
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}
+\begin{itemize}
+    \item $\liminf A_n = \bigcup_{n \ge 0} \bigcap_{m \ge n} A_m = \{ \omega \in \Omega : \omega \text{ belongs to all } A_n \text{ except for a finite number} \}$.
+    \item $\limsup A_n = \bigcap_{n \ge 0} \bigcup_{m \ge n} A_m = \{ \omega \in \Omega : \omega \text{ belongs to infinitely many } A_n \}$.
+\end{itemize}
+Moreover, the event $\limsup A_n$ is often denoted $\{A_n \text{ occurs infinitely often}\}$ or, in abbreviated form, $\{A_n \text{ i.s.}\}$ (infinitely often).
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 7939cfdf3ee09faea56e22af669ab5f3244e8115890ffced8b2fb762346e7f99
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{example}
+\begin{itemize}
+    \item Let $(X_n)$ be a sequence of real random variables and $B \in \mathcal{B}(\mathbb{R})$. Then $\limsup \{X_n \in B\} = \{X_n \in B \text{ a.s.}\}$.
+    \item For the random walk, $\limsup \{S_n=0\} = \{S_n=0 \text{ a.s.}\}$.
+\end{itemize}
+\end{example}% --- CHUNK_METADATA_START ---
+% src_checksum: 6e0149ed1dfc6073ef1df754a8b300b7b48cd34303132c382b72b3453f121718
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{lemma}[Lemme de Borel-Cantelli]
+Let $(A_n)_{n \in \mathbb{N}}$ be a sequence of events.
+\begin{itemize}
+    \item \textbf{Part I:} If the series $\sum_n P(A_n)$ converges, then $P(A_n \text{ i.s.}) = 0$.
+    \item \textbf{Part II:} If the series $\sum_n P(A_n)$ diverges and the events $(A_n)$ are independent, then $P(A_n \text{ i.s.}) = 1$.
+\end{itemize}
+\end{lemma}% --- CHUNK_METADATA_START ---
+% src_checksum: 0477dcdf511c9254cc14a243bf5db0a3773badc0521d97c507bf9fb98dd8b2ae
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+\textbf{I)} Assume that the series $\sum P(A_n)$ converges. Then
+\begin{equation*}
+    P(A_n \text{ occurs infinitely often}) = P(\bigcap_{n \ge 0} \bigcup_{m \ge n} A_m)
+\end{equation*}
+The sequence of events $B_n = \bigcup_{m \ge n} A_m$ is decreasing.
+By the monotone convergence theorem:
+\begin{equation*}
+    P(\bigcap_{n \ge 0} B_n) = \lim_{n \to \infty} P(B_n) = \lim_{n \to \infty} P(\bigcup_{m \ge n} A_m)
+\end{equation*}
+By $\sigma$-additivity:
+\begin{equation*}
+    P(\bigcup_{m \ge n} A_m) \le \sum_{m \ge n} P(A_m)
+\end{equation*}
+As the series $\sum P(A_n)$ converges, the remainder of the series tends to 0:
+\begin{equation*}
+    \lim_{n \to \infty} \sum_{m \ge n} P(A_m) = 0
+\end{equation*}
+Thus, $P(A_n \text{ i.o.}) = 0$.
+\vspace{1cm}
+\textbf{II)} Assume that $\sum P(A_n) = +\infty$ and that the $(A_n)$ are independent.
+We want to show that $P(A_n \text{ i.o.}) = P(\bigcap_{n} \bigcup_{m \ge n} A_m) = 1$.
+Consider the complement:
+\begin{equation*}
+    P(\{A_n \text{ i.o.}\}^c) = P(\bigcup_{n} \bigcap_{m \ge n} A_m^c)
+\end{equation*}
+Let $n$ be fixed, consider $P(\bigcap_{m \ge n} A_m^c)$.
+For any $N > n$:
+\begin{equation*}
+    P(\bigcap_{m=n}^N A_m^c) = \prod_{m=n}^N P(A_m^c) \quad \text{by independence}
+\end{equation*}
+\begin{equation*}
+    = \prod_{m=n}^N (1 - P(A_m))
+\end{equation*}
+Using the fact that $1-x \le e^{-x}$, we have
+\begin{equation*}
+    \prod_{m=n}^N (1 - P(A_m)) \le \prod_{m=n}^N e^{-P(A_m)} = \exp\left(-\sum_{m=n}^N P(A_m)\right)
+\end{equation*}
+Since the series $\sum P(A_n)$ diverges, $\sum_{m=n}^N P(A_m) \to \infty$ when $N \to \infty$.
+Thus, $\exp(-\sum_{m=n}^N P(A_m)) \to 0$ when $N \to \infty$.
+Therefore, for all $n$, $P(\bigcap_{m \ge n} A_m^c) = 0$.
+By $\sigma$-additivity,
+\begin{equation*}
+    P(\{A_n \text{ i.o.}\}^c) = P(\bigcup_{n} \bigcap_{m \ge n} A_m^c) \le \sum_n P(\bigcap_{m \ge n} A_m^c) = \sum_n 0 = 0.
+\end{equation*}
+Hence $P(A_n \text{ i.o.}) = 1$.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: a6950da834ba81e9b148ddd3e4ec23b75b24b573d683bffc2e3949412f6a7633
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{Application: The monkey and Shakespeare}% --- CHUNK_METADATA_START ---
+% src_checksum: 84ec9206a59f19fdbff81e7f3d9f3198f681123ed1a94f5092447767ceb95a00
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let's put a monkey to type on a typewriter. What is the probability that it types the complete works of Shakespeare?
+Let $(X_n)_{n \ge 1}$ be an i.i.d sequence of Bernoulli(p), $0 < p < 1$.
+$\forall n \ge 1$, $P(X_n=1)=p$, $P(X_n=0)=1-p$.
+Let $k \ge 1$ and $(\epsilon_1, \dots, \epsilon_k)$ be a fixed sequence of 0s and 1s.
+Consider the event $A_n = \{X_n=\epsilon_1, X_{n+1}=\epsilon_2, \dots, X_{n+k-1}=\epsilon_k\}$.
+The probability of this event is $P(A_n) = p^{\sum \epsilon_i} (1-p)^{k-\sum \epsilon_i}$, which does not depend on $n$.
+Thus, the series $\sum P(A_n) = +\infty$.
+However, the $(A_n)$% --- CHUNK_METADATA_START ---
+% src_checksum: 80f777ac887f94ce01977fd1babdad93fcfe54f5e10dad8776a06ca8a69ddc22
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+are not independent, we cannot apply part II of Borel-Cantelli directly.
+Consider the events $B_n=A_{nk}$, for $n \ge 1$. By the block grouping theorem, the $(B_n)$ are independent.
+And $\sum P(B_n)=+\infty$. By BC II, $P(B_n \text{ a.s.}) = 1$, which implies that the event occurs infinitely often.% --- CHUNK_METADATA_START ---
+% src_checksum: 56377aefc7807a28625ff7ebbdb32e580d2d73760a40f7bb60abaf48b77a8bd9
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{A second recurrence criterion}% --- CHUNK_METADATA_START ---
+% src_checksum: f6c366658eee212e5f260ea56a7ceae1db36c65ed4cfa81e85377b0e55517202
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let us return to our random walk $S_0=0$, $S_n=X_1+\dots+X_n$.
+Let $T$ be the time of the first return to 0: $T=\min\{n \ge 1, S_n=0\}$, with the convention $\inf \emptyset = +\infty$.
+For $n \ge 1$, let $u_n = P(S_n=0)$ and $f_n = P(T=n)$. We set $u_0=1$ and $f_0=0$.
+For $n \ge 1$, we can decompose the event $\{S_n=0\}$ according to the value of the first return time $T$:% --- CHUNK_METADATA_START ---
+% src_checksum: 2cc4f473e40e37182d2f076d6ded57fda8ddcc5ea07642cd58fb019c1fafd050
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    u_n = P(S_n=0) &= P(\{S_n=0\} \cap \bigcup_{k=1}^n \{T=k\}) = \sum_{k=1}^n P(S_n=0, T=k) \\
+    &= \sum_{k=1}^n P(S_1 \neq 0, \dots, S_{k-1} \neq 0, S_k=0, S_n=0)
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 61019d1c5ac2722330f9512fc7f8f24163f17fd2193f97f239aa369cedf2ad08
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+By the independence of increments, the event $\{S_n-S_k=0\}$ is independent of $\{T=k\}$.% --- CHUNK_METADATA_START ---
+% src_checksum: ea0731074fe68ad2dfd825766df85ed28f13d263c2b3c58838716f0aa7a1ddc9
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    u_n &= \sum_{k=1}^n P(S_1 \neq 0, \dots, S_{k-1} \neq 0, S_k=0) P(S_n-S_k=0) \\
+    &= \sum_{k=1}^n P(T=k) P(S_{n-k}=0) \\
+    u_n &= \sum_{k=1}^n f_k u_{n-k} \quad \forall n \ge 1
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 568295f5a3b7f259c00bae11f44129cbbc8b238ebf801b84ffbf88c6dcd1aa32
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+To the sequences $(u_n)$ and $(f_n)$, we associate their generating series, defined for $s \in [0,1)$:% --- CHUNK_METADATA_START ---
+% src_checksum: bb318e12e8c74e38005c8b9fe984f823a3fd11c50ff1a6595a22b60560fe6566
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    U(s) &= \sum_{n \ge 0} u_n s^n \\
+    F(s) &= \sum_{n \ge 0} f_n s^n = E(s^T)
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 0e0e6fe23fd4bef907a471bbec69e4c7271f4e824549c2248718b6a1e1eb7bc0
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The recurrence relation $u_n = \sum_{k=1}^n f_k u_{n-k}$ is a convolution. For $n \ge 1$:% --- CHUNK_METADATA_START ---
+% src_checksum: b1b2e22da9868527436c9edf437570ed417d769b1c8f84f88bbb4481d0ed065a
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    u_n s^n = \sum_{k=1}^n f_k u_{n-k} s^n = \sum_{k=1}^n (f_k s^k)(u_{n-k}s^{n-k})
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: f52f6563393d5b17e8d7e5e0431b59ae5f08d8ba1a2553617fed12170e35e848
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+By summing over $n \ge 1$:% --- CHUNK_METADATA_START ---
+% src_checksum: d192d4d1f2a387578bf23d1a43b5cc78ff1661ba442754004469838d9a37cae2
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    \sum_{n \ge 1} u_n s^n &= \sum_{n \ge 1} \sum_{k=1}^n (f_k s^k)(u_{n-k}s^{n-k}) \\
+    U(s) - u_0 &= \left(\sum_{k \ge 1} f_k s^k\right) \left(\sum_{j \ge 0} u_j s^j\right) \\
+    U(s) - 1 &= F(s) U(s)
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 3ce1fd2868c61a2865c22434e5e4e3117e103111008c058defd88e4ff738b7ee
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Therefore, we obtain the relation $U(s)(1 - F(s)) = 1$ for $s \in [0,1)$.
+When letting $s \to 1^-$, since the series has positive terms, we have by the monotone convergence theorem:% --- CHUNK_METADATA_START ---
+% src_checksum: bdf08b2cc424d00f89dafdb3fb1310d43d3b2b79a9f24fb75eac332dc66a14ea
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    \lim_{s \to 1^-} U(s) &= \sum_{n \ge 0} u_n = \sum_{n \ge 0} P(S_n=0) \\
+    \lim_{s \to 1^-} F(s) &= \sum_{n \ge 0} f_n = \sum_{n \ge 0} P(T=n) = P(T < +\infty) = P(\exists n \ge 1, S_n=0)
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 8b96bdb5867d8ed7f6b76d704657399140311979df332af18472b3cfdec101be
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Thus, we obtain the relation:% --- CHUNK_METADATA_START ---
+% src_checksum: 76e2021f008a4ea0955e2d8dc09ea2e2b9c53319a7af2fabb3ccdef28934936c
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    \left(\sum_{n \ge 0} P(S_n=0)\right) \left(1 - P(\exists n \ge 1, S_n=0)\right) = 1
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: cb72d9500db7b07bbac031a052dc6301ab44e8b213e6cfa95757888835fed6f0
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+This equality implies that both terms are either finite or infinite at the same time. In particular, $\sum P(S_n=0) = +\infty$ if and only if $1 - P(\exists n \ge 1, S_n=0) = 0$, that is, $P(\exists n \ge 1, S_n=0) = 1$.
+This leads us to the following equivalence theorem:% --- CHUNK_METADATA_START ---
+% src_checksum: aa7625daafba2bd4aee7bc7c453c1f7b16fa806136fd2c73f971a4df0fe3f0c6
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Critères de récurrence]
+The following statements are equivalent:
+\begin{enumerate}
+    \item $P(\exists n \ge 1, S_n=0) = 1$ (the walk is recurrent in the sense of the first return).
+    \item $P(S_n=0 \text{ i.s.}) = 1$ (the walk is recurrent).
+    \item $\sum_{n=0}^{\infty} P(S_n=0) = +\infty$.
+\end{enumerate}
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 390770444ef359f3cdb7633707812051535e45b3eda2271ada97789a64273985
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Application to walks on $\mathbb{Z}^d$}% --- CHUNK_METADATA_START ---
+% src_checksum: 741c5fc1bb97d4778359a196e23f92b6be626a830900bd362d291f691b8eb27b
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{The walk on $\mathbb{Z}$}% --- CHUNK_METADATA_START ---
+% src_checksum: 2c773e9e07e9f28ceed5992598ea676984b6a7fcf308e9ce6b0fd02074bc6ffd
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $0<p<1$ and let $(X_n)$ be i.i.d. with law $\text{Ber}(p)$ on $\{-1, 1\}$, i.e., $P(X_n=1)=p$ and $P(X_n=-1)=1-p$.
+For $S_{2n}=0$ to occur, there must be as many steps of $+1$ as steps of $-1$, i.e., $n$ of each. $P(S_{2k+1}=0)=0$.% --- CHUNK_METADATA_START ---
+% src_checksum: f3c76f16da700e3ca9418aa807760941571b3bf85849da33fa3e1c806076368e
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    P(S_{2n}=0) = \binom{2n}{n} p^n (1-p)^n
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: 66ef0a88e4115ad322fe1d5be53d92970d57892210787a788503faa251f3751d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Using Stirling's approximation $k! \sim \sqrt{2\pi k} (\frac{k}{e})^k$, we obtain:% --- CHUNK_METADATA_START ---
+% src_checksum: e3363be7d4a222322c180060f89f263b8911061ba7e442e1c6c62c95f3488bc1
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    \binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: 54321d1e98563d154a102438334c9131edbf6474860c822de8a441bd74b67bc3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Hence,% --- CHUNK_METADATA_START ---
+% src_checksum: a5edddbd5aacd93155b61d751f3dbcad36688eb737ff3d1bc95bf0844db07617
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    P(S_{2n}=0) \sim \frac{(4p(1-p))^n}{\sqrt{\pi n}}
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: 7af818fc5db47799b7753089e1b061bc948c624d6098a1ff8ec63ab4f5e13fb4
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The series $\sum_n P(S_{2n}=0)$ behaves like a geometric series.% --- CHUNK_METADATA_START ---
+% src_checksum: 4b61178b1d56c605d6a696ad49e4efa6fb47a174af60559c3a37fc31572fc677
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{itemize}
+    \item If $p=1/2$, $4p(1-p)=1$ and $P(S_{2n}=0) \sim \frac{1}{\sqrt{\pi n}}$. The series $\sum \frac{1}{\sqrt{n}}$ diverges, so the symmetric walk on $\mathbb{Z}$ is \textbf{recurrent}.
+\item If $p \neq 1/2$, $4p(1-p)<1$. The series $\sum \frac{(4p(1-p))^n}{\sqrt{\pi n}}$ converges, so the walk on $\mathbb{Z}$ is \textbf{transient}.
+\end{itemize}% --- CHUNK_METADATA_START ---
+% src_checksum: 140a19d31d34cb9a8c3ec2c4888c28e36aede8e542564602b7278e77181a638d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{The symmetric walk on $\mathbb{Z}^2$}% --- CHUNK_METADATA_START ---
+% src_checksum: bed7c94b08b96398d88972a09852830a9c46ad464abd19bbcc647ef3657baf37
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $(X_n)$ be a sequence of i.i.d. random variables taking values in $\{(1,0), (-1,0), (0,1), (0,-1)\}$, with a probability of $1/4$ for each one.
+It can be shown that:% --- CHUNK_METADATA_START ---
+% src_checksum: d6e0cc67a97f6381a1622f1dc8122f8e8d4eaf9b22b2061b39c5c4fb93f7e6de
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    P(S_{2n}=0) \sim \frac{1}{\pi n}
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: b245d31b9f697d21be238a33be04ba7705be9d6c102dbb4a870c4f5c565fb978
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The series $\sum \frac{1}{n}$ (harmonic series) diverges. The symmetric walk on $\mathbb{Z}^2$ is \textbf{recurrent}.% --- CHUNK_METADATA_START ---
+% src_checksum: 7ef31a21abf14460c298a90999e33f40ffd8d5655d4e45cf8c0ff4db2577c3e0
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{The symmetric walk on $\mathbb{Z}^d, d \ge 3$}% --- CHUNK_METADATA_START ---
+% src_checksum: 9b889e7f157444d26d1d33212064b9a8ab369a5266ef9c462ceab4541f82848d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+For the symmetric walk on $\mathbb{Z}^3$, we have:% --- CHUNK_METADATA_START ---
+% src_checksum: 77a23219bba4a866e5fc37700accf6044bdcaed3d515a1dd6838cfae046f952b
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    P(S_{2n}=0) = O(n^{-3/2})
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: bb832c12bd20f477d2059f1bca6e23b97860222ae3b9449101be3157c9e3cef8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The series $\sum n^{-3/2}$ converges (Riemann series with $p=3/2 > 1$). The symmetric random walk on $\mathbb{Z}^3$ is \textbf{transient}.
+In dimension $d>3$, the symmetric random walk in $\mathbb{Z}^d$ is transient, and the mean number of returns to 0 is:% --- CHUNK_METADATA_START ---
+% src_checksum: 39b75d2aa9308780b5ae43e815702d497f32281fbaa4e95401f15cadb26e651d
+% --- CHUNK_METADATA_END ---
+\begin{equation*}
+    U_d = \frac{1}{(2\pi)^d} \int_{[-\pi,\pi]^d} \frac{1}{1-\frac{1}{d}\sum_{k=1}^d \cos u_k} d u_1 \dots d u_d
+\end{equation*}% --- CHUNK_METADATA_START ---
+% src_checksum: 11ddff938382bd95ce103b70aae3c4940829e8428db8c580ac2ac41c0cce8775
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+This integral is finite for $d \ge 3$.

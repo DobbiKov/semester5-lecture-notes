@@ -1,0 +1,232 @@
+% --- CHUNK_METADATA_START ---
+% src_checksum: cb27ae6d9b3cfcd626f3822d7dc082e454f6f29acf9555f09fdd9a4cfe143ea3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\chapter{The problem of random signs}% --- CHUNK_METADATA_START ---
+% src_checksum: 72866aa510b3cc88f678364c0035ffe135e58e0d2ca75a0b2e5a6cc256da9ebb
+% --- CHUNK_METADATA_END ---
+\sloppy% --- CHUNK_METADATA_START ---
+% src_checksum: 680496a39e668cb117233e1320fc104aca78d542eec640c59c049c269181c1ab
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{The problem}% --- CHUNK_METADATA_START ---
+% src_checksum: ac4e8ef76837695c5fcfc333f22448dfe84e57b01b168953d66b9f6e4e8f498f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $(u_n)_{n \in \mathbb{N}}$ be a (deterministic) sequence of real numbers.
+Let $(\epsilon_n)_{n \in \mathbb{N}}$ be an infinite i.i.d. sequence of Bernoulli(1/2) variables such that:
+\[ \forall n \in \mathbb{N}, \quad \mathbb{P}(\epsilon_n = -1) = \mathbb{P}(\epsilon_n = 1) = 1/2 \]
+Does the series $\sum \epsilon_n u_n$ converge?% --- CHUNK_METADATA_START ---
+% src_checksum: 8ef18009b48fa2e6fd4c67f58d069ff60a9f71c92a7d425e94b372ea8756b2c1
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{itemize}
+    \item If $u_n \not\to 0$, the series does not converge.
+    \item If the series $\sum |u_n|$ is absolutely convergent, then $\sum \epsilon_n u_n$ is almost surely absolutely convergent.
+\end{itemize}% --- CHUNK_METADATA_START ---
+% src_checksum: 96ad3d186b16e4b9adf6aa9cc2f52d21e480aebd6f9471bcf4c1186d6a861aa9
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let's look at the harmonic series: $\sum 1/n = +\infty$.
+\[ \sum_{n \ge 1} \frac{(-1)^{n-1}}{n} = 1 - 1/2 + 1/3 - \dots = \ln(2) \]% --- CHUNK_METADATA_START ---
+% src_checksum: b1baf9192b979f529e713b125c5f5e0803bb191681174735444147367a707fce
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Convergence in $L^2$}% --- CHUNK_METADATA_START ---
+% src_checksum: 26a18e9caa7edf0a524aa3948ae69f45b2601699ab48dfcca810b30d3a0e1a23
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\begin{proposition}
+The series of random variables $\sum u_n \epsilon_n$ converges in $L^2$ if and only if the series $\sum |u_n|^2$ converges.
+\end{proposition}
+% --- CHUNK_METADATA_START ---
+% src_checksum: 9144aaa0f05d4776761c5fe5ecefb37c18af3693a368a4689b6ab8ce04216b36
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Let $S_n = \sum_{k=0}^n \epsilon_k u_k$.
+Then, the series $\sum \epsilon_n u_n$ converges in $L^2$ iff the sequence $(S_n)_{n \in \mathbb{N}}$ converges in $L^2$.
+The space $L^2(\Omega, \mathcal{F}, \mathbb{P})$ is complete with respect to $\| \cdot \|_2$.
+Thus, the sequence $(S_n)_{n \in \mathbb{N}}$ converges iff it satisfies the Cauchy criterion.
+Let $m<n$, consider:
+\begin{align*}
+    \|S_n - S_m\|_2^2 &= \int |S_n - S_m|^2 d\mathbb{P} \\
+    &= E[(S_n-S_m)^2] \\
+    &= E\left[\left(\sum_{k=m+1}^n \epsilon_k u_k\right)^2\right] \\
+    &= E\left[\sum_{m<k,l \le n} \epsilon_k \epsilon_l u_k u_l\right] = \sum_{m<k,l \le n} u_k u_l E(\epsilon_k \epsilon_l)
+\end{align*}
+For $k \neq l$, $E(\epsilon_k \epsilon_l) = E(\epsilon_k)E(\epsilon_l) = 0$ because the random variables are independent and centered. For $k=l$, $E(\epsilon_k^2)=1$.
+Therefore,
+\[ \|S_n - S_m\|_2^2 = \sum_{k=m+1}^n u_k^2 = a_n - a_m \quad \text{where } a_n = \sum_{k=0}^n u_k^2 \]
+Thus, the sequence $(S_n)$ is Cauchy in $L^2$ iff the sequence $(a_n)$ is Cauchy in $\mathbb{R}$.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: bbb15f228721c5b2f758133420156a39752413b5d35db9061ef11fe3c937e0d1
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Kolmogorov's 0-1 Law}% --- CHUNK_METADATA_START ---
+% src_checksum: 4839a23a6db7e71acaf547e72f4ab42d0804f51e1211975214476aa1f46dfd86
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of random variables defined on the space $(\Omega, \mathcal{F}, \mathbb{P})$.
+The \textbf{tail sigma-algebra}, or \textbf{asymptotic sigma-algebra}, associated with the sequence $(X_n)$ is the sigma-algebra:
+\[ \mathcal{T} = \bigcap_{n \ge 0} \sigma(X_n, X_{n+1}, \dots) \]
+An event $A \in \mathcal{F}$ is said to be \textbf{asymptotic} for the sequence $(X_n)$ if it belongs to the asymptotic sigma-algebra.
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 0efbf307bc8f2dc7b69d0bf591ba059df0b2369292a9df3776fdc6387827dc42
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{example}
+The following events are asymptotic:
+\begin{itemize}
+    \item $\{ \limsup X_n > 100 \}$
+    \item $\{ \liminf X_n \in [0,1] \}$
+    \item $\{ \omega : \lim X_n(\omega) \text{ exists} \}$
+    \item $\{ \omega : \sum \epsilon_n(\omega) u_n \text{ converges} \}$, which is an asymptotic event for the sequence $(\epsilon_n)_{n \in \mathbb{N}}$.
+\end{itemize}
+\end{example}% --- CHUNK_METADATA_START ---
+% src_checksum: 72aae409a3bb9c84a8b44f0f9d5ef1e77f08cbe2d9af85bd28da56278e46e512
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Loi du 0-1 de Kolmogorov]
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of independent random variables.
+Let A be an asymptotic event for the sequence $(X_n)$. Then $\mathbb{P}(A)$ is equal to 0 or 1.
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 06ef72a8d6d93eef58271731bd869dbddd766bf2149003734505840902c7a7b8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection*{Application to the problem of signs}% --- CHUNK_METADATA_START ---
+% src_checksum: 392a4f035316451de86b55480c178b61c992fc577092d045dd512708e19b8783
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The event $\{\sum \epsilon_n u_n \text{ converges}\}$ is an asymptotic event for the sequence $(\epsilon_n)$. Since the $(\epsilon_n)$ are independent, the probability of this event is 0 or 1.
+Either the series converges almost surely or it does not converge almost surely.% --- CHUNK_METADATA_START ---
+% src_checksum: 866c37a4b44c5361619b39f51b64717cf10ba06b68fce42421aad03b1708cf8a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{An approximation result}% --- CHUNK_METADATA_START ---
+% src_checksum: 55d7d4fc31e53b0f16d4e6600705ef00338e72bb23a92a2fa0669d3bf7c04592
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The \textbf{symmetric difference} of 2 sets A and B is $A \Delta B = (A \cup B) \setminus (A \cap B)$.% --- CHUNK_METADATA_START ---
+% src_checksum: fbd43b3d0a0199f8a4c8cd7b18c674ec00564dd53b2b0092293de2c5278aed92
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{itemize}
+    \item $A \Delta \emptyset = \emptyset \Delta A = A$
+    \item $A \Delta A = \emptyset$
+    \item $\forall A, B, C, \quad A \Delta (B \Delta C) = (A \Delta B) \Delta C$
+    \item $(\mathcal{P}(\Omega), \Delta)$ is an abelian group.
+\end{itemize}% --- CHUNK_METADATA_START ---
+% src_checksum: 552e2a5453cc0c01ab763b5c60714b98940f3ca112c000ab704abd5024d1ae1a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of random variables and let A be an event in the sigma-algebra $\sigma(X_0, X_1, \dots)$.
+Then there exists a sequence of events $(A_n)_{n \in \mathbb{N}}$ such that:
+\begin{itemize}
+    \item $\forall n \in \mathbb{N}, \exists k(n), \quad A_n \in \sigma(X_0, \dots, X_{k(n)})$
+    \item $\lim_{n \to \infty} \mathbb{P}(A_n \Delta A) = 0$
+\end{itemize}
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: 77e14475b110f10a8882d217ce2520ee79dd80d5e0d3b76b1138d9d1043df5d7
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+$\forall A, B, \quad |\mathbb{P}(A) - \mathbb{P}(B)| \le \mathbb{P}(A \Delta B)$, so we also have $\lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}(A)$.
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: 4303555c585c3a1629fc7501949a1c8bb6604306f3595ee2864709c5edb02488
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Consider $\mathcal{G}$ the collection of events for which the result holds true. We show that $\mathcal{G}$ is a $\sigma$-algebra.
+The algebra $\mathcal{A} = \bigcup_m \sigma(X_0, \dots, X_m)$ is contained in $\mathcal{G}$. Indeed, if $A \in \sigma(X_0, \dots, X_m)$, it suffices to take $A_n=A$ for all $n$.
+We then show that $\mathcal{G}$ is a $\sigma$-algebra.
+\begin{itemize}
+    \item $\Omega \in \mathcal{G}$.
+    \item If $A \in \mathcal{G}$ and $(A_n)$ is a sequence approximating $A$, then the sequence $(A_n^c)$ approximates $A^c$:
+    \[ \mathbb{P}(A^c \Delta A_n^c) = \mathbb{P}(A \Delta A_n) \to 0 \]
+    \item If $(A_m)_{m \ge 1}$ is a sequence in $\mathcal{G}$, then $A = \bigcup_m A_m \in \mathcal{G}$.
+    Since $A_m \in \mathcal{G}$, there exists an approximating sequence $(A_{m,n})_n$ for $A_m$.
+    $\forall n, \forall m \ge 1, \exists k(m,n), A_{m,n} \in \sigma(X_0, \dots, X_{k(m,n)})$ and $\lim_{n \to \infty} \mathbb{P}(A_m \Delta A_{m,n}) = 0$.
+    Since $\lim_{M \to \infty} \mathbb{P}(A \setminus \bigcup_{m=1}^M A_m) = 0$, $\forall M \ge 1, \exists \varphi(M)$ such that $\mathbb{P}(A \setminus \bigcup_{m=1}^{\varphi(M)} A_m) < 1/M$.
+    Then, $\forall m \in \{1, \dots, \varphi(M)\}$, $\exists N(M,m)$ such that $\forall n > N(M,m)$, $\mathbb{P}(A_m \Delta A_{m,n}) \le \frac{1}{\varphi(M)M}$.
+    Thus, take $N(M) = \max\{N(M,m), 1 \le m \le \varphi(M)\}$ and $A_M' = \bigcup_{m=1}^{\varphi(M)} A_{m, N(M,m)}$.
+    \begin{align*}
+        \mathbb{P}(A \Delta A_M') &\le \mathbb{P}\left(A \Delta \bigcup_{m=1}^{\varphi(M)} A_m\right) + \mathbb{P}\left(\left(\bigcup_{m=1}^{\varphi(M)} A_m\right) \Delta A_M'\right) \\
+        &< \frac{1}{M} + \sum_{m=1}^{\varphi(M)} \mathbb{P}(A_m \Delta A_{m,N(M,m)}) \\
+        &\le \frac{1}{M} + \sum_{m=1}^{\varphi(M)} \frac{1}{\varphi(M)M} = \frac{1}{M} + \frac{1}{M} = \frac{2}{M} \to 0
+    \end{align*}
+\end{itemize}
+Since $\mathcal{G}$ is a $\sigma$-algebra containing $\mathcal{A}$, $\mathcal{G}$ contains $\sigma(\mathcal{A}) = \sigma(X_0, X_1, \dots)$.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 4cf91cb2339723f76179632b6131d8dce6e91a22ae4151898ae9c879a10f232e
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+We apply this result to prove the 0-1 law. Let $(X_n)$ be independent, $A \in \mathcal{T} = \bigcap_k \sigma(X_k, X_{k+1}, \dots)$.
+There exist $(A_n)$ such that $A_n \in \sigma(X_0, \dots, X_{k(n)})$ and $\lim \mathbb{P}(A \Delta A_n) = 0$.
+First, since $|\mathbb{P}(A) - \mathbb{P}(A_n)| \le \mathbb{P}(A \Delta A_n) \to 0$, we have $\mathbb{P}(A_n) \to \mathbb{P}(A)$.
+Furthermore, $A_n \in \sigma(X_0, \dots, X_{k(n)})$ and $A \in \mathcal{T} \subset \sigma(X_{k(n)+1}, X_{k(n)+2}, \dots)$.
+Because $(X_n)$ are independent, the two σ-algebras are independent. Thus, $A$ and $A_n$ are also independent.
+\[ \mathbb{P}(A \cap A_n) = \mathbb{P}(A) \mathbb{P}(A_n) \xrightarrow{n \to \infty} \mathbb{P}(A)^2 \]% --- CHUNK_METADATA_START ---
+% src_checksum: 608c2b99a5a7261c791ea0fd435e5c890e583f2b2c38298e979dc2ff126ceea4
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Similarly, $|\mathbb{P}(A) - \mathbb{P}(A \cap A_n)| = \mathbb{P}(A \setminus A_n) \le \mathbb{P}(A \Delta A_n) \to 0$, hence $\lim \mathbb{P}(A \cap A_n) = \mathbb{P}(A)$.
+We conclude that $\mathbb{P}(A) = \mathbb{P}(A)^2$, which implies $\mathbb{P}(A) \in \{0,1\}$.% --- CHUNK_METADATA_START ---
+% src_checksum: 80a320e0f6cf8baf9ba494d8cccf5392c9a45d2296f0e44c728bf280089ae1f6
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Kolmogorov's Inequality}% --- CHUNK_METADATA_START ---
+% src_checksum: 1d8ab2524e9418ab67e02f522f84e7940241fb5a9c2f2dd58ab799ab8946710c
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}
+Let $X_1, \dots, X_n$ be n independent, centered random variables ($E(X_i)=0$) with finite variances.
+Let $\forall k \in \{1, \dots, n\}, S_k = X_1 + \dots + X_k$.
+Then $\forall \alpha > 0$,
+\[ \mathbb{P}(\max_{1 \le k \le n} |S_k| \ge \alpha) \le \frac{1}{\alpha^2} \mathrm{Var}(S_n) \]
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 4ed87724925a518da19a4d29c4263ce07ab23f370d2ae7449b1df0c4100dd24a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+For $k \in \{1, \dots, n\}$, we introduce the event $A_k = \{|S_1| < \alpha, \dots, |S_{k-1}| < \alpha, |S_k| \ge \alpha\}$.
+The events $(A_k)$ are disjoint. Let $A = \bigcup_{k=1}^n A_k = \{ \max_{1 \le k \le n} |S_k| \ge \alpha \}$.
+\begin{align*}
+    \mathrm{Var}(S_n) = E(S_n^2) &= \int_\Omega S_n^2 d\mathbb{P} \ge \int_A S_n^2 d\mathbb{P} \\
+    &= \sum_{k=1}^n \int_{A_k} S_n^2 d\mathbb{P} \quad \text{since the } A_k \text{ are disjoint}
+\end{align*}
+Furthermore, 
+\begin{align*}
+    \int_{A_k} S_n^2 d\mathbb{P} &= \int_{A_k} (S_k + (S_n - S_k))^2 d\mathbb{P} \\
+    &= \int_{A_k} \left( S_k^2 + 2S_k(S_n - S_k) + (S_n - S_k)^2 \right) d\mathbb{P} \\
+    &\ge \int_{A_k} \left( S_k^2 + 2S_k(S_n - S_k) \right) d\mathbb{P}
+\end{align*}
+The term $\mathbf{1}_{A_k} S_k$ is $\sigma(X_1, \dots, X_k)$-measurable. The term $S_n - S_k = \sum_{j=k+1}^n X_j$ is $\sigma(X_{k+1}, \dots, X_n)$-measurable. By independence,
+\[ E[\mathbf{1}_{A_k} S_k (S_n - S_k)] = E[\mathbf{1}_{A_k} S_k] E[S_n - S_k] = E[\mathbf{1}_{A_k} S_k] \cdot 0 = 0 \]
+Therefore $\int_{A_k} 2S_k(S_n - S_k) d\mathbb{P} = 0$.
+We thus have $\int_{A_k} S_n^2 d\mathbb{P} \ge \int_{A_k} S_k^2 d\mathbb{P}$.
+On $A_k$, we have $|S_k| \ge \alpha$, so $S_k^2 \ge \alpha^2$.
+\[ \int_{A_k} S_k^2 d\mathbb{P} \ge \int_{A_k} \alpha^2 d\mathbb{P} = \alpha^2 \mathbb{P}(A_k) \]
+Summing over $k$:
+\[ \mathrm{Var}(S_n) \ge \sum_{k=1}^n \alpha^2 \mathbb{P}(A_k) = \alpha^2 \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) = \alpha^2 \mathbb{P}(A) \]
+Which gives the result.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 00f18af2a22b3f4ac45f78547fbb60d699f972484826e1cf13b13291bd2f4b84
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Convergence of series of independent random variables}% --- CHUNK_METADATA_START ---
+% src_checksum: 01ca4ef8cc15fcdec73b1ee9686d27ed419c923b3bd6294ba29463c3a30868f8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of independent, centered random variables with finite variances $\forall n, E(X_n)=0, E(X_n^2) < \infty$.
+If $\sum E(X_n^2) < \infty$, then the series $\sum X_n$ converges almost surely.
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: c4f713e753816f8c21d8148757e382d9512c94a9fa5ab29ca7941a861bc2b3b7
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+A consequence of the previous results is that, for the random sign problem:
+\[ \sum_{n \in \mathbb{N}} u_n^2 < \infty \iff \sum_{n \in \mathbb{N}} \epsilon_n u_n \text{ converges a.s.} \]

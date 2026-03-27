@@ -1,0 +1,254 @@
+% --- CHUNK_METADATA_START ---
+% src_checksum: e28ea450cbd162ff569de2610b2286d6fc7de0d50516a2a6dcabc705e9adb115
+% --- CHUNK_METADATA_END ---
+\chapter{ The probabilistic model}% --- CHUNK_METADATA_START ---
+% src_checksum: 25781c9a61220ac5e26da9f79e669aa4e832bdc8c88a9e91f5239507761ac314
+% --- CHUNK_METADATA_END ---
+\sloppy
+We consider a random space. We denote $\Omega$ the set of possible outcomes: it is an arbitrary set a priori.% --- CHUNK_METADATA_START ---
+% src_checksum: f38f40bf049f3267b3c13c6729901e35ac716bfa357be2ca9204985e92c5efe8
+% --- CHUNK_METADATA_END ---
+\section{Events}% --- CHUNK_METADATA_START ---
+% src_checksum: a55051e717ae23004b5bca8d56bb82e90be92857e48760de89ad08cf9d4abaa4
+% --- CHUNK_METADATA_END ---
+An event associated with a random experiment is a set of outcomes whose probability can be calculated. Let us denote $\mathcal{F}$ the collection of all events.
+Thus, $\mathcal{F} \subset \mathcal{P}(\Omega)$, the set of subsets of $\Omega$. In fact, we require that $\mathcal{F}$ be a tribe or $\sigma$-algebra over $\Omega$.% --- CHUNK_METADATA_START ---
+% src_checksum: fe665206755e5d31a338bf2f0ec674656f7489ee9d7d3d1eca10e5769a5ca409
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Tribe or $\sigma$-algebra]
+A sigma-algebra or $\sigma$-algebra on $\Omega$ is a collection $\mathcal{F}$ of subsets of $\Omega$ that satisfies:
+\begin{itemize}
+    \item $\Omega \in \mathcal{F}$
+    \item If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$ (stability under complementation).
+    \item If $(A_n)_{n \in \mathbb{N}}$ is a sequence of elements of $\mathcal{F}$, then their union $\bigcup_{n \in \mathbb{N}} A_n$ is also in $\mathcal{F}$ (stability under countable union).
+\end{itemize}
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 5898715d17ab4256519be77ba38fa31beb47fd8fc1b0ca91abf3d2ae2f066935
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\begin{remark}
+A tribe necessarily contains $\emptyset$ and $\Omega$.
+Indeed, since $\mathcal{F}$ is non-empty, there exists $A \in \mathcal{F}$. By stability under complementation, $A^c \in \mathcal{F}$. By stability under union, $A \cup A^c = \Omega \in \mathcal{F}$. Finally, $\Omega^c = \emptyset \in \mathcal{F}$.
+\end{remark}
+% --- CHUNK_METADATA_START ---
+% src_checksum: 7f326885ee953fe7fdcacc07f33518dcb90f25de478754cabb9bc745772cd008
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}[Reminder]
+Two events $A$ and $B$ are said to be disjoint or incompatible if they cannot occur simultaneously, that is, if $A \cap B$ is the impossible event $\emptyset$.
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: d819e4b63ea84e0a47d19a66b35fa62dba0063d6c02921de74bd817ef5eff71b
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Probability}% --- CHUNK_METADATA_START ---
+% src_checksum: 9b9fa7cab7c25a493a79e582adcbf91cc27a593534697d13c6ecd3bd55f0a5a8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $\Omega$ be a set equipped with a $sigma$-algebra $\mathcal{F}$.% --- CHUNK_METADATA_START ---
+% src_checksum: 775fedde529ded73f09032e53bd865b0626f12f0df4479e3e731261872d99419
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Probability]
+A probability on $(\Omega, \mathcal{F})$ is a function $P: \mathcal{F} \to [0,1]$ that satisfies:
+\begin{enumerate}
+    \item[i)] $P(\Omega) = 1$.
+\item[ii)] If $(A_n)_{n \in \mathbb{N}}$ is a sequence of pairwise disjoint elements of $\mathcal{F}$, then
+\[
+        P\left(\bigcup_{n \in \mathbb{N}} A_n\right) = \sum_{n \in \mathbb{N}} P(A_n).
+    \]
+\end{enumerate}
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 73d6c7b2f011a03d9ddc8e817312c9beb8fc5e3ceb024edbdaf479b31695874f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let's consider the case where $\Omega$ is finite. In this case, we always take $\mathcal{F} = \mathcal{P}(\Omega)$. Let $A, B$ be two disjoint events. Applying ii) to the sequence $A_0 = A, A_1=B, A_2=A_3=\dots=\emptyset$, we obtain the finite additivity property:% --- CHUNK_METADATA_START ---
+% src_checksum: 10e5445eb56b97bc3c405f889cb46df542768664974e4e7f596b0f8dadd289f7
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{enumerate}
+    \item[ii')] $\forall A, B$ disjoint, $P(A \cup B) = P(A) + P(B)$.
+\end{enumerate}% --- CHUNK_METADATA_START ---
+% src_checksum: 7c4c8535329fa6dabc4682a2cafdcb5d92da39f28ae94f715ddba4e17bea6c52
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The modern theory of probabilities is built with axiom ii), stronger than ii'), which does not clash with intuition. But above all, it is a fundamental condition that enables proving numerous limit theorems.% --- CHUNK_METADATA_START ---
+% src_checksum: c8c8a27e10064736d8fa81a51802729b853cc9f327e6bcc7a2fd5817e22b1b99
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Espace de probabilité]
+A probability space is a triplet $(\Omega, \mathcal{F}, P)$ where:
+\begin{itemize}
+    \item $\Omega$ is a set;
+    \item $\mathcal{F}$ is a $sigma$-algebra on $\Omega$;
+    \item $P$ is a probability measure defined on $\mathcal{F}$.
+\end{itemize}
+The elements of $\mathcal{F}$ are called events. (Kolmogorov Axiomatics 1930).
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: bfd75cd7c37d2383b1b9144b45886f309941a1d12b516d26ef305fa970ac0b16
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Borel tribe}% --- CHUNK_METADATA_START ---
+% src_checksum: 18f4bf27626725d18e54ecc88a4ad30ea74650493aa8a5682a3561c5811de1f3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $\Omega$ be a set. If $\mathcal{F}_1, \mathcal{G}$ are two $sigma$-algebras on $\Omega$, we define their intersection as $\mathcal{F} \cap \mathcal{G} = \{A \subset \Omega; A \in \mathcal{F} \text{ and } A \in \mathcal{G}\}$. This is still a $sigma$-algebra.
+
+More generally, if $(\mathcal{F}_i)_{i \in I}$ is a family of $sigma$-algebras on $\Omega$ indexed by the set $I$ whatever, then $\bigcap_{i \in I} \mathcal{F}_i = \{A \subset \Omega; \forall i \in I, A \in \mathcal{F}_i\}$ is still a $sigma$-algebra.% --- CHUNK_METADATA_START ---
+% src_checksum: e13f4d370e1d21904feeb9cddec6fd5696402ce7750be6e7c5f5b8bcc36cdbf3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}[Tribu engendrée]
+Let $\mathcal{A}$ be a collection of subsets of $\Omega$. There exists a unique $sigma$-algebra $\sigma(\mathcal{A})$ that satisfies:
+\begin{enumerate}
+    \item[i)] $\mathcal{A} \subset \sigma(\mathcal{A})$.
+\item[ii)] $\forall \mathcal{F}$ a $sigma$-algebra, $\mathcal{A} \subset \mathcal{F} \implies \sigma(\mathcal{A}) \subset \mathcal{F}$.
+\end{enumerate}
+The $sigma$-algebra $\sigma(\mathcal{A})$ is called the $sigma$-algebra generated by $\mathcal{A}$; it is the smallest $sigma$-algebra containing $\mathcal{A}$.
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: e5839a4316be4c39907675e0766284ccc169e182c69e70c783830b432bcd114d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Consider the following $sigma$-algebra: $\bigcap_{\mathcal{F}' \text{ tribu}, \mathcal{A} \subset \mathcal{F}'} \mathcal{F}'$. It is an intersection of $sigma$-algebras, so it is a $sigma$-algebra. By construction, it contains $\mathcal{A}$. It is contained in every $sigma$-algebra that contains $\mathcal{A}$. Thus, it is the smallest $sigma$-algebra that contains $\mathcal{A}$.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: ed71dfc00167e2164b6df8391b9efee2378f7596d5d94c7588ad2f7782cb7827
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+This is the process used to define the subgroup generated by a family of elements (subspace generated...).
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: 715e7d33ee43920d7bc10a7188543ab7f78ef6815653356c25e9621b15ee0936
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Tribu borélienne $\mathcal{B}(\mathbb{R})$]
+The Borel sigma-algebra on $\mathbb{R}$, denoted by $\mathcal{B}(\mathbb{R})$, is the smallest sigma-algebra containing the intervals. It is the sigma-algebra generated by one of the following families:
+\begin{itemize}
+    \item Closed intervals $[a, b]$, with $a < b \in \mathbb{R}$.
+    \item Open intervals $]a, b[$, with $a < b \in \mathbb{R}$.
+    \item Half-infinite intervals $]-\infty, \lambda]$, with $\lambda \in \mathbb{R}$.
+    \item Half-infinite intervals $[\lambda, +\infty[$, with $\lambda \in \mathbb{R}$.
+\end{itemize}
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: dc36a95c34b14ace17c373333800f510fdd18d4a0a26d0e36000d66298fc4fe8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Random variables}% --- CHUNK_METADATA_START ---
+% src_checksum: 77ea5c41e2f2b9fed366f86d39c004a235b787e857124ca7aa85e5f3bbc097aa
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+Random variables are the nymphs of probability spaces. A random variable (r.v.) is a function of the random experiment, so it is a priori a mapping $X : \Omega \to \mathbb{R}$. We want to be able to calculate the probability that a random variable falls within an arbitrary interval of $\mathbb{R}$. A necessary and sufficient condition for this is to require that $X$ be measurable.
+% --- CHUNK_METADATA_START ---
+% src_checksum: 12c119e795e8cefcec231e05841b26658f081f57cd86b30b7df278fc446ca43d
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Variable aléatoire]
+Let $(\Omega, \mathcal{F}, P)$ be a probability space. A random variable $X$ on $(\Omega, \mathcal{F}, P)$ is a measurable function $X : \Omega \to \mathbb{R}$ from $(\Omega, \mathcal{F})$ to $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, i.e.,
+
+\[ \forall B \in \mathcal{B}(\mathbb{R}), \quad X^{-1}(B) = \{\omega \in \Omega; X(\omega) \in B\} \in \mathcal{F}. \]
+Thus, if $B \in \mathcal{B}(\mathbb{R})$, then $X^{-1}(B)$ is an event. It is simply denoted as $\{X \in B\}$ or even $X \in B$. In general, we strive to simplify formulas by omitting the variable $\omega$ whenever it is not essential.
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 06f4ac11966e5c2cadb0e01eec4828a450b12bbbcb8f08a54ffceeacb90c0caf
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\paragraph{Convention:} Random variables are denoted by uppercase letters $X, Y, Z, U, V, W$, and their corresponding values by lowercase letters $x, y, z, u, v, w$.
+More generally, one can consider random variables taking values in $\mathbb{C}$, in $\mathbb{R}^n$, and indeed in any set equipped with a sigma-algebra.% --- CHUNK_METADATA_START ---
+% src_checksum: b3d672c8f7494c2a22cbda3f2584538e2ccb13343e0417b9c1fb81dfd4064f8a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Fonction borélienne]
+A function $f : \mathbb{R} \to \mathbb{R}$ is called Borel if it is measurable from $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ to $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, i.e., if $\forall B \in \mathcal{B}(\mathbb{R}), f^{-1}(B) = \{x \in \mathbb{R} : f(x) \in B\} \in \mathcal{B}(\mathbb{R})$.
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: e78330445d4678e26c13f9423f87deffce6f567b59ba2435102ff8b09da89b50
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{example}
+If $X$ is a random variable and $f$ is a Borel function, then $f(X)$ is still a random variable.
+\end{example}% --- CHUNK_METADATA_START ---
+% src_checksum: e6be82eb293738be54a250924a978c9204b4bb10c56293b02ce872d2262be225
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\paragraph{Operations on random variables:}
+If $X, Y$ are random variables and $\alpha \in \mathbb{R}$, then $\alpha X$, $X+Y$, $XY$ are random variables.
+If $(X_n)$ is a sequence of random variables, then $\lim\inf X_n$, $\lim\sup X_n$ and $\lim X_n$ (if it exists) are random variables.
+\paragraph{Link with measure theory:}
+A space $\mathcal{E}$ equipped with a sigma-algebra $\mathcal{E}$ is called a measurable space. If $(E, \mathcal{E})$ and $(F, \mathcal{F})$ are two measurable spaces, a function $f: E \to F$ is measurable if $\forall A \in \mathcal{F}, f^{-1}(A) \in \mathcal{E}$. A probability $P$ is a (positive) measure with total mass 1.% --- CHUNK_METADATA_START ---
+% src_checksum: dc5f98ad452eaddf64c98418b26cf7794699045ebe3622d13a9676e6d7aee6c8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{The law of a random variable}% --- CHUNK_METADATA_START ---
+% src_checksum: 1f59cfc4d808fe31628ef9417a606283065a8b1c0cd0e69c5faffed601f74199
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let $(\Omega, \mathcal{F}, P)$ be a probability space and let $X$ be a random variable defined on $\Omega$ taking values in $\mathbb{R}$.% --- CHUNK_METADATA_START ---
+% src_checksum: dbb32fa230d05f5bfc5e099f3c7f6f9a5f1cefb806d32c6a455f105b48408d0a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\begin{definition}[Loi d'une variable aléatoire]
+The law of the r.v. $X$, denoted as $P_X$, is the probability measure on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ defined by:
+\[ \forall B \in \mathcal{B}(\mathbb{R}) \quad P_X(B) = P(X \in B) (= P(X^{-1}(B)) = P(\{\omega \in \Omega; X(\omega) \in B\})). \]
+\end{definition}
+% --- CHUNK_METADATA_START ---
+% src_checksum: 85195d232848b395d688e80c0b38777b082ea23b63a1829c21c2f00554b10e31
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Let us emphasize that the law of a random variable is a probability defined on the space of the values of the random variable, in our case, $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+We say that two random variables $X$ and $Y$ have the same law if $P_X = P_Y$.
+The primary object of interest when studying a random variable is its law. Indeed, we want to evaluate the probabilities of events associated with the random variable.
+"The law is fundamental!"% --- CHUNK_METADATA_START ---
+% src_checksum: 08969baaaf3913fef757f4ac5f68959eb4cc3bc8fef1e16faacbcbaeeacc29fa
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Expectation}% --- CHUNK_METADATA_START ---
+% src_checksum: edac1c37ab31a60dae11f74343428c8b6d3127393789accbf054c3dba870eb0f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\begin{definition}[Variable aléatoire étagée]
+A random variable $\delta : \Omega \to \mathbb{R}$ is called 'stepped' if it takes a finite number of values. It can therefore be written as:
+\[ \delta = \sum_{i=1}^n \alpha_i \mathbb{I}_{A_i} \text{ where } \alpha_i \in \mathbb{R}, A_i \in \mathcal{F}. \]
+Its expectation is its integral with respect to $P$, given by $E(\delta) = \int \delta dP = \sum_{i=1}^n \alpha_i P(A_i)$.
+\end{definition}
+% --- CHUNK_METADATA_START ---
+% src_checksum: c4e3630f3ff06972b1551163e640dcd57d25ffd04f663e3eef14aa2c8b2979e5
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Espérance d'une v.a. positive]
+If $X: \Omega \to [0, +\infty]$ is a non-negative or positive random variable, possibly taking the value $+\infty$, its expectation is defined as:
+\[ E(X) = \sup \{E(\delta), \delta \text{ step}, 0 \le \delta \le X\}. \]
+This is also the integral of $X$ with respect to $P$. We denote $E(X) = \int X dP$. Note that we may have $E(X) = +\infty$.
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: 5a3646ce460b882e2b7dab6d747cb6fdafdc465877749156e904a70436642192
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Espérance d'une v.a. quelconque]
+If $X: \Omega \to \mathbb{R}$ is of any sign, we write $X = X^+ - X^-$ where:
+\begin{itemize}
+    \item $X^+ = \max(X, 0)$ is the positive part.
+    \item $X^- = -\min(X, 0)$ is the negative part.
+\end{itemize}
+$X^+$ and $X^-$ are two positive random variables.
+When $E(X^+) < \infty$ and $E(X^-) < \infty$, we set:
+\[ E(X) = \int X dP = E(X^+) - E(X^-). \]
+Since moreover, $|X| = X^+ + X^-$, we have the equivalence: $E(X^+) < \infty, E(X^-) < \infty \iff E(|X|) < \infty$.
+In this case, its expectation is $E(X) = \int X dP$. We denote $\mathcal{L}^1(\Omega, \mathcal{F}, P)$ the space of integrable random variables.
+\end{definition}% --- CHUNK_METADATA_START ---
+% src_checksum: af157bfcba6f1b70a82f3a4df45cd18ff478f619faaca2a16173889bdfc97919
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\section{Variance}
+% --- CHUNK_METADATA_START ---
+% src_checksum: a066b3c528f8c6ff4d98ea8597c3484f5c3ced9acc76273f3fafacdfc6621be3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{definition}[Variance]
+If $X$ is a random variable such that $E(X^2) < \infty$ (which implies that $X$ is integrable), its variance is defined as:
+\begin{align*}
+    \text{Var}(X) &= E[(X-E(X))^2] \\
+    &= E(X^2) - [E(X)]^2
+\end{align*}
+\end{definition}

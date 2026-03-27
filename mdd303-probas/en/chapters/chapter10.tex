@@ -1,0 +1,250 @@
+% --- CHUNK_METADATA_START ---
+% src_checksum: 281ce907c22808fc1ac6c339a4cd8476b14956202de3030a3e44a57c614ab34c
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\chapter{Central Limit Theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 72866aa510b3cc88f678364c0035ffe135e58e0d2ca75a0b2e5a6cc256da9ebb
+% --- CHUNK_METADATA_END ---
+\sloppy% --- CHUNK_METADATA_START ---
+% src_checksum: 11aafdff3e47870e71aafcca1e396db3e4771a333aa61783a1490c162b4ebf54
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Paul Lévy's theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 71e762009b076bc989687a63ca0afb39116bf92afba13dc52d7e53059f126691
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Paul Lévy]
+Let $(X_n)_{n \in \mathbb{N}}$ be a sequence of real random variables and let $X$ be a real random variable. Let $\phi_{X_n}$ and $\phi_X$ be their characteristic functions. The following are equivalent:
+\begin{enumerate}
+    \item[i)] $X_n \xrightarrow{\mathcal{L}} X$
+    \item[ii)] $\forall u \in \mathbb{R}, \lim_{n \to \infty} \phi_{X_n}(u) = \phi_X(u)$
+\end{enumerate}
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: ffbf765d2a813169459d8371aac01f826c2d614c9c30b90b66a89e784ef4a9d8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Direct implication: i) $\implies$ ii) \\
+We have $\phi_{X_n}(u) = \mathbb{E}[e^{iuX_n}] = \mathbb{E}[\cos(uX_n)] + i\mathbb{E}[\sin(uX_n)]$. The functions $x \mapsto \cos(ux)$ and $x \mapsto \sin(ux)$ (with $u$ fixed) are continuous and bounded. By the definition of convergence in distribution,
+\begin{align*}
+    \mathbb{E}[\cos(uX_n)] &\xrightarrow[n \to \infty]{} \mathbb{E}[\cos(uX)] \\
+    \mathbb{E}[\sin(uX_n)] &\xrightarrow[n \to \infty]{} \mathbb{E}[\sin(uX)]
+\end{align*}
+and thus $\phi_{X_n}(u) \xrightarrow[n \to \infty]{} \phi_X(u)$.
+\vspace{1cm}
+Converse implication: ii) $\implies$ i) \\
+We use the same strategy as for proving the injectivity of the Fourier transform of probability measures. We assume that $X, X_n$ for $n \in \mathbb{N}$ are all defined on the same probability space $(\Omega, \mathcal{F}, P)$, on which a random variable $Y$ is also defined, independent of $X, X_n$ for $n \in \mathbb{N}$, with distribution $\mathcal{N}(0,1)$. Let $f: \mathbb{R} \to \mathbb{R}$ be a continuous function with compact support. We assume ii) holds, and we want to show that $X_n \xrightarrow{\mathcal{L}} X$. Let $\sigma > 0$ and write:
+\begin{align*}
+    \mathbb{E}[f(X_n)] - \mathbb{E}[f(X)] &= \mathbb{E}[f(X_n) - f(X_n + \sigma Y)] + \mathbb{E}[f(X_n + \sigma Y)] - \mathbb{E}[f(X + \sigma Y)] \\
+    &+ \mathbb{E}[f(X + \sigma Y) - f(X)]
+\end{align*}
+Since $f$ is continuous with compact support, it is uniformly continuous.
+\[
+\forall \varepsilon > 0, \exists \delta > 0, \forall x,y \in \mathbb{R}, |x-y| < \delta \implies |f(x) - f(y)| < \varepsilon
+\]
+Let $\varepsilon > 0$ be fixed. Let $\delta$ be associated with $\varepsilon$ as above. We write:
+\begin{align*}
+    |\mathbb{E}[f(X_n) - f(X_n + \sigma Y)]| &\leq \mathbb{E}[|f(X_n) - f(X_n + \sigma Y)|] \\
+    &= \int_{|\sigma Y| \leq \delta} |f(X_n) - f(X_n + \sigma Y)| dP + \int_{|\sigma Y| > \delta} |f(X_n) - f(X_n + \sigma Y)| dP
+\end{align*}
+\begin{align*}
+    \int_{|\sigma Y| \leq \delta} |f(X_n) - f(X_n + \sigma Y)| dP &< \varepsilon \\
+    \int_{|\sigma Y| > \delta} |f(X_n) - f(X_n + \sigma Y)| dP &\leq \int_{|\sigma Y| > \delta} 2\|f\|_{\infty} dP = 2\|f\|_{\infty} \mathbb{P}(|\sigma Y| > \delta)
+\end{align*}
+We have $\lim_{\sigma \to 0} \mathbb{P}(|\sigma Y| > \delta) = \lim_{\sigma \to 0} \mathbb{P}(|Y| > \delta/\sigma) = 0$. Thus, $\exists \sigma_0$ such that for $\sigma < \sigma_0$, $2\|f\|_{\infty} \mathbb{P}(|\sigma Y| > \delta) < \varepsilon$. We thus have $|\mathbb{E}[f(X_n) - f(X_n + \sigma Y)]| < 2\varepsilon$. By the same argument, we have $|\mathbb{E}[f(X + \sigma Y) - f(X)]| < 2\varepsilon$. Now consider the middle term.
+\[
+\forall n \in \mathbb{N}, \quad |\mathbb{E}[f(X_n)] - \mathbb{E}[f(X)]| \leq 2\varepsilon + |\mathbb{E}[f(X_n + \sigma Y) - f(X + \sigma Y)]| + 2\varepsilon
+\]
+We use the formula from the previous lecture (via convolution with a Gaussian):
+\[
+\mathbb{E}[f(X_n + \sigma Y)] = \iint f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X_n}(-u) du dz
+\]
+\[
+\mathbb{E}[f(X + \sigma Y)] = \iint f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X}(-u) du dz
+\]
+where $g_{1/\sigma}$ is the density of $\mathcal{N}(0, 1/\sigma^2)$. Set $F_n(u,z) = f(z) e^{iuz} \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u) \phi_{X_n}(-u)$. We have:
+\[
+|F_n(u,z)| \leq |f(z)| \frac{1}{\sqrt{2\pi}\sigma} g_{1/\sigma}(u)
+\]
+This bound does not depend on $n$ and is in $L^1(d\lambda(u), d\lambda(z)) = L^1(\mathbb{R}^2, \lambda^{\otimes 2})$. By the dominated convergence theorem (DCT), since $\phi_{X_n}(u) \to \phi_X(u)$, we have:
+\[
+\exists N, \forall n \geq N, \quad |\mathbb{E}[f(X_n + \sigma Y)] - \mathbb{E}[f(X + \sigma Y)]| < \varepsilon
+\]
+Then, for $n \geq N$,
+\[
+|\mathbb{E}[f(X_n)] - \mathbb{E}[f(X)]| < 2\varepsilon + \varepsilon + 2\varepsilon = 5\varepsilon
+\]
+Since this holds for any $\varepsilon > 0$, we have $\mathbb{E}[f(X_n)] \to \mathbb{E}[f(X)]$ for any continuous function $f$ with compact support, which is the definition of convergence in distribution.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 45c494cb010e77cd147ce844bf68e72cae458c3c26b60c0ab92a28590d0b45e7
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Moments}% --- CHUNK_METADATA_START ---
+% src_checksum: fabcb59e2ffa82e0f08e48c2134821297bf47563b2a4ef31f8239d36cd920741
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}
+Let $X$ be a real-valued random variable. Let $k \geq 1$. Suppose that $\mathbb{E}[|X|^k] < \infty$.
+Then, $\phi_X$ is differentiable $k$ times, and furthermore,
+\[ \phi_X^{(k)}(0) = i^k \mathbb{E}[X^k] \]
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: ba23d8ac945a4d2f1a30c069a57aa50e0444256bbf832b682d4b2ccfa3b86297
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Let's prove the case for $k=1$. We have $\mathbb{E}[|X|] < \infty$.
+The characteristic function is $\phi_X(u) = \int_{\mathbb{R}} e^{iux} dP_X(x)$.
+This is a parameterized integral, and we want to derive with respect to $u$.
+Let $F(x,u) = e^{iux}$. We have $\frac{\partial F}{\partial u}(x,u) = ix e^{iux}$.
+We have $\left|\frac{\partial F}{\partial u}(x,u)\right| = |ix e^{{iux}| = |x|$ = |x|.
+The dominating function $|x|$ is $P_X$-integrable because $\mathbb{E}[|X|] < \infty$, and it does not depend on $u$.
+By the theorem of differentiation under the integral sign, $\phi_X$ is differentiable and
+\[ \phi'_X(u) = \int_{\mathbb{R}} \frac{\partial F}{\partial u}(x,u) dP_X(x) = \int_{\mathbb{R}} ix e^{iux} dP_X(x) \]
+Thus $\phi'_X(0) = \int_{\mathbb{R}} ix dP_X(x) = i \mathbb{E}[X]$.
+The result for $k > 1$ is obtained by induction.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: e5c1ec15c0d0cd2c738f917fe5e6fcfbfca54e1946d83f2dd2aab7ab1cae20b3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+This result makes it easy to find the sequence of moments.% --- CHUNK_METADATA_START ---
+% src_checksum: 8794f4d73cdd38411e40a7e0bb055adfb622a4fa3332ed00117c813d7c0700e7
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection*{Examples}% --- CHUNK_METADATA_START ---
+% src_checksum: 0da57fba4673cf0700178166bbc3e457ce72d0f62055d28a59d492c253d32e5b
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{example}[Loi uniforme][Uniform distribution]
+Let $X \sim \mathcal{U}([-1,1])$. The density is $f(x) = \frac{1}{2} \mathbf{1}_{[-1,1]}(x)$.
+
+\begin{align*}
+    \phi_X(u) = \int_{-1}^1 e^{iux} \frac{1}{2} dx = \frac{1}{2} \left[ \frac{e^{iux}}{iu} \right]_{-1}^1 = \frac{e^{iu} - e^{-iu}}{2iu} = \frac{\sin(u)}{u}
+\end{align*}
+
+We know the series expansion of $\sin(u) = \sum_{n=0}^\infty (-1)^n \frac{u^{2n+1}}{(2n+1)!}$.
+Thus, $\phi_X(u) = \frac{\sin(u)}{u} = \sum_{n=0}^\infty (-1)^n \frac{u^{2n}}{(2n+1)!}$.
+The derivative of order $2n$ at $0$ is $(2n)!$ times the coefficient of $u^{2n}$:
+\[ \phi_X^{(2n)}(0) = (2n)! \frac{(-1)^n}{(2n+1)!} \]
+
+Hence, $\mathbb{E}[X^{2n}] = \frac{\phi_X^{(2n)}(0)}{i^{2n}} = \frac{1}{(-1)^n} (2n)! \frac{(-1)^n}{(2n+1)!} = \frac{1}{2n+1}$.
+Easier: $\mathbb{E}[X^{2n}] = \int_{-1}^1 x^{2n} \frac{1}{2} dx = \frac{1}{2} \left[ \frac{x^{2n+1}}{2n+1} \right]_{-1}^1 = \frac{1}{2n+1}$.
+\end{example}% --- CHUNK_METADATA_START ---
+% src_checksum: f8aa2b238db0aa5a09f05fe740950ab85c4072a7277547c8d5943dd2c51094a5
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{example}[Loi Gaussienne][Gaussian Law]
+Let $X \sim \mathcal{N}(0,1)$. We know that $\phi_X(u) = e^{-u^2/2}$.
+The series expansion is:
+\[ \phi_X(u) = e^{-u^2/2} = \sum_{n=0}^\infty \frac{1}{n!} \left( -\frac{u^2}{2} \right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{n! 2^n} u^{2n} \]
+We deduce that $\phi_X^{(2n)}(0) = (2n)! \frac{(-1)^n}{n! 2^n}$.
+Thus, $\mathbb{E}[X^{2n}] = \frac{\phi_X^{(2n)}(0)}{i^{2n}} = \frac{1}{(-1)^n} \frac{(2n)! (-1)^n}{n! 2^n} = \frac{(2n)!}{n! 2^n}$.
+\end{example}% --- CHUNK_METADATA_START ---
+% src_checksum: 69d32f0e7e134692902e65e29b7f79007b50acb64fb79e5d848adb4ccf99ef9e
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Convolution}% --- CHUNK_METADATA_START ---
+% src_checksum: f06444857d752ec6b484c0d67c3ab88dfb87808df6a0616fed46aeae6300ed5c
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{lemma}
+Let $X, Y$ be two independent random variables. Then $\forall u \in \mathbb{R}$,
+\[ \phi_{X+Y}(u) = \phi_X(u) \phi_Y(u) \]
+\end{lemma}% --- CHUNK_METADATA_START ---
+% src_checksum: d96391ae920d774387847e21c1e8a0044d74e85971ea4e8835eb1a12bb1d9523
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+$\phi_{X+Y}(u) = \mathbb{E}[e^{iu(X+Y)}] = \mathbb{E}[e^{iuX} e^{iuY}]$. By the independence of $X$ and $Y$, the r.v. $e^{iuX}$ and $e^{iuY}$ are also independent. Thus,
+\[ \mathbb{E}[e^{iuX} e^{iuY}] = \mathbb{E}[e^{iuX}] \mathbb{E}[e^{iuY}] = \phi_X(u) \phi_Y(u) \]
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 5c958539e81943ff39c781290c8d2f8f8f9127cd9cd86da8546a202666f08a57
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{corollary}
+If $X_1, \dots, X_n$ are $n$ independent random variables, then $\phi_{X_1+\dots+X_n}(u) = \prod_{i=1}^n \phi_{X_i}(u)$.
+If, furthermore, they are identically distributed, $\phi_{X_1+\dots+X_n}(u) = (\phi_{X_1}(u))^n$.
+\end{corollary}% --- CHUNK_METADATA_START ---
+% src_checksum: da128c3b4257b3cbb5cefcc3f091bfcf4146998011017d972e75b8b6dba3d43a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Suppose that $X$ has a density law $f$ and $Y$ has a density law $g$, and $X,Y$ are independent.
+\[ \phi_{X+Y}(u) = \iint_{\mathbb{R}^2} e^{iu(x+y)} f(x)g(y) dx dy \]
+We set $z=x+y$. We keep $x$ and replace $y=z-x$.% --- CHUNK_METADATA_START ---
+% src_checksum: 7ef23feaa1c52d16f5614ffd791cbf35e6f62d7c15cedaf6d30ef37ced79aecb
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{align*}
+    \phi_{X+Y}(u) &= \iint e^{iuz} f(x)g(z-x) dx dz \quad \text{(Fubini)} \\
+    &= \int e^{iuz} \left( \int f(x)g(z-x) dx \right) dz = \int e^{iuz} h(z) dz
+\end{align*}% --- CHUNK_METADATA_START ---
+% src_checksum: 07f686c77341434e8bd0aa6b98816cded49adb9a1166f74ab38719e2c9da532a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+where $h(z) = \int f(x)g(z-x) dx = (f*g)(z)$ is the convolution product of $f$ and $g$.
+By identifying these two formulas, we see that $X+Y$ has a density function $f*g$.
+Whenever $f$ and $g$ are in $L^1$, the convolution product $f*g$ is well defined and also in $L^1$.% --- CHUNK_METADATA_START ---
+% src_checksum: 3a199780da8936de355bbb9246d04046c4d25f8883ab16f2ac03aef564489e4a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Central Limit Theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: ece428f08b2cf7aedff2e4d306693130799f3fc096bcf7eb789108baeff350f9
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Théorème Central Limite]
+Let $(X_n)_{n \geq 1}$ be a sequence of i.i.d. random variables (independent and identically distributed) with a second-order moment. Let $m = \mathbb{E}[X_i]$ and $\sigma^2 = \text{Var}[X_i]$. Then,
+\[ \frac{X_1 + \dots + X_n - nm}{\sqrt{n}} \xrightarrow[n \to \infty]{\mathcal{L}} \mathcal{N}(0, \sigma^2) \]
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: f78886449d8d347b275f5564007f0de3cbaf8202928ce8981e6829fae7d866d9
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\textbf{Warning:} It is absolutely necessary to center the random variables by subtracting $\mathbb{E}[X_1+\dots+X_n] = nm$.\\
+However, we can normalize to obtain a variance of 1:
+\[ \frac{X_1 + \dots + X_n - nm}{\sqrt{n}\sigma} \xrightarrow[n \to \infty]{\mathcal{L}} \mathcal{N}(0, 1) \]% --- CHUNK_METADATA_START ---
+% src_checksum: efc5360c0fcc53be545d321910472833e4b70cb18970ef4a13fa961cc2c34c0e
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection*{History}% --- CHUNK_METADATA_START ---
+% src_checksum: ac37cc2ae98aa6d8b13c161c3dd2109f916c4a9c422b2bd51943c0b794c2605f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+This is a universal result. As soon as the random variables $(X_n)$ have a second-order moment, the fluctuations of $X_1, \dots, X_n$ around their mean are described by the Gaussian law. The CLT (or CLT) is a refinement of the law of large numbers, assuming the existence of a second-order moment.% --- CHUNK_METADATA_START ---
+% src_checksum: d092ceb4367c6e5a04139018af13e9869a616a3f1fe98e1a66337ccebbe70998
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{itemize}
+    \item \textbf{Abraham de Moivre (1733)}: \textit{The doctrine of chances}.
+    \item \textbf{Pierre Simon de Laplace (1812)}: \textit{Traité de Mécanique céleste} and \textit{Théorie analytique des probabilités} (CLT for the binomial law, Moivre-Laplace theorem).
+    \item \textbf{Lindeberg}, \textbf{Turing (1934)}.
+\end{itemize}% --- CHUNK_METADATA_START ---
+% src_checksum: 8e8effd0b7b308b919aea50c05cb5cbe3d2d644b9e61e5e464d34cde725f4b42
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}[Preuve du TCL]
+Let $Y_n = \frac{X_1 + \dots + X_n - nm}{\sqrt{n}}$ and $\tilde{X}_k = X_k - m$ for $1 \leq k \leq n$. We have $\mathbb{E}[\tilde{X}_k] = 0$ and $\mathbb{E}[\tilde{X}_k^2] = \sigma^2$. We can rewrite $Y_n = \frac{1}{\sqrt{n}} \sum_{k=1}^n \tilde{X}_k$. Let us study the convergence in distribution of $Y_n$ using characteristic functions. The $\tilde{X}_k$ are i.i.d.
+\begin{align*}
+    \phi_{Y_n}(u) = \mathbb{E}\left[ e^{iu Y_n} \right] = \mathbb{E}\left[ e^{i \frac{u}{\sqrt{n}} \sum_{k=1}^n \tilde{X}_k} \right] &= \mathbb{E}\left[ \prod_{k=1}^n e^{i \frac{u}{\sqrt{n}} \tilde{X}_k} \right] \\
+    &= \prod_{k=1}^n \mathbb{E}\left[ e^{i \frac{u}{\sqrt{n}} \tilde{X}_k} \right] \quad \text{(by independence)} \\
+    &= \left( \phi_{\tilde{X}_1}\left(\frac{u}{\sqrt{n}}\right) \right)^n \quad \text{(since i.i.d.)}
+\end{align*}
+Since $\mathbb{E}[\tilde{X}_1^2] < \infty$, $\phi_{\tilde{X}_1}$ is twice differentiable. It therefore admits a second-order Taylor expansion at 0:
+\[ \phi_{\tilde{X}_1}(v) = \phi_{\tilde{X}_1}(0) + v \phi'_{\tilde{X}_1}(0) + \frac{v^2}{2} \phi''_{\tilde{X}_1}(0) + o(v^2) \]
+Let us compute the coefficients:
+\begin{itemize}
+    \item $\phi_{\tilde{X}_1}(0) = \mathbb{E}[e^0] = 1$
+    \item $\phi'_{\tilde{X}_1}(0) = i \mathbb{E}[\tilde{X}_1] = i \cdot 0 = 0$
+    \item $\phi''_{\tilde{X}_1}(0) = i^2 \mathbb{E}[\tilde{X}_1^2] = - \sigma^2$
+\end{itemize}
+Thus, $\phi_{\tilde{X}_1}(v) = 1 - \frac{\sigma^2 v^2}{2} + o(v^2)$. Applying this expansion with $v = u/\sqrt{n}$:
+\[ \phi_{\tilde{X}_1}\left(\frac{u}{\sqrt{n}}\right) = 1 - \frac{\sigma^2}{2} \left(\frac{u}{\sqrt{n}}\right)^2 + o\left(\left(\frac{u}{\sqrt{n}}\right)^2\right) = 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \]
+Now, we raise to the power of $n$:
+\[ \phi_{Y_n}(u) = \left( 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right)^n \]
+To find the limit, we use the (complex) logarithm. We know that as $z \to 0$, $\ln(1+z) = z + O(z^2)$.
+\begin{align*}
+    \ln(\phi_{Y_n}(u)) &= n \ln\left( 1 - \frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right) \\
+    &= n \left( -\frac{\sigma^2 u^2}{2n} + o\left(\frac{1}{n}\right) \right) \\
+    &= -\frac{\sigma^2 u^2}{2} + n \cdot o\left(\frac{1}{n}\right) = -\frac{\sigma^2 u^2}{2} + o(1)
+\end{align*}
+Therefore, $\lim_{n \to \infty} \ln(\phi_{Y_n}(u)) = -\frac{\sigma^2 u^2}{2}$. By continuity of the exponential,
+\[ \lim_{n \to \infty} \phi_{Y_n}(u) = e^{-\frac{\sigma^2 u^2}{2}} \]
+We recognize the characteristic function of the $\mathcal{N}(0, \sigma^2)$ distribution. We conclude by Paul Lévy's theorem that $Y_n \xrightarrow{\mathcal{L}} \mathcal{N}(0, \sigma^2)$.
+\end{proof}

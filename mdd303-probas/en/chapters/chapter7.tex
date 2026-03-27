@@ -1,0 +1,247 @@
+% --- CHUNK_METADATA_START ---
+% src_checksum: 736bd85c41246b3e80961a585630f2343adb1b33a0a746e4c7af3e81f9eaedaa
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\chapter{The laws of large numbers}% --- CHUNK_METADATA_START ---
+% src_checksum: 72866aa510b3cc88f678364c0035ffe135e58e0d2ca75a0b2e5a6cc256da9ebb
+% --- CHUNK_METADATA_END ---
+\sloppy% --- CHUNK_METADATA_START ---
+% src_checksum: 90ca305f6e7941c5a4287a7742463c4000269e254920439a95a9b8461d1f798f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Fundamental inequalities}% --- CHUNK_METADATA_START ---
+% src_checksum: b4b646df45a3a3baaa4eb97466edeb648156b46e73b5788d9452e28f8c6a1ae3
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{Markov's Inequality}% --- CHUNK_METADATA_START ---
+% src_checksum: 18cc00a2df6268743b5107e2a92527d9cf41573c2fdd4658319a9dca51950f01
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}
+Let $X$ be a positive random variable. Then $\forall \lambda > 0$,
+\[
+P(X \ge \lambda) \le \frac{1}{\lambda} E[X].
+\]
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: 92c19598a41afc73703ebe7cabe538a6f297cd470ab0f0cebbaa69a4e4d5b0e9
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+Since $X \ge 0$, $E[X]$ is always defined, possibly with $E[X] = +\infty$.
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: 7d68014321e8e7c3e61ddc7df363c45f2fb2e1ea12ad1df1c90cd19f0f2e67cf
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+We have
+\begin{align*}
+E[X] = \int_{\Omega} X dP &= \int_{\{X \ge \lambda\}} X dP + \int_{\{X < \lambda\}} X dP \\
+&\ge \int_{\{X \ge \lambda\}} X dP \quad (\text{since } X \ge 0) \\
+&\ge \int_{\{X \ge \lambda\}} \lambda dP \quad (\text{because on } \{X \ge \lambda\}, X \ge \lambda) \\
+&= \lambda P(X \ge \lambda).
+\end{align*}
+By dividing by $\lambda > 0$, we obtain the result.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 413bfc2bf92c2cb9e018af2a1203a10761a25f7c4debb793b02fa27bca495735
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+Markov's inequality is used to prove many more general inequalities.% --- CHUNK_METADATA_START ---
+% src_checksum: 31654110865b3c2f0450a2c648a76a2af4353b88052506df4b92377bf5ed6808
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\subsection{Chebyshev's Inequality}% --- CHUNK_METADATA_START ---
+% src_checksum: a73870a6a6de27e6605afba1a8b3401a69e4b0fe738978d9ac56f2f7c0aed5bf
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}
+Let $X$ be a random variable with a finite second moment, i.e., $E[X^2] < +\infty$. Then $\forall t > 0$,
+\[
+P(|X - E[X]| \ge t) \le \frac{1}{t^2} \text{Var}(X).
+\]
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: 59e8d71737b86a92e289288a36eca601e96bdf3c32fc851d1367fc370685b96e
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+The inequality is trivial if $t \le 0$. Let $t>0$. We have
+\[
+P(|X - E[X]| \ge t) = P((X - E[X])^2 \ge t^2).
+\]
+We apply Markov's inequality to the positive random variable $Y = (X - E[X])^2$ with $\lambda = t^2$:
+\[
+P(Y \ge t^2) \le \frac{E[Y]}{t^2}.
+\]
+Now, $E[Y] = E[(X - E[X])^2] = \text{Var}(X)$. Hence the result:
+\[
+P(|X - E[X]| \ge t) \le \frac{\text{Var}(X)}{t^2}.
+\]
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 984109d0052baaf68aa5b1d4b508bbcb832ac65e8859a06c8eefe78191bdfae1
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+The value of this inequality lies in its simplicity and the fact that it is very well suited to sums of random variables.% --- CHUNK_METADATA_START ---
+% src_checksum: d914a0b6ad97aba20728e1b8e14157b2db7d32b9e4ab565871ebc98aa5fd7943
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{The weak law of large numbers}% --- CHUNK_METADATA_START ---
+% src_checksum: fdd7e17784bc1b5a18d20e955acfdb92240d2dd993541930769c20bedc33774a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}
+Let $\mu$ be a probability measure on $\mathbb{R}$ that is integrable, i.e., $\int_{\mathbb{R}} |x| d\mu(x) < +\infty$.
+Let $m = \int_{\mathbb{R}} x d\mu(x)$.
+For $n \ge 1$, let $X_1, \dots, X_n$ be i.i.d. random variables with distribution $\mu$. Then, for $\forall \varepsilon > 0$,
+\[
+\lim_{n \to \infty} P\left(\left|\frac{X_1 + \dots + X_n}{n} - m\right| \ge \varepsilon\right) = 0.
+\]
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 8b9abebf42f864313a24e9425cfce5ec5cf9d77c29442c1ab5f719d3b2b4d6fe
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+\begin{remark}
+If $(X_n)$ is a sequence of i.i.d. random variables with distribution $\mu$, this can be written as:
+\[
+\frac{X_1 + \dots + X_n}{n} \xrightarrow[n\to\infty]{P} m.
+\]
+\end{remark}
+% --- CHUNK_METADATA_START ---
+% src_checksum: e0e14d59ce15ae87a4dcd0b5276bc969296d6047857ca39932a4c97213150fc8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{remark}
+In fact, by applying the transfer formula to the vector $(X_1, \dots, X_n)$, we have:
+\[
+P\left(\left|\frac{X_1+\dots+X_n}{n} - m\right| \ge \varepsilon\right) = P_{\mu^{\otimes n}}\left(\{(x_1, \dots, x_n) \in \mathbb{R}^n, \left|\frac{x_1+\dots+x_n}{n} - m\right| \ge \varepsilon\}\right).
+\]
+Thus, the weak law is actually an asymptotic result on the sequence of laws $(\mu^{\otimes n}, n \ge 1)$. The law does not require having an i.i.d. sequence.
+\end{remark}% --- CHUNK_METADATA_START ---
+% src_checksum: ea86338daa88ee85a6fcfd45f9ad369df36f11bcd8f3a2a40feacf5899900faf
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}[Preuve (sous l'hypothèse d'un moment d'ordre 2)]
+Suppose that the distribution $\mu$ has a second-order moment. Let $\sigma^2 = \text{Var}(\mu) = \int_{\mathbb{R}} (x-m)^2 d\mu(x)$.
+Let $\bar{X}_n = \frac{X_1 + \dots + X_n}{n}$.
+The expectation calculation gives:
+\[
+E[\bar{X}_n] = E\left[\frac{X_1 + \dots + X_n}{n}\right] = \frac{1}{n}(E[X_1] + \dots + E[X_n]) = \frac{1}{n}(n \cdot m) = m.
+\]
+Let $\varepsilon > 0$. By applying the Bienaymé-Chebyshev inequality to $\bar{X}_n$:
+\[
+P(|\bar{X}_n - m| \ge \varepsilon) \le \frac{\text{Var}(\bar{X}_n)}{\varepsilon^2}.
+\]
+We calculate the variance:
+\begin{align*}
+\text{Var}(\bar{X}_n) &= \text{Var}\left(\frac{X_1 + \dots + X_n}{n}\right) \\
+&= \frac{1}{n^2} \text{Var}(X_1 + \dots + X_n) \\
+&= \frac{1}{n^2} (\text{Var}(X_1) + \dots + \text{Var}(X_n)) \quad (\text{par indépendance}) \\
+&= \frac{1}{n^2} (n \cdot \sigma^2) \quad (\text{car les lois sont identiques}) \\
+&= \frac{\sigma^2}{n}.
+\end{align*}
+Thus,
+\[
+P\left(\left|\frac{X_1 + \dots + X_n}{n} - m\right| \ge \varepsilon\right) \le \frac{\sigma^2}{n\varepsilon^2} \xrightarrow[n\to\infty]{} 0.
+\]
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: 51d96fe28b5b691ad236c2be75b8479b3d0d08fef2483082590d412e2974bda1
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{The strong law of large numbers}% --- CHUNK_METADATA_START ---
+% src_checksum: 4fdbdf0be6036ce5ec436cd507dc5ca81b4af00f653bbde04cc7861efe7761a8
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{theorem}[Loi forte des grands nombres]
+Let $(X_n)_{n \ge 1}$ be a sequence of i.i.d. integrable random variables, that is, $E[|X_1|] < +\infty$. Then
+\[
+\frac{X_1 + \dots + X_n}{n} \xrightarrow[n\to\infty]{p.s.} E[X_1].
+\]
+\end{theorem}% --- CHUNK_METADATA_START ---
+% src_checksum: 102eae2ee4d543517ca5636836fbad69b318cbc986f2f3558da056122ea3b20f
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}[Éléments de preuve]
+The proof is divided into several steps.
+\subsubsection*{Step 1: Centering}
+Let $m = E[X_1]$. By replacing $X_n$ with $X_n - m$ for $n \ge 1$, we can assume that the sequence is centered, meaning that $E[X_i] = 0$ for all $i$.
+\subsubsection*{Step 2: Truncation}
+Let, for all $n \ge 1$, $Y_n = X_n \mathbb{I}_{\{|X_n| \le n\}}$. That is:
+\[ Y_n = \begin{cases} X_n & \text{si } |X_n| \le n \\ 0 & \text{sinon} \end{cases} \]
+We can then decompose the average as follows:
+\[
+\frac{X_1 + \dots + X_n}{n} = \frac{(X_1 - Y_1) + \dots + (X_n - Y_n)}{n} + \frac{Y_1 + \dots + Y_n}{n}.
+\]
+The proof consists of showing that the two terms on the right-hand side tend to 0 almost surely. For the first term, we use the following lemma.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: fbf4571b39a0fd4b2e3e28c89e935b95ffc982a36272c0abbd4d66399c903b36
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{lemma}
+Let $(X_n)_{n \ge 1}$ be a sequence of i.i.d. random variables. The following are equivalent:
+\begin{enumerate}
+    \item[i)] $E[|X_1|] < +\infty$
+    \item[ii)] $P(|X_n| > n \text{ a.s.}) = 0$
+\end{enumerate}
+\end{lemma}% --- CHUNK_METADATA_START ---
+% src_checksum: f8d2db04ad57716e0db886581aeeefbb063c4acb0bca08d840ae099911188f2b
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+Since the events $\{|X_n| > n\}$ for $n \ge 1$ are not independent (as they share the same distribution), we cannot directly apply the second Borel-Cantelli lemma. However, the first Borel-Cantelli lemma applies. The events $\{|X_n|>n\}$ are independent. By the Borel-Cantelli lemma, we have the equivalence:
+\[
+P(|X_n| > n \text{ i.s.}) = 0 \iff \sum_{n \ge 1} P(|X_n| > n) < +\infty.
+\]
+Since the variables $X_n$ are identically distributed, $P(|X_n| > n) = P(|X_1| > n)$, so the equivalence becomes
+\[
+\sum_{n \ge 1} P(|X_1| > n) < +\infty.
+\]
+It remains to show that $\sum_{n \ge 1} P(|X_1| > n) < +\infty \iff E[|X_1|] < +\infty$.
+For a positive random variable $Z$, we have $E[Z] = \int_0^{+\infty} P(Z > t) dt$. Applying this to $Z = |X_1|$:
+\begin{align*}
+E[|X_1|] &= \int_0^{+\infty} P(|X_1| > t) dt \\
+&= \sum_{n=0}^{\infty} \int_n^{n+1} P(|X_1| > t) dt.
+\end{align*}
+For $t \in [n, n+1)$, we have the bound $P(|X_1| > n+1) \le P(|X_1| > t) \le P(|X_1| > n)$. Integrating over $[n, n+1]$, we obtain:
+\[
+P(|X_1| > n+1) \le \int_n^{n+1} P(|X_1| > t) dt \le P(|X_1| > n).
+\]
+Summing over $n \ge 0$:
+\[
+\sum_{n=0}^{\infty} P(|X_1| > n+1) \le \sum_{n=0}^{\infty} \int_n^{n+1} P(|X_1| > t) dt \le \sum_{n=0}^{\infty} P(|X_1| > n).
+\]
+This can be rewritten as:
+\[
+\sum_{k=1}^{\infty} P(|X_1| > k) \le E[|X_1|] \le \sum_{k=0}^{\infty} P(|X_1| > k) = P(|X_1|>0) + \sum_{k=1}^{\infty} P(|X_1| > k).
+\]
+The expectation $E[|X_1|]$ is therefore finite if and only if the series $\sum_{n \ge 1} P(|X_1| > n)$ converges.
+\end{proof}% --- CHUNK_METADATA_START ---
+% src_checksum: ad41fb84b54de245d5e7847d317325790513f1769c35772d7916de4babdf95b4
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+
+By the lemma, since $E[|X_1|] < \infty$, we have $P(|X_n| > n \text{ a.s.}) = 0$, which is equivalent to $P(X_n \ne Y_n \text{ a.s.}) = 0$.
+This implies that the series $\sum (X_n - Y_n)$ converges almost surely. From Kronecker's lemma, it follows that
+\[
+\frac{(X_1 - Y_1) + \dots + (X_n - Y_n)}{n} \xrightarrow[n\to\infty]{p.s.} 0.
+\]
+The complete proof of the strong law of large numbers then requires showing that the second term $\frac{1}{n}\sum_{i=1}^n Y_i$ also converges to 0 a.s., which is done using Kolmogorov's criterion.
+% --- CHUNK_METADATA_START ---
+% src_checksum: 1cbf5774e563939d3920c59dfad49ab75cbd583871c00832c3693d9f91e4a255
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\section{Kolmogorov Criterion}% --- CHUNK_METADATA_START ---
+% src_checksum: b54103d957519d5825e5fd2ecb0aa49ea61b45c31fc461ee8b8b75a998c86a2c
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proposition}
+Let $(Z_n)_{n \ge 1}$ be a sequence of independent and centered random variables ($E[Z_n]=0$ for all $n$).
+If $\sum_{n \ge 1} \frac{E[Z_n^2]}{n^2} < +\infty$, then the series $\sum_{n \ge 1} \frac{Z_n}{n}$ converges almost surely, and
+\[
+\frac{Z_1 + \dots + Z_n}{n} \xrightarrow[n\to\infty]{p.s.} 0.
+\]
+\end{proposition}% --- CHUNK_METADATA_START ---
+% src_checksum: 5a6c57a850e95cf6d77417d719cd812eaf6c1400f796e08e037b3abefce7520a
+% needs_review: True
+% --- CHUNK_METADATA_END ---
+\begin{proof}
+The proof is omitted.
+\end{proof}
